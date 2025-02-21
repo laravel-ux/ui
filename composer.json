@@ -4,9 +4,7 @@
     "keywords": ["laravel", "tailwind", "livewire"],
     "license": "MIT",
     "require": {
-        "php": "^8.2"
-    },
-    "require-dev": {
+        "php": "^8.2",
         "livewire/livewire": "^3.3"
     },
     "autoload": {
