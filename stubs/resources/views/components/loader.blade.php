@@ -1,8 +1,18 @@
+@props([
+    'size' => 'default',
+])
+@php
+    $size = match ($size) {
+//        'sm' => 'h-9 rounded-md px-3',
+//        'lg' => 'h-11 rounded-md px-8',
+        default => 24,
+    };
+@endphp
 <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
+    width="{{ $size }}"
+    height="{{ $size }}"
+    viewBox="0 0 {{ $size }} {{ $size }}"
     fill="none"
     stroke="currentColor"
     stroke-width="2"
