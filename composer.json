@@ -1,0 +1,29 @@
+{
+    "name": "laravel-ui/supports",
+    "description": "Supports for the Laravel UI.",
+    "keywords": ["laravel", "tailwind", "livewire"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "livewire/livewire": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelUi\\Supports\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelUi\\Supports\\SupportsServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
