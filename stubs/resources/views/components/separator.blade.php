@@ -7,7 +7,7 @@
         ->merge([
             'class' => match ($orientation) {
                 'vertical' => 'h-full w-[1px]',
-                default => 'h-[1px] w-full',
+                'horizontal' => 'h-[1px] w-full',
             },
         ]);
 @endphp
