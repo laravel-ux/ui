@@ -8,13 +8,34 @@ use LaravelUi\Supports\Commands\InstallCommand;
 
 class SupportsServiceProvider extends ServiceProvider
 {
+    public function register(): void
+    {
+        $this
+            ->registerConfig();
+    }
+
     public function boot(): void
     {
         $this
+            ->bootViews()
             ->bootCommands([
                 InstallCommand::class,
             ])
             ->bootComponents();
+    }
+
+    protected function registerConfig(): static
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/livewire.php', 'livewire');
+
+        return $this;
+    }
+
+    protected function bootViews(): static
+    {
+        $this->loadViewsFrom(__DIR__ . '/../stubs/resources/views', 'ui');
+
+        return $this;
     }
 
     protected function bootCommands(array $commands): static
