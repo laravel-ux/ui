@@ -1,3 +1,5 @@
+import forms from "@tailwindcss/forms";
+import animate from "tailwindcss-animate";
 import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
@@ -58,9 +60,9 @@ export default {
                 sm: "calc(var(--radius) - 4px)",
             },
             fontFamily: {
-                sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+                sans: ['Inter', ...defaultTheme.fontFamily.sans],
             },
         },
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [forms, animate],
 };
