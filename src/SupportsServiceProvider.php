@@ -26,14 +26,14 @@ class SupportsServiceProvider extends ServiceProvider
 
     protected function registerConfig(): static
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/livewire.php', 'livewire');
+        $this->mergeConfigFrom(__DIR__.'/../config/livewire.php', 'livewire');
 
         return $this;
     }
 
     protected function bootViews(): static
     {
-        $this->loadViewsFrom(__DIR__ . '/../stubs/resources/views', 'ui');
+        $this->loadViewsFrom(__DIR__.'/../stubs/resources/views', 'ui');
 
         return $this;
     }
@@ -49,7 +49,7 @@ class SupportsServiceProvider extends ServiceProvider
 
     protected function bootComponents(): static
     {
-        Blade::anonymousComponentPath(__DIR__ . '/../stubs/resources/views/components', 'ui');
+        Blade::anonymousComponentPath(__DIR__.'/../stubs/resources/views/components', 'ui');
 
         return $this;
     }
