@@ -2,19 +2,16 @@
     'size' => 'default',
 ])
 @php
+    $width = $height = match ($size) {
+        'sm' => 16,
+        'lg' => 32,
+        'default' => 24,
+    };
     $attributes = $attributes
         ->class('shrink-0 animate-spin')
         ->merge([
-            'width' => match ($size) {
-                'sm' => 16,
-                'lg' => 32,
-                'default' => 24,
-            },
-            'height' => match ($size) {
-                'sm' => 16,
-                'lg' => 32,
-                'default' => 24,
-            },
+            'width' => $width,
+            'height' => $height,
         ]);
 @endphp
 <svg
