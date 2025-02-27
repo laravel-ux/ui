@@ -8,6 +8,7 @@
 
         @if($label)
             <x-ui::form.label
+                for="{{ $attributes->get('id') }}"
                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
                 {{ $label }}

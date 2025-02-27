@@ -1,5 +1,3 @@
-@persist('notification')
-    @livewire('ui::notification')
-@endpersist
+@livewire('ui::toasts')
 
 @livewireScripts

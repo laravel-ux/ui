@@ -5,7 +5,7 @@
 ])
 <x-ui::form.item>
     @if($label)
-        <x-ui::form.label>
+        <x-ui::form.label for="{{ $attributes->get('id') }}">
             {{ $label }}
         </x-ui::form.label>
     @endif

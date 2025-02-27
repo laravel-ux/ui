@@ -5,7 +5,7 @@ namespace LaravelUi\Supports;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use LaravelUi\Supports\Commands\InstallCommand;
-use LaravelUi\Supports\Livewire\Notification;
+use LaravelUi\Supports\Livewire\Toasts;
 use Livewire\Component;
 use Livewire\Livewire;
 
@@ -53,14 +53,14 @@ class SupportsServiceProvider extends ServiceProvider
     {
         Blade::anonymousComponentPath(__DIR__.'/../stubs/resources/views/components', 'ui');
 
-        Livewire::component('ui::notification', Notification::class);
+        Livewire::component('ui::toasts', Toasts::class);
 
-        Component::macro('notify', function (string $description, ?string $title = null) {
-            $this->dispatch('notify', description: $description, title: $title);
-        });
-        Component::macro('notifyError', function (string $description, ?string $title = null) {
-            $this->dispatch('notify', description: $description, title: $title, destructive: true);
-        });
+        Component::macro(
+            'toast',
+            function (string $description, ?string $title = null, string $variant = 'default') {
+                $this->dispatch('toast', description: $description, title: $title, variant: $variant);
+            },
+        );
 
         return $this;
     }
