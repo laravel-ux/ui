@@ -3,15 +3,19 @@
         <x-ui::toast
             wire:key="{{ $key }}"
             :variant="$message['variant']"
-            x-data="{show: true}"
-            x-init="setTimeout(() => show = false, 5000)"
-            x-show="show"
         >
-            <x-ui::toast.message
-                :title="$message['title']"
-                :description="$message['description']"
-            />
-            <x-ui::toast.close @click="show = false" />
+            <div class="grid gap-1">
+                @if($message['title'])
+                    <x-ui::toast.title>
+                        {{ $message['title'] }}
+                    </x-ui::toast.title>
+                @endif
+
+                <x-ui::toast.description>
+                    {{ $message['description'] }}
+                </x-ui::toast.description>
+            </div>
+            <x-ui::toast.close />
         </x-ui::toast>
     @endforeach
 </x-ui::toast.viewport>
