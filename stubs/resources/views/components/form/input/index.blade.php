@@ -17,6 +17,6 @@
     <x-ui::input type="{{ $type }}" {{ $attributes }} />
 
     <x-ui::form.message
-        name="{{ $attributes->has('wire:model') ? $attributes->get('wire:model') : $attributes->get('name') }}"
+        name="{{ $attributes->hasWireModel() ? $attributes->getWireModel() : $attributes->get('name') }}"
     />
 </x-ui::form.item>

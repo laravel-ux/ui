@@ -4,6 +4,7 @@ namespace LaravelUi\Supports;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\ComponentAttributeBag;
 use LaravelUi\Supports\Commands\InstallCommand;
 use LaravelUi\Supports\Livewire\Toasts;
 use Livewire\Component;
@@ -59,6 +60,19 @@ class SupportsServiceProvider extends ServiceProvider
             'toast',
             function (string $description, ?string $title = null, string $variant = 'default') {
                 $this->dispatch('toast', description: $description, title: $title, variant: $variant);
+            },
+        );
+
+        ComponentAttributeBag::macro(
+            'hasWireModel',
+            function () {
+                return $this->hasAny(['wire:model', 'wire:model.blur', 'wire:model.live']);
+            },
+        );
+        ComponentAttributeBag::macro(
+            'getWireModel',
+            function () {
+                return $this->only(['wire:model', 'wire:model.blur', 'wire:model.live'])->first();
             },
         );
 
