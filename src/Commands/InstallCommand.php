@@ -22,9 +22,9 @@ class InstallCommand extends Command implements PromptsForMissingInput
             ] + $packages;
         });
 
-        copy(__DIR__.'/../../stubs/postcss.config.js', base_path('postcss.config.js'));
-        copy(__DIR__.'/../../stubs/tailwind.config.js', base_path('tailwind.config.js'));
-        copy(__DIR__.'/../../stubs/vite.config.js', base_path('vite.config.js'));
+        copy(__DIR__ . '/../../stubs/postcss.config.js', base_path('postcss.config.js'));
+        copy(__DIR__ . '/../../stubs/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__ . '/../../stubs/vite.config.js', base_path('vite.config.js'));
 
         return static::SUCCESS;
     }
