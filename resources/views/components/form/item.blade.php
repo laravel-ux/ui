@@ -1,3 +1,3 @@
-<div {{ $attributes->class('space-y-2') }}>
+<div {{ $attributes->tailwindMerge('space-y-2') }}>
     {{ $slot }}
 </div>

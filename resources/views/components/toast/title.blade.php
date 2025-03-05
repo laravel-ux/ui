@@ -1,3 +1,3 @@
-<div class="text-sm font-semibold [&+div]:text-xs">
+<div {{ $attributes->tailwindMerge('text-sm font-semibold [&+div]:text-xs') }}>
     {{ $slot }}
 </div>

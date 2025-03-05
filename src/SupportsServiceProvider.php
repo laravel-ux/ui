@@ -7,16 +7,26 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\View\ComponentAttributeBag;
 use LaravelUi\Supports\Commands\InstallCommand;
 use LaravelUi\Supports\Livewire\Toasts;
+use LaravelUi\Supports\Mixins\ComponentAttributeBugMixin;
+use LaravelUi\Supports\Mixins\ComponentMixin;
 use Livewire\Component;
 use Livewire\Livewire;
+use ReflectionException;
+use TailwindMerge\Contracts\TailwindMergeContract;
+use TailwindMerge\TailwindMerge;
 
 class SupportsServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->registerConfig();
+        $this
+            ->registerConfig()
+            ->registerSingletons();
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function boot(): void
     {
         $this
@@ -30,6 +40,16 @@ class SupportsServiceProvider extends ServiceProvider
     protected function registerConfig(): static
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/livewire.php', 'livewire');
+
+        return $this;
+    }
+
+    protected function registerSingletons(): static
+    {
+        $this->app->singleton(
+            TailwindMergeContract::class,
+            static fn (): TailwindMerge => TailwindMerge::factory()->make(),
+        );
 
         return $this;
     }
@@ -50,31 +70,17 @@ class SupportsServiceProvider extends ServiceProvider
         return $this;
     }
 
+    /**
+     * @throws ReflectionException
+     */
     protected function bootComponents(): static
     {
         Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'ui');
 
         Livewire::component('ui::toasts', Toasts::class);
 
-        Component::macro(
-            'toast',
-            function (string $description, ?string $title = null, string $variant = 'default') {
-                $this->dispatch('toast', description: $description, title: $title, variant: $variant);
-            },
-        );
-
-        ComponentAttributeBag::macro(
-            'hasWireModel',
-            function () {
-                return $this->hasAny(['wire:model', 'wire:model.blur', 'wire:model.live']);
-            },
-        );
-        ComponentAttributeBag::macro(
-            'getWireModel',
-            function () {
-                return $this->only(['wire:model', 'wire:model.blur', 'wire:model.live'])->first();
-            },
-        );
+        Component::mixin(new ComponentMixin());
+        ComponentAttributeBag::mixin(new ComponentAttributeBugMixin);
 
         return $this;
     }

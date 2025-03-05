@@ -5,7 +5,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "livewire/livewire": "^3.3"
+        "livewire/livewire": "^3.3",
+        "gehrisandro/tailwind-merge-php": "^1.1"
     },
     "autoload": {
         "psr-4": {
@@ -16,7 +17,10 @@
         "laravel": {
             "providers": [
                 "LaravelUi\\Supports\\SupportsServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "TailwindMerge": "LaravelUi\\Supports\\Facades\\TailwindMerge"
+            }
         }
     },
     "config": {
