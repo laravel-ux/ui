@@ -39,7 +39,40 @@
                     <x-ui::sidebar.footer>
                         <x-ui::sidebar.menu>
                             <x-ui::sidebar.menu.item>
-
+                                <x-ui::dropdown-menu>
+                                    <x-ui::dropdown-menu.trigger>
+                                        <x-ui::sidebar.menu.button
+                                            size="lg"
+                                            class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                                        >
+                                            <div class="grid flex-1 text-left text-sm leading-tight">
+                                                <span class="truncate font-semibold">
+                                                    {{ auth()->user()->email }}
+                                                </span>
+                                                <span class="truncate text-xs">
+                                                    {{ auth()->user()->name }}
+                                                </span>
+                                            </div>
+                                            <x-ui::icon name="chevrons-up-down" class="ml-auto size-4" />
+                                        </x-ui::sidebar.menu.button>
+                                    </x-ui::dropdown-menu.trigger>
+                                    <x-ui::dropdown-menu.content class="min-w-56 rounded-lg">
+                                        <x-ui::dropdown-menu.group>
+                                            <x-ui::dropdown-menu.label>
+                                                Account
+                                            </x-ui::dropdown-menu.label>
+                                            <x-ui::dropdown-menu.separator />
+                                            <x-ui::dropdown-menu.item>
+                                                <form class="inline-block" method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+                                                    <button type="submit">
+                                                        Logout
+                                                    </button>
+                                                </form>
+                                            </x-ui::dropdown-menu.item>
+                                        </x-ui::dropdown-menu.group>
+                                    </x-ui::dropdown-menu.content>
+                                </x-ui::dropdown-menu>
                             </x-ui::sidebar.menu.item>
                         </x-ui::sidebar.menu>
                     </x-ui::sidebar.footer>

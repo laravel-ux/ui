@@ -1,8 +1,9 @@
 @props([
     'variant' => 'default',
+//    'delay' => 5000,
 ])
 <li
-    x-data="{show: true}"
+    x-data="{ show: true }"
     x-init="setTimeout(() => show = false, 5000)"
     x-show="show"
     x-transition
