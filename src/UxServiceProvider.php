@@ -1,21 +1,17 @@
 <?php
 
-namespace LaravelUi\Supports;
+namespace LaravelUx\Ux;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\ComponentAttributeBag;
-use LaravelUi\Supports\Commands\InstallCommand;
-use LaravelUi\Supports\Livewire\Toasts;
-use LaravelUi\Supports\Mixins\ComponentAttributeBugMixin;
-use LaravelUi\Supports\Mixins\ComponentMixin;
-use Livewire\Component;
-use Livewire\Livewire;
+use LaravelUx\Ux\Commands\InstallCommand;
+use LaravelUx\Ux\Mixins\ComponentAttributeBugMixin;
 use ReflectionException;
 use TailwindMerge\Contracts\TailwindMergeContract;
 use TailwindMerge\TailwindMerge;
 
-class SupportsServiceProvider extends ServiceProvider
+class UxServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
@@ -56,7 +52,7 @@ class SupportsServiceProvider extends ServiceProvider
 
     protected function bootViews(): static
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ui');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ux');
 
         return $this;
     }
@@ -75,11 +71,8 @@ class SupportsServiceProvider extends ServiceProvider
      */
     protected function bootComponents(): static
     {
-        Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'ui');
+        Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'ux');
 
-        Livewire::component('ui::toasts', Toasts::class);
-
-        Component::mixin(new ComponentMixin());
         ComponentAttributeBag::mixin(new ComponentAttributeBugMixin);
 
         return $this;

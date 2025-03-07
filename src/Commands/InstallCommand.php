@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelUi\Supports\Commands;
+namespace LaravelUx\Ux\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
@@ -9,7 +9,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
 {
     protected $signature = 'ui:install';
 
-    protected $description = 'Install the UI components and resources';
+    protected $description = 'Install the Laravel UX components and resources';
 
     public function handle(): int
     {

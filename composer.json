@@ -1,6 +1,6 @@
 {
-    "name": "laravel-ui/supports",
-    "description": "Supports for the Laravel UI.",
+    "name": "laravel-ui/ux",
+    "description": "Components for the Laravel UX.",
     "keywords": ["laravel", "tailwind", "livewire"],
     "license": "MIT",
     "require": {
@@ -10,16 +10,16 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelUi\\Supports\\": "src/"
+            "LaravelUx\\Ux\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelUi\\Supports\\SupportsServiceProvider"
+                "LaravelUx\\Ux\\UxServiceProvider"
             ],
             "aliases": {
-                "TailwindMerge": "LaravelUi\\Supports\\Facades\\TailwindMerge"
+                "TailwindMerge": "LaravelUx\\Ux\\Facades\\TailwindMerge"
             }
         }
     },

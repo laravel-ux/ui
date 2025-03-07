@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelUi\Supports\Mixins;
+namespace LaravelUx\Ux\Mixins;
 
 use Closure;
 use Illuminate\View\ComponentAttributeBag;
-use LaravelUi\Supports\Facades\TailwindMerge;
+use LaravelUx\Supports\Facades\TailwindMerge;
 
 class ComponentAttributeBugMixin
 {
