@@ -1,5 +1,5 @@
 {
-    "name": "laravel-ui/ux",
+    "name": "laravel-ux/ui",
     "description": "Components for the Laravel UX.",
     "keywords": ["laravel", "tailwind", "livewire"],
     "license": "MIT",
@@ -10,16 +10,16 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelUx\\Ux\\": "src/"
+            "LaravelUx\\Ui\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelUx\\Ux\\UxServiceProvider"
+                "LaravelUx\\Ui\\UiServiceProvider"
             ],
             "aliases": {
-                "TailwindMerge": "LaravelUx\\Ux\\Facades\\TailwindMerge"
+                "TailwindMerge": "LaravelUx\\Ui\\Facades\\TailwindMerge"
             }
         }
     },

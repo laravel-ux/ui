@@ -1,6 +1,7 @@
-<x-ui::separator
+<x-ux::separator
+    data-slot="sidebar-separator"
     data-sidebar="separator"
-    {{ $attributes->tailwindMerge('mx-2 w-auto bg-sidebar-border') }}
+    {{ $attributes->tailwindMerge('bg-sidebar-border mx-2 w-auto') }}
 >
     {{ $slot }}
-</x-ui::separator>
+</x-ux::separator>

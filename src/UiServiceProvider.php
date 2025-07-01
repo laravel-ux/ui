@@ -1,17 +1,17 @@
 <?php
 
-namespace LaravelUx\Ux;
+namespace LaravelUx\Ui;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\ComponentAttributeBag;
-use LaravelUx\Ux\Commands\InstallCommand;
-use LaravelUx\Ux\Mixins\ComponentAttributeBugMixin;
+use LaravelUx\Ui\Commands\InstallCommand;
+use LaravelUx\Ui\Mixins\ComponentAttributeBugMixin;
 use ReflectionException;
 use TailwindMerge\Contracts\TailwindMergeContract;
 use TailwindMerge\TailwindMerge;
 
-class UxServiceProvider extends ServiceProvider
+class UiServiceProvider extends ServiceProvider
 {
     public function register(): void
     {

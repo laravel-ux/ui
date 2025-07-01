@@ -3,20 +3,22 @@
     'label' => '',
     'description' => '',
 ])
-<x-ui::form.item>
+@php($name = $attributes->hasWireModel() ? $attributes->getWireModel() : $attributes->get('name'))
+<x-ux::form.item>
     @if($label)
-        <x-ui::form.label for="{{ $attributes->get('id') }}">
+        <x-ux::form.label for="{{ $attributes->get('id') }}">
             {{ $label }}
-        </x-ui::form.label>
+        </x-ux::form.label>
     @endif
+
+    <x-ux::input
+        type="{{ $type }}"
+        {{ $attributes }}
+    />
 
     @if($description)
-        <x-ui::form.description>{{ $description }}</x-ui::form.description>
+        <x-ux::form.description>{{ $description }}</x-ux::form.description>
     @endif
 
-    <x-ui::input type="{{ $type }}" {{ $attributes }} />
-
-    <x-ui::form.message
-        name="{{ $attributes->hasWireModel() ? $attributes->getWireModel() : $attributes->get('name') }}"
-    />
-</x-ui::form.item>
+    <x-ux::form.message name="{{ $name }}" />
+</x-ux::form.item>

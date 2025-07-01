@@ -1,12 +1,9 @@
 @props([
     'orientation' => 'horizontal',
 ])
-<div
-    {{ $attributes->tailwindMerge([
-        'shrink-0 bg-border',
-        match ($orientation) {
-            'vertical' => 'h-full w-[1px]',
-            'horizontal' => 'h-[1px] w-full',
-        },
-    ]) }}
-></div>
+@php
+    $attributes = $attributes
+        ->tailwindMerge('bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px')
+        ->merge(['data-slot' => 'separator', 'data-orientation' => $orientation]);
+@endphp
+<div {{ $attributes }}></div>

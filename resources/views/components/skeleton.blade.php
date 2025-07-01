@@ -1,1 +1,6 @@
-<div {{ $attributes->tailwindMerge('animate-pulse rounded-md bg-primary/10') }}></div>
+@php
+    $attributes = $attributes
+        ->tailwindMerge('bg-primary/10 animate-pulse rounded-md')
+        ->merge(['data-slot' => 'skeleton']);
+@endphp
+<div {{ $attributes }}></div>

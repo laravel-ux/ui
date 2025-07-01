@@ -3,9 +3,10 @@
     'widthIcon' => '3rem',
 ])
 <div
+    data-slot="sidebar-wrapper"
     {{
         $attributes
-            ->tailwindMerge('group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar')
+            ->tailwindMerge('group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full')
             ->style([
                 "--sidebar-width: {$width}",
                 "--sidebar-width-icon: {$widthIcon}",

@@ -1,7 +1,7 @@
 @props([
     'align' => 'center',
     'side' => 'bottom',
-    'sideOffset' => 4,
+    'sideOffset' => 0,
 ])
 @php($position = $side . data_get(['end' => '-end', 'start' => '-start'], $align))
 <div

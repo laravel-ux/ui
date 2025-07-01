@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelUx\Ux\Facades;
+namespace LaravelUx\Ui\Facades;
 
 use Illuminate\Support\Facades\Facade;
 use TailwindMerge\Contracts\TailwindMergeContract;

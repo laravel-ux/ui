@@ -1,3 +1,0 @@
-@livewire('ui::toasts')
-
-@livewireScripts
