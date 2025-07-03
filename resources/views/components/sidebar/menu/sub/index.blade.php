@@ -7,4 +7,6 @@
             'group-data-[collapsible=icon]:hidden',
         ])
     }}
-></ul>
+>
+    {{ $slot }}
+</ul>

@@ -1,8 +1,14 @@
 @props([
     'orientation' => 'horizontal',
+    'decorative' => true,
 ])
 @php
     $attributes = $attributes
+        ->when(
+            $decorative,
+            fn ($attributes) => $attributes->offsetSet('aria-hidden', 'true'),
+            fn ($attributes) => $attributes->offsetSet('role', 'separator')
+        )
         ->tailwindMerge('bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px')
         ->merge(['data-slot' => 'separator', 'data-orientation' => $orientation]);
 @endphp
