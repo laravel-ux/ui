@@ -1,7 +1,8 @@
 <li
+    {{ $attributes->tailwindMerge('[&>svg]:size-3.5') }}
     role="presentation"
     aria-hidden="true"
-    {{ $attributes->tailwindMerge('[&>svg]:w-3.5 [&>svg]:h-3.5') }}
+    data-slot="breadcrumb-separator"
 >
     @if($slot->isNotEmpty())
         {{ $slot }}

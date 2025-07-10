@@ -1,8 +1,9 @@
 <span
+    {{ $attributes->tailwindMerge('text-foreground font-normal') }}
     role="link"
     aria-disabled="true"
     aria-current="page"
-    {{ $attributes->tailwindMerge('font-normal text-foreground') }}
+    data-slot="breadcrumb-page"
 >
     {{ $slot }}
 </span>

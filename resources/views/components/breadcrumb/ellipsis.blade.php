@@ -1,8 +1,8 @@
 <span
+    {{ $attributes->tailwindMerge('flex size-9 items-center justify-center') }}
     role="presentation"
     aria-hidden="true"
-    {{ $attributes->tailwindMerge('flex h-4 w-4 items-center justify-center') }}
+    data-slot="breadcrumb-ellipsis"
 >
-    <x-ux::icon name="ellipsis" class="h-4 w-4" />
-    <span class="sr-only">More</span>
+    <x-ux::icon name="more-horizontal" class="size-4" />
 </span>
