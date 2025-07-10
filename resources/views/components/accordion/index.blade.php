@@ -1,10 +1,8 @@
 @props(['active' => ''])
 <div
-    data-slot="accordion"
-    x-data="{
-        active: '{{ $active }}'
-    }"
     {{ $attributes }}
+    data-slot="accordion"
+    x-data="{active: @js($active)}"
 >
     {{ $slot }}
 </div>

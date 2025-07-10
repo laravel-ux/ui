@@ -1,7 +1,7 @@
 @props(['value'])
 <div
-    data-slot="accordion-item"
     {{ $attributes->tailwindMerge('border-b last:border-b-0') }}
+    data-slot="accordion-item"
 >
     {{ $slot }}
 </div>
