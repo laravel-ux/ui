@@ -1,9 +1,9 @@
 @props([
-    'active' => '',
+    'value' => '',
 ])
 <div
     data-slot="tabs"
-    x-data="{ active: '{{ $active }}' }"
+    x-data="{ value: '{{ $value }}' }"
     {{ $attributes->tailwindMerge('flex flex-col gap-2') }}
 >
     {{ $slot }}

@@ -1,6 +1,5 @@
 @props([
     'viewport' => false,
-    'orientation' => 'horizontal',
 ])
 @php
     $attributes = $attributes
@@ -9,20 +8,14 @@
             fn($attributes) => $attributes->offsetSet('data-viewport', 'true'),
             fn($attributes) => $attributes->offsetSet('data-viewport', 'false'),
         )
-        ->tailwindMerge('group/navigation-menu relative flex max-w-max flex-1 items-center justify-center')
-        ->merge(['data-slot' => 'navigation-menu', 'data-orientation' => $orientation]);
+        ->tailwindMerge('group/navigation-menu relative flex max-w-max flex-1 items-center justify-center');
 @endphp
 <nav
-    x-data="{
-        show: false,
-        close: function () {
-            this.show = false
-        },
-        toggle: function () {
-            this.show = ! this.show
-        }
-    }"
     {{ $attributes }}
+    data-slot="navigation-menu"
 >
     {{ $slot }}
+    @if($viewport)
+        <x-ux::navigation-menu.viewport />
+    @endif
 </nav>

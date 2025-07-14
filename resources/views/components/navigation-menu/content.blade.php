@@ -1,15 +1,14 @@
 @props([
     'align' => 'start',
     'side' => 'bottom',
-    'sideOffset' => 4,
+    'sideOffset' => 0,
 ])
 @php($position = $side . data_get(['end' => '-end', 'start' => '-start'], $align))
 <div
     x-cloak
     x-show="show"
-    x-transition
     x-anchor.{{ $position }}.offset.{{ $sideOffset }}="$refs.trigger"
-    x-on:click.outside="close()"
+    x-on:click.outside="show = false"
     x-bind:data-state="show ? 'open' : 'closed'"
     data-slot="navigation-menu-content"
     {{ $attributes->tailwindMerge([
