@@ -1,13 +1,7 @@
 <div
-    x-data="{
-        show: false,
-        close: function () {
-            this.show = false
-        },
-        toggle: function () {
-            this.show = ! this.show
-        }
-    }"
+    {{ $attributes->tailwindMerge('relative flex items-center') }}
+    x-data="{ show: false }"
+    data-slot="dropdown-menu"
 >
     {{ $slot }}
 </div>

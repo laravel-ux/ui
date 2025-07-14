@@ -1,3 +1,7 @@
-<div {{ $attributes->tailwindMerge('relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full') }}>
+<div
+    {{ $attributes->tailwindMerge('relative flex size-8 shrink-0 overflow-hidden rounded-full') }}
+    data-slot="avatar"
+    x-data="{ error: false }"
+>
     {{ $slot }}
 </div>

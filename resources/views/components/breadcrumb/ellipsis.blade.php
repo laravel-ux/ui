@@ -4,5 +4,5 @@
     aria-hidden="true"
     data-slot="breadcrumb-ellipsis"
 >
-    <x-ux::icon name="more-horizontal" class="size-4" />
+    <x-ux::icon name="ellipsis" class="size-4" />
 </span>

@@ -1,4 +1,6 @@
-@props(['value'])
+@props([
+    'value',
+])
 <div
     data-slot="tabs-content"
     x-cloak

@@ -3,7 +3,8 @@
 ])
 <div
     {{ $attributes }}
-    data-slot="accordion"
+    data-slot="dropdown-menu-radio-group"
+    role="group"
     x-data="{ value: '{{ $value }}' }"
 >
     {{ $slot }}

@@ -1,3 +1,6 @@
-<span {{ $attributes->tailwindMerge('flex h-full w-full items-center justify-center rounded-full bg-muted') }}>
+<span
+    {{ $attributes->tailwindMerge('bg-muted flex size-full items-center justify-center rounded-full') }}
+    data-slot="avatar-fallback"
+>
     {{ $slot }}
 </span>

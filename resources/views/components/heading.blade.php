@@ -1,6 +1,4 @@
-@props([
-    'size' => 'default',
-])
+@props(['size' => 'default'])
 <div
     {{ $attributes->tailwindMerge([
         'font-semibold tracking-tight',

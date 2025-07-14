@@ -1,4 +1,6 @@
-@props(['value'])
+@props([
+    'value',
+])
 <button
     role="tab"
     type="button"

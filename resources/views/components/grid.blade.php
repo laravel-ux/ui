@@ -1,4 +1,6 @@
-@props(['columns' => 2])
+@props([
+    'columns' => 2,
+])
 <div
     {{ $attributes->tailwindMerge([
         'grid gap-4',

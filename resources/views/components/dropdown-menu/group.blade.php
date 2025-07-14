@@ -1,3 +1,6 @@
-<div {{ $attributes }}>
+<div
+    {{ $attributes }}
+    data-slot="dropdown-menu-group"
+>
     {{ $slot }}
 </div>
