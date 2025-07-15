@@ -39,6 +39,11 @@ class UiServiceProvider extends ServiceProvider
             return <<<'PHP'
 <?php
     $__asChildHtml = trim(ob_get_clean());
+
+    if (empty($__asChildHtml)) {
+        return $__asChildHtml;
+    }
+
     $doc = new DOMDocument();
     libxml_use_internal_errors(true);
     $doc->loadHTML($__asChildHtml, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);

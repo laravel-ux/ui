@@ -1,8 +1,11 @@
 @props([
-    'name',
+    'name' => '',
 ])
 @error($name)
-    <p {{ $attributes->tailwindMerge('text-[0.8rem] font-medium text-destructive') }}>
+    <p
+        {{ $attributes->tailwindMerge('text-destructive text-sm') }}
+        data-slot="form-message"
+    >
         {{ $message }}
     </p>
 @enderror

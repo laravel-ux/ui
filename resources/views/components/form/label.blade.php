@@ -1,3 +1,12 @@
-<label {{ $attributes->tailwindMerge('text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70') }}>
+@props([
+    'name' => '',
+])
+<x-ux::label
+    {{
+        $attributes
+            ->when($errors->has($name), fn($attributes) => $attributes->offsetSet('errors', 'true'))
+            ->tailwindMerge('data-[error=true]:text-destructive')
+    }}
+>
     {{ $slot }}
-</label>
+</x-ux::label>

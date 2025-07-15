@@ -1,20 +1,16 @@
 @props([
-    'type' => 'text',
     'label' => '',
     'description' => '',
 ])
 @php($name = $attributes->hasWireModel() ? $attributes->getWireModel() : $attributes->get('name'))
 <x-ux::form.item>
     @if($label)
-        <x-ux::form.label for="{{ $attributes->get('id') }}">
+        <x-ux::form.label name="{{ $name }}" for="{{ $attributes->get('id') }}">
             {{ $label }}
         </x-ux::form.label>
     @endif
 
-    <x-ux::input
-        type="{{ $type }}"
-        {{ $attributes }}
-    />
+    <x-ux::input {{ $attributes }} />
 
     @if($description)
         <x-ux::form.description>{{ $description }}</x-ux::form.description>

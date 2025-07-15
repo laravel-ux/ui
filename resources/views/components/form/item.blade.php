@@ -1,3 +1,6 @@
-<div {{ $attributes->tailwindMerge('flex flex-col gap-2') }}>
+<div
+    {{ $attributes->tailwindMerge('grid gap-2') }}
+    data-slot="form-item"
+>
     {{ $slot }}
 </div>
