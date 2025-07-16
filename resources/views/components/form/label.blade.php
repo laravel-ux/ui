@@ -1,6 +1,5 @@
-@props([
-    'name' => '',
-])
+@aware(['name'])
+@props(['name' => ''])
 <x-ux::label
     {{
         $attributes

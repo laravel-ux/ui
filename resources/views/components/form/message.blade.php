@@ -1,6 +1,5 @@
-@props([
-    'name' => '',
-])
+@aware(['name'])
+@props(['name' => ''])
 @error($name)
     <p
         {{ $attributes->tailwindMerge('text-destructive text-sm') }}

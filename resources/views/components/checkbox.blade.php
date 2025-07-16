@@ -1,4 +1,32 @@
-<input
-    type="checkbox"
-    {{ $attributes->tailwindMerge('relative w-5 h-5 aspect-square appearance-none bg-white border border-input rounded checked:bg-primary checked:border-primary cursor-pointer outline-none ring-0 text-transparent ring-offset-0 after:absolute after:top-[40%] after:left-[50%] after:w-[35%] after:h-[53%] after:-translate-x-2/4 after:-translate-y-2/4 after:border-r-[0.15em] after:border-b-[0.15em] after:border-white after:rotate-[25deg] after:opacity-0 checked:after:opacity-100 checked:after:rotate-45') }}
-/>
+@props(['disabled' => false])
+<button
+    role="checkbox"
+    data-slot="checkbox"
+    type="button"
+    x-cloak
+    x-data="{ checked: @js($attributes->get('checked') ?? false) }"
+    x-on:click="checked = ! checked"
+    x-bind:data-state="checked ? 'checked' : 'unchecked'"
+    x-bind:aria-checked="checked"
+    @disabled($disabled)
+    class="{{ TailwindMerge::merge(
+        'peer border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
+        $attributes->get('class'),
+    ) }}"
+>
+    <input
+        type="checkbox"
+        class="peer sr-only"
+        @disabled($disabled)
+        {{ $attributes->except(['class']) }}
+    />
+    <span
+        x-cloak
+        x-show="checked"
+        data-slot="checkbox-indicator"
+        x-bind:data-state="checked ? 'checked' : 'unchecked'"
+        class="flex items-center justify-center text-current transition-none"
+    >
+        <x-ux::icon name="check" class="size-3.5" />
+    </span>
+</button>
