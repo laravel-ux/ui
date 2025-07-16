@@ -23,8 +23,8 @@
     <span
         x-cloak
         x-show="checked"
-        data-slot="checkbox-indicator"
         x-bind:data-state="checked ? 'checked' : 'unchecked'"
+        data-slot="checkbox-indicator"
         class="flex items-center justify-center text-current transition-none"
     >
         <x-ux::icon name="check" class="size-3.5" />
