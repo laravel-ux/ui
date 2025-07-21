@@ -31,37 +31,6 @@ class UiServiceProvider extends ServiceProvider
                 InstallCommand::class,
             ])
             ->bootComponents();
-
-        Blade::directive('asChild', function ($expression): string {
-            return "<?php ob_start(); \$__asChildAttrs = $expression; ?>";
-        });
-        Blade::directive('endAsChild', function (): string {
-            return <<<'PHP'
-<?php
-    $__asChildHtml = trim(ob_get_clean());
-
-    if (empty($__asChildHtml)) {
-        return $__asChildHtml;
-    }
-
-    $doc = new DOMDocument();
-    libxml_use_internal_errors(true);
-    $doc->loadHTML($__asChildHtml, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-    libxml_clear_errors();
-
-    foreach ($doc->childNodes as $node) {
-        if ($node->nodeType === XML_ELEMENT_NODE) {
-            foreach ($__asChildAttrs as $name => $value) {
-                $node->setAttribute($name, $value);
-            }
-        }
-    }
-
-    echo $doc->saveHTML();
-    unset($doc, $__asChildHtml, $__asChildAttrs);
-?>
-PHP;
-        });
     }
 
     protected function registerConfig(): static
