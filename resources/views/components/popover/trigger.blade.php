@@ -3,8 +3,8 @@
         $attributes->merge([
             'x-ref' => 'trigger',
             'x-on:click' => 'show = ! show',
-            'data-slot' => 'dropdown-menu-trigger',
-            'aria-haspopup' => 'menu',
+            'data-slot' => 'popover-trigger',
+            'aria-haspopup' => 'dialog',
             'x-bind:aria-expanded' => 'show',
         ])
     }}

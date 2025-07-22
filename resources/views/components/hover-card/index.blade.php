@@ -1,7 +1,7 @@
 <div
     {{ $attributes->tailwindMerge('inline-flex') }}
     x-data="{ show: false }"
-    data-slot="dropdown-menu"
+    data-slot="hover-card"
 >
     {{ $slot }}
 </div>
