@@ -15,6 +15,6 @@
     <x-ux::skeleton
         data-sidebar="menu-skeleton-text"
         class="h-4 max-w-(--skeleton-width) flex-1"
-        {{--        style="--skeleton-width: {{  }};"--}}
+        style="--skeleton-width: {{ rand(50, 90) }}%;"
     />
 </div>

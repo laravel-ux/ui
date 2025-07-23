@@ -2,10 +2,10 @@
     {{ $attributes->tailwindMerge('flex') }}
     x-data="{ show: false }"
     x-init="$watch('show', show => { document.body.classList.toggle('overflow-hidden', show) })"
-    data-slot="sheet"
+    data-slot="dialog"
 >
     @teleport('body')
-        <x-ux::sheet.overlay />
+        <x-ux::dialog.overlay />
     @endteleport
     {{ $slot }}
 </div>

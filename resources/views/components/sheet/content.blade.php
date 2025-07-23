@@ -4,7 +4,7 @@
         x-cloak
         x-show="show"
         x-bind:data-state="show ? 'open' : 'closed'"
-        role="menu"
+        role="dialog"
         tabindex="-1"
         data-slot="sheet-content"
         {{ $attributes->tailwindMerge(

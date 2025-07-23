@@ -1,5 +1,5 @@
 <div
-    {{ $attributes->tailwindMerge('inline-flex') }}
+    {{ $attributes->tailwindMerge('flex') }}
     x-data="{ show: false }"
     data-slot="popover"
 >

@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\View\ComponentAttributeBag;
 use LaravelUx\Ui\Commands\InstallCommand;
 use LaravelUx\Ui\Mixins\ComponentAttributeBugMixin;
+use LaravelUx\Ui\View\Components\AsChild;
 use ReflectionException;
 use TailwindMerge\Contracts\TailwindMergeContract;
 use TailwindMerge\TailwindMerge;
@@ -71,6 +72,7 @@ class UiServiceProvider extends ServiceProvider
      */
     protected function bootComponents(): static
     {
+        Blade::component('ux::as-child', AsChild::class);
         Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'ux');
 
         ComponentAttributeBag::mixin(new ComponentAttributeBugMixin);

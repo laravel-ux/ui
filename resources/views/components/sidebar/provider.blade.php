@@ -4,6 +4,7 @@
 ])
 <div
     data-slot="sidebar-wrapper"
+    x-data="{ show: true }"
     {{
         $attributes
             ->tailwindMerge('group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full')
