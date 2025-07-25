@@ -7,7 +7,7 @@
     x-show="value === '{{ $value }}'"
     role="tabpanel"
     tabindex="0"
-    {{ $attributes->tailwindMerge('flex-1 outline-none') }}
+    {{ $attributes->tailwindMerge('outline-none') }}
 >
     {{ $slot }}
 </div>

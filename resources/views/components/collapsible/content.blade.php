@@ -3,6 +3,7 @@
     x-cloak
     x-collapse
     x-show="show"
+    x-bind:data-state="show ? 'open' : 'closed'"
     {{ $attributes }}
 >
     {{ $slot }}
