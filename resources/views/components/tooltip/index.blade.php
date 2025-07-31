@@ -1,5 +1,6 @@
 <div
-    x-data="{ show: false }"
+    x-data="{ open: false }"
+    x-modelable="open"
     data-slot="tooltip"
     {{ $attributes->tailwindMerge('inline-flex') }}
 >

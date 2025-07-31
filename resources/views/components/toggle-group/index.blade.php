@@ -4,11 +4,12 @@
     'size' => 'default',
 ])
 <div
-    {{ $attributes->tailwindMerge('group/toggle-group flex w-fit items-center rounded-md data-[variant=outline]:shadow-xs') }}
+    data-slot="toggle-group"
     role="group"
     tabindex="0"
-    data-slot="toggle-group"
     x-data="{ value: @js($value) }"
+    x-modelable="value"
+    {{ $attributes->tailwindMerge('group/toggle-group flex w-fit items-center rounded-md data-[variant=outline]:shadow-xs') }}
 >
     {{ $slot }}
 </div>

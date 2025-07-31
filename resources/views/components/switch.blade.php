@@ -1,10 +1,11 @@
 @props(['disabled' => false])
 <button
-    role="switch"
     data-slot="switch"
+    role="switch"
     type="button"
     x-cloak
     x-data="{ checked: @js($attributes->get('checked') ?? false) }"
+    x-modelable="checked"
     x-on:click="checked = ! checked"
     x-bind:data-state="checked ? 'checked' : 'unchecked'"
     x-bind:aria-checked="checked"

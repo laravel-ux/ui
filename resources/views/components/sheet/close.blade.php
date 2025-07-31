@@ -1,10 +1,7 @@
 <x-ux::button
-    {{
-        $attributes->merge([
-            'x-on:click' => 'show = false',
-            'data-slot' => 'sheet-close',
-        ])
-    }}
+    x-on:click="open = false"
+    data-slot="sheet-close"
+    {{ $attributes }}
 >
     {{ $slot }}
 </x-ux::button>

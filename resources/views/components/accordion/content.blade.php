@@ -4,7 +4,7 @@
     x-cloak
     x-collapse
     role="region"
-    x-show="value === '{{ $value }}'"
+    x-show="value === @js($value)"
     class="overflow-hidden text-sm"
 >
     <div {{ $attributes->tailwindMerge('pt-0 pb-4') }}>

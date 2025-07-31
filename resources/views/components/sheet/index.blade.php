@@ -1,11 +1,16 @@
+@props(['open' => false])
 <div
-    {{ $attributes->tailwindMerge('flex') }}
-    x-data="{ show: false }"
-    x-init="$watch('show', show => { document.body.classList.toggle('overflow-hidden', show) })"
+    x-data="{
+        open: @js($open),
+        toggleOverflow() { document.body.style.overflow = this.open ? 'hidden' : '' }
+    }"
+    x-init="if (open) toggleOverflow(); $watch('open', () => { toggleOverflow() })"
+    x-modelable="open"
     data-slot="sheet"
+    {{ $attributes->tailwindMerge('flex') }}
 >
-    @teleport('body')
+    <x-ux::portal>
         <x-ux::sheet.overlay />
-    @endteleport
+    </x-ux::portal>
     {{ $slot }}
 </div>

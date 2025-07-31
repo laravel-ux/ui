@@ -12,9 +12,9 @@
     tabindex="0"
     data-slot="radio-group-item"
     x-cloak
-    x-on:click="value = (value !== '{{ $value }}' ? '{{ $value }}': '')"
-    x-bind:data-state="(value === '{{ $value }}') ? 'checked' : 'unchecked'"
-    x-bind:aria-checked="value === '{{ $value }}'"
+    x-on:click="value = (value !== @js($value) ? @js($value): '')"
+    x-bind:data-state="(value === @js($value)) ? 'checked' : 'unchecked'"
+    x-bind:aria-checked="value === @js($value)"
     @disabled($disabled)
 >
     <input

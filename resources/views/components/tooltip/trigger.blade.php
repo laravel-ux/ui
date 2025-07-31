@@ -1,13 +1,10 @@
 <div
-    {{
-        $attributes->merge([
-            'x-ref' => 'trigger',
-            'x-on:mouseenter' => 'show = true',
-            'x-on:mouseleave' => 'show = false',
-            'data-slot' => 'tooltip-trigger',
-            'aria-haspopup' => 'menu',
-        ])
-    }}
+    x-ref="trigger"
+    data-slot="tooltip-trigger"
+    aria-haspopup="menu"
+    x-on:mouseenter="open = true"
+    x-on:mouseleave="open = false"
+    {{ $attributes }}
 >
     {{ $slot }}
 </div>

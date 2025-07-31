@@ -1,10 +1,9 @@
 @props(['asChild' => false])
 @php
     $attributes = $attributes->merge([
-        'x-ref' => 'trigger',
-        'x-on:click' => 'show = ! show',
+        'x-on:click' => 'open = ! open',
         'data-slot' => 'collapsible-trigger',
-        'x-bind:aria-expanded' => 'show',
+        'x-bind:aria-expanded' => 'open',
     ]);
 @endphp
 @if($asChild)

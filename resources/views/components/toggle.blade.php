@@ -22,6 +22,7 @@
         {{ $attributes }}
         data-slot="toggle"
         x-data="{ pressed: @js($pressed)}"
+        x-modelable="pressed"
         x-on:click="pressed = ! pressed"
         x-bind:data-state="pressed ? 'on' : 'off'"
     >
@@ -32,6 +33,7 @@
         {{ $attributes }}
         data-slot="toggle"
         x-data="{ pressed: @js($pressed)}"
+        x-modelable="pressed"
         x-on:click="pressed = ! pressed"
         x-bind:data-state="pressed ? 'on' : 'off'"
     >

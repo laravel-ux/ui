@@ -1,6 +1,6 @@
 <div
-    {{ $attributes->tailwindMerge('bg-accent animate-pulse rounded-md') }}
+    data-slot="skeleton"
     aria-hidden="true"
     tabindex="-1"
-    data-slot="skeleton"
+    {{ $attributes->tailwindMerge('bg-accent animate-pulse rounded-md') }}
 ></div>

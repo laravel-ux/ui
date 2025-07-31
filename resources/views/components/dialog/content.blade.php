@@ -1,8 +1,8 @@
-@teleport('body')
+<x-ux::portal>
     <div
         x-cloak
-        x-show="show"
-        x-bind:data-state="show ? 'open' : 'closed'"
+        x-show="open"
+        x-bind:data-state="open ? 'open' : 'closed'"
         role="dialog"
         tabindex="-1"
         data-slot="dialog-content"
@@ -11,9 +11,9 @@
         {{ $slot }}
         <button
             class="ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
-            x-on:click="show = false"
+            x-on:click="open = false"
         >
             <x-ux::icon name="x" class="size-4" />
         </button>
     </div>
-@endteleport
+</x-ux::portal>

@@ -1,6 +1,6 @@
 <div
-    {{ $attributes->tailwindMerge('leading-none font-semibold') }}
     data-slot="card-title"
+    {{ $attributes->tailwindMerge('leading-none font-semibold') }}
 >
     {{ $slot }}
 </div>

@@ -6,10 +6,10 @@
 @php($position = $side . data_get(['end' => '-end', 'start' => '-start'], $align))
 <div
     x-cloak
-    x-show="show"
+    x-show="open"
     x-anchor.{{ $position }}.offset.{{ $sideOffset }}="$refs.trigger"
-    x-bind:data-state="show ? 'open' : 'closed'"
-    x-on:click.outside="show = false"
+    x-bind:data-state="open ? 'open' : 'closed'"
+    x-on:click.outside="open = false"
     role="dialog"
     tabindex="-1"
     data-side="{{ $side }}"

@@ -1,6 +1,4 @@
-@props([
-    'variant' => 'default',
-])
+@props(['variant' => 'default'])
 @php
     $attributes = $attributes
         ->merge(['data-slot' => 'badge'])

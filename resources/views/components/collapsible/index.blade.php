@@ -1,8 +1,9 @@
 @props(['open' => false])
 <div
     data-slot="collapsible"
-    x-data="{ show: @js($open) }"
-    x-bind:data-state="show ? 'open' : 'closed'"
+    x-data="{ open: @js($open) }"
+    x-modelable="open"
+    x-bind:data-state="open ? 'open' : 'closed'"
     {{ $attributes }}
 >
     {{ $slot }}

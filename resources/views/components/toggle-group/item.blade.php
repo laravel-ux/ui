@@ -1,4 +1,7 @@
-@aware(['variant', 'size'])
+@aware([
+    'variant' => 'default',
+    'size' => 'default',
+])
 @props(['value'])
 @php
     $attributes = $attributes->tailwindMerge([
@@ -17,21 +20,21 @@
 @endphp
 @if($attributes->has('href'))
     <a
-        {{ $attributes }}
         data-slot="toggle-group-item"
-        x-on:click="value = '{{ $value }}'"
-        x-bind:tabindex="value === '{{ $value }}' ? 0 : -1"
-        x-bind:data-state="value === '{{ $value }}' ? 'on' : 'off'"
+        x-on:click="value = @js($value)"
+        x-bind:tabindex="value === @js($value) ? 0 : -1"
+        x-bind:data-state="value === @js($value) ? 'on' : 'off'"
+        {{ $attributes }}
     >
         {{ $slot }}
     </a>
 @else
     <button
-        {{ $attributes }}
         data-slot="toggle-group-item"
-        x-on:click="value = '{{ $value }}'"
-        x-bind:tabindex="value === '{{ $value }}' ? 0 : -1"
-        x-bind:data-state="value === '{{ $value }}' ? 'on' : 'off'"
+        x-on:click="value = @js($value)"
+        x-bind:tabindex="value === @js($value) ? 0 : -1"
+        x-bind:data-state="value === @js($value) ? 'on' : 'off'"
+        {{ $attributes }}
     >
         {{ $slot }}
     </button>

@@ -1,7 +1,8 @@
 <div
-    {{ $attributes }}
-    x-data="{ show: false }"
+    x-data="{ open: false }"
+    x-modelable="open"
     data-slot="dropdown-menu-sub"
+    {{ $attributes }}
 >
     {{ $slot }}
 </div>

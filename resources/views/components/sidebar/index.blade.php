@@ -1,3 +1,4 @@
+@aware(['widthMobile' => '18rem'])
 @props([
     'side' => 'left',
     'variant' => 'sidebar',
@@ -11,12 +12,28 @@
         {{ $slot }}
     </div>
 @else
+    <template x-if="isMobile">
+        <x-ux::sheet x-model="open">
+            <x-ux::sheet.content
+                side="{{ $side }}"
+                data-sidebar="sidebar"
+                data-slot="sidebar"
+                data-mobile="true"
+                class="bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden"
+                style="--sidebar-width: {{ $widthMobile }};"
+            >
+                <div class="flex h-full w-full flex-col">
+                    {{ $slot }}
+                </div>
+            </x-ux::sheet.content>
+        </x-ux::sheet>
+    </template>
     <div
         data-slot="sidebar"
         data-side="{{ $side }}"
         data-variant="{{ $variant }}"
-        x-bind:data-state="show ? 'expanded' : 'collapsed'"
-        x-bind:data-collapsible="show ? false : '{{ $collapsible}}'"
+        x-bind:data-state="open ? 'expanded' : 'collapsed'"
+        x-bind:data-collapsible="open ? false : '{{ $collapsible}}'"
         class="group peer text-sidebar-foreground hidden md:block"
     >
         <div

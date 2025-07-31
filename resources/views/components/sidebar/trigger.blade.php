@@ -3,8 +3,7 @@
     variant="ghost"
     data-sidebar="trigger"
     data-slot="sidebar-trigger"
-    x-ref="trigger"
-    x-on:click="show = ! show"
+    x-on:click="open = ! open"
     {{ $attributes->tailwindMerge('size-7') }}
 >
     <x-ux::icon name="panel-left" />

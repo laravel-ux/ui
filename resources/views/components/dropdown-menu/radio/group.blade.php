@@ -1,11 +1,10 @@
-@props([
-    'value' => '',
-])
+@props(['value' => ''])
 <div
-    {{ $attributes }}
     data-slot="dropdown-menu-radio-group"
     role="group"
-    x-data="{ value: '{{ $value }}' }"
+    x-data="{ value: @js($value) }"
+    x-modelable="value"
+    {{ $attributes }}
 >
     {{ $slot }}
 </div>
