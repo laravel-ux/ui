@@ -6,7 +6,7 @@
 <div
     role="menuitem"
     tabindex="-1"
-    x-on:click="open = false"
+    x-on:click="__dropdownMenuOpen = false"
     data-variant="{{ $variant }}"
     {{
         $attributes

@@ -1,6 +1,6 @@
 <x-ux::button
     data-slot="dialog-close"
-    x-on:click="open = false"
+    x-on:click="__dialogOpen = false"
     {{ $attributes }}
 >
     {{ $slot }}

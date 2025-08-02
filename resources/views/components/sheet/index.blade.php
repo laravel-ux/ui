@@ -1,11 +1,11 @@
 @props(['open' => false])
 <div
     x-data="{
-        open: @js($open),
-        toggleOverflow() { document.body.style.overflow = this.open ? 'hidden' : '' }
+        __sheetOpen: @js($open),
+        __sheetToggleOverflow() { document.body.style.overflow = this.__sheetOpen ? 'hidden' : '' }
     }"
-    x-init="if (open) toggleOverflow(); $watch('open', () => { toggleOverflow() })"
-    x-modelable="open"
+    x-init="if (__sheetOpen) __sheetToggleOverflow(); $watch('__sheetOpen', () => { __sheetToggleOverflow() })"
+    x-modelable="__sheetOpen"
     data-slot="sheet"
     {{ $attributes->tailwindMerge('flex') }}
 >

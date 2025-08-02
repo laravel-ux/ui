@@ -2,8 +2,8 @@
     x-ref="trigger"
     data-slot="tooltip-trigger"
     aria-haspopup="menu"
-    x-on:mouseenter="open = true"
-    x-on:mouseleave="open = false"
+    x-on:mouseenter="__tooltipOpen = true"
+    x-on:mouseleave="__tooltipOpen = false"
     {{ $attributes }}
 >
     {{ $slot }}

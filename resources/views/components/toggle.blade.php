@@ -21,10 +21,10 @@
     <a
         {{ $attributes }}
         data-slot="toggle"
-        x-data="{ pressed: @js($pressed)}"
-        x-modelable="pressed"
-        x-on:click="pressed = ! pressed"
-        x-bind:data-state="pressed ? 'on' : 'off'"
+        x-data="{ __togglePressed: @js($pressed)}"
+        x-modelable="__togglePressed"
+        x-on:click="__togglePressed = ! __togglePressed"
+        x-bind:data-state="__togglePressed ? 'on' : 'off'"
     >
         {{ $slot }}
     </a>
@@ -32,10 +32,10 @@
     <button
         {{ $attributes }}
         data-slot="toggle"
-        x-data="{ pressed: @js($pressed)}"
-        x-modelable="pressed"
-        x-on:click="pressed = ! pressed"
-        x-bind:data-state="pressed ? 'on' : 'off'"
+        x-data="{ __togglePressed: @js($pressed)}"
+        x-modelable="__togglePressed"
+        x-on:click="__togglePressed = ! __togglePressed"
+        x-bind:data-state="__togglePressed ? 'on' : 'off'"
     >
         {{ $slot }}
     </button>

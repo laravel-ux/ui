@@ -4,9 +4,9 @@
     aria-haspopup="menu"
     role="menuitem"
     tabindex="-1"
-    x-on:mouseenter="open = true"
-    x-on:mouseleave="open = false"
-    x-bind:aria-expanded="open"
+    x-on:mouseenter="__dropdownMenuSubOpen = true"
+    x-on:mouseleave="__dropdownMenuSubOpen = false"
+    x-bind:aria-expanded="__dropdownMenuSubOpen"
     data-slot="dropdown-menu-sub-trigger"
     {{ $attributes
         ->when($inset, fn($attributes) => $attributes->offsetSet('data-inset', 'true'))

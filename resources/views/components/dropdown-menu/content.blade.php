@@ -6,10 +6,10 @@
 @php($position = $side . data_get(['end' => '-end', 'start' => '-start'], $align))
 <div
     x-cloak
-    x-show="open"
+    x-show="__dropdownMenuOpen"
     x-anchor.{{ $position }}.offset.{{ $sideOffset }}="$refs.trigger"
-    x-bind:data-state="open ? 'open' : 'closed'"
-    x-on:click.outside="open = false"
+    x-bind:data-state="__dropdownMenuOpen ? 'open' : 'closed'"
+    x-on:click.outside="__dropdownMenuOpen = false"
     role="menu"
     tabindex="-1"
     data-side="{{ $side }}"

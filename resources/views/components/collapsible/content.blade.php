@@ -2,8 +2,8 @@
     data-slot="collapsible-content"
     x-cloak
     x-collapse
-    x-show="open"
-    x-bind:data-state="open ? 'open' : 'closed'"
+    x-show="__collapsibleOpen"
+    x-bind:data-state="__collapsibleOpen ? 'open' : 'closed'"
     {{ $attributes }}
 >
     {{ $slot }}

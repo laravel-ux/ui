@@ -1,8 +1,8 @@
 @props(['value' => ''])
 <div
     data-slot="accordion"
-    x-data="{ value: @js($value) }"
-    x-modelable="value"
+    x-data="{ __accordionValue: @js($value) }"
+    x-modelable="__accordionValue"
     {{ $attributes }}
 >
     {{ $slot }}

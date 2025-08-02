@@ -2,8 +2,8 @@
 <div
     data-slot="dropdown-menu-radio-group"
     role="group"
-    x-data="{ value: @js($value) }"
-    x-modelable="value"
+    x-data="{ __dropdownMenuRadioGroupValue: @js($value) }"
+    x-modelable="__dropdownMenuRadioGroupValue"
     {{ $attributes }}
 >
     {{ $slot }}

@@ -2,11 +2,11 @@
     'src',
     'alt' => '',
 ])
-<template x-if="! error">
+<template x-if="! __avatarError">
     <img
         src="{{ $src }}"
         alt="{{ $alt }}"
-        @@error="error = true"
+        @@error="__avatarError = true"
         data-slot="avatar-image"
         {{ $attributes->tailwindMerge('aspect-square size-full') }}
     />

@@ -1,7 +1,7 @@
 @props(['open' => false])
 <div
-    x-data="{ open: @js($open) }"
-    x-modelable="open"
+    x-data="{ __dropdownMenuOpen: @js($open) }"
+    x-modelable="__dropdownMenuOpen"
     data-slot="dropdown-menu"
     {{ $attributes->tailwindMerge('flex') }}
 >

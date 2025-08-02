@@ -7,11 +7,11 @@
 <x-ux::portal>
     <div
         x-cloak
-        x-show="open"
+        x-show="__dropdownMenuSubOpen"
         x-anchor.{{ $position }}.offset.{{ $sideOffset }}="$refs.trigger"
-        x-on:mouseenter="open = true"
-        x-on:mouseleave="open = false"
-        x-bind:data-state="open ? 'open' : 'closed'"
+        x-on:mouseenter="__dropdownMenuSubOpen = true"
+        x-on:mouseleave="__dropdownMenuSubOpen = false"
+        x-bind:data-state="__dropdownMenuSubOpen ? 'open' : 'closed'"
         role="menu"
         tabindex="-1"
         data-side="{{ $side }}"

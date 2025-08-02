@@ -12,9 +12,9 @@
     tabindex="0"
     data-slot="radio-group-item"
     x-cloak
-    x-on:click="value = (value !== @js($value) ? @js($value): '')"
-    x-bind:data-state="(value === @js($value)) ? 'checked' : 'unchecked'"
-    x-bind:aria-checked="value === @js($value)"
+    x-on:click="__radioGroupValue = (__radioGroupValue !== @js($value) ? @js($value): '')"
+    x-bind:data-state="(__radioGroupValue === @js($value)) ? 'checked' : 'unchecked'"
+    x-bind:aria-checked="__radioGroupValue === @js($value)"
     @disabled($disabled)
 >
     <input
@@ -25,8 +25,8 @@
     />
     <span
         x-cloak
-        x-show="value === '{{ $value }}'"
-        x-bind:data-state="(value === '{{ $value }}') ? 'checked' : 'unchecked'"
+        x-show="__radioGroupValue === '{{ $value }}'"
+        x-bind:data-state="(__radioGroupValue === '{{ $value }}') ? 'checked' : 'unchecked'"
         data-slot="radio-group-indicator"
         class="relative flex items-center justify-center"
     >

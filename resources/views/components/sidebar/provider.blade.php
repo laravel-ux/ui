@@ -6,10 +6,10 @@
 ])
 <div
     x-data="{
-        open: @js($open),
-        isMobile: false
+        __sidebarProviderOpen: @js($open),
+        __sidebarProviderIsMobile: false
     }"
-    x-resize.document="isMobile = $width < 768"
+    x-resize.document="__sidebarProviderIsMobile = $width < 768"
     data-slot="sidebar-wrapper"
     {{
         $attributes

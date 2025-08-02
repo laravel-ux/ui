@@ -21,9 +21,9 @@
 @if($attributes->has('href'))
     <a
         data-slot="toggle-group-item"
-        x-on:click="value = @js($value)"
-        x-bind:tabindex="value === @js($value) ? 0 : -1"
-        x-bind:data-state="value === @js($value) ? 'on' : 'off'"
+        x-on:click="__toggleGroupValue = @js($value)"
+        x-bind:tabindex="__toggleGroupValue === @js($value) ? 0 : -1"
+        x-bind:data-state="__toggleGroupValue === @js($value) ? 'on' : 'off'"
         {{ $attributes }}
     >
         {{ $slot }}
@@ -31,9 +31,9 @@
 @else
     <button
         data-slot="toggle-group-item"
-        x-on:click="value = @js($value)"
-        x-bind:tabindex="value === @js($value) ? 0 : -1"
-        x-bind:data-state="value === @js($value) ? 'on' : 'off'"
+        x-on:click="__toggleGroupValue = @js($value)"
+        x-bind:tabindex="__toggleGroupValue === @js($value) ? 0 : -1"
+        x-bind:data-state="__toggleGroupValue === @js($value) ? 'on' : 'off'"
         {{ $attributes }}
     >
         {{ $slot }}

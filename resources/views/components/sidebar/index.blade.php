@@ -12,8 +12,8 @@
         {{ $slot }}
     </div>
 @else
-    <template x-if="isMobile">
-        <x-ux::sheet x-model="open">
+    <template x-if="__sidebarProviderIsMobile">
+        <x-ux::sheet x-model="__sidebarProviderOpen">
             <x-ux::sheet.content
                 side="{{ $side }}"
                 data-sidebar="sidebar"
@@ -32,8 +32,8 @@
         data-slot="sidebar"
         data-side="{{ $side }}"
         data-variant="{{ $variant }}"
-        x-bind:data-state="open ? 'expanded' : 'collapsed'"
-        x-bind:data-collapsible="open ? false : '{{ $collapsible}}'"
+        x-bind:data-state="__sidebarProviderOpen ? 'expanded' : 'collapsed'"
+        x-bind:data-collapsible="__sidebarProviderOpen ? false : '{{ $collapsible}}'"
         class="group peer text-sidebar-foreground hidden md:block"
     >
         <div
