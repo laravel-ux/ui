@@ -19,7 +19,7 @@
     <input
         x-ref="input"
         type="hidden"
-        data-slot="one-time-password"
+        data-slot="otp-input"
         readonly
         maxlength="{{ $length }}"
         {{ $attributes->except(['class']) }}

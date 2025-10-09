@@ -33,7 +33,7 @@
         data-side="{{ $side }}"
         data-variant="{{ $variant }}"
         x-bind:data-state="__sidebarProviderOpen ? 'expanded' : 'collapsed'"
-        x-bind:data-collapsible="__sidebarProviderOpen ? false : '{{ $collapsible}}'"
+        x-bind:data-collapsible="__sidebarProviderOpen ? false : @js($collapsible)"
         class="group peer text-sidebar-foreground hidden md:block"
     >
         <div

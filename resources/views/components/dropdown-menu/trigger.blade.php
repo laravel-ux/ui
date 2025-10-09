@@ -6,6 +6,7 @@
         'data-slot' => 'dropdown-menu-trigger',
         'aria-haspopup' => 'menu',
         'x-bind:aria-expanded' => '__dropdownMenuOpen',
+        'x-bind:data-state' => str("__dropdownMenuOpen ? 'open' : 'closed'"),
     ]);
 @endphp
 @if($asChild)

@@ -1,6 +1,6 @@
 <div
     role="separator"
-    data-slot="one-time-password-separator"
+    data-slot="otp-input-separator"
     {{ $attributes }}
 >
     <x-ux::icon name="minus" />

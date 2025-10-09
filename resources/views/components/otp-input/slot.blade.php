@@ -4,7 +4,7 @@
     type="text"
     maxlength="1"
     autocomplete="off"
-    data-slot="one-time-password-slot"
+    data-slot="otp-input-slot"
     x-ref="{{ $index }}"
     x-on:focus="__OtpInputActive = @js($index)"
     x-on:blur="__OtpInputActive = null"
