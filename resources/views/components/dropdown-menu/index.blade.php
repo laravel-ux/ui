@@ -3,7 +3,7 @@
     x-data="{ __dropdownMenuOpen: @js($open) }"
     x-modelable="__dropdownMenuOpen"
     data-slot="dropdown-menu"
-    {{ $attributes->tailwindMerge('flex') }}
+    {{ $attributes->tailwindMerge('contents') }}
 >
     {{ $slot }}
 </div>
