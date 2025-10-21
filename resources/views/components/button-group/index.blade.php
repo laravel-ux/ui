@@ -22,6 +22,9 @@
                         '[&>[data-slot=dropdown-menu]:not(:first-child)>[data-slot=dropdown-menu-trigger]]:rounded-t-none',
                         '[&>[data-slot=dropdown-menu]:not(:first-child)>[data-slot=dropdown-menu-trigger]]:border-t-0',
                         '[&>[data-slot=dropdown-menu]:not(:last-child)>[data-slot=dropdown-menu-trigger]]:rounded-b-none',
+                        '[&>[data-slot=select]:not(:first-child)>[data-slot=select-trigger]]:rounded-t-none',
+                        '[&>[data-slot=select]:not(:first-child)>[data-slot=select-trigger]]:border-t-0',
+                        '[&>[data-slot=select]:not(:last-child)>[data-slot=select-trigger]]:rounded-b-none',
                     ],
                     default => [
                         '[&>*:not(:first-child)]:rounded-l-none',
@@ -36,6 +39,9 @@
                         '[&>[data-slot=dropdown-menu]:not(:first-child)>[data-slot=dropdown-menu-trigger]]:rounded-l-none',
                         '[&>[data-slot=dropdown-menu]:not(:first-child)>[data-slot=dropdown-menu-trigger]]:border-l-0',
                         '[&>[data-slot=dropdown-menu]:not(:last-child)>[data-slot=dropdown-menu-trigger]]:rounded-r-none',
+                        '[&>[data-slot=select]:not(:first-child)>[data-slot=select-trigger]]:rounded-l-none',
+                        '[&>[data-slot=select]:not(:first-child)>[data-slot=select-trigger]]:border-l-0',
+                        '[&>[data-slot=select]:not(:last-child)>[data-slot=select-trigger]]:rounded-r-none',
                     ],
                 },
             )
