@@ -19,23 +19,17 @@
 @endphp
 @if($attributes->has('href'))
     <a
-        {{ $attributes }}
+        x-toggle="{{ $pressed ?: '' }}"
         data-slot="toggle"
-        x-data="{ __togglePressed: @js($pressed)}"
-        x-modelable="__togglePressed"
-        x-on:click="__togglePressed = ! __togglePressed"
-        x-bind:data-state="__togglePressed ? 'on' : 'off'"
+        {{ $attributes }}
     >
         {{ $slot }}
     </a>
 @else
     <button
-        {{ $attributes }}
+        x-toggle="{{ $pressed ?: '' }}"
         data-slot="toggle"
-        x-data="{ __togglePressed: @js($pressed)}"
-        x-modelable="__togglePressed"
-        x-on:click="__togglePressed = ! __togglePressed"
-        x-bind:data-state="__togglePressed ? 'on' : 'off'"
+        {{ $attributes }}
     >
         {{ $slot }}
     </button>

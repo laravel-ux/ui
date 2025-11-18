@@ -5,6 +5,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-libxml": "*",
         "livewire/livewire": "^3.3",
         "gehrisandro/tailwind-merge-php": "^1.1"
     },

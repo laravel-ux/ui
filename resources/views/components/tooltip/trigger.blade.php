@@ -1,11 +1,9 @@
 @props(['asChild' => false])
 @php
     $attributes = $attributes->merge([
-        'x-ref' => 'trigger',
+        'x-tooltip-trigger' => '',
         'data-slot' => 'tooltip-trigger',
         'aria-haspopup' => 'menu',
-        'x-on:mouseenter' => '__tooltipOpen = true',
-        'x-on:mouseleave' => '__tooltipOpen = false',
     ]);
 @endphp
 @if($asChild)

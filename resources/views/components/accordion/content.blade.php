@@ -1,10 +1,8 @@
 @aware(['value'])
 <div
+    x-accordion-content="{{ $value }}"
     data-slot="accordion-content"
-    x-cloak
-    x-collapse
     role="region"
-    x-show="__accordionValue === @js($value)"
     class="overflow-hidden text-sm"
 >
     <div {{ $attributes->tailwindMerge('pt-0 pb-4') }}>

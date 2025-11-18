@@ -1,6 +1,5 @@
 <div
-    x-data="{ __tooltipOpen: false }"
-    x-modelable="__tooltipOpen"
+    x-tooltip
     data-slot="tooltip"
     {{ $attributes->tailwindMerge('contents') }}
 >
