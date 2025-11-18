@@ -4,10 +4,10 @@
     'disabled' => false,
 ])
 <div
+    x-dropdown-menu-close
+    data-variant="{{ $variant }}"
     role="menuitem"
     tabindex="-1"
-    x-on:click="__dropdownMenuOpen = false"
-    data-variant="{{ $variant }}"
     {{
         $attributes
             ->when($inset, fn($attributes) => $attributes->offsetSet('data-inset', 'true'))

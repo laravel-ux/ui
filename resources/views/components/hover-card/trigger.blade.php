@@ -1,10 +1,7 @@
 <div
-    x-ref="trigger"
-    x-on:mouseenter="__hoverCardOpen = true"
-    x-on:mouseleave="__hoverCardOpen = false"
+    x-hover-card-trigger
     data-slot="hover-card-trigger"
     aria-haspopup="menu"
-    x-bind:aria-expanded="__hoverCardOpen"
     {{ $attributes }}
 >
     {{ $slot }}

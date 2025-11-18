@@ -1,6 +1,5 @@
 <div
-    x-data="{ __hoverCardOpen: false }"
-    x-modelable="__hoverCardOpen"
+    x-hover-card
     data-slot="hover-card"
     {{ $attributes->tailwindMerge('flex') }}
 >

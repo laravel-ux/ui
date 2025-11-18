@@ -6,16 +6,11 @@
 @php($position = $side . data_get(['end' => '-end', 'start' => '-start'], $align))
 <x-ux::portal>
     <div
-        x-cloak
-        x-show="__dropdownMenuSubOpen"
-        x-anchor.{{ $position }}.offset.{{ $sideOffset }}="$refs.trigger"
-        x-on:mouseenter="__dropdownMenuSubOpen = true"
-        x-on:mouseleave="__dropdownMenuSubOpen = false"
-        x-bind:data-state="__dropdownMenuSubOpen ? 'open' : 'closed'"
-        role="menu"
-        tabindex="-1"
+        x-dropdown-menu-sub-content.{{ $position }}.offset.{{ $sideOffset }}
         data-side="{{ $side }}"
         data-slot="dropdown-menu-sub-content"
+        role="menu"
+        tabindex="-1"
         {{ $attributes->tailwindMerge('bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 min-w-[8rem] overflow-hidden rounded-md border p-1 shadow-lg') }}
     >
         {{ $slot }}

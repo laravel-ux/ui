@@ -1,6 +1,5 @@
 <div
-    x-data="{ __dropdownMenuSubOpen: false }"
-    x-modelable="__dropdownMenuSubOpen"
+    x-dropdown-menu-sub
     data-slot="dropdown-menu-sub"
     {{ $attributes }}
 >

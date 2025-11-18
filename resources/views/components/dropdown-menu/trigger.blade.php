@@ -1,12 +1,9 @@
 @props(['asChild' => false])
 @php
     $attributes = $attributes->merge([
-        'x-ref' => 'trigger',
-        'x-on:click' => '__dropdownMenuOpen = ! __dropdownMenuOpen',
+        'x-dropdown-menu-trigger' => '',
         'data-slot' => 'dropdown-menu-trigger',
         'aria-haspopup' => 'menu',
-        'x-bind:aria-expanded' => '__dropdownMenuOpen',
-        'x-bind:data-state' => str("__dropdownMenuOpen ? 'open' : 'closed'"),
     ]);
 @endphp
 @if($asChild)
