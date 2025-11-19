@@ -1,8 +1,7 @@
 @props(['value' => ''])
 <div
-    x-data="{__selectOpen: false, __selectValue: @js($value), __selectLabel: null}"
-    x-init="__selectValue && (__selectLabel = $el.querySelector(`[data-value='${__selectValue}']`)?.innerHTML)"
-    x-modelable="__selectValue"
+    x-data
+    x-select="{{ $value }}"
     data-slot="select"
     {{ $attributes->tailwindMerge('contents') }}
 >

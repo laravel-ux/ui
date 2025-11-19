@@ -7,10 +7,7 @@
 <x-ux::portal>
     <div
         x-cloak
-        x-show="__popoverOpen"
-        x-anchor.{{ $position }}.offset.{{ $sideOffset }}="$refs.trigger"
-        x-bind:data-state="__popoverOpen ? 'open' : 'closed'"
-        x-on:click.outside="__popoverOpen = false"
+        x-popover-content.{{ $position }}.offset.{{ $sideOffset }}
         role="dialog"
         tabindex="-1"
         data-side="{{ $side }}"

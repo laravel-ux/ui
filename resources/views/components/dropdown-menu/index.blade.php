@@ -1,7 +1,6 @@
-@props(['open' => false])
 <div
     x-data
-    x-dropdown-menu="{{ $open ?: '' }}"
+    x-dropdown-menu
     data-slot="dropdown-menu"
     {{ $attributes->tailwindMerge('contents') }}
 >

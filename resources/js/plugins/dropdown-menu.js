@@ -1,9 +1,9 @@
 export default (Alpine) => {
-    Alpine.directive('dropdown-menu', (el, { expression }) => {
+    Alpine.directive('dropdown-menu', (el) => {
         Alpine.bind(el, {
             'x-data': function () {
                 return {
-                    __dropdownMenuOpen: expression,
+                    __dropdownMenuOpen: false,
                 };
             },
             'x-modelable': '__dropdownMenuOpen',

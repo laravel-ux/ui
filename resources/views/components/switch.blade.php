@@ -2,7 +2,7 @@
 <button
     x-cloak
     x-data
-    x-switch="{{ $attributes->get('checked') ?? '' }}"
+    x-switch="{{ $attributes->get('checked') ? 'true' : '' }}"
     data-slot="switch"
     role="switch"
     type="button"

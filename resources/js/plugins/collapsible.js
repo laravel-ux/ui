@@ -1,9 +1,9 @@
 export default (Alpine) => {
-    Alpine.directive('collapsible', (el, { expression }) => {
+    Alpine.directive('collapsible', (el, { expression }, { evaluate }) => {
         Alpine.bind(el, {
             'x-data': function () {
                 return {
-                    __collapsibleOpen: expression,
+                    __collapsibleOpen: evaluate(expression),
                 };
             },
             'x-modelable': '__collapsibleOpen',
@@ -26,6 +26,7 @@ export default (Alpine) => {
 
     Alpine.directive('collapsible-content', (el) => {
         Alpine.bind(el, {
+            'x-collapse': '',
             'x-show': function () {
                 return this.__collapsibleOpen;
             },

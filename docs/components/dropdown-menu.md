@@ -131,14 +131,6 @@ Displays a menu to the user — such as a set of actions or functions — trigge
 
 ## API Reference
 
-### Root
-
-Contains all the parts of a dropdown menu.
-
-| Prop                                                      | Type      | Default |
-|-----------------------------------------------------------|-----------|---------|
-| `open` [?The controlled open state of the dropdown menu.] | `boolean` | `false` |
-
 ### Trigger
 
 The button that toggles the dropdown.

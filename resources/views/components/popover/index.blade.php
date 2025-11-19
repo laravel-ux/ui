@@ -1,6 +1,6 @@
 <div
-    x-data="{ __popoverOpen: false }"
-    x-modelable="__popoverOpen"
+    x-data
+    x-popover
     data-slot="popover"
     {{ $attributes->tailwindMerge('contents') }}
 >

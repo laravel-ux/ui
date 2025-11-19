@@ -1,9 +1,9 @@
 export default (Alpine) => {
-    Alpine.directive('checkbox', (el, { expression }) => {
+    Alpine.directive('checkbox', (el, { expression }, { evaluate }) => {
         Alpine.bind(el, {
             'x-data': function () {
                 return {
-                    __checkboxChecked: expression,
+                    __checkboxChecked: evaluate(expression),
                 };
             },
             'x-modelable': '__checkboxChecked',

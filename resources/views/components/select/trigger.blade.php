@@ -1,13 +1,9 @@
 @props(['size' => 'default'])
 <button
-    x-ref="trigger"
+    x-select-trigger
+    data-slot="select-trigger"
     role="combobox"
     aria-autocomplete="none"
-    data-slot="select-trigger"
-    x-bind:data-placeholder="! __selectValue"
-    x-bind:data-state="__selectOpen ? 'open' : 'false'"
-    x-bind:aria-expanded="__selectOpen"
-    x-on:click="__selectOpen = ! __selectOpen; $refs.content.style.width=`${$el.offsetWidth}px`"
     {{
         $attributes
             ->merge(['data-size' => $size])

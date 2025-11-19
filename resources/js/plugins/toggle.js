@@ -1,9 +1,9 @@
 export default (Alpine) => {
-    Alpine.directive('toggle', (el, { expression }) => {
+    Alpine.directive('toggle', (el, { expression }, { evaluate }) => {
         Alpine.bind(el, {
             'x-data': function () {
                 return {
-                    __togglePressed: expression,
+                    __togglePressed: evaluate(expression),
                 };
             },
             'x-modelable': '__togglePressed',

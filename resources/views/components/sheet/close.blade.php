@@ -1,5 +1,5 @@
 <x-ux::button
-    x-on:click="__sheetOpen = false"
+    x-sheet-close
     data-slot="sheet-close"
     {{ $attributes }}
 >

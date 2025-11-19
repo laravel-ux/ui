@@ -1,5 +1,5 @@
 @props([
-    'value' => '',
+    'value',
     'disabled' => false,
  ])
 <button
@@ -12,9 +12,7 @@
     tabindex="0"
     data-slot="radio-group-item"
     x-cloak
-    x-on:click="__radioGroupValue = (__radioGroupValue !== @js($value) ? @js($value): '')"
-    x-bind:data-state="(__radioGroupValue === @js($value)) ? 'checked' : 'unchecked'"
-    x-bind:aria-checked="__radioGroupValue === @js($value)"
+    x-radio-group-item="{{ $value }}"
     @disabled($disabled)
 >
     <input
@@ -25,8 +23,7 @@
     />
     <span
         x-cloak
-        x-show="__radioGroupValue === '{{ $value }}'"
-        x-bind:data-state="(__radioGroupValue === '{{ $value }}') ? 'checked' : 'unchecked'"
+        x-radio-group-indicator="{{ $value }}"
         data-slot="radio-group-indicator"
         class="relative flex items-center justify-center"
     >

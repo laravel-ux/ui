@@ -1,9 +1,9 @@
 export default (Alpine) => {
-    Alpine.directive('switch', (el, { expression }) => {
+    Alpine.directive('switch', (el, { expression }, { evaluate }) => {
         Alpine.bind(el, {
             'x-data': function () {
                 return {
-                    __switchChecked: expression,
+                    __switchChecked: evaluate(expression),
                 };
             },
             'x-modelable': '__switchChecked',

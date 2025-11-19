@@ -20,7 +20,7 @@
 @if($attributes->has('href'))
     <a
         x-data
-        x-toggle="{{ $pressed ?: '' }}"
+        x-toggle="{{ $pressed ? 'true' : '' }}"
         data-slot="toggle"
         {{ $attributes }}
     >
@@ -29,7 +29,7 @@
 @else
     <button
         x-data
-        x-toggle="{{ $pressed ?: '' }}"
+        x-toggle="{{ $pressed ? 'true' : '' }}"
         data-slot="toggle"
         {{ $attributes }}
     >

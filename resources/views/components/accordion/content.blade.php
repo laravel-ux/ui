@@ -1,7 +1,6 @@
 @aware(['value'])
 <div
     x-cloak
-    x-collapse
     x-accordion-content="{{ $value }}"
     data-slot="accordion-content"
     role="region"

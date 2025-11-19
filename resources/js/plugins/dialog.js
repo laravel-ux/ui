@@ -1,10 +1,13 @@
 export default (Alpine) => {
-    Alpine.directive('dialog', (el, { expression }) => {
+    Alpine.directive('dialog', (el, { expression }, { evaluate }) => {
         Alpine.bind(el, {
             'x-data': function () {
                 return {
-                    __dialogOpen: expression,
+                    __dialogOpen: evaluate(expression),
                     __dialogToggleOverflow: function () {
+                        document.body.style.paddingRight = this.__selectOpen
+                            ? `${window.innerWidth - document.documentElement.clientWidth}px`
+                            : '';
                         document.body.style.overflow = this.__dialogOpen ? 'hidden' : '';
                     },
                 };
@@ -14,7 +17,9 @@ export default (Alpine) => {
                     this.__dialogToggleOverflow();
                 }
 
-                this.$watch('__dialogOpen', () => { this.__dialogToggleOverflow() })
+                this.$watch('__dialogOpen', () => {
+                    this.__dialogToggleOverflow();
+                });
             },
             'x-modelable': '__dialogOpen',
         });

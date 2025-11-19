@@ -2,7 +2,7 @@
 <button
     x-data
     x-cloak
-    x-checkbox="{{ $attributes->get('checked') ?? '' }}"
+    x-checkbox="{{ $attributes->get('checked') ? 'true' : '' }}"
     role="checkbox"
     data-slot="checkbox"
     type="button"
