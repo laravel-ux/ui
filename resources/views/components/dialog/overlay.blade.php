@@ -1,4 +1,5 @@
 <div
+    x-cloak
     x-dialog-overlay
     data-slot="dialog-overlay"
     aria-hidden="true"

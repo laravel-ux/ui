@@ -24,7 +24,6 @@ export default (Alpine) => {
 
     Alpine.directive('tooltip-content', (el, { modifiers }) => {
         Alpine.bind(el, {
-            'x-cloak': '',
             'x-show': function () {
                 return this.__tooltipOpen;
             },

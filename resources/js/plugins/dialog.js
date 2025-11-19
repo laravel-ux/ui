@@ -22,7 +22,6 @@ export default (Alpine) => {
 
     Alpine.directive('dialog-overlay', (el) => {
         Alpine.bind(el, {
-            'x-cloak': '',
             'x-show': function () {
                 return this.__dialogOpen;
             },
@@ -48,7 +47,6 @@ export default (Alpine) => {
 
     Alpine.directive('dialog-content', (el) => {
         Alpine.bind(el, {
-            'x-cloak': '',
             'x-show': function () {
                 return this.__dialogOpen;
             },

@@ -6,6 +6,7 @@
 @php($position = $side . data_get(['end' => '-end', 'start' => '-start'], $align))
 <x-ux::portal>
     <div
+        x-cloak
         x-dropdown-menu-sub-content.{{ $position }}.offset.{{ $sideOffset }}
         data-side="{{ $side }}"
         data-slot="dropdown-menu-sub-content"

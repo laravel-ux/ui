@@ -1,7 +1,6 @@
 export default (Alpine) => {
     Alpine.directive('switch', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-cloak': '',
             'x-data': function () {
                 return {
                     __switchChecked: expression,
@@ -22,7 +21,6 @@ export default (Alpine) => {
 
     Alpine.directive('switch-thumb', (el) => {
         Alpine.bind(el, {
-            'x-cloak': '',
             'x-bind:data-state': function () {
                 return this.__switchChecked ? 'checked' : 'unchecked';
             },

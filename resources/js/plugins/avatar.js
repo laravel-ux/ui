@@ -1,7 +1,6 @@
 export default (Alpine) => {
     Alpine.directive('avatar-image', (el) => {
         Alpine.bind(el, () => ({
-            'x-cloak': '',
             'x-data': function () {
                 return {
                     __avatarError: false,

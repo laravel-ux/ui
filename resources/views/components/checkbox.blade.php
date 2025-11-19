@@ -1,5 +1,7 @@
 @props(['disabled' => false])
 <button
+    x-data
+    x-cloak
     x-checkbox="{{ $attributes->get('checked') ?? '' }}"
     role="checkbox"
     data-slot="checkbox"
@@ -17,6 +19,7 @@
         {{ $attributes->except(['class']) }}
     />
     <span
+        x-cloak
         x-checkbox-indicator
         data-slot="checkbox-indicator"
         class="flex items-center justify-center text-current transition-none"

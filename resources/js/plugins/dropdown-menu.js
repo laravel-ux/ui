@@ -118,7 +118,6 @@ export default (Alpine) => {
 
     Alpine.directive('dropdown-menu-sub-content', (el, { modifiers }) => {
         Alpine.bind(el, {
-            'x-cloak': '',
             'x-show': function () {
                 return this.__dropdownMenuSubOpen;
             },

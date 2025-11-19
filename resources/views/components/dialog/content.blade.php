@@ -1,5 +1,6 @@
 <x-ux::portal>
     <div
+        x-cloak
         x-dialog-content
         data-slot="dialog-content"
         role="dialog"

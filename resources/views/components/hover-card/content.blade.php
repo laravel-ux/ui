@@ -5,6 +5,7 @@
 ])
 @php($position = $side . data_get(['end' => '-end', 'start' => '-start'], $align))
 <div
+    x-cloak
     x-hover-card-content.{{ $position }}.offset.{{ $sideOffset }}
     data-slot="hover-card-content"
     data-side="{{ $side }}"

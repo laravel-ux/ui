@@ -6,6 +6,7 @@
 @php($position = $side . data_get(['end' => '-end', 'start' => '-start'], $align))
 <x-ux::portal>
     <div
+        x-cloak
         x-tooltip-content.{{ $position }}.offset.{{ $sideOffset + 4 }}
         data-slot="tooltip-content"
         data-side="{{ $side }}"

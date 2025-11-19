@@ -1,5 +1,5 @@
 export default (Alpine) => {
-    Alpine.directive('__hoverCardOpen', (el) => {
+    Alpine.directive('hover-card', (el) => {
         Alpine.bind(el, {
             'x-data': function () {
                 return {
@@ -27,7 +27,6 @@ export default (Alpine) => {
 
     Alpine.directive('hover-card-content', (el, { modifiers }) => {
         Alpine.bind(el, {
-            'x-cloak': '',
             'x-show': function () {
                 return this.__hoverCardOpen;
             },

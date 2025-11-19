@@ -1,7 +1,7 @@
 <li
+    x-data
+    x-navigation-menu-item
     data-slot="navigation-menu-item"
-    x-data="{ __navigationMenuItemOpen: false }"
-    x-modelable="__navigationMenuItemOpen"
     {{ $attributes->tailwindMerge('relative') }}
 >
     {{ $slot }}

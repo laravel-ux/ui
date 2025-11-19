@@ -1,7 +1,6 @@
 export default (Alpine) => {
     Alpine.directive('checkbox', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-cloak': '',
             'x-data': function () {
                 return {
                     __checkboxChecked: expression,
@@ -22,7 +21,6 @@ export default (Alpine) => {
 
     Alpine.directive('checkbox-indicator', (el) => {
         Alpine.bind(el, {
-            'x-cloak': '',
             'x-show': function () {
                 return this.__checkboxChecked;
             },

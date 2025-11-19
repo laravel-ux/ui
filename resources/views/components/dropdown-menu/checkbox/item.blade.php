@@ -3,6 +3,7 @@
     'disabled' => false,
 ])
 <div
+    x-data
     x-dropdown-menu-checkbox-item="{{ $checked ?: '' }}"
     data-slot="dropdown-menu-checkbox-item"
     role="menuitemcheckbox"

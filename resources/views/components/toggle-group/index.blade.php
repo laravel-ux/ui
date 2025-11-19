@@ -4,6 +4,7 @@
     'size' => 'default',
 ])
 <div
+    x-data
     x-toggle-group="{{ $value }}"
     data-slot="toggle-group"
     role="group"

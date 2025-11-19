@@ -26,8 +26,6 @@ export default (Alpine) => {
 
     Alpine.directive('accordion-content', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-cloak': '',
-            'x-collapse': '',
             'x-show': function () {
                 return this.__accordionValue === expression;
             }

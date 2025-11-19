@@ -26,8 +26,6 @@ export default (Alpine) => {
 
     Alpine.directive('collapsible-content', (el) => {
         Alpine.bind(el, {
-            'x-cloak': '',
-            'x-collapse': '',
             'x-show': function () {
                 return this.__collapsibleOpen;
             },
