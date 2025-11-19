@@ -1,6 +1,6 @@
 export default (Alpine) => {
     Alpine.directive('otp-input', (el, {}, { evaluate }) => {
-        const input = el.querySelector('input[type="hidden"]');
+        const input = el.querySelector('input[data-slot="otp-input"]');
 
         Alpine.bind(el, {
             'x-data': function () {
@@ -61,6 +61,15 @@ export default (Alpine) => {
                 }
             },
             'x-on:focus': function () {
+                for (let i = 0; i < this.__OtpInputLength; i++) {
+                    if (! this.__OtpInputValues[i] && index > i) {
+                        this.$refs[i].focus();
+                        this.__OtpInputActive = i;
+
+                        return;
+                    }
+                }
+
                 this.__OtpInputActive = index;
             },
             'x-on:blur': function () {
