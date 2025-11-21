@@ -1,10 +1,10 @@
 export default (Alpine) => {
     Alpine.directive('dialog', (el, { expression }, { evaluate }) => {
         Alpine.bind(el, {
-            'x-data': function () {
+            'x-data'() {
                 return {
                     __dialogOpen: evaluate(expression),
-                    __dialogToggleOverflow: function () {
+                    __dialogToggleOverflow() {
                         document.body.style.paddingRight = this.__selectOpen
                             ? `${window.innerWidth - document.documentElement.clientWidth}px`
                             : '';
@@ -12,7 +12,7 @@ export default (Alpine) => {
                     },
                 };
             },
-            'x-init': function () {
+            'x-init'() {
                 if (this.__dialogOpen) {
                     this.__dialogToggleOverflow();
                 }
@@ -27,13 +27,13 @@ export default (Alpine) => {
 
     Alpine.directive('dialog-overlay', (el) => {
         Alpine.bind(el, {
-            'x-show': function () {
+            'x-show'() {
                 return this.__dialogOpen;
             },
-            'x-on:click': function () {
+            'x-on:click'() {
                 this.__dialogOpen = false;
             },
-            'x-bind:data-state': function () {
+            'x-bind:data-state'() {
                 return this.__dialogOpen ? 'open' : 'closed';
             },
         });
@@ -41,10 +41,10 @@ export default (Alpine) => {
 
     Alpine.directive('dialog-trigger', (el) => {
         Alpine.bind(el, {
-            'x-on:click': function () {
+            'x-on:click'() {
                 this.__dialogOpen = ! this.__dialogOpen;
             },
-            'x-bind:aria-expanded': function () {
+            'x-bind:aria-expanded'() {
                 return this.__dialogOpen;
             },
         });
@@ -52,10 +52,10 @@ export default (Alpine) => {
 
     Alpine.directive('dialog-content', (el) => {
         Alpine.bind(el, {
-            'x-show': function () {
+            'x-show'() {
                 return this.__dialogOpen;
             },
-            'x-bind:data-state': function () {
+            'x-bind:data-state'() {
                 return this.__dialogOpen ? 'open' : 'closed';
             },
         });
@@ -63,7 +63,7 @@ export default (Alpine) => {
 
     Alpine.directive('dialog-close', (el) => {
         Alpine.bind(el, {
-            'x-on:click': function () {
+            'x-on:click'() {
                 this.__dialogOpen = false;
             },
         });

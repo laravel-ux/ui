@@ -1,7 +1,7 @@
 @props(['open' => false])
 <div
     x-data
-    x-sheet="{{ $open ? 'true' : '' }}"
+    x-sheet="@js($open)"
     data-slot="sheet"
     {{ $attributes->tailwindMerge('flex') }}
 >

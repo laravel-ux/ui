@@ -3,15 +3,15 @@ export default (Alpine) => {
         const input = el.querySelector('input[data-slot="otp-input"]');
 
         Alpine.bind(el, {
-            'x-data': function () {
+            'x-data'() {
                 return {
-                    __OtpInputActive: null,
-                    __OtpInputValues: {},
-                    __OtpInputLength: input.maxLength,
-                    __OtpInputPattern: evaluate(input.pattern),
-                    __OtpInputUpdate: function () {
+                    __otpInputActive: null,
+                    __otpInputValues: {},
+                    __otpInputLength: input.maxLength,
+                    __otpInputPattern: evaluate(input.pattern),
+                    __updateOtpInput() {
                         input.value = Object.values(
-                            Object.fromEntries(Object.entries(this.__OtpInputValues).sort(([a], [b]) => a - b))
+                            Object.fromEntries(Object.entries(this.__otpInputValues).sort(([a], [b]) => a - b))
                         ).join('');
                     },
                 };
@@ -28,58 +28,58 @@ export default (Alpine) => {
                 e.clipboardData.getData('text/plain')
                     .trim()
                     .split('')
-                    .filter(item => this.__OtpInputPattern.test(item))
-                    .splice(0, this.__OtpInputLength)
+                    .filter(item => this.__otpInputPattern.test(item))
+                    .splice(0, this.__otpInputLength)
                     .forEach((value, index) => {
                         this.$refs[index].value = value;
                         this.$refs[index].blur();
-                        this.__OtpInputValues[index] = value;
+                        this.__otpInputValues[index] = value;
                     });
 
-                this.__OtpInputUpdate();
+                this.__updateOtpInput();
             },
-            'x-on:input.change': function () {
-                if (el.value && el.value.match(this.__OtpInputPattern)) {
-                    this.__OtpInputValues[this.__OtpInputActive] = el.value;
-                    this.__OtpInputUpdate();
+            'x-on:input.change'() {
+                if (el.value && el.value.match(this.__otpInputPattern)) {
+                    this.__otpInputValues[this.__otpInputActive] = el.value;
+                    this.__updateOtpInput();
 
-                    if (this.$refs[this.__OtpInputActive + 1]) {
-                        this.$refs[this.__OtpInputActive + 1].focus()
+                    if (this.$refs[this.__otpInputActive + 1]) {
+                        this.$refs[this.__otpInputActive + 1].focus()
                     }
                 } else {
-                    this.$refs[this.__OtpInputActive].value = '';
+                    this.$refs[this.__otpInputActive].value = '';
                 }
             },
-            'x-on:keydown.backspace': function () {
+            'x-on:keydown.backspace'() {
                 if (! el.value) {
-                    delete this.__OtpInputValues[this.__OtpInputActive];
-                    this.__OtpInputUpdate();
+                    delete this.__otpInputValues[this.__otpInputActive];
+                    this.__updateOtpInput();
 
-                    if (this.$refs[this.__OtpInputActive - 1]) {
-                        this.$refs[this.__OtpInputActive - 1].focus();
+                    if (this.$refs[this.__otpInputActive - 1]) {
+                        this.$refs[this.__otpInputActive - 1].focus();
                     }
                 }
             },
-            'x-on:focus': function () {
-                for (let i = 0; i < this.__OtpInputLength; i++) {
-                    if (! this.__OtpInputValues[i] && index > i) {
+            'x-on:focus'() {
+                for (let i = 0; i < this.__otpInputLength; i++) {
+                    if (! this.__otpInputValues[i] && index > i) {
                         this.$refs[i].focus();
-                        this.__OtpInputActive = i;
+                        this.__otpInputActive = i;
 
                         return;
                     }
                 }
 
-                this.__OtpInputActive = index;
+                this.__otpInputActive = index;
             },
-            'x-on:blur': function () {
-                this.__OtpInputActive = null
+            'x-on:blur'() {
+                this.__otpInputActive = null
             },
-            'x-bind:tabindex': function () {
-                return this.__OtpInputActive === index ? 0 : -1;
+            'x-bind:tabindex'() {
+                return this.__otpInputActive === index ? 0 : -1;
             },
-            'x-bind:data-active': function () {
-                return this.__OtpInputActive === index;
+            'x-bind:data-active'() {
+                return this.__otpInputActive === index;
             },
         });
     });

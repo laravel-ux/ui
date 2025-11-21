@@ -1,7 +1,7 @@
 export default (Alpine) => {
     Alpine.directive('hover-card', (el) => {
         Alpine.bind(el, {
-            'x-data': function () {
+            'x-data'() {
                 return {
                     __toggleGroupValue: false,
                 };
@@ -13,13 +13,13 @@ export default (Alpine) => {
     Alpine.directive('hover-card-trigger', (el) => {
         Alpine.bind(el, {
             'x-ref': 'trigger',
-            'x-on:mouseenter': function () {
+            'x-on:mouseenter'() {
                 this.__hoverCardOpen = true;
             },
-            'x-on:mouseleave': function () {
+            'x-on:mouseleave'() {
                 this.__hoverCardOpen = false;
             },
-            'x-bind:aria-expanded': function () {
+            'x-bind:aria-expanded'() {
                 return this.__hoverCardOpen;
             },
         });
@@ -27,10 +27,10 @@ export default (Alpine) => {
 
     Alpine.directive('hover-card-content', (el, { modifiers }) => {
         Alpine.bind(el, {
-            'x-show': function () {
+            'x-show'() {
                 return this.__hoverCardOpen;
             },
-            'x-bind:data-state': function () {
+            'x-bind:data-state'() {
                 return this.__hoverCardOpen ? 'open' : 'closed';
             },
             [['x-anchor', ...modifiers].join('.')]: '$refs.trigger'

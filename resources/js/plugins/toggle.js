@@ -1,16 +1,16 @@
 export default (Alpine) => {
     Alpine.directive('toggle', (el, { expression }, { evaluate }) => {
         Alpine.bind(el, {
-            'x-data': function () {
+            'x-data'() {
                 return {
                     __togglePressed: evaluate(expression),
                 };
             },
             'x-modelable': '__togglePressed',
-            'x-on:click': function () {
+            'x-on:click'() {
                 this.__togglePressed = ! this.__togglePressed;
             },
-            'x-bind:data-state': function () {
+            'x-bind:data-state'() {
                 return this.__togglePressed ? 'on' : 'off';
             },
         });

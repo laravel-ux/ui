@@ -1,7 +1,7 @@
 @props(['open' => false])
 <div
     x-data
-    x-dialog="{{ $open ? 'true' : '' }}"
+    x-dialog="@js($open)"
     data-slot="dialog"
     {{ $attributes->tailwindMerge('flex') }}
 >

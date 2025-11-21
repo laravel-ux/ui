@@ -1,15 +1,15 @@
 export default (Alpine) => {
     Alpine.directive('select', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-data': function () {
+            'x-data'() {
                 return {
                     __selectOpen: false,
                     __selectValue: expression,
                     __selectLabel: null,
-                    __selectUpdateLabel: function () {
+                    __updateSelectLabel() {
                         this.__selectLabel = el.querySelector(`[data-value='${this.__selectValue}']`)?.innerHTML;
                     },
-                    __selectToggleOverflow: function () {
+                    __toggleSelectOverflow() {
                         document.body.style.paddingRight = this.__selectOpen
                             ? `${window.innerWidth - document.documentElement.clientWidth}px`
                             : '';
@@ -17,16 +17,16 @@ export default (Alpine) => {
                     },
                 };
             },
-            'x-init': function () {
+            'x-init'() {
                 if (this.__selectValue) {
-                    this.__selectUpdateLabel();
+                    this.__updateSelectLabel();
                 }
 
                 this.$watch('__selectOpen', () => {
-                    this.__selectToggleOverflow();
+                    this.__toggleSelectOverflow();
                 });
                 this.$watch('__selectValue', () => {
-                    this.__selectUpdateLabel();
+                    this.__updateSelectLabel();
                 });
             },
             'x-modelable': '__selectValue',
@@ -35,7 +35,7 @@ export default (Alpine) => {
 
     Alpine.directive('select-value', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-text': function () {
+            'x-text'() {
                 return this.__selectLabel || expression;
             },
         });
@@ -44,17 +44,17 @@ export default (Alpine) => {
     Alpine.directive('select-trigger', (el) => {
         Alpine.bind(el, {
             'x-ref': 'trigger',
-            'x-on:click': function () {
+            'x-on:click'() {
                 this.__selectOpen = ! this.__selectOpen;
                 this.$refs.content.style.width=`${el.offsetWidth}px`
             },
-            'x-bind:data-state': function () {
+            'x-bind:data-state'() {
                 return this.__selectOpen ? 'open' : 'closed';
             },
-            'x-bind:aria-expanded': function () {
+            'x-bind:aria-expanded'() {
                 return this.__selectOpen;
             },
-            'x-bind:data-placeholder': function () {
+            'x-bind:data-placeholder'() {
                 return ! this.__selectValue;
             },
         });
@@ -63,13 +63,13 @@ export default (Alpine) => {
     Alpine.directive('select-content', (el, { modifiers }) => {
         Alpine.bind(el, {
             'x-ref': 'content',
-            'x-show': function () {
+            'x-show'() {
                 return this.__selectOpen;
             },
-            'x-on:click.outside': function () {
+            'x-on:click.outside'() {
                 this.__selectOpen = false;
             },
-            'x-bind:data-state': function () {
+            'x-bind:data-state'() {
                 return this.__selectOpen ? 'open' : 'closed';
             },
             [['x-anchor', ...modifiers].join('.')]: '$refs.trigger'
@@ -78,14 +78,14 @@ export default (Alpine) => {
 
     Alpine.directive('select-item', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-on:click': function () {
+            'x-on:click'() {
                 this.__selectValue = expression;
                 this.__selectOpen = false;
             },
-            'x-bind:data-state': function () {
+            'x-bind:data-state'() {
                 return this.__selectValue === expression ? 'checked' : 'unchecked';
             },
-            'x-bind:aria-selected': function () {
+            'x-bind:aria-selected'() {
                 return this.__selectValue === expression;
             },
         });
@@ -93,10 +93,10 @@ export default (Alpine) => {
 
     Alpine.directive('select-item-indicator', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-show': function () {
+            'x-show'() {
                 return this.__selectValue === expression;
             },
-            'x-bind:data-state': function () {
+            'x-bind:data-state'() {
                 return this.__selectValue === expression ? 'checked' : 'unchecked';
             },
         });

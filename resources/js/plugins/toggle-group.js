@@ -1,7 +1,7 @@
 export default (Alpine) => {
     Alpine.directive('toggle-group', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-data': function () {
+            'x-data'() {
                 return {
                     __toggleGroupValue: expression,
                 };
@@ -12,13 +12,13 @@ export default (Alpine) => {
 
     Alpine.directive('toggle-group-item', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-on:click': function () {
+            'x-on:click'() {
                 this.__toggleGroupValue = expression;
             },
-            'x-bind:tabindex': function () {
+            'x-bind:tabindex'() {
                 return this.__toggleGroupValue === expression ? 0 : -1;
             },
-            'x-bind:data-state': function () {
+            'x-bind:data-state'() {
                 return this.__toggleGroupValue === expression ? 'on' : 'off';
             },
         });

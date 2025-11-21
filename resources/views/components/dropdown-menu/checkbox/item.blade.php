@@ -4,7 +4,7 @@
 ])
 <div
     x-data
-    x-dropdown-menu-checkbox-item="{{ $checked ?: '' }}"
+    x-dropdown-menu-checkbox-item="@js($checked)"
     data-slot="dropdown-menu-checkbox-item"
     role="menuitemcheckbox"
     tabindex="-1"

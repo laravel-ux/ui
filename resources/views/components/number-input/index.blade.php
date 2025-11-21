@@ -1,4 +1,5 @@
 <x-ux::button-group
+    x-data
     {{ $attributes->only('class') }}
 >
     <x-ux::number-input.decrement />

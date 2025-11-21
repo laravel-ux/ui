@@ -1,7 +1,7 @@
 export default (Alpine) => {
     Alpine.directive('dropdown-menu', (el) => {
         Alpine.bind(el, {
-            'x-data': function () {
+            'x-data'() {
                 return {
                     __dropdownMenuOpen: false,
                 };
@@ -12,7 +12,7 @@ export default (Alpine) => {
 
     Alpine.directive('dropdown-menu-close', (el) => {
         Alpine.bind(el, {
-            'x-on:click': function () {
+            'x-on:click'() {
                 this.__dropdownMenuOpen = false;
             },
         });
@@ -21,30 +21,45 @@ export default (Alpine) => {
     Alpine.directive('dropdown-menu-trigger', (el) => {
         Alpine.bind(el, {
             'x-ref': 'trigger',
-            'x-on:click': function () {
+            'x-on:click'() {
                 this.__dropdownMenuOpen = ! this.__dropdownMenuOpen;
             },
-            'x-bind:aria-expanded': function () {
+            'x-bind:aria-expanded'() {
                 return this.__dropdownMenuOpen;
             },
-            'x-bind:data-state': function () {
+            'x-bind:data-state'() {
                 return this.__dropdownMenuOpen ? 'open' : 'closed';
             },
         });
     });
 
-    Alpine.directive('dropdown-menu-checkbox-item', (el, { expression }) => {
+    Alpine.directive('dropdown-menu-content', (el, { modifiers }) => {
         Alpine.bind(el, {
-            'x-data': function () {
+            'x-show'() {
+                return this.__dropdownMenuOpen;
+            },
+            'x-bind:data-state'() {
+                return this.__dropdownMenuOpen ? 'open' : 'closed';
+            },
+            'x-on:click.outside'() {
+                this.__dropdownMenuOpen = false;
+            },
+            [['x-anchor', ...modifiers].join('.')]: '$refs.trigger'
+        });
+    });
+
+    Alpine.directive('dropdown-menu-checkbox-item', (el, { expression }, { evaluate }) => {
+        Alpine.bind(el, {
+            'x-data'() {
                 return {
-                    __dropdownMenuCheckboxChecked: expression,
+                    __dropdownMenuCheckboxChecked: evaluate(expression),
                 };
             },
             'x-modelable': '__dropdownMenuCheckboxChecked',
-            'x-on:click': function () {
+            'x-on:click'() {
                 this.__dropdownMenuCheckboxChecked = ! this.__dropdownMenuCheckboxChecked;
             },
-            'x-bind:aria-checked': function () {
+            'x-bind:aria-checked'() {
                 return this.__dropdownMenuCheckboxChecked;
             },
         });
@@ -52,7 +67,7 @@ export default (Alpine) => {
 
     Alpine.directive('dropdown-menu-checkbox-item-indicator', (el) => {
         Alpine.bind(el, {
-            'x-show': function () {
+            'x-show'() {
                 return this.__dropdownMenuCheckboxChecked;
             },
         });
@@ -60,7 +75,7 @@ export default (Alpine) => {
 
     Alpine.directive('dropdown-menu-radio-group', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-data': function () {
+            'x-data'() {
                 return {
                     __dropdownMenuRadioGroupValue: expression,
                 };
@@ -71,12 +86,12 @@ export default (Alpine) => {
 
     Alpine.directive('dropdown-menu-radio-group-item', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-on:click': function () {
+            'x-on:click'() {
                 this.__dropdownMenuRadioGroupValue = (
                     this.__dropdownMenuRadioGroupValue !== expression ? expression : ''
                 );
             },
-            'x-bind:aria-checked': function () {
+            'x-bind:aria-checked'() {
                 return this.__dropdownMenuRadioGroupValue === expression;
             },
         });
@@ -84,7 +99,7 @@ export default (Alpine) => {
 
     Alpine.directive('dropdown-menu-radio-group-item-indicator', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-show': function () {
+            'x-show'() {
                 return this.__dropdownMenuRadioGroupValue === expression;
             },
         });
@@ -92,7 +107,7 @@ export default (Alpine) => {
 
     Alpine.directive('dropdown-menu-sub', (el) => {
         Alpine.bind(el, {
-            'x-data': function () {
+            'x-data'() {
                 return {
                     __dropdownMenuSubOpen: false,
                 };
@@ -104,13 +119,13 @@ export default (Alpine) => {
     Alpine.directive('dropdown-menu-sub-trigger', (el) => {
         Alpine.bind(el, {
             'x-ref': 'trigger',
-            'x-on:mouseenter': function () {
+            'x-on:mouseenter'() {
                 this.__dropdownMenuSubOpen = true;
             },
-            'x-on:mouseleave': function () {
+            'x-on:mouseleave'() {
                 this.__dropdownMenuSubOpen = false;
             },
-            'x-bind:aria-expanded': function () {
+            'x-bind:aria-expanded'() {
                 return this.__dropdownMenuSubOpen;
             },
         });
@@ -118,16 +133,16 @@ export default (Alpine) => {
 
     Alpine.directive('dropdown-menu-sub-content', (el, { modifiers }) => {
         Alpine.bind(el, {
-            'x-show': function () {
+            'x-show'() {
                 return this.__dropdownMenuSubOpen;
             },
-            'x-on:mouseenter': function () {
+            'x-on:mouseenter'() {
                 this.__dropdownMenuSubOpen = true;
             },
-            'x-on:mouseleave': function () {
+            'x-on:mouseleave'() {
                 this.__dropdownMenuSubOpen = false;
             },
-            'x-bind:data-state': function () {
+            'x-bind:data-state'() {
                 return this.__dropdownMenuSubOpen ? 'open' : 'closed';
             },
             [['x-anchor', ...modifiers].join('.')]: '$refs.trigger'

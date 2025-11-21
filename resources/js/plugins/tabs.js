@@ -1,7 +1,7 @@
 export default (Alpine) => {
     Alpine.directive('tabs', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-data': function () {
+            'x-data'() {
                 return {
                     __tabsValue: expression,
                 };
@@ -12,13 +12,13 @@ export default (Alpine) => {
 
     Alpine.directive('tabs-trigger', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-on:click': function () {
+            'x-on:click'() {
                 this.__tabsValue = expression;
             },
-            'x-bind:data-state': function () {
+            'x-bind:data-state'() {
                 return this.__tabsValue === expression ? 'active' : 'inactive';
             },
-            'x-bind:aria-selected': function () {
+            'x-bind:aria-selected'() {
                 return this.__tabsValue === expression;
             },
         });
@@ -26,7 +26,7 @@ export default (Alpine) => {
 
     Alpine.directive('tabs-content', (el, { expression }) => {
         Alpine.bind(el, {
-            'x-show': function () {
+            'x-show'() {
                 return this.__tabsValue === expression;
             },
         });
