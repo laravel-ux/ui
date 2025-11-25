@@ -5,9 +5,8 @@
     'widthMobile' => '18rem',
 ])
 <div
-    x-data="{ __sidebarProviderOpen: @js($open), __sidebarProviderIsMobile: false }"
-    x-modelable="__sidebarProviderOpen"
-    x-resize.document="__sidebarProviderIsMobile = $width < 768"
+    x-data
+    x-sidebar-provider="@js($open)"
     data-slot="sidebar-wrapper"
     {{
         $attributes

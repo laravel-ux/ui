@@ -4,7 +4,19 @@ export default (Alpine) => {
             'x-data'() {
                 return {
                     __dropdownMenuOpen: false,
+                    __dropdownMenuToggleOverflow() {
+                        document.body.style.paddingRight = this.__dropdownMenuOpen
+                            ? `${window.innerWidth - document.documentElement.clientWidth}px`
+                            : '';
+                        document.body.style.overflow = this.__dropdownMenuOpen ? 'hidden' : '';
+                    },
                 };
+            },
+            'x-init'() {
+                this.__dropdownMenuToggleOverflow();
+                this.$watch('__dropdownMenuOpen', () => {
+                    this.__dropdownMenuToggleOverflow();
+                });
             },
             'x-modelable': '__dropdownMenuOpen',
         });

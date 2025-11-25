@@ -6,7 +6,8 @@
     "require": {
         "php": "^8.2",
         "ext-libxml": "*",
-        "livewire/livewire": "^3.3",
+        "livewire/blaze": "^1.0@beta",
+        "livewire/livewire": "^4.0@beta",
         "gehrisandro/tailwind-merge-php": "^1.1"
     },
     "autoload": {

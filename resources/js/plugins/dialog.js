@@ -5,7 +5,7 @@ export default (Alpine) => {
                 return {
                     __dialogOpen: evaluate(expression),
                     __dialogToggleOverflow() {
-                        document.body.style.paddingRight = this.__selectOpen
+                        document.body.style.paddingRight = this.__dialogOpen
                             ? `${window.innerWidth - document.documentElement.clientWidth}px`
                             : '';
                         document.body.style.overflow = this.__dialogOpen ? 'hidden' : '';
@@ -13,10 +13,7 @@ export default (Alpine) => {
                 };
             },
             'x-init'() {
-                if (this.__dialogOpen) {
-                    this.__dialogToggleOverflow();
-                }
-
+                this.__dialogToggleOverflow();
                 this.$watch('__dialogOpen', () => {
                     this.__dialogToggleOverflow();
                 });

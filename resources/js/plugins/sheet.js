@@ -5,16 +5,18 @@ export default (Alpine) => {
                 return {
                     __sheetOpen: evaluate(expression),
                     __toggleSheetOverflow() {
+                        document.body.style.paddingRight = this.__sheetOpen
+                            ? `${window.innerWidth - document.documentElement.clientWidth}px`
+                            : '';
                         document.body.style.overflow = this.__sheetOpen ? 'hidden' : '';
                     },
                 };
             },
             'x-init'() {
-                if (this.__sheetOpen) {
+                this.__toggleSheetOverflow();
+                this.$watch('__sheetOpen', () => {
                     this.__toggleSheetOverflow();
-                }
-
-                this.$watch('__sheetOpen', () => { this.__toggleSheetOverflow() })
+                })
             },
             'x-modelable': '__sheetOpen',
         });

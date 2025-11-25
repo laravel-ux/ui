@@ -7,7 +7,9 @@ export default (Alpine) => {
                     __selectValue: expression,
                     __selectLabel: null,
                     __updateSelectLabel() {
-                        this.__selectLabel = el.querySelector(`[data-value='${this.__selectValue}']`)?.innerHTML;
+                        this.__selectLabel = this.__selectValue
+                            ? el.querySelector(`[data-value='${this.__selectValue}']`)?.innerHTML
+                            : null;
                     },
                     __toggleSelectOverflow() {
                         document.body.style.paddingRight = this.__selectOpen
@@ -18,15 +20,14 @@ export default (Alpine) => {
                 };
             },
             'x-init'() {
-                if (this.__selectValue) {
-                    this.__updateSelectLabel();
-                }
-
-                this.$watch('__selectOpen', () => {
-                    this.__toggleSelectOverflow();
-                });
+                this.__updateSelectLabel();
                 this.$watch('__selectValue', () => {
                     this.__updateSelectLabel();
+                });
+
+                this.__toggleSelectOverflow();
+                this.$watch('__selectOpen', () => {
+                    this.__toggleSelectOverflow();
                 });
             },
             'x-modelable': '__selectValue',
