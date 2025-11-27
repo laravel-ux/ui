@@ -12,7 +12,7 @@
         {{ $slot }}
     </div>
 @else
-    <template x-if="isMobile()">
+    <template x-if="__sidebarProviderIsMobile">
         <x-ux::sheet x-model="__sidebarProviderOpen">
             <x-ux::sheet.content
                 side="{{ $side }}"

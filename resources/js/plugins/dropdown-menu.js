@@ -4,18 +4,38 @@ export default (Alpine) => {
             'x-data'() {
                 return {
                     __dropdownMenuOpen: false,
-                    __dropdownMenuToggleOverflow() {
-                        document.body.style.paddingRight = this.__dropdownMenuOpen
-                            ? `${window.innerWidth - document.documentElement.clientWidth}px`
-                            : '';
-                        document.body.style.overflow = this.__dropdownMenuOpen ? 'hidden' : '';
+                    __dropdownMenuSyncState() {
+                        if (this.__dropdownMenuOpen) {
+                            this.__dropdownMenuLockScroll();
+                            this.__dropdownMenuSyncDimensions();
+                        } else {
+                            this.__dropdownMenuUnlockScroll();
+                        }
+                    },
+                    __dropdownMenuLockScroll() {
+                        document.body.style.setProperty(
+                            'padding-right',
+                            `${window.innerWidth - document.documentElement.clientWidth}px`,
+                        );
+                        document.body.style.setProperty('overflow', 'hidden');
+                    },
+                    __dropdownMenuUnlockScroll() {
+                        document.body.style.removeProperty('padding-right');
+                        document.body.style.removeProperty('overflow');
+                    },
+                    __dropdownMenuSyncDimensions() {
+                        const rect = this.$refs.trigger.getBoundingClientRect();
+                        this.$refs.content.style.setProperty(
+                            '--dropdown-menu-trigger-width',
+                            `${rect.width}px`,
+                        );
                     },
                 };
             },
             'x-init'() {
-                this.__dropdownMenuToggleOverflow();
+                this.__dropdownMenuSyncState();
                 this.$watch('__dropdownMenuOpen', () => {
-                    this.__dropdownMenuToggleOverflow();
+                    this.__dropdownMenuSyncState();
                 });
             },
             'x-modelable': '__dropdownMenuOpen',
@@ -47,6 +67,7 @@ export default (Alpine) => {
 
     Alpine.directive('dropdown-menu-content', (el, { modifiers }) => {
         Alpine.bind(el, {
+            'x-ref': 'content',
             'x-show'() {
                 return this.__dropdownMenuOpen;
             },
