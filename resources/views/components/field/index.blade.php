@@ -1,3 +1,4 @@
+@blaze
 @props(['orientation' => 'vertical'])
 <div
     role="group"

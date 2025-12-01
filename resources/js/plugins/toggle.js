@@ -1,17 +1,22 @@
 export default (Alpine) => {
-    Alpine.directive('toggle', (el, { expression }, { evaluate }) => {
+    Alpine.directive('toggle', (el) => {
+        const pressed = el.getAttribute('aria-pressed');
+
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __togglePressed: evaluate(expression),
+                    __pressed: pressed === 'true',
                 };
             },
-            'x-modelable': '__togglePressed',
+            'x-modelable': '__pressed',
             'x-on:click'() {
-                this.__togglePressed = ! this.__togglePressed;
+                this.__pressed = ! this.__pressed;
             },
             'x-bind:data-state'() {
-                return this.__togglePressed ? 'on' : 'off';
+                return this.__pressed ? 'on' : 'off';
+            },
+            'x-bind:aria-pressed'() {
+                return this.__pressed ? 'true' : 'false';
             },
         });
     });

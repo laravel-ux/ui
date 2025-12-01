@@ -1,3 +1,4 @@
+@blaze
 <span
     role="link"
     aria-disabled="true"

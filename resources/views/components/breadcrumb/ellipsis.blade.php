@@ -1,3 +1,4 @@
+@blaze
 <span
     data-slot="breadcrumb-ellipsis"
     role="presentation"
@@ -5,4 +6,5 @@
     {{ $attributes->tailwindMerge('flex size-9 items-center justify-center') }}
 >
     <x-ux::icon name="ellipsis" class="size-4" />
+    <span class="sr-only">@lang('More')</span>
 </span>

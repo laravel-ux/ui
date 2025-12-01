@@ -5,8 +5,8 @@
     data-slot="dialog"
     {{ $attributes->tailwindMerge('flex') }}
 >
-    <x-ux::portal>
+    @teleport('body')
         <x-ux::dialog.overlay />
-    </x-ux::portal>
+    @endteleport
     {{ $slot }}
 </div>

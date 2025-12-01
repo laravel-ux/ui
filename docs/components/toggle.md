@@ -3,8 +3,14 @@
 A two-state button that can be either on or off.
 
 ```blade preview
-<x-ux::toggle>
-    <x-ux::icon name="bold" />
+<x-ux::toggle
+    aria-label="Toggle bookmark"
+    size="sm"
+    variant="outline"
+    class="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-blue-500 data-[state=on]:*:[svg]:stroke-blue-500"
+>
+    <x-ux::icon name="bookmark" />
+    Bookmark
 </x-ux::toggle>
 ```
 
@@ -14,32 +20,60 @@ A two-state button that can be either on or off.
 <x-ux::toggle>Toggle</x-ux::toggle>
 ```
 
-### Variants
+## Examples
 
-Use the `variant` prop to control the visual style of the toggle.
+### Default
 
 ```blade preview
-<x-ux::toggle>
-    <x-ux::icon name="bold" />
+<x-ux::toggle
+    aria-label="Toggle bookmark"
+    size="sm"
+    variant="outline"
+    class="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-blue-500 data-[state=on]:*:[svg]:stroke-blue-500"
+>
+    <x-ux::icon name="bookmark" />
+    Bookmark
 </x-ux::toggle>
-<x-ux::toggle variant="outline">
+```
+
+### Outline
+
+```blade preview
+<x-ux::toggle variant="outline" aria-label="Toggle italic">
     <x-ux::icon name="italic" />
 </x-ux::toggle>
 ```
 
-### Sizes
-
-Use the `size` prop to control the size of the toggle.
+### With Text
 
 ```blade preview
-<x-ux::toggle variant="outline" size="lg">
-    <x-ux::icon name="bold" />
+<x-ux::toggle aria-label="Toggle italic">
+    <x-ux::icon name="italic" />
+    Italic
 </x-ux::toggle>
-<x-ux::toggle variant="outline">
+```
+
+### Small
+
+```blade preview
+<x-ux::toggle size="sm" aria-label="Toggle italic">
     <x-ux::icon name="italic" />
 </x-ux::toggle>
-<x-ux::toggle variant="outline" size="sm">
-    <x-ux::icon name="underline" />
+```
+
+### Large
+
+```blade preview
+<x-ux::toggle size="lg" aria-label="Toggle italic">
+    <x-ux::icon name="italic" />
+</x-ux::toggle>
+```
+
+### Disabled
+
+```blade preview
+<x-ux::toggle aria-label="Toggle italic" disabled>
+    <x-ux::icon name="underline" class="h-4 w-4" />
 </x-ux::toggle>
 ```
 

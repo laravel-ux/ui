@@ -1,7 +1,7 @@
-@aware(['value'])
+@blaze
 <div
     x-cloak
-    x-accordion-content="{{ $value }}"
+    x-accordion-content
     data-slot="accordion-content"
     role="region"
     class="overflow-hidden text-sm"

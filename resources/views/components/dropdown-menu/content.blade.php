@@ -4,7 +4,7 @@
     'sideOffset' => 4,
 ])
 @php($position = $side . data_get(['end' => '-end', 'start' => '-start'], $align))
-<x-ux::portal>
+@teleport('body')
     <div
         x-cloak
         x-dropdown-menu-content.{{ $position }}.offset.{{ $sideOffset }}
@@ -16,4 +16,4 @@
     >
         {{ $slot }}
     </div>
-</x-ux::portal>
+@endteleport

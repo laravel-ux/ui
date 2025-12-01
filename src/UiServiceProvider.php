@@ -33,11 +33,27 @@ class UiServiceProvider extends ServiceProvider
             $this->commands([
                 InstallCommand::class
             ]);
+            $this->bootPublishes();
         }
 
         Blade::component('ux::as-child', AsChild::class);
         Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'ux');
 
         ComponentAttributeBag::mixin(new ComponentAttributeBugMixin);
+    }
+
+    protected function bootPublishes(): void
+    {
+        $components = array_map(
+            'basename',
+            glob(__DIR__ . '/../resources/views/components/*', GLOB_ONLYDIR),
+        );
+
+        foreach ($components as $component) {
+            $source = __DIR__ . "/../resources/views/components/{$component}";
+            $target = resource_path("views/vendor/ux/components/{$component}");
+
+            $this->publishes([$source => $target], "ux-{$component}");
+        }
     }
 }

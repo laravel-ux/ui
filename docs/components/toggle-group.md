@@ -3,15 +3,30 @@
 A set of two-state buttons that can be toggled on or off.
 
 ```blade preview
-<x-ux::toggle-group variant="outline">
-    <x-ux::toggle-group.item value="bold">
-        <x-ux::icon name="bold" />
+<x-ux::toggle-group variant="outline" spacing="2" size="sm">
+    <x-ux::toggle-group.item
+        value="star"
+        aria-label="Toggle star"
+        class="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-yellow-500 data-[state=on]:*:[svg]:stroke-yellow-500"
+    >
+        <x-ux::icon name="star" />
+        Star
     </x-ux::toggle-group.item>
-    <x-ux::toggle-group.item value="italic">
-        <x-ux::icon name="italic" />
+    <x-ux::toggle-group.item
+        value="heart"
+        aria-label="Toggle heart"
+        class="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500"
+    >
+        <x-ux::icon name="heart" />
+        Heart
     </x-ux::toggle-group.item>
-    <x-ux::toggle-group.item value="strikethrough">
-        <x-ux::icon name="underline" />
+    <x-ux::toggle-group.item
+        value="bookmark"
+        aria-label="Toggle bookmark"
+        class="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-blue-500 data-[state=on]:*:[svg]:stroke-blue-500"
+    >
+        <x-ux::icon name="bookmark" />
+        Bookmark
     </x-ux::toggle-group.item>
 </x-ux::toggle-group>
 ```
@@ -26,77 +41,135 @@ A set of two-state buttons that can be toggled on or off.
 </x-ux::toggle-group>
 ```
 
-### Variants
+## Examples
 
-Use the `variant` prop to control the visual style of the toggle group.
+### Outline
 
 ```blade preview
-<div class="flex gap-4">
-    <x-ux::toggle-group>
-        <x-ux::toggle-group.item value="bold">
-            <x-ux::icon name="bold" />
-        </x-ux::toggle-group.item>
-        <x-ux::toggle-group.item value="italic">
-            <x-ux::icon name="italic" />
-        </x-ux::toggle-group.item>
-    </x-ux::toggle-group>
-    <x-ux::toggle-group variant="outline">
-        <x-ux::toggle-group.item value="bold">
-            <x-ux::icon name="bold" />
-        </x-ux::toggle-group.item>
-        <x-ux::toggle-group.item value="italic">
-            <x-ux::icon name="italic" />
-        </x-ux::toggle-group.item>
-    </x-ux::toggle-group>
-</div>
+<x-ux::toggle-group variant="outline">
+    <x-ux::toggle-group.item value="bold" aria-label="Toggle bold">
+        <x-ux::icon name="bold" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+    <x-ux::toggle-group.item value="italic" aria-label="Toggle italic">
+        <x-ux::icon name="italic" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+    <x-ux::toggle-group.item value="strikethrough" aria-label="Toggle strikethrough">
+        <x-ux::icon name="underline" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+</x-ux::toggle-group>
 ```
 
-### Sizes
-
-Use the `size` prop to control the size of the toggle group.
+### Single
 
 ```blade preview
-<div class="flex gap-4">
-    <x-ux::toggle-group variant="outline" size="lg">
-        <x-ux::toggle-group.item value="bold">
-            <x-ux::icon name="bold" />
-        </x-ux::toggle-group.item>
-        <x-ux::toggle-group.item value="italic">
-            <x-ux::icon name="italic" />
-        </x-ux::toggle-group.item>
-    </x-ux::toggle-group>
-    <x-ux::toggle-group variant="outline">
-        <x-ux::toggle-group.item value="bold">
-            <x-ux::icon name="bold" />
-        </x-ux::toggle-group.item>
-        <x-ux::toggle-group.item value="italic">
-            <x-ux::icon name="italic" />
-        </x-ux::toggle-group.item>
-    </x-ux::toggle-group>
-    <x-ux::toggle-group variant="outline" size="sm">
-        <x-ux::toggle-group.item value="bold">
-            <x-ux::icon name="bold" />
-        </x-ux::toggle-group.item>
-        <x-ux::toggle-group.item value="italic">
-            <x-ux::icon name="italic" />
-        </x-ux::toggle-group.item>
-    </x-ux::toggle-group>
-</div>
+<x-ux::toggle-group>
+    <x-ux::toggle-group.item value="bold" aria-label="Toggle bold">
+        <x-ux::icon name="bold" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+    <x-ux::toggle-group.item value="italic" aria-label="Toggle italic">
+        <x-ux::icon name="italic" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+    <x-ux::toggle-group.item value="strikethrough" aria-label="Toggle strikethrough">
+        <x-ux::icon name="underline" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+</x-ux::toggle-group>
+```
+
+### Small
+
+```blade preview
+<x-ux::toggle-group size="sm">
+    <x-ux::toggle-group.item value="bold" aria-label="Toggle bold">
+        <x-ux::icon name="bold" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+    <x-ux::toggle-group.item value="italic" aria-label="Toggle italic">
+        <x-ux::icon name="italic" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+    <x-ux::toggle-group.item value="strikethrough" aria-label="Toggle strikethrough">
+        <x-ux::icon name="underline" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+</x-ux::toggle-group>
+```
+
+### Large
+
+```blade preview
+<x-ux::toggle-group size="lg">
+    <x-ux::toggle-group.item value="bold" aria-label="Toggle bold">
+        <x-ux::icon name="bold" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+    <x-ux::toggle-group.item value="italic" aria-label="Toggle italic">
+        <x-ux::icon name="italic" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+    <x-ux::toggle-group.item value="strikethrough" aria-label="Toggle strikethrough">
+        <x-ux::icon name="underline" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+</x-ux::toggle-group>
+```
+
+### Disabled
+
+```blade preview
+<x-ux::toggle-group disabled>
+    <x-ux::toggle-group.item value="bold" aria-label="Toggle bold">
+        <x-ux::icon name="bold" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+    <x-ux::toggle-group.item value="italic" aria-label="Toggle italic">
+        <x-ux::icon name="italic" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+    <x-ux::toggle-group.item value="strikethrough" aria-label="Toggle strikethrough">
+        <x-ux::icon name="underline" class="h-4 w-4" />
+    </x-ux::toggle-group.item>
+</x-ux::toggle-group>
+```
+
+### Spacing
+
+Use `spacing` to add spacing between toggle group items.
+
+```blade preview
+<x-ux::toggle-group variant="outline" spacing="2" size="sm">
+    <x-ux::toggle-group.item
+        value="star"
+        aria-label="Toggle star"
+        class="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-yellow-500 data-[state=on]:*:[svg]:stroke-yellow-500"
+    >
+        <x-ux::icon name="star" />
+        Star
+    </x-ux::toggle-group.item>
+    <x-ux::toggle-group.item
+        value="heart"
+        aria-label="Toggle heart"
+        class="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500"
+    >
+        <x-ux::icon name="heart" />
+        Heart
+    </x-ux::toggle-group.item>
+    <x-ux::toggle-group.item
+        value="bookmark"
+        aria-label="Toggle bookmark"
+        class="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-blue-500 data-[state=on]:*:[svg]:stroke-blue-500"
+    >
+        <x-ux::icon name="bookmark" />
+        Bookmark
+    </x-ux::toggle-group.item>
+</x-ux::toggle-group>
 ```
 
 ## API Reference
 
-### Root
+### x-ux::toggle-group
 
 Contains all the parts of a toggle group.
 
 | Prop                                                                        | Type                                | Default     |
 |-----------------------------------------------------------------------------|-------------------------------------|-------------|
-| `value` [?The value of the item to show as pressed when initially rendered] | `string`                            | `""`        |
+| `value` [?The value of the item to show as pressed when initially rendered] | `string`                            | `-`         |
 | `size`                                                                      | `enum` [?"default" \| "sm" \| "lg"] | `"default"` |
 | `variant`                                                                   | `enum` [?"default" \| "outline"]    | `"default"` |
+| `spacing`                                                                   | `number`                            | `0`         |
 
-### Item
+### x-ux::toggle-group.item
 
 An item in the group.
 

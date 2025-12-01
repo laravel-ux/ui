@@ -3,7 +3,38 @@
 Displays a badge or a component that looks like a badge.
 
 ```blade preview
-<x-ux::badge>Badge</x-ux::badge>
+<div class="flex flex-col items-center gap-2">
+    <div class="flex w-full flex-wrap gap-2">
+        <x-ux::badge>Badge</x-ux::badge>
+        <x-ux::badge variant="secondary">Secondary</x-ux::badge>
+        <x-ux::badge variant="destructive">Destructive</x-ux::badge>
+        <x-ux::badge variant="outline">Outline</x-ux::badge>
+    </div>
+    <div class="flex w-full flex-wrap gap-2">
+        <x-ux::badge
+            variant="secondary"
+            class="bg-blue-500 text-white dark:bg-blue-600"
+        >
+            <x-ux::icon name="badge-check" />
+            Verified
+        </x-ux::badge>
+        <x-ux::badge class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">
+            8
+        </x-ux::badge>
+        <x-ux::badge
+            class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"
+            variant="destructive"
+        >
+            99
+        </x-ux::badge>
+        <x-ux::badge
+            class="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"
+            variant="outline"
+        >
+            20+
+        </x-ux::badge>
+    </div>
+</div>
 ```
 
 ## Usage
@@ -13,17 +44,6 @@ Displays a badge or a component that looks like a badge.
 ```
 
 ## Examples
-
-### Variants
-
-Use the `variant` prop to control the visual style of the badge.
-
-```blade preview
-<x-ux::badge>Default</x-ux::badge>
-<x-ux::badge variant="secondary">Secondary</x-ux::badge>
-<x-ux::badge variant="destructive">Destructive</x-ux::badge>
-<x-ux::badge variant="outline">Outline</x-ux::badge>
-```
 
 ### As Link
 

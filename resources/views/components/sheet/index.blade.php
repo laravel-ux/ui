@@ -5,8 +5,8 @@
     data-slot="sheet"
     {{ $attributes->tailwindMerge('flex') }}
 >
-    <x-ux::portal>
+    @teleport('body')
         <x-ux::sheet.overlay />
-    </x-ux::portal>
+    @endteleport
     {{ $slot }}
 </div>

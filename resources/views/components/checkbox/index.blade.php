@@ -1,8 +1,9 @@
+@blaze
 @props(['disabled' => false])
 <button
     x-data
     x-cloak
-    x-checkbox="@js((bool) $attributes->get('checked'))"
+    x-checkbox
     role="checkbox"
     data-slot="checkbox"
     type="button"
@@ -22,7 +23,7 @@
         x-cloak
         x-checkbox-indicator
         data-slot="checkbox-indicator"
-        class="flex items-center justify-center text-current transition-none"
+        class="grid place-content-center text-current transition-none"
     >
         <x-ux::icon name="check" class="size-3.5" />
     </span>

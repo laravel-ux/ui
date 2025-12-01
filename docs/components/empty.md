@@ -198,7 +198,7 @@ You can add an `<x-ux::input-group>` component to the `<x-ux::empty.content>` co
 
 ## API Reference
 
-### Media
+### x-ux::empty.media
 
 The component display the media of the empty state such as an icon or an image.
 

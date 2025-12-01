@@ -1,9 +1,10 @@
+@blaze
 @props(['open' => false])
 <div
     x-data
-    x-collapsible="@js($open)"
+    x-collapsible
     data-slot="collapsible"
-    {{ $attributes }}
+    {{ $attributes->when($open, fn($attributes) => $attributes->offsetSet('aria-expanded', 'true')) }}
 >
     {{ $slot }}
 </div>

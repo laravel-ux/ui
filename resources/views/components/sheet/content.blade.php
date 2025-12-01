@@ -1,5 +1,5 @@
 @props(['side' => 'right'])
-<x-ux::portal>
+@teleport('body')
     <div
         x-cloak
         x-sheet-content
@@ -25,4 +25,4 @@
             <span class="sr-only">@lang('Close')</span>
         </button>
     </div>
-</x-ux::portal>
+@endteleport

@@ -1,3 +1,4 @@
+@blaze
 @props(['variant' => 'legend'])
 <legend
     data-slot="field-legend"

@@ -1,25 +1,32 @@
 export default (Alpine) => {
-    Alpine.directive('toggle-group', (el, { expression }) => {
+    Alpine.directive('toggle-group', (el) => {
+        const value = el.getAttribute('value');
+
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __toggleGroupValue: expression,
+                    __value: value,
                 };
             },
-            'x-modelable': '__toggleGroupValue',
+            'x-modelable': '__value',
         });
     });
 
-    Alpine.directive('toggle-group-item', (el, { expression }) => {
+    Alpine.directive('toggle-group-item', (el) => {
+        const value = el.getAttribute('value');
+
         Alpine.bind(el, {
             'x-on:click'() {
-                this.__toggleGroupValue = expression;
+                this.__value = value;
             },
             'x-bind:tabindex'() {
-                return this.__toggleGroupValue === expression ? 0 : -1;
+                return this.__value === value ? 0 : -1;
             },
             'x-bind:data-state'() {
-                return this.__toggleGroupValue === expression ? 'on' : 'off';
+                return this.__value === value ? 'on' : 'off';
+            },
+            'x-bind:aria-pressed'() {
+                return this.__value === value ? 'true' : 'false';
             },
         });
     });

@@ -473,7 +473,7 @@ Stack `<x-ux::field>` components with `<x-ux::field.group>`. Add `<x-ux::field.s
 
 ## API Reference
 
-### Legend
+### x-ux::field.legend
 
 Legend element for a `<x-ux::field.set>`. Switch to the `label` variant to align with label sizing.
 
@@ -484,7 +484,7 @@ Legend element for a `<x-ux::field.set>`. Switch to the `label` variant to align
 The `<x-ux::field.legend>` has two variants: `legend` and `label`.
 The `label` variant applies label sizing and alignment. Handy if you have nested `<x-ux::field.set>`.
 
-### Field
+### x-ux::field
 
 The core wrapper for a single field. Provides orientation control, invalid state styling, and spacing.
 
@@ -492,13 +492,13 @@ The core wrapper for a single field. Provides orientation control, invalid state
 |---------------|------------------------------------------------------|--------------|
 | `orientation` | `enum` [?"vertical" \| "horizontal" \| "responsive"] | `"vertical"` |
 
-### Label
+### x-ux::field.label
 
 Label styled for both direct inputs and nested Field children.
 
-| Prop      | Type                                                                                                              | Default |
-|-----------|-------------------------------------------------------------------------------------------------------------------|---------|
-| `asChild` | `boolean` [?Change the default rendered element for the one passed as a child, merging their props and behavior.] | `false` |
+| Prop       | Type                                                                                                              | Default |
+|------------|-------------------------------------------------------------------------------------------------------------------|---------|
+| `as-child` | `boolean` [?Change the default rendered element for the one passed as a child, merging their props and behavior.] | `false` |
 
 
 ## Publishing

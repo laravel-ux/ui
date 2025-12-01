@@ -531,17 +531,17 @@ To render an item as a link, use the `asChild` prop. The hover and focus states 
 
 ## API Reference
 
-### Root
+### x-ux::item
 
 The main component for displaying content with media, title, description, and actions.
 
-| Prop      | Type                                                                                                              | Default     |
-|-----------|-------------------------------------------------------------------------------------------------------------------|-------------|
-| `size`    | `enum` [?"default" \| "sm"]                                                                                       | `"default"` |
-| `variant` | `enum` [?"default" \| "outline" \| "muted"]                                                                       | `"default"` |
-| `asChild` | `boolean` [?Change the default rendered element for the one passed as a child, merging their props and behavior.] | `false`     |
+| Prop       | Type                                                                                                              | Default     |
+|------------|-------------------------------------------------------------------------------------------------------------------|-------------|
+| `size`     | `enum` [?"default" \| "sm"]                                                                                       | `"default"` |
+| `variant`  | `enum` [?"default" \| "outline" \| "muted"]                                                                       | `"default"` |
+| `as-child` | `boolean` [?Change the default rendered element for the one passed as a child, merging their props and behavior.] | `false`     |
 
-### Media
+### x-ux::item.media
 
 The component to display media content such as icons, images, or avatars.
 
@@ -555,5 +555,5 @@ The component to display media content such as icons, images, or avatars.
 This component works out of the box, but you can publish its Blade view if you need to make structural or styling changes.
 
 ```shell
-php artisan vendor:publish --tag=ux-button-group --force
+php artisan vendor:publish --tag=ux-item --force
 ```

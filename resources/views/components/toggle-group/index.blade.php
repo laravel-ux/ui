@@ -1,15 +1,27 @@
 @props([
-    'value' => '',
+    'value' => null,
     'variant' => 'default',
     'size' => 'default',
+    'spacing' => 0,
+    'disabled' => false,
 ])
 <div
     x-data
-    x-toggle-group="{{ $value }}"
+    x-toggle-group
     data-slot="toggle-group"
     role="group"
     tabindex="0"
-    {{ $attributes->tailwindMerge('group/toggle-group flex w-fit items-center rounded-md data-[variant=outline]:shadow-xs') }}
+    {{
+        $attributes
+            ->merge([
+                'value' => $value,
+                'data-size' => $size,
+                'data-variant' => $variant,
+                'data-spacing' => $spacing,
+            ])
+            ->style(["--gap: {$spacing}"])
+            ->tailwindMerge('group/toggle-group flex w-fit items-center gap-[--spacing(var(--gap))] rounded-md data-[spacing=default]:data-[variant=outline]:shadow-xs')
+    }}
 >
     {{ $slot }}
 </div>

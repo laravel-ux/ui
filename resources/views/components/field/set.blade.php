@@ -1,3 +1,4 @@
+@blaze
 <fieldset
     data-slot="field-set"
     {{

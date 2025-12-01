@@ -1,3 +1,4 @@
+@blaze
 <nav
     data-slot="breadcrumb"
     aria-label="breadcrumb"

@@ -1,3 +1,4 @@
+@blaze
 <div
     {{
         $attributes

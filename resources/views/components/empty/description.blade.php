@@ -1,3 +1,4 @@
+@blaze
 <div
     data-slot="empty-description"
     {{ $attributes->tailwindMerge('text-muted-foreground [&>a:hover]:text-primary text-sm/relaxed [&>a]:underline [&>a]:underline-offset-4') }}

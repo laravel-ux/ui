@@ -1,9 +1,10 @@
-@props(['value' => ''])
+@blaze
+@props(['value' => null])
 <div
     x-data
-    x-accordion="{{ $value }}"
+    x-accordion
     data-slot="accordion"
-    {{ $attributes }}
+    {{ $attributes->merge(['value' => $value]) }}
 >
     {{ $slot }}
 </div>

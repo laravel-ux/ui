@@ -1,3 +1,4 @@
+@blaze
 <div
     data-slot="field-description"
     {{

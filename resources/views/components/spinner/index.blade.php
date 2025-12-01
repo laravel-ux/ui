@@ -1,3 +1,4 @@
+@blaze
 <x-ux::icon
     role="status"
     name="loader-circle"

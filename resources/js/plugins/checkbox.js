@@ -1,20 +1,22 @@
 export default (Alpine) => {
-    Alpine.directive('checkbox', (el, { expression }, { evaluate }) => {
+    Alpine.directive('checkbox', (el) => {
+        const checked = el.querySelector('input[type="checkbox"]').checked;
+
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __checkboxChecked: evaluate(expression),
+                    __checked: checked,
                 };
             },
-            'x-modelable': '__checkboxChecked',
+            'x-modelable': '__checked',
             'x-on:click'() {
-                this.__checkboxChecked = ! this.__checkboxChecked;
+                this.__checked = ! this.__checked;
             },
             'x-bind:data-state'() {
-                return this.__checkboxChecked ? 'checked' : 'unchecked';
+                return this.__checked ? 'checked' : 'unchecked';
             },
             'x-bind:aria-checked'() {
-                return this.__checkboxChecked;
+                return this.__checked;
             },
         });
     });
@@ -22,10 +24,10 @@ export default (Alpine) => {
     Alpine.directive('checkbox-indicator', (el) => {
         Alpine.bind(el, {
             'x-show'() {
-                return this.__checkboxChecked;
+                return this.__checked;
             },
             'x-bind:data-state'() {
-                return this.__checkboxChecked ? 'checked' : 'unchecked';
+                return this.__checked ? 'checked' : 'unchecked';
             },
         });
     });

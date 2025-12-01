@@ -1,3 +1,4 @@
+@blaze
 @props(['ratio' => 1])
 <div
     class="w-full relative"

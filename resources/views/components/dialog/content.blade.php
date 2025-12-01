@@ -1,4 +1,4 @@
-<x-ux::portal>
+@teleport('body')
     <div
         x-cloak
         x-dialog-content
@@ -15,4 +15,4 @@
             <x-ux::icon name="x" class="size-4" />
         </button>
     </div>
-</x-ux::portal>
+@endteleport

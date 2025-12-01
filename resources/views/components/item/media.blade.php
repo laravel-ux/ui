@@ -1,3 +1,4 @@
+@blaze
 @props(['variant' => 'default'])
 <div
     data-slot="item-media"

@@ -362,7 +362,7 @@ Use with a `<x-ux::popover>` component.
 
 ## API Reference
 
-### Root
+### x-ux::button-group
 
 The component is a container that groups related buttons together with consistent styling.
 
@@ -370,7 +370,7 @@ The component is a container that groups related buttons together with consisten
 |---------------|--------------------------------------|----------------|
 | `orientation` | `enum` [?"horizontal" \| "vertical"] | `"horizontal"` |
 
-### Separator
+### x-ux::button-group.separator
 
 The component visually divides buttons within a group.
 
@@ -378,13 +378,13 @@ The component visually divides buttons within a group.
 |---------------|--------------------------------------|--------------|
 | `orientation` | `enum` [?"horizontal" \| "vertical"] | `"vertical"` |
 
-### Text
+### x-ux::button-group.text
 
 Use this component to display text within a button group.
 
-| Prop      | Type                                                                                                              | Default |
-|-----------|-------------------------------------------------------------------------------------------------------------------|---------|
-| `asChild` | `boolean` [?Change the default rendered element for the one passed as a child, merging their props and behavior.] | `false` |
+| Prop       | Type                                                                                                              | Default |
+|------------|-------------------------------------------------------------------------------------------------------------------|---------|
+| `as-child` | `boolean` [?Change the default rendered element for the one passed as a child, merging their props and behavior.] | `false` |
 
 
 ## Publishing

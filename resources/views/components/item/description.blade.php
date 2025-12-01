@@ -1,3 +1,4 @@
+@blaze
 <p
     data-slot="item-description"
     {{ $attributes->tailwindMerge([

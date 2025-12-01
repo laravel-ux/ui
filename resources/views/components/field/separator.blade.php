@@ -1,3 +1,4 @@
+@blaze
 <div
     data-slot="field-separator"
     {{ $attributes->tailwindMerge('relative -my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2') }}

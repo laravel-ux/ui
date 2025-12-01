@@ -3,10 +3,10 @@ export default (Alpine) => {
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __tooltipOpen: false,
+                    __isOpen: false,
                 };
             },
-            'x-modelable': '__tooltipOpen'
+            'x-modelable': '__isOpen'
         });
     });
 
@@ -14,10 +14,10 @@ export default (Alpine) => {
         Alpine.bind(el, {
             'x-ref': 'trigger',
             'x-on:mouseenter'() {
-                this.__tooltipOpen = true;
+                this.__isOpen = true;
             },
             'x-on:mouseleave'() {
-                this.__tooltipOpen = false;
+                this.__isOpen = false;
             }
         });
     });
@@ -25,10 +25,10 @@ export default (Alpine) => {
     Alpine.directive('tooltip-content', (el, { modifiers }) => {
         Alpine.bind(el, {
             'x-show'() {
-                return this.__tooltipOpen;
+                return this.__isOpen;
             },
             'x-bind:data-state'() {
-                return this.__tooltipOpen ? 'open' : 'closed';
+                return this.__isOpen ? 'open' : 'closed';
             },
             [['x-anchor', ...modifiers].join('.')]: '$refs.trigger'
         });

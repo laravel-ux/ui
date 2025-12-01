@@ -1,14 +1,16 @@
 export default (Alpine) => {
-    Alpine.directive('collapsible', (el, { expression }, { evaluate }) => {
+    Alpine.directive('collapsible', (el) => {
+        const expanded = el.getAttribute('aria-expanded');
+
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __collapsibleOpen: evaluate(expression),
+                    __isOpen: expanded === 'true',
                 };
             },
-            'x-modelable': '__collapsibleOpen',
+            'x-modelable': '__isOpen',
             'x-bind:data-state'() {
-                return this.__collapsibleOpen ? 'open' : 'closed';
+                return this.__isOpen ? 'open' : 'closed';
             },
         });
     });
@@ -16,10 +18,10 @@ export default (Alpine) => {
     Alpine.directive('collapsible-trigger', (el) => {
         Alpine.bind(el, {
             'x-on:click'() {
-                this.__collapsibleOpen = ! this.__collapsibleOpen;
+                this.__isOpen = ! this.__isOpen;
             },
             'x-bing:aria-expanded'() {
-                return this.__collapsibleOpen;
+                return this.__isOpen;
             },
         });
     });
@@ -28,10 +30,10 @@ export default (Alpine) => {
         Alpine.bind(el, {
             'x-collapse': '',
             'x-show'() {
-                return this.__collapsibleOpen;
+                return this.__isOpen;
             },
             'x-bind:data-state'() {
-                return this.__collapsibleOpen ? 'open' : 'closed';
+                return this.__isOpen ? 'open' : 'closed';
             },
         });
     });

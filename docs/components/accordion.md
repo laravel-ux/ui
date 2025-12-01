@@ -2,6 +2,7 @@
 
 A vertically stacked set of interactive headings that each reveal a section of content.
 
+
 ```blade preview
 <x-ux::accordion class="w-full" value="item-1">
     <x-ux::accordion.item value="item-1">
@@ -67,21 +68,21 @@ A vertically stacked set of interactive headings that each reveal a section of c
 
 ## API Reference
 
-### Root
+### x-ux::accordion
 
 Contains all the parts of an accordion.
 
-| Prop                                                                | Type      | Default |
-|---------------------------------------------------------------------|-----------|---------|
-| `value` [?The value of the item to expand when initially rendered.] | `string`  | `""`    |
+| Prop                                                                | Type     | Default |
+|---------------------------------------------------------------------|----------|---------|
+| `value` [?The value of the item to expand when initially rendered.] | `string` | -       |
 
-### Item
+### x-ux::accordion.item
 
 Contains all the parts of a collapsible section.
 
-| Prop                                    | Type     | Default |
-|-----------------------------------------|----------|---------|
-| `value` [?A unique value for the item.] | `string` | -       |
+| Prop                                     | Type     | Default |
+|------------------------------------------|----------|---------|
+| `value*` [?A unique value for the item.] | `string` | -       |
 
 ## Publishing
 

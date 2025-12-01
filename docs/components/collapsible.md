@@ -43,7 +43,7 @@ An interactive component which expands/collapses a panel.
 
 ## API Reference
 
-### Root
+### x-ux::collapsible
 
 Contains all the parts of a collapsible.
 
@@ -51,13 +51,13 @@ Contains all the parts of a collapsible.
 |---------------------------------------------------------|-----------|---------|
 | `open` [?The controlled open state of the collapsible.] | `boolean` | `false` |
 
-### Trigger
+### x-ux::collapsible.trigger
 
 The button that toggles the collapsible.
 
-| Prop      | Type                                                                                                              | Default |
-|-----------|-------------------------------------------------------------------------------------------------------------------|---------|
-| `asChild` | `boolean` [?Change the default rendered element for the one passed as a child, merging their props and behavior.] | `false` |
+| Prop       | Type                                                                                                              | Default |
+|------------|-------------------------------------------------------------------------------------------------------------------|---------|
+| `as-child` | `boolean` [?Change the default rendered element for the one passed as a child, merging their props and behavior.] | `false` |
 
 ## Publishing
 

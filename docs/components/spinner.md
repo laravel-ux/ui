@@ -59,7 +59,7 @@ Add a spinner to a button to indicate a loading state.
 The `<x-ux::button>` will handle the spacing between the spinner and the text.
 
 ```blade preview
-<div class="flex flex-col items-center gap-4">
+<div class="flex items-center gap-4">
     <x-ux::button disabled size="sm">
         <x-ux::spinner />
         Loading...

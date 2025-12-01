@@ -1,3 +1,4 @@
+@blaze
 @props(['variant' => 'default'])
 <div
     role="alert"

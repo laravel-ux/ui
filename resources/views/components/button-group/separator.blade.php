@@ -1,3 +1,4 @@
+@blaze
 @props(['orientation' => 'vertical'])
 <x-ux::separator
     {{
