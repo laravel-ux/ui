@@ -1,3 +1,4 @@
+@blaze
 <nav
     role="navigation"
     aria-label="pagination"

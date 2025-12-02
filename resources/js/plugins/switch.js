@@ -1,20 +1,20 @@
 export default (Alpine) => {
-    Alpine.directive('switch', (el, { expression }, { evaluate }) => {
+    Alpine.directive('switch', (el) => {
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __switchChecked: evaluate(expression),
+                    __checked: el.dataset.state === 'checked',
                 };
             },
-            'x-modelable': '__switchChecked',
+            'x-modelable': '__checked',
             'x-on:click'() {
-                this.__switchChecked = ! this.__switchChecked;
+                this.__checked = ! this.__checked;
             },
             'x-bind:data-state'() {
-                return this.__switchChecked ? 'checked' : 'unchecked';
+                return this.__checked ? 'checked' : 'unchecked';
             },
             'x-bind:aria-checked'() {
-                return this.__switchChecked;
+                return this.__checked;
             },
         });
     });
@@ -22,7 +22,7 @@ export default (Alpine) => {
     Alpine.directive('switch-thumb', (el) => {
         Alpine.bind(el, {
             'x-bind:data-state'() {
-                return this.__switchChecked ? 'checked' : 'unchecked';
+                return this.__checked ? 'checked' : 'unchecked';
             },
         });
     });

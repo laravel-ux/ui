@@ -50,7 +50,7 @@ Pagination with page navigation, next and previous links.
 
 ## API Reference
 
-### Link
+### x-ux::pagination.link
 
 A pagination link.
 

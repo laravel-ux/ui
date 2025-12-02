@@ -1,33 +1,37 @@
 export default (Alpine) => {
-    Alpine.directive('tabs', (el, { expression }) => {
+    Alpine.directive('tabs', (el) => {
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __tabsValue: expression,
+                    __value: el.dataset.value,
                 };
             },
-            'x-modelable': '__tabsValue',
+            'x-modelable': '__value',
         });
     });
 
-    Alpine.directive('tabs-trigger', (el, { expression }) => {
+    Alpine.directive('tabs-trigger', (el) => {
+        const value = el.dataset.value;
+
         Alpine.bind(el, {
             'x-on:click'() {
-                this.__tabsValue = expression;
+                this.__value = value;
             },
             'x-bind:data-state'() {
-                return this.__tabsValue === expression ? 'active' : 'inactive';
+                return this.__value === value ? 'active' : 'inactive';
             },
             'x-bind:aria-selected'() {
-                return this.__tabsValue === expression;
+                return this.__value === value;
             },
         });
     });
 
-    Alpine.directive('tabs-content', (el, { expression }) => {
+    Alpine.directive('tabs-content', (el) => {
+        const value = el.dataset.value;
+
         Alpine.bind(el, {
             'x-show'() {
-                return this.__tabsValue === expression;
+                return this.__value === value;
             },
         });
     });

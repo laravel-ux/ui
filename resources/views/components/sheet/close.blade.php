@@ -1,5 +1,6 @@
+@blaze
 <x-ux::button
-    x-sheet-close
+    x-dialog-close
     data-slot="sheet-close"
     {{ $attributes }}
 >

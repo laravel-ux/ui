@@ -14,6 +14,24 @@ A numeric input element with increment and decrement buttons.
 <x-ux::number-input />
 ```
 
+## Examples
+
+### Bounded
+
+```blade preview
+<div class="grid w-full max-w-sm items-center">
+    <x-ux::number-input value="0" min="0" max="100" />
+</div>
+```
+
+### Disabled
+
+```blade preview
+<div class="grid w-full max-w-sm items-center">
+    <x-ux::number-input value="0" disabled />
+</div>
+```
+
 ## API Reference
 
 | Prop                                                          | Type      | Default |

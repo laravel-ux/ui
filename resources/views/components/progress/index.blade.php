@@ -1,3 +1,4 @@
+@blaze
 @props(['value' => 0])
 <div
     role="progressbar"

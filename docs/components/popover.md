@@ -49,23 +49,23 @@ Displays rich content in a portal, triggered by a button.
 
 ## API Reference
 
-### Content
+### x-ux::popover.content
 
 The component that pops out when the popover is open.
 
 | Prop                                                                     | Type                                             | Default    |
 |--------------------------------------------------------------------------|--------------------------------------------------|------------|
 | `side` [?The preferred side of the trigger to render against when open.] | `enum` [?"top" \| "right" \| "bottom" \| "left"] | `"bottom"` |
-| `sideOffset` [?The distance in pixels from the trigger.]                 | `number`                                         | `4`        |
+| `side-offset` [?The distance in pixels from the trigger.]                | `number`                                         | `4`        |
 | `align` [?The preferred alignment against the trigger.]                  | `enum` [?"start" \| "center" \| "end"]           | `"center"` |
 
-### Trigger
+### x-ux::popover.trigger
 
 The button that toggles the popover.
 
-| Prop      | Type                                                                                                              | Default |
-|-----------|-------------------------------------------------------------------------------------------------------------------|---------|
-| `asChild` | `boolean` [?Change the default rendered element for the one passed as a child, merging their props and behavior.] | `false` |
+| Prop       | Type                                                                                                              | Default |
+|------------|-------------------------------------------------------------------------------------------------------------------|---------|
+| `as-child` | `boolean` [?Change the default rendered element for the one passed as a child, merging their props and behavior.] | `false` |
 
 ## Publishing
 

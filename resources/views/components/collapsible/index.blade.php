@@ -4,7 +4,7 @@
     x-data
     x-collapsible
     data-slot="collapsible"
-    {{ $attributes->when($open, fn($attributes) => $attributes->offsetSet('aria-expanded', 'true')) }}
+    {{ $attributes->merge(['data-state', $open ? 'open' : 'closed']) }}
 >
     {{ $slot }}
 </div>

@@ -40,14 +40,14 @@ For sighted users to preview content available behind a link.
 
 ## API Reference
 
-### Content
+### x-ux::hover-card.content
 
 The component that pops out when the hover card is open.
 
 | Prop                                                                     | Type                                             | Default    |
 |--------------------------------------------------------------------------|--------------------------------------------------|------------|
 | `side` [?The preferred side of the trigger to render against when open.] | `enum` [?"top" \| "right" \| "bottom" \| "left"] | `"top"`    |
-| `sideOffset` [?The distance in pixels from the trigger.]                 | `number`                                         | `4`        |
+| `side-offset` [?The distance in pixels from the trigger.]                | `number`                                         | `4`        |
 | `align` [?The preferred alignment against the trigger.]                  | `enum` [?"start" \| "center" \| "end"]           | `"center"` |
 
 ## Publishing

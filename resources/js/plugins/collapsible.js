@@ -1,11 +1,9 @@
 export default (Alpine) => {
     Alpine.directive('collapsible', (el) => {
-        const expanded = el.getAttribute('aria-expanded');
-
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __isOpen: expanded === 'true',
+                    __isOpen: el.dataset.state === 'open',
                 };
             },
             'x-modelable': '__isOpen',

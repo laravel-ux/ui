@@ -14,10 +14,10 @@
     {{
         $attributes
             ->merge([
-                'value' => $value,
                 'data-size' => $size,
                 'data-variant' => $variant,
                 'data-spacing' => $spacing,
+                'data-value' => $value,
             ])
             ->style(["--gap: {$spacing}"])
             ->tailwindMerge('group/toggle-group flex w-fit items-center gap-[--spacing(var(--gap))] rounded-md data-[spacing=default]:data-[variant=outline]:shadow-xs')

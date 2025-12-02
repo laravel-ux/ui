@@ -469,7 +469,7 @@ Wrap input groups with button groups to create prefixes and suffixes.
 
 ## API Reference
 
-### Addon
+### x-ux::input-group.addon
 
 Displays icons, text, buttons, or other content alongside inputs.
 
@@ -477,7 +477,7 @@ Displays icons, text, buttons, or other content alongside inputs.
 |---------|--------------------------------------------------------------------------|------------------|
 | `align` | `enum` [?"inline-start" \| "inline-end" \| "block-start" \| "block-end"] | `"inline-start"` |
 
-### Button
+### x-ux::input-group.button
 
 Displays buttons within input groups.
 

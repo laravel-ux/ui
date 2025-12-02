@@ -1,3 +1,4 @@
+@blaze
 @aware(['value' => 0])
 <div
     data-slot="progress-indicator"

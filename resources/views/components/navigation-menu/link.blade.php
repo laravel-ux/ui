@@ -1,3 +1,4 @@
+@blaze
 @props(['active' => false])
 @php
     $attributes = $attributes

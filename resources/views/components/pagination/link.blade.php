@@ -1,3 +1,4 @@
+@blaze
 @props(['active' => false])
 <x-ux::button
     variant="{{ $active ? 'outline' : 'ghost' }}"

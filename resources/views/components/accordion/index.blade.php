@@ -4,7 +4,7 @@
     x-data
     x-accordion
     data-slot="accordion"
-    {{ $attributes->merge(['value' => $value]) }}
+    {{ $attributes->merge(['data-value' => $value]) }}
 >
     {{ $slot }}
 </div>

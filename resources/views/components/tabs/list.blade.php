@@ -1,3 +1,4 @@
+@blaze
 <div
     data-slot="tabs-list"
     role="tablist"

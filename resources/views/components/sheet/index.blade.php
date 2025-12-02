@@ -1,9 +1,10 @@
+@blaze
 @props(['open' => false])
 <div
     x-data
-    x-sheet="@js($open)"
+    x-dialog
     data-slot="sheet"
-    {{ $attributes->tailwindMerge('flex') }}
+    {{ $attributes->merge(['data-state' => $open ? 'open' : 'closed'])->tailwindMerge('flex') }}
 >
     @teleport('body')
         <x-ux::sheet.overlay />

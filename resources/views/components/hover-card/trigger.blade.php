@@ -1,3 +1,4 @@
+@blaze
 <div
     x-hover-card-trigger
     data-slot="hover-card-trigger"

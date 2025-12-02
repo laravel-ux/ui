@@ -52,7 +52,7 @@ Extends the Dialog component to display content that complements the main conten
 
 ## API Reference
 
-### Root
+### x-ux::sheet
 
 Contains all the parts of a sheet.
 
@@ -60,7 +60,7 @@ Contains all the parts of a sheet.
 |---------------------------------------------------|-----------|---------|
 | `open` [?The controlled open state of the sheet.] | `boolean` | `false` |
 
-### Content
+### x-ux::sheet.content
 
 Contains the content associated with the sheet.
 

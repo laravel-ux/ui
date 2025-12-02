@@ -1,11 +1,9 @@
 export default (Alpine) => {
     Alpine.directive('toggle-group', (el) => {
-        const value = el.getAttribute('value');
-
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __value: value,
+                    __value: el.dataset.value,
                 };
             },
             'x-modelable': '__value',
@@ -13,7 +11,7 @@ export default (Alpine) => {
     });
 
     Alpine.directive('toggle-group-item', (el) => {
-        const value = el.getAttribute('value');
+        const value = el.dataset.value;
 
         Alpine.bind(el, {
             'x-on:click'() {

@@ -12,9 +12,7 @@ Displays an indicator showing the completion progress of a task, typically displ
 <x-ux::progress :value=33 />
 ```
 
-### Root
-
-Contains all of the progress parts.
+## API Reference
 
 | Prop    | Type     | Default |
 |---------|----------|---------|

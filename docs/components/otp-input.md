@@ -80,22 +80,22 @@ You can use the `<x-ux::otp-input.separator />` component to add a separator bet
 
 ## API Reference
 
-### Root
+### x-ux::otp-input
 
 Contains all the parts of one-time password.
 
 | Prop                                                                                | Type      | Default              |
 |-------------------------------------------------------------------------------------|-----------|----------------------|
-| `length` [?The number of slots]                                                     | `integer` | `-`                  |
+| `length*` [?The number of slots]                                                    | `integer` | `-`                  |
 | `pattern` [?A regular expression that defines which characters are allowed in slot] | `string`  | `"/^[a-zA-Z0-9]+$/"` |
 
-### Slot
+### x-ux::otp-input.slot
 
 The component that contains the one-time password slot.
 
-| Prop                                                           | Type      | Default |
-|----------------------------------------------------------------|-----------|---------|
-| `index` [?The position of each slot input within the sequence] | `integer` | `-`     |
+| Prop                                                            | Type      | Default |
+|-----------------------------------------------------------------|-----------|---------|
+| `index*` [?The position of each slot input within the sequence] | `integer` | `-`     |
 
 ## Publishing
 

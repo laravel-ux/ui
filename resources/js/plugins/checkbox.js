@@ -1,11 +1,9 @@
 export default (Alpine) => {
     Alpine.directive('checkbox', (el) => {
-        const checked = el.querySelector('input[type="checkbox"]').checked;
-
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __checked: checked,
+                    __checked: el.dataset.state === 'checked',
                 };
             },
             'x-modelable': '__checked',

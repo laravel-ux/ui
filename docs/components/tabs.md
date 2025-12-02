@@ -74,29 +74,29 @@ A set of layered sections of content—known as tab panels—that are displayed 
 
 ## API Reference
 
-### Root
+### x-ux::tabs
 
 Contains all the parts of tabs.
 
 | Prop                                                                           | Type     | Default |
 |--------------------------------------------------------------------------------|----------|---------|
-| `value` [?The value of the tab that should be active when initially rendered.] | `string` | `""`    |
+| `value` [?The value of the tab that should be active when initially rendered.] | `string` | `-`     |
 
-### Trigger
+### x-ux::tabs.trigger
 
 The button that activates its associated content.
 
-| Prop                                                                  | Type     | Default |
-|-----------------------------------------------------------------------|----------|---------|
-| `value` [?A unique value that associates the trigger with a content.] | `string` | -       |
+| Prop                                                                   | Type     | Default |
+|------------------------------------------------------------------------|----------|---------|
+| `value*` [?A unique value that associates the trigger with a content.] | `string` | -       |
 
-### Content
+### x-ux::tabs.content
 
 Contains the content associated with each trigger.
 
-| Prop                                                                  | Type     | Default |
-|-----------------------------------------------------------------------|----------|---------|
-| `value` [?A unique value that associates the content with a trigger.] | `string` | -       |
+| Prop                                                                   | Type     | Default |
+|------------------------------------------------------------------------|----------|---------|
+| `value*` [?A unique value that associates the content with a trigger.] | `string` | -       |
 
 
 ## Publishing

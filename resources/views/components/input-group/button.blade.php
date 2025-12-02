@@ -1,3 +1,4 @@
+@blaze
 @props([
     'variant' => 'ghost',
     'size' => 'xs',

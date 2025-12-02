@@ -1,3 +1,4 @@
+@blaze
 <div
     x-dialog-trigger
     data-slot="dialog-trigger"

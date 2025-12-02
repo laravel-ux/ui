@@ -1,6 +1,7 @@
+@blaze
 <div
     x-cloak
-    x-sheet-overlay
+    x-dialog-overlay
     data-slot="sheet-overlay"
     aria-hidden="true"
     {{ $attributes->tailwindMerge('data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50') }}

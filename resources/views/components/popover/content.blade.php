@@ -1,3 +1,4 @@
+@blaze
 @props([
     'align' => 'center',
     'side' => 'bottom',

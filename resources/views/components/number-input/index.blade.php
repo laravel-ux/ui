@@ -1,3 +1,5 @@
+@blaze
+@props(['disabled' => false])
 <x-ux::button-group
     x-data
     {{ $attributes->only('class') }}
@@ -12,7 +14,7 @@
         autocomplete="off"
         inputmode="numeric"
         class="text-center"
-        {{ $attributes->except(['class']) }}
+        {{ $attributes->merge(['disabled' => $disabled])->except(['class']) }}
     />
     <x-ux::number-input.increment />
 </x-ux::button-group>

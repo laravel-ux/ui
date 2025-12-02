@@ -8,13 +8,13 @@
 @php
     $attributes = $attributes
         ->merge([
-            'value' => $value,
             'disabled' => $disabled,
             'x-toggle-group-item' => '',
             'data-slot' => 'toggle-group-item',
             'data-spacing' => $spacing,
             'data-size' => $size,
             'data-variant' => $variant,
+            'data-value' => $value,
         ])
         ->tailwindMerge([
             'w-auto min-w-0 shrink-0 px-3 focus:z-10 focus-visible:z-10',

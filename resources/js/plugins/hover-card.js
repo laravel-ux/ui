@@ -3,10 +3,10 @@ export default (Alpine) => {
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __toggleGroupValue: false,
+                    __isOpen: false,
                 };
             },
-            'x-modelable': '__hoverCardOpen',
+            'x-modelable': '__isOpen',
         });
     });
 
@@ -14,13 +14,16 @@ export default (Alpine) => {
         Alpine.bind(el, {
             'x-ref': 'trigger',
             'x-on:mouseenter'() {
-                this.__hoverCardOpen = true;
+                this.__isOpen = true;
             },
             'x-on:mouseleave'() {
-                this.__hoverCardOpen = false;
+                this.__isOpen = false;
+            },
+            'x-bind:data-state'() {
+                return this.__isOpen ? 'open' : 'closed';
             },
             'x-bind:aria-expanded'() {
-                return this.__hoverCardOpen;
+                return this.__isOpen;
             },
         });
     });
@@ -28,10 +31,10 @@ export default (Alpine) => {
     Alpine.directive('hover-card-content', (el, { modifiers }) => {
         Alpine.bind(el, {
             'x-show'() {
-                return this.__hoverCardOpen;
+                return this.__isOpen;
             },
             'x-bind:data-state'() {
-                return this.__hoverCardOpen ? 'open' : 'closed';
+                return this.__isOpen ? 'open' : 'closed';
             },
             [['x-anchor', ...modifiers].join('.')]: '$refs.trigger'
         });

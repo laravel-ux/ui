@@ -1,6 +1,7 @@
-<div
+@blaze
+<h2
     data-slot="dialog-title"
     {{ $attributes->tailwindMerge('text-lg leading-none font-semibold') }}
 >
     {{ $slot }}
-</div>
+</h2>

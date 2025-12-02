@@ -1,3 +1,4 @@
+@blaze
 <button
     x-navigation-menu-trigger
     data-slot="navigation-menu-trigger"

@@ -1,3 +1,4 @@
+@blaze
 <div
     data-slot="input-group"
     role="group"

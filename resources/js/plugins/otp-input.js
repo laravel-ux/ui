@@ -5,13 +5,13 @@ export default (Alpine) => {
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __otpInputActive: null,
-                    __otpInputValues: {},
-                    __otpInputLength: input.maxLength,
-                    __otpInputPattern: evaluate(input.pattern),
-                    __updateOtpInput() {
+                    __active: null,
+                    __values: {},
+                    __length: input.maxLength,
+                    __pattern: evaluate(input.pattern),
+                    __update() {
                         input.value = Object.values(
-                            Object.fromEntries(Object.entries(this.__otpInputValues).sort(([a], [b]) => a - b))
+                            Object.fromEntries(Object.entries(this.__values).sort(([a], [b]) => a - b))
                         ).join('');
                     },
                 };
@@ -28,58 +28,58 @@ export default (Alpine) => {
                 e.clipboardData.getData('text/plain')
                     .trim()
                     .split('')
-                    .filter(item => this.__otpInputPattern.test(item))
-                    .splice(0, this.__otpInputLength)
+                    .filter(item => this.__pattern.test(item))
+                    .splice(0, this.__length)
                     .forEach((value, index) => {
                         this.$refs[index].value = value;
                         this.$refs[index].blur();
-                        this.__otpInputValues[index] = value;
+                        this.__values[index] = value;
                     });
 
-                this.__updateOtpInput();
+                this.__update();
             },
             'x-on:input.change'() {
-                if (el.value && el.value.match(this.__otpInputPattern)) {
-                    this.__otpInputValues[this.__otpInputActive] = el.value;
-                    this.__updateOtpInput();
+                if (el.value && el.value.match(this.__pattern)) {
+                    this.__values[this.__active] = el.value;
+                    this.__update();
 
-                    if (this.$refs[this.__otpInputActive + 1]) {
-                        this.$refs[this.__otpInputActive + 1].focus()
+                    if (this.$refs[this.__active + 1]) {
+                        this.$refs[this.__active + 1].focus()
                     }
                 } else {
-                    this.$refs[this.__otpInputActive].value = '';
+                    this.$refs[this.__active].value = '';
                 }
             },
             'x-on:keydown.backspace'() {
                 if (! el.value) {
-                    delete this.__otpInputValues[this.__otpInputActive];
-                    this.__updateOtpInput();
+                    delete this.__values[this.__active];
+                    this.__update();
 
-                    if (this.$refs[this.__otpInputActive - 1]) {
-                        this.$refs[this.__otpInputActive - 1].focus();
+                    if (this.$refs[this.__active - 1]) {
+                        this.$refs[this.__active - 1].focus();
                     }
                 }
             },
             'x-on:focus'() {
-                for (let i = 0; i < this.__otpInputLength; i++) {
-                    if (! this.__otpInputValues[i] && index > i) {
+                for (let i = 0; i < this.__length; i++) {
+                    if (! this.__values[i] && index > i) {
                         this.$refs[i].focus();
-                        this.__otpInputActive = i;
+                        this.__active = i;
 
                         return;
                     }
                 }
 
-                this.__otpInputActive = index;
+                this.__active = index;
             },
             'x-on:blur'() {
-                this.__otpInputActive = null
+                this.__active = null
             },
             'x-bind:tabindex'() {
-                return this.__otpInputActive === index ? 0 : -1;
+                return this.__active === index ? 0 : -1;
             },
             'x-bind:data-active'() {
-                return this.__otpInputActive === index;
+                return this.__active === index;
             },
         });
     });

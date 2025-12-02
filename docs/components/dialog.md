@@ -52,7 +52,7 @@ A window overlaid on either the primary window or another dialog window, renderi
 
 ## API Reference
 
-### Root
+### x-ux::dialog
 
 Contains all the parts of a dialog.
 

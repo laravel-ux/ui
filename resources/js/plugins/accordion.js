@@ -1,13 +1,11 @@
 export default (Alpine) => {
-    const getItemValue = (el) => el.closest('[data-slot="accordion-item"]')?.getAttribute('value');
+    const getItemValue = (el) => el.closest('[data-slot="accordion-item"]')?.dataset.value;
 
     Alpine.directive('accordion', (el) => {
-        const value = el.getAttribute('value');
-
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __value: value,
+                    __value: el.dataset.value,
                 };
             },
             'x-modelable': '__value',
@@ -15,11 +13,9 @@ export default (Alpine) => {
     });
 
     Alpine.directive('accordion-item', (el) => {
-        const value = el.getAttribute('value');
-
         Alpine.bind(el, {
             'x-bind:data-state'() {
-                return this.__value === value
+                return this.__value === el.dataset.value
                     ? 'open'
                     : 'closed';
             },

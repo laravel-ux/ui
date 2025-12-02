@@ -1,3 +1,4 @@
+@blaze
 <x-ux::button
     x-dialog-close
     data-slot="dialog-close"

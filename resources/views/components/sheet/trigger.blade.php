@@ -1,5 +1,6 @@
+@blaze
 <div
-    x-sheet-trigger
+    x-dialog-trigger
     data-slot="sheet-trigger"
     aria-haspopup="dialog"
     {{ $attributes }}

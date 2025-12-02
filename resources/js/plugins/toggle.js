@@ -1,11 +1,9 @@
 export default (Alpine) => {
     Alpine.directive('toggle', (el) => {
-        const pressed = el.getAttribute('aria-pressed');
-
         Alpine.bind(el, {
             'x-data'() {
                 return {
-                    __pressed: pressed === 'true',
+                    __pressed: el.dataset.state === 'on',
                 };
             },
             'x-modelable': '__pressed',

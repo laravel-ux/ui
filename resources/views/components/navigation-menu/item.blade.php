@@ -1,3 +1,4 @@
+@blaze
 <li
     x-data
     x-navigation-menu-item

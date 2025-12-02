@@ -3,17 +3,17 @@ export default (Alpine) => {
         Alpine.bind(el, {
             'x-data'(){
                 return {
-                    __navigationMenuItemOpen: false,
+                    __isOpen: false,
                 };
             },
-            'x-modelable': '__navigationMenuItemOpen',
+            'x-modelable': '__isOpen',
         });
     });
 
     Alpine.directive('navigation-menu-close', (el) => {
         Alpine.bind(el, {
             'x-on:click'() {
-                this.__navigationMenuItemOpen = false;
+                this.__isOpen = false;
             },
         });
     });
@@ -22,13 +22,13 @@ export default (Alpine) => {
         Alpine.bind(el, {
             'x-ref': 'trigger',
             'x-on:click'(){
-                this.__navigationMenuItemOpen = ! this.__navigationMenuItemOpen;
+                this.__isOpen = ! this.__isOpen;
             },
             'x-bind:aria-expanded'(){
-                return this.__navigationMenuItemOpen;
+                return this.__isOpen;
             },
             'x-bind:data-state'(){
-                return this.__navigationMenuItemOpen ? 'open' : 'closed';
+                return this.__isOpen ? 'open' : 'closed';
             },
         });
     });
@@ -36,13 +36,13 @@ export default (Alpine) => {
     Alpine.directive('navigation-menu-content', (el, { modifiers }) => {
         Alpine.bind(el, {
             'x-show'(){
-                return this.__navigationMenuItemOpen;
+                return this.__isOpen;
             },
             'x-on:click.outside'(){
-                this.__navigationMenuItemOpen = false;
+                this.__isOpen = false;
             },
             'x-bind:data-state'(){
-                return this.__navigationMenuItemOpen ? 'open' : 'closed';
+                return this.__isOpen ? 'open' : 'closed';
             },
             [['x-anchor', ...modifiers].join('.')]: '$refs.trigger',
         });

@@ -1,9 +1,10 @@
-@props(['value' => ''])
+@blaze
+@props(['value' => null])
 <div
     x-data
-    x-tabs="{{ $value }}"
+    x-tabs
     data-slot="tabs"
-    {{ $attributes->tailwindMerge('flex flex-col gap-2') }}
+    {{ $attributes->merge(['data-value' => $value])->tailwindMerge('flex flex-col gap-2') }}
 >
     {{ $slot }}
 </div>

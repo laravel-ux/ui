@@ -36,7 +36,7 @@ A set of checkable buttons—known as radio buttons—where no more than one of 
 
 ## API Reference
 
-### Root
+### x-ux::radio-group
 
 Contains all the parts of a radio group.
 
@@ -44,7 +44,7 @@ Contains all the parts of a radio group.
 |-------------------------------------------------------------|----------|---------|
 | `value` [?The controlled value of the radio item to check.] | `string` | `-`     |
 
-### Item
+### x-ux::radio-group.item
 
 An item in the group that can be checked.
 

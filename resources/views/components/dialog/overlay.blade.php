@@ -1,3 +1,4 @@
+@blaze
 <div
     x-cloak
     x-dialog-overlay
