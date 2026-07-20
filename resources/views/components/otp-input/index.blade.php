@@ -1,6 +1,6 @@
 @props([
     'length',
-    'pattern' => '/^[a-zA-Z0-9]+$/',
+    'pattern' => null,
 ])
 <div
     x-data
@@ -17,6 +17,7 @@
             data-slot="otp-input"
             pattern="{{ $pattern }}"
             maxlength="{{ $length }}"
+            inputmode="numeric"
             class="disabled:cursor-not-allowed absolute inset-0 flex text-left opacity-100 text-transparent pointer-events-auto bg-transparent caret-transparent border-0 border-transparent outline-none shadow-none leading-none"
             style="width: calc(100% + 40px); font-size: var(--otp-input-container-height); letter-spacing: -0.5em; clip-path: inset(0px 40px 0px 0px);"
             {{ $attributes->except(['class']) }}

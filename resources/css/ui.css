@@ -124,5 +124,12 @@
     button:not(:disabled), [role="button"]:not(:disabled) {
         cursor: pointer;
     }
+    @keyframes caret-blink {
+        0%, 50% { opacity: 1; }
+        50.01%, 100% { opacity: 0; }
+    }
+    .animate-caret-blink {
+        animation: caret-blink 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
 }
 

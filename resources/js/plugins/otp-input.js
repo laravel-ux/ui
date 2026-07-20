@@ -6,9 +6,10 @@ export default (Alpine) => {
                     __render(value) {
                         value = value
                             .split('')
-                            .filter(v => evaluate(this.$refs.input.pattern).test(v))
+                            .filter(v => ! this.$refs.input.pattern || evaluate(this.$refs.input.pattern).test(v))
                             .join('')
                             .slice(0, this.$refs.input.maxLength);
+
                         this.$refs.input.value = value;
                         const maxLength = this.$refs.input.maxLength;
 
@@ -18,8 +19,10 @@ export default (Alpine) => {
                                 index === value.length ||
                                 (value.length === maxLength && index === maxLength - 1);
 
-                            slot.textContent = value[index] || '';
-                            slot.setAttribute('data-active', active ? 'true' : 'false');
+                            slot.setAttribute('data-active', active);
+                            slot.firstChild.nodeValue = value[index] || '';
+                            slot.querySelector('[data-slot="otp-input-slot-caret"]')
+                                ?.classList.toggle('opacity-0', ! active || value[index]);
                         });
                     },
                     __getSlot(index) {
@@ -31,7 +34,7 @@ export default (Alpine) => {
                 };
             },
             'x-init'() {
-                this.$nextTick(() => {;
+                this.$nextTick(() => {
                     el.style.setProperty(
                         '--otp-input-container-height',
                         `${el.getBoundingClientRect().height}px`,
@@ -56,13 +59,19 @@ export default (Alpine) => {
                     ? el.maxLength - 1
                     : el.value.length;
 
-                this.__getSlot(index)?.setAttribute('data-active', 'true');
+                this.__getSlot(index)?.setAttribute('data-active', true);
+                this.__getSlot(index)?.querySelector('[data-slot="otp-input-slot-caret"]')
+                    ?.classList.remove('opacity-0');
             },
             'x-on:paste'(e) {
                 this.__render(e.clipboardData.getData('text/plain'));
             },
             'x-on:blur'() {
-                this.__getSlots().forEach(slot => slot.setAttribute('data-active', 'false'));
+                this.__getSlots().forEach(slot => {
+                    slot.setAttribute('data-active', false);
+                    slot.querySelector('[data-slot="otp-input-slot-caret"]')
+                        ?.classList.add('opacity-0');
+                });
             },
         });
     });

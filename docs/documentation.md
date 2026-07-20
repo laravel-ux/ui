@@ -21,7 +21,6 @@
     - [Kbd](components/kbd.md)
     - [Label](components/label.md)
     - [Navigation Menu](components/navigation-menu.md)
-    - [Number Input](components/number-input.md)
     - [OTP Input](components/otp-input.md)
     - [Pagination](components/pagination.md)
     - [Popover](components/popover.md)
