@@ -10,7 +10,7 @@
         {{ $slot }}
     </x-ux::as-child>
 @else
-    <button {{ $attributes }}>
+    <button {{ $attributes->merge(['type' => 'button']) }}>
         {{ $slot }}
     </button>
 @endif

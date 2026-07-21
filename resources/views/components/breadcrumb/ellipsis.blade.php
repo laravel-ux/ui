@@ -3,8 +3,8 @@
     data-slot="breadcrumb-ellipsis"
     role="presentation"
     aria-hidden="true"
-    {{ $attributes->tailwindMerge('flex size-9 items-center justify-center') }}
+    {{ $attributes->tailwindMerge('flex size-5 items-center justify-center [&>svg]:size-4') }}
 >
-    <x-ux::icon name="ellipsis" class="size-4" />
+    <x-ux::icon name="ellipsis" />
     <span class="sr-only">@lang('More')</span>
 </span>

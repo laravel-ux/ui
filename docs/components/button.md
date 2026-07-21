@@ -17,12 +17,20 @@ Displays a button or a component that looks like a button.
 <x-ux::button variant="outline">Button</x-ux::button>
 ```
 
-## Examples
+## Size
 
-### Size
+Use the `size` prop to change the size of the button.
 
 ```blade preview
 <div class="flex flex-col items-start gap-8 sm:flex-row">
+    <div class="flex items-start gap-2">
+        <x-ux::button size="xs" variant="outline">
+            Extra Small
+        </x-ux::button>
+        <x-ux::button size="icon-xs" aria-label="Submit" variant="outline">
+            <x-ux::icon name="arrow-up-right" />
+        </x-ux::button>
+    </div>
     <div class="flex items-start gap-2">
         <x-ux::button size="sm" variant="outline">
             Small
@@ -32,9 +40,7 @@ Displays a button or a component that looks like a button.
         </x-ux::button>
     </div>
     <div class="flex items-start gap-2">
-        <x-ux::button variant="outline">
-            Default
-        </x-ux::button>
+        <x-ux::button variant="outline">Default</x-ux::button>
         <x-ux::button size="icon" aria-label="Submit" variant="outline">
             <x-ux::icon name="arrow-up-right" />
         </x-ux::button>
@@ -50,53 +56,43 @@ Displays a button or a component that looks like a button.
 </div>
 ```
 
-### Default
+## Default
 
 ```blade preview
 <x-ux::button>Button</x-ux::button>
 ```
 
-### Outline
+## Outline
 
 ```blade preview
 <x-ux::button variant="outline">Outline</x-ux::button>
 ```
 
-### Secondary
+## Secondary
 
 ```blade preview
 <x-ux::button variant="secondary">Secondary</x-ux::button>
 ```
 
-### Ghost
+## Ghost
 
 ```blade preview
 <x-ux::button variant="ghost">Ghost</x-ux::button>
 ```
 
-### Destructive
+## Destructive
 
 ```blade preview
 <x-ux::button variant="destructive">Destructive</x-ux::button>
 ```
 
-### Link
+## Link
 
 ```blade preview
 <x-ux::button variant="link">Link</x-ux::button>
 ```
 
-### As Link
-
-Display an HTML `a` tag as a button bypassing the `href` prop.
-
-```blade preview
-<x-ux::button href="https://www.google.com/" target="_blank">
-    Google
-</x-ux::button>
-```
-
-### Icon
+## Icon
 
 ```blade preview
 <x-ux::button variant="outline" size="icon">
@@ -104,40 +100,56 @@ Display an HTML `a` tag as a button bypassing the `href` prop.
 </x-ux::button>
 ```
 
-### With Icon
+## With Icon
 
-The spacing between the icon and the text is automatically adjusted based on the size of the button.
-You do not need any margin on the icon.
+Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the icon for the correct spacing.
 
 ```blade preview
-<x-ux::button variant="outline" size="sm">
-    <x-ux::icon name="git-branch" />
-    New Branch
-</x-ux::button>
+<div class="flex gap-2">
+    <x-ux::button variant="outline">
+        <x-ux::icon name="git-branch" data-icon="inline-start" />
+        New Branch
+    </x-ux::button>
+    <x-ux::button variant="outline">
+        Fork
+        <x-ux::icon name="git-fork" data-icon="inline-end" />
+    </x-ux::button>
+</div>
 ```
 
-### Rounded
+## Rounded
 
 Use the `rounded-full` class to make the button rounded.
 
 ```blade preview
-<x-ux::button variant="outline" size="icon" class="rounded-full">
-    <x-ux::icon name="arrow-up" />
-</x-ux::button>
+<div class="flex gap-2">
+    <x-ux::button class="rounded-full">Get Started</x-ux::button>
+    <x-ux::button variant="outline" size="icon" class="rounded-full">
+        <x-ux::icon name="arrow-up" />
+    </x-ux::button>
+</div>
 ```
 
-### Spinner
+## Spinner
+
+Render a `x-ux::spinner` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.
 
 ```blade preview
-<x-ux::button size="sm" variant="outline" disabled>
-    <x-ux::spinner />
-    Submit
-</x-ux::button>
+<div class="flex gap-2">
+    <x-ux::button variant="outline" disabled>
+        <x-ux::spinner data-icon="inline-start" />
+        Generating
+    </x-ux::button>
+    <x-ux::button variant="secondary" disabled>
+        Downloading
+        <x-ux::spinner data-icon="inline-start" />
+    </x-ux::button>
+</div>
 ```
 
-### Button Group
+## Button Group
 
-To create a button group, use the `<x-ux::button-group>` component.
+To create a button group, use the `x-ux::button-group` component. See the Button Group documentation for more details.
 
 ```blade preview
 <x-ux::button-group>
@@ -158,7 +170,7 @@ To create a button group, use the `<x-ux::button-group>` component.
                     <x-ux::icon name="ellipsis" />
                 </x-ux::button>
             </x-ux::dropdown-menu.trigger>
-            <x-ux::dropdown-menu.content align="end" className="w-52">
+            <x-ux::dropdown-menu.content align="end" class="w-40">
                 <x-ux::dropdown-menu.group>
                     <x-ux::dropdown-menu.item>
                         <x-ux::icon name="mail-check" />
@@ -180,9 +192,22 @@ To create a button group, use the `<x-ux::button-group>` component.
                         Add to Calendar
                     </x-ux::dropdown-menu.item>
                     <x-ux::dropdown-menu.item>
-                        <x-ux::icon name="list-filter-plus" />
+                        <x-ux::icon name="list-filter" />
                         Add to List
                     </x-ux::dropdown-menu.item>
+                    <x-ux::dropdown-menu.sub>
+                        <x-ux::dropdown-menu.sub.trigger>
+                            <x-ux::icon name="tag" />
+                            Label As...
+                        </x-ux::dropdown-menu.sub.trigger>
+                        <x-ux::dropdown-menu.sub.content>
+                            <x-ux::dropdown-menu.radio.group value="personal">
+                                <x-ux::dropdown-menu.radio.item value="personal">Personal</x-ux::dropdown-menu.radio.item>
+                                <x-ux::dropdown-menu.radio.item value="work">Work</x-ux::dropdown-menu.radio.item>
+                                <x-ux::dropdown-menu.radio.item value="other">Other</x-ux::dropdown-menu.radio.item>
+                            </x-ux::dropdown-menu.radio.group>
+                        </x-ux::dropdown-menu.sub.content>
+                    </x-ux::dropdown-menu.sub>
                 </x-ux::dropdown-menu.group>
                 <x-ux::dropdown-menu.separator />
                 <x-ux::dropdown-menu.group>
@@ -197,12 +222,44 @@ To create a button group, use the `<x-ux::button-group>` component.
 </x-ux::button-group>
 ```
 
+## As Link
+
+Pass an `href` attribute to render a semantic link that looks like a button.
+
+```blade preview
+<x-ux::button href="#" variant="secondary" size="sm">
+    Login
+</x-ux::button>
+```
+
+## RTL
+
+To enable RTL support, set the `dir="rtl"` attribute on a parent element.
+
+```blade preview
+<div class="flex flex-wrap items-center gap-2 md:flex-row" dir="rtl">
+    <x-ux::button variant="outline">زر</x-ux::button>
+    <x-ux::button variant="destructive">حذف</x-ux::button>
+    <x-ux::button variant="outline">
+        إرسال
+        <x-ux::icon name="arrow-right" class="rtl:rotate-180" data-icon="inline-end" />
+    </x-ux::button>
+    <x-ux::button variant="outline" size="icon" aria-label="Add">
+        <x-ux::icon name="plus" />
+    </x-ux::button>
+    <x-ux::button variant="secondary" disabled>
+        <x-ux::spinner data-icon="inline-start" />
+        جاري التحميل
+    </x-ux::button>
+</div>
+```
+
 ## API Reference
 
-| Prop      | Type                                                                                  | Default     |
-|-----------|---------------------------------------------------------------------------------------|-------------|
-| `size`    | `enum` [?"default" \| "sm" \| "lg" \| "icon" \| "icon-sm" \| "icon-lg"]               | `"default"` |
-| `variant` | `enum` [?"default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link"] | `"default"` |
+| Prop      | Type                                                                                              | Default     |
+|-----------|---------------------------------------------------------------------------------------------------|-------------|
+| `variant` | `enum` [?"default" \| "outline" \| "ghost" \| "destructive" \| "secondary" \| "link"]     | `"default"` |
+| `size`    | `enum` [?"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"] | `"default"` |
 
 ## Publishing
 

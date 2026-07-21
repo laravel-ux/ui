@@ -3,12 +3,11 @@
     'src',
     'alt' => '',
 ])
-<template x-if="! __hasError">
-    <img
-        x-avatar-image
-        src="{{ $src }}"
-        alt="{{ $alt }}"
-        data-slot="avatar-image"
-        {{ $attributes->tailwindMerge('aspect-square size-full') }}
-    />
-</template>
+<img
+    x-cloak
+    x-avatar-image
+    src="{{ $src }}"
+    alt="{{ $alt }}"
+    data-slot="avatar-image"
+    {{ $attributes->tailwindMerge('aspect-square size-full rounded-full object-cover') }}
+/>

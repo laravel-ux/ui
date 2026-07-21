@@ -1,0 +1,4 @@
+interface:
+  display_name: "Laravel UX UI"
+  short_description: "Build interfaces with Laravel UX UI components"
+  default_prompt: "Use $laravel-ux-ui-development to add an accessible Laravel UX UI component to this Blade or Livewire interface."

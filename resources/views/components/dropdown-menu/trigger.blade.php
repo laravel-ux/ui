@@ -1,3 +1,4 @@
+@blaze
 @props(['asChild' => false])
 @php
     $attributes = $attributes->merge([
@@ -11,7 +12,7 @@
         {{ $slot }}
     </x-ux::as-child>
 @else
-    <button {{ $attributes }}>
+    <button {{ $attributes->merge(['type' => 'button']) }}>
         {{ $slot }}
     </button>
 @endif

@@ -1,3 +1,4 @@
+@blaze
 @props(['value' => ''])
 <div
     x-data

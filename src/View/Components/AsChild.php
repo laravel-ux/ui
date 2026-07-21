@@ -5,6 +5,7 @@ namespace LaravelUx\Ui\View\Components;
 use Closure;
 use DOMDocument;
 use DOMElement;
+use DOMProcessingInstruction;
 use Illuminate\View\Component;
 use Illuminate\View\ComponentAttributeBag;
 use Illuminate\View\ComponentSlot;
@@ -25,8 +26,17 @@ class AsChild extends Component
 
             $dom = new DOMDocument();
             libxml_use_internal_errors(true);
-            $dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $dom->loadHTML(
+                '<?xml encoding="UTF-8">' . $html,
+                LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD,
+            );
             libxml_clear_errors();
+
+            foreach (iterator_to_array($dom->childNodes) as $node) {
+                if ($node instanceof DOMProcessingInstruction) {
+                    $dom->removeChild($node);
+                }
+            }
 
             foreach ($dom->childNodes as $node) {
                 if ($node instanceof DOMElement) {

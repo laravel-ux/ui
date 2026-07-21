@@ -21,7 +21,7 @@ A container that groups related buttons together with consistent styling.
                     <x-ux::icon name="ellipsis" />
                 </x-ux::button>
             </x-ux::dropdown-menu.trigger>
-            <x-ux::dropdown-menu.content align="end" className="w-52">
+            <x-ux::dropdown-menu.content align="end" class="w-40">
                 <x-ux::dropdown-menu.group>
                     <x-ux::dropdown-menu.item>
                         <x-ux::icon name="mail-check" />
@@ -43,8 +43,12 @@ A container that groups related buttons together with consistent styling.
                         Add to Calendar
                     </x-ux::dropdown-menu.item>
                     <x-ux::dropdown-menu.item>
-                        <x-ux::icon name="list-filter-plus" />
+                        <x-ux::icon name="list-filter" />
                         Add to List
+                    </x-ux::dropdown-menu.item>
+                    <x-ux::dropdown-menu.item>
+                        <x-ux::icon name="tag" />
+                        Label As...
                     </x-ux::dropdown-menu.item>
                 </x-ux::dropdown-menu.group>
                 <x-ux::dropdown-menu.separator />
@@ -69,9 +73,36 @@ A container that groups related buttons together with consistent styling.
 </x-ux::button-group>
 ```
 
-## Examples
+## Composition
 
-### Orientation
+Use the following composition to build a `<x-ux::button-group>`:
+
+```text
+x-ux::button-group
+├── x-ux::button or x-ux::input
+├── x-ux::button-group.separator
+└── x-ux::button-group.text
+```
+
+## Accessibility
+
+- The `<x-ux::button-group>` component has the `role` attribute set to `group`.
+- Use <kbd>Tab</kbd> to navigate between the buttons in the group.
+- Use `aria-label` or `aria-labelledby` to label the button group.
+
+```blade
+<x-ux::button-group aria-label="Button group">
+  <x-ux::button>Button 1</x-ux::button>
+  <x-ux::button>Button 2</x-ux::button>
+</x-ux::button-group>
+```
+
+## Button Group vs Toggle Group
+
+- Use the `<x-ux::button-group>` component when you want to group buttons that perform an action.
+- Use the `<x-ux::toggle-group>` component when you want to group buttons that toggle a state.
+
+## Orientation
 
 Set the `orientation` prop to change the button group layout.
 
@@ -86,7 +117,7 @@ Set the `orientation` prop to change the button group layout.
 </x-ux::button-group>
 ```
 
-### Size
+## Size
 
 Control the size of buttons using the `size` prop on individual buttons.
 
@@ -131,41 +162,34 @@ Control the size of buttons using the `size` prop on individual buttons.
 </div>
 ```
 
-### Nested
+## Nested
 
 Nest `<x-ux::button-group>` components to create button groups with spacing.
 
 ```blade preview
 <x-ux::button-group>
     <x-ux::button-group>
-        <x-ux::button variant="outline" size="sm">
-            1
-        </x-ux::button>
-        <x-ux::button variant="outline" size="sm">
-            2
-        </x-ux::button>
-        <x-ux::button variant="outline" size="sm">
-            3
-        </x-ux::button>
-        <x-ux::button variant="outline" size="sm">
-            4
-        </x-ux::button>
-        <x-ux::button variant="outline" size="sm">
-            5
+        <x-ux::button variant="outline" size="icon">
+            <x-ux::icon name="plus" />
         </x-ux::button>
     </x-ux::button-group>
     <x-ux::button-group>
-        <x-ux::button variant="outline" size="icon-sm" aria-label="Previous">
-            <x-ux::icon name="arrow-left" />
-        </x-ux::button>
-        <x-ux::button variant="outline" size="icon-sm" aria-label="Next">
-            <x-ux::icon name="arrow-right" />
-        </x-ux::button>
+        <x-ux::input-group>
+            <x-ux::input-group.input placeholder="Send a message..." />
+            <x-ux::tooltip>
+                <x-ux::tooltip.trigger as-child>
+                    <x-ux::input-group.addon align="inline-end">
+                        <x-ux::icon name="audio-lines" />
+                    </x-ux::input-group.addon>
+                </x-ux::tooltip.trigger>
+                <x-ux::tooltip.content>Voice Mode</x-ux::tooltip.content>
+            </x-ux::tooltip>
+        </x-ux::input-group>
     </x-ux::button-group>
 </x-ux::button-group>
 ```
 
-### Separator
+## Separator
 
 The `<x-ux::button-group.separator>` component visually divides buttons within a group.
 
@@ -184,7 +208,7 @@ For other variants, a separator is recommended to improve the visual hierarchy.
 </x-ux::button-group>
 ```
 
-### Split
+## Split
 
 Create a split button group by adding two buttons separated by a `<x-ux::button-group.separator>`.
 
@@ -198,7 +222,7 @@ Create a split button group by adding two buttons separated by a `<x-ux::button-
 </x-ux::button-group>
 ```
 
-### Input
+## Input
 
 Wrap an `<x-ux::input>` component with buttons.
 
@@ -211,7 +235,7 @@ Wrap an `<x-ux::input>` component with buttons.
 </x-ux::button-group>
 ```
 
-### Input Group
+## Input Group
 
 Wrap an `<x-ux::input-group>` component to create complex input layouts.
 
@@ -228,7 +252,11 @@ Wrap an `<x-ux::input-group>` component to create complex input layouts.
             <x-ux::input-group.addon align="inline-end">
                 <x-ux::tooltip>
                     <x-ux::tooltip.trigger as-child>
-                        <x-ux::input-group.button size="icon-xs">
+                        <x-ux::input-group.button
+                            size="icon-xs"
+                            aria-pressed="false"
+                            class="data-[active=true]:bg-orange-100 data-[active=true]:text-orange-700 dark:data-[active=true]:bg-orange-800 dark:data-[active=true]:text-orange-100"
+                        >
                             <x-ux::icon name="audio-lines" />
                         </x-ux::input-group.button>
                     </x-ux::tooltip.trigger>
@@ -240,7 +268,7 @@ Wrap an `<x-ux::input-group>` component to create complex input layouts.
 </x-ux::button-group>
 ```
 
-### Dropdown Menu
+## Dropdown Menu
 
 Create a split button group with a `<x-ux::dropdown-menu>` component.
 
@@ -253,7 +281,7 @@ Create a split button group with a `<x-ux::dropdown-menu>` component.
                 <x-ux::icon name="chevron-down" />
             </x-ux::button>
         </x-ux::dropdown-menu.trigger>
-        <x-ux::dropdown-menu.content align="end" class="[--radius:1rem]">
+        <x-ux::dropdown-menu.content align="end" class="w-44">
             <x-ux::dropdown-menu.group>
                 <x-ux::dropdown-menu.item>
                     <x-ux::icon name="volume-off" />
@@ -292,30 +320,30 @@ Create a split button group with a `<x-ux::dropdown-menu>` component.
 </x-ux::button-group>
 ```
 
-### Select
+## Select
 
 Pair with a `<x-ux::select>` component.
 
 ```blade preview
 <x-ux::button-group>
     <x-ux::button-group>
-        <x-ux::select value="USD">
-            <x-ux::select.trigger>
-                <x-ux::select.value class="font-medium" />
+        <x-ux::select value="$">
+            <x-ux::select.trigger class="font-mono">
+                <x-ux::select.value />
             </x-ux::select.trigger>
-            <x-ux::select.content class="min-w-24">
-                <x-ux::select.item value="USD">
-                    USD
+            <x-ux::select.content align="start">
+                <x-ux::select.item value="$">
+                    $ <span class="text-muted-foreground">US Dollar</span>
                 </x-ux::select.item>
-                <x-ux::select.item value="EUR">
-                    EUR
+                <x-ux::select.item value="€">
+                    € <span class="text-muted-foreground">Euro</span>
                 </x-ux::select.item>
-                <x-ux::select.item value="GBP">
-                    GBP
+                <x-ux::select.item value="£">
+                    £ <span class="text-muted-foreground">British Pound</span>
                 </x-ux::select.item>
             </x-ux::select.content>
         </x-ux::select>
-        <x-ux::input placeholder="10.00" />
+        <x-ux::input placeholder="10.00" pattern="[0-9]*" />
     </x-ux::button-group>
     <x-ux::button-group>
         <x-ux::button aria-label="Send" size="icon" variant="outline">
@@ -325,7 +353,7 @@ Pair with a `<x-ux::select>` component.
 </x-ux::button-group>
 ```
 
-### Popover
+## Popover
 
 Use with a `<x-ux::popover>` component.
 
@@ -340,31 +368,100 @@ Use with a `<x-ux::popover>` component.
                 <x-ux::icon name="chevron-down" />
             </x-ux::button>
         </x-ux::popover.trigger>
-        <x-ux::popover.content align="end" class="rounded-xl p-0 text-sm">
-            <div class="px-4 py-3">
-                <div class="text-sm font-medium">Agent Tasks</div>
+        <x-ux::popover.content align="end" class="flex flex-col gap-4 rounded-xl text-sm">
+            <div data-slot="popover-header" class="flex flex-col gap-1 text-sm">
+                <div class="font-medium">Start a new task with Copilot</div>
+                <div class="text-muted-foreground">Describe your task in natural language.</div>
             </div>
-            <x-ux::separator />
-            <div class="p-4 text-sm *:[p:not(:last-child)]:mb-2">
+            <x-ux::field>
+                <x-ux::field.label for="task" class="sr-only">
+                    Task Description
+                </x-ux::field.label>
                 <x-ux::textarea
-                    class="mb-4 resize-none"
-                    placeholder="Describe your task in natural language."
+                    id="task"
+                    placeholder="I need to..."
+                    class="resize-none"
                 />
-                <p class="font-medium">Start a new task with Copilot</p>
-                <p class="text-muted-foreground">
-                    Describe your task in natural language. Copilot will work in the background and open a pull request for your review.
-                </p>
-            </div>
+                <x-ux::field.description>
+                    Copilot will open a pull request for review.
+                </x-ux::field.description>
+            </x-ux::field>
         </x-ux::popover.content>
     </x-ux::popover>
 </x-ux::button-group>
 ```
 
+## RTL
+
+To enable RTL support, set the `dir="rtl"` attribute on a parent element.
+
+```blade preview
+<div dir="rtl">
+    <x-ux::button-group>
+        <x-ux::button-group class="hidden sm:flex">
+            <x-ux::button variant="outline" size="icon" aria-label="Go Back">
+                <x-ux::icon name="arrow-left" class="rtl:rotate-180" />
+            </x-ux::button>
+        </x-ux::button-group>
+        <x-ux::button-group>
+            <x-ux::button variant="outline">أرشفة</x-ux::button>
+            <x-ux::button variant="outline">تقرير</x-ux::button>
+        </x-ux::button-group>
+        <x-ux::button-group>
+            <x-ux::button variant="outline">تأجيل</x-ux::button>
+            <x-ux::dropdown-menu>
+                <x-ux::dropdown-menu.trigger as-child>
+                    <x-ux::button variant="outline" size="icon" aria-label="More Options">
+                        <x-ux::icon name="ellipsis" />
+                    </x-ux::button>
+                </x-ux::dropdown-menu.trigger>
+                <x-ux::dropdown-menu.content align="start" data-lang="ar" dir="rtl" class="w-40">
+                    <x-ux::dropdown-menu.group>
+                        <x-ux::dropdown-menu.item>
+                            <x-ux::icon name="mail-check" />
+                            وضع علامة كمقروء
+                        </x-ux::dropdown-menu.item>
+                        <x-ux::dropdown-menu.item>
+                            <x-ux::icon name="archive" />
+                            أرشفة
+                        </x-ux::dropdown-menu.item>
+                    </x-ux::dropdown-menu.group>
+                    <x-ux::dropdown-menu.separator />
+                    <x-ux::dropdown-menu.group>
+                        <x-ux::dropdown-menu.item>
+                            <x-ux::icon name="clock" />
+                            تأجيل
+                        </x-ux::dropdown-menu.item>
+                        <x-ux::dropdown-menu.item>
+                            <x-ux::icon name="calendar-plus" />
+                            إضافة إلى التقويم
+                        </x-ux::dropdown-menu.item>
+                        <x-ux::dropdown-menu.item>
+                            <x-ux::icon name="list-filter" />
+                            إضافة إلى القائمة
+                        </x-ux::dropdown-menu.item>
+                        <x-ux::dropdown-menu.item>
+                            <x-ux::icon name="tag" />
+                            تصنيف كـ...
+                        </x-ux::dropdown-menu.item>
+                    </x-ux::dropdown-menu.group>
+                    <x-ux::dropdown-menu.separator />
+                    <x-ux::dropdown-menu.group>
+                        <x-ux::dropdown-menu.item variant="destructive">
+                            <x-ux::icon name="trash-2" />
+                            سلة المهملات
+                        </x-ux::dropdown-menu.item>
+                    </x-ux::dropdown-menu.group>
+                </x-ux::dropdown-menu.content>
+            </x-ux::dropdown-menu>
+        </x-ux::button-group>
+    </x-ux::button-group>
+</div>
+```
+
 ## API Reference
 
 ### x-ux::button-group
-
-The component is a container that groups related buttons together with consistent styling.
 
 | Prop          | Type                                 | Default        |
 |---------------|--------------------------------------|----------------|
@@ -372,15 +469,11 @@ The component is a container that groups related buttons together with consisten
 
 ### x-ux::button-group.separator
 
-The component visually divides buttons within a group.
-
 | Prop          | Type                                 | Default      |
 |---------------|--------------------------------------|--------------|
 | `orientation` | `enum` [?"horizontal" \| "vertical"] | `"vertical"` |
 
 ### x-ux::button-group.text
-
-Use this component to display text within a button group.
 
 | Prop       | Type                                                                                                              | Default |
 |------------|-------------------------------------------------------------------------------------------------------------------|---------|

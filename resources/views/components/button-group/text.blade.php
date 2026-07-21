@@ -1,7 +1,8 @@
 @props(['asChild' => false])
 @php
     $attributes = $attributes
-        ->tailwindMerge("bg-muted flex items-center gap-2 rounded-md border px-4 text-sm font-medium shadow-xs [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4");
+        ->merge(['data-slot' => 'button-group-text'])
+        ->tailwindMerge("flex items-center gap-2 rounded-lg border bg-muted px-2.5 text-sm font-medium [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4");
 @endphp
 @if($asChild)
     <x-ux::as-child {{ $attributes }}>

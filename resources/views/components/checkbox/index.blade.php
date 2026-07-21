@@ -1,5 +1,11 @@
 @blaze
-@props(['checked' => false])
+@props([
+    'checked' => false,
+    'name' => null,
+    'value' => 'on',
+    'disabled' => false,
+    'form' => null,
+])
 <button
     x-data
     x-cloak
@@ -9,11 +15,25 @@
     data-slot="checkbox"
     {{
         $attributes
-            ->merge(['data-state' => $checked ? 'checked' : 'unchecked'])
-            ->tailwindMerge('peer border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive size-4 shrink-0 rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50')
+            ->merge([
+                'disabled' => $disabled,
+                'data-state' => $checked ? 'checked' : 'unchecked',
+                'data-checked' => $checked ? '' : null,
+            ])
+            ->tailwindMerge('peer relative flex size-4 shrink-0 items-center justify-center rounded-[4px] border border-input transition-colors outline-none group-has-disabled/field:opacity-50 after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 aria-invalid:aria-checked:border-primary dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 data-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground dark:data-checked:bg-primary')
     }}
 >
     <x-ux::checkbox.indicator>
         <x-ux::icon name="check" class="size-3.5" />
     </x-ux::checkbox.indicator>
 </button>
+@if($name)
+    <input
+        type="hidden"
+        data-checkbox-input
+        name="{{ $name }}"
+        value="{{ $value }}"
+        @if($form) form="{{ $form }}" @endif
+        @disabled(! $checked || $disabled)
+    />
+@endif

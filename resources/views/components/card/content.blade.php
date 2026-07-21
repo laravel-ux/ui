@@ -1,7 +1,7 @@
 @blaze
 <div
     data-slot="card-content"
-    {{ $attributes->tailwindMerge('px-6') }}
+    {{ $attributes->tailwindMerge('px-(--card-spacing)') }}
 >
     {{ $slot }}
 </div>

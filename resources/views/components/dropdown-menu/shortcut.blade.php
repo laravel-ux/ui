@@ -1,6 +1,7 @@
+@blaze
 <span
     data-slot="dropdown-menu-shortcut"
-    {{ $attributes->tailwindMerge('text-muted-foreground ml-auto text-xs tracking-widest') }}
+    {{ $attributes->tailwindMerge('ml-auto text-xs tracking-widest text-muted-foreground group-focus/dropdown-menu-item:text-accent-foreground') }}
 >
     {{ $slot }}
 </span>

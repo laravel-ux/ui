@@ -4,7 +4,7 @@
     {{
         $attributes
             ->merge(['data-slot' => 'button-group-separator', 'data-orientation' => $orientation])
-            ->tailwindMerge('bg-input relative !m-0 self-stretch data-[orientation=vertical]:h-auto')
+            ->tailwindMerge('relative self-stretch bg-input data-[orientation=horizontal]:mx-px data-[orientation=horizontal]:w-auto data-[orientation=vertical]:my-px data-[orientation=vertical]:h-auto')
     }}
 >
     {{ $slot }}

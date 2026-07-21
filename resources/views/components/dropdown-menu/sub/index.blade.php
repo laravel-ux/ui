@@ -1,3 +1,4 @@
+@blaze
 <div
     x-data
     x-dropdown-menu-sub

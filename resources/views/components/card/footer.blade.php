@@ -1,7 +1,7 @@
 @blaze
 <div
     data-slot="card-footer"
-    {{ $attributes->tailwindMerge('flex items-center px-6 [.border-t]:pt-6') }}
+    {{ $attributes->tailwindMerge('flex items-center rounded-b-xl border-t bg-muted/50 p-(--card-spacing)') }}
 >
     {{ $slot }}
 </div>

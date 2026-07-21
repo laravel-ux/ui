@@ -7,9 +7,18 @@ export default (Alpine) => {
                     __selectValue: expression,
                     __selectLabel: null,
                     __updateSelectLabel() {
-                        this.__selectLabel = this.__selectValue
-                            ? el.querySelector(`[data-value='${this.__selectValue}']`)?.innerHTML
+                        const item = this.__selectValue
+                            ? el.querySelector(`[data-value='${CSS.escape(this.__selectValue)}']`)
                             : null;
+                        const directText = item
+                            ? Array.from(item.childNodes)
+                                .filter((node) => node.nodeType === Node.TEXT_NODE)
+                                .map((node) => node.textContent.trim())
+                                .filter(Boolean)
+                                .join(' ')
+                            : '';
+
+                        this.__selectLabel = directText || item?.textContent.trim() || null;
                     },
                     __toggleSelectOverflow() {
                         document.body.style.paddingRight = this.__selectOpen

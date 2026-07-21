@@ -1,10 +1,12 @@
 @blaze
-@props(['ratio' => 1])
+@props(['ratio'])
 <div
-    class="w-full relative"
-    style="padding-bottom: {{ 100 / $ratio }}%"
+    data-slot="aspect-ratio"
+    {{
+        $attributes
+            ->style(["--ratio: {$ratio}"])
+            ->tailwindMerge('relative aspect-(--ratio)')
+    }}
 >
-    <div data-slot="aspect-ratio" {{ $attributes->tailwindMerge('absolute inset-0') }}>
-        {{ $slot }}
-    </div>
+    {{ $slot }}
 </div>
