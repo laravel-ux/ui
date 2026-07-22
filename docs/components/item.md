@@ -48,96 +48,85 @@ A versatile component that you can use to display any content.
 </x-ux::item>
 ```
 
+## Composition
+
+```text
+x-ux::item.group
+└── x-ux::item
+    ├── x-ux::item.header
+    ├── x-ux::item.media
+    ├── x-ux::item.content
+    │   ├── x-ux::item.title
+    │   └── x-ux::item.description
+    ├── x-ux::item.actions
+    └── x-ux::item.footer
+```
+
 ## Item vs Field
 
-Use `<x-ux::field>` if you need to display a form input such as a checkbox, input, radio, or select.
+Use x-ux::field if you need to display a form input such as a checkbox, input, radio, or select.
 
-If you only need to display content such as a title, description, and actions, use `<x-ux::item>`.
+If you only need to display content such as a title, description, and actions, use x-ux::item.
 
-## Examples
-
-### Variants
+## Variant
 
 ```blade preview
 <div class="flex flex-col gap-6">
     <x-ux::item>
+        <x-ux::item.media variant="icon"><x-ux::icon name="inbox" /></x-ux::item.media>
         <x-ux::item.content>
             <x-ux::item.title>Default Variant</x-ux::item.title>
-            <x-ux::item.description>
-                Standard styling with subtle background and borders.
-            </x-ux::item.description>
+            <x-ux::item.description>Transparent background with no border.</x-ux::item.description>
         </x-ux::item.content>
-        <x-ux::item.actions>
-            <x-ux::button variant="outline" size="sm">
-                Open
-            </x-ux::button>
-        </x-ux::item.actions>
     </x-ux::item>
     <x-ux::item variant="outline">
+        <x-ux::item.media variant="icon"><x-ux::icon name="inbox" /></x-ux::item.media>
         <x-ux::item.content>
             <x-ux::item.title>Outline Variant</x-ux::item.title>
-            <x-ux::item.description>
-                Outlined style with clear borders and transparent background.
-            </x-ux::item.description>
+            <x-ux::item.description>Outlined style with a visible border.</x-ux::item.description>
         </x-ux::item.content>
-        <x-ux::item.actions>
-            <x-ux::button variant="outline" size="sm">
-                Open
-            </x-ux::button>
-        </x-ux::item.actions>
     </x-ux::item>
     <x-ux::item variant="muted">
+        <x-ux::item.media variant="icon"><x-ux::icon name="inbox" /></x-ux::item.media>
         <x-ux::item.content>
             <x-ux::item.title>Muted Variant</x-ux::item.title>
-            <x-ux::item.description>
-                Subdued appearance with muted colors for secondary content.
-            </x-ux::item.description>
+            <x-ux::item.description>Muted background for secondary content.</x-ux::item.description>
         </x-ux::item.content>
-        <x-ux::item.actions>
-            <x-ux::button variant="outline" size="sm">
-                Open
-            </x-ux::button>
-        </x-ux::item.actions>
     </x-ux::item>
 </div>
 ```
 
-### Size
+## Size
 
-The `<x-ux::item>` component has different sizes for different use cases.
+Use `size` to switch between `default`, `sm`, and `xs`.
 
 ```blade preview
 <div class="flex w-full max-w-md flex-col gap-6">
     <x-ux::item variant="outline">
+        <x-ux::item.media variant="icon"><x-ux::icon name="inbox" /></x-ux::item.media>
         <x-ux::item.content>
-            <x-ux::item.title>Basic Item</x-ux::item.title>
-            <x-ux::item.description>
-                A simple item with title and description.
-            </x-ux::item.description>
+            <x-ux::item.title>Default Size</x-ux::item.title>
+            <x-ux::item.description>The standard size for most use cases.</x-ux::item.description>
         </x-ux::item.content>
-        <x-ux::item.actions>
-            <x-ux::button variant="outline" size="sm">
-                Action
-            </x-ux::button>
-        </x-ux::item.actions>
     </x-ux::item>
-    <x-ux::item variant="outline" size="sm" asChild>
-        <a href="#">
-            <x-ux::item.media>
-                <x-ux::icon name="badge-check" class="size-5" />
-            </x-ux::item.media>
-            <x-ux::item.content>
-                <x-ux::item.title>Your profile has been verified.</x-ux::item.title>
-            </x-ux::item.content>
-            <x-ux::item.actions>
-                <x-ux::icon name="chevron-right" class="size-4" />
-            </x-ux::item.actions>
-        </a>
+    <x-ux::item variant="outline" size="sm">
+        <x-ux::item.media variant="icon"><x-ux::icon name="inbox" /></x-ux::item.media>
+        <x-ux::item.content>
+            <x-ux::item.title>Small Size</x-ux::item.title>
+            <x-ux::item.description>A compact size for dense layouts.</x-ux::item.description>
+        </x-ux::item.content>
+    </x-ux::item>
+    <x-ux::item variant="outline" size="xs">
+        <x-ux::item.media variant="icon"><x-ux::icon name="inbox" /></x-ux::item.media>
+        <x-ux::item.content>
+            <x-ux::item.title>Extra Small Size</x-ux::item.title>
+            <x-ux::item.description>The most compact size available.</x-ux::item.description>
+        </x-ux::item.content>
     </x-ux::item>
 </div>
 ```
 
-### Icon
+## Icon
 
 ```blade preview
 <div class="flex w-full max-w-lg flex-col gap-6">
@@ -160,20 +149,20 @@ The `<x-ux::item>` component has different sizes for different use cases.
 </div>
 ```
 
-### Avatar
+## Avatar
 
 ```blade preview
 <div class="flex w-full max-w-lg flex-col gap-6">
     <x-ux::item variant="outline">
         <x-ux::item.media>
             <x-ux::avatar class="size-10">
-                <x-ux::avatar.image src="https://github.com/evilrabbit.png" />
-                <x-ux::avatar.fallback>ER</x-ux::avatar.fallback>
+                <x-ux::avatar.image src="https://github.com/laravel.png" alt="Laravel" />
+                <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
             </x-ux::avatar>
         </x-ux::item.media>
         <x-ux::item.content>
-            <x-ux::item.title>Evil Rabbit</x-ux::item.title>
-            <x-ux::item.description>Last seen 5 months ago</x-ux::item.description>
+            <x-ux::item.title>Laravel</x-ux::item.title>
+            <x-ux::item.description>The PHP framework for web artisans</x-ux::item.description>
         </x-ux::item.content>
         <x-ux::item.actions>
             <x-ux::button
@@ -188,24 +177,24 @@ The `<x-ux::item>` component has different sizes for different use cases.
     </x-ux::item>
     <x-ux::item variant="outline">
         <x-ux::item.media>
-            <div class="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
+            <div class="*:data-[slot=avatar]:ring-background flex -space-x-2 rtl:space-x-reverse *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
                 <x-ux::avatar class="hidden sm:flex">
-                    <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-                    <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+                    <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+                    <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
                 </x-ux::avatar>
                 <x-ux::avatar class="hidden sm:flex">
                     <x-ux::avatar.image
-                        src="https://github.com/maxleiter.png"
-                        alt="@maxleiter"
+                        src="https://github.com/livewire.png"
+                        alt="Livewire"
                     />
-                    <x-ux::avatar.fallback>LR</x-ux::avatar.fallback>
+                    <x-ux::avatar.fallback>LW</x-ux::avatar.fallback>
                 </x-ux::avatar>
                 <x-ux::avatar>
                     <x-ux::avatar.image
-                        src="https://github.com/evilrabbit.png"
-                        alt="@evilrabbit"
+                        src="https://github.com/laravel-news.png"
+                        alt="Laravel News"
                     />
-                    <x-ux::avatar.fallback>ER</x-ux::avatar.fallback>
+                    <x-ux::avatar.fallback>LN</x-ux::avatar.fallback>
                 </x-ux::avatar>
             </div>
         </x-ux::item.media>
@@ -224,7 +213,7 @@ The `<x-ux::item>` component has different sizes for different use cases.
 </div>
 ```
 
-### Image
+## Image
 
 ```blade preview
 <div class="flex w-full max-w-md flex-col gap-6">
@@ -320,7 +309,7 @@ The `<x-ux::item>` component has different sizes for different use cases.
 </div>
 ```
 
-### Group
+## Group
 
 ```blade preview
 <div class="flex w-full max-w-md flex-col gap-6">
@@ -328,13 +317,13 @@ The `<x-ux::item>` component has different sizes for different use cases.
         <x-ux::item>
             <x-ux::item.media>
                 <x-ux::avatar>
-                    <x-ux::avatar.image src="https://github.com/shadcn.png" class="grayscale" />
+                    <x-ux::avatar.image src="https://github.com/laravel.png" class="grayscale" />
                     <x-ux::avatar.fallback>S</x-ux::avatar.fallback>
                 </x-ux::avatar>
             </x-ux::item.media>
             <x-ux::item.content class="gap-1">
-                <x-ux::item.title>shadcn</x-ux::item.title>
-                <x-ux::item.description>shadcn@vercel.com</x-ux::item.description>
+                <x-ux::item.title>Laravel</x-ux::item.title>
+                <x-ux::item.description>taylor@laravel.com</x-ux::item.description>
             </x-ux::item.content>
             <x-ux::item.actions>
                 <x-ux::button variant="ghost" size="icon" class="rounded-full">
@@ -346,13 +335,13 @@ The `<x-ux::item>` component has different sizes for different use cases.
         <x-ux::item>
             <x-ux::item.media>
                 <x-ux::avatar>
-                    <x-ux::avatar.image src="https://github.com/maxleiter.png" class="grayscale" />
-                    <x-ux::avatar.fallback>M</x-ux::avatar.fallback>
+                    <x-ux::avatar.image src="https://github.com/livewire.png" class="grayscale" />
+                    <x-ux::avatar.fallback>LW</x-ux::avatar.fallback>
                 </x-ux::avatar>
             </x-ux::item.media>
             <x-ux::item.content class="gap-1">
-                <x-ux::item.title>maxleiter</x-ux::item.title>
-                <x-ux::item.description>maxleiter@vercel.com</x-ux::item.description>
+                <x-ux::item.title>Livewire</x-ux::item.title>
+                <x-ux::item.description>caleb@laravel.com</x-ux::item.description>
             </x-ux::item.content>
             <x-ux::item.actions>
                 <x-ux::button variant="ghost" size="icon" class="rounded-full">
@@ -364,13 +353,13 @@ The `<x-ux::item>` component has different sizes for different use cases.
         <x-ux::item>
             <x-ux::item.media>
                 <x-ux::avatar>
-                    <x-ux::avatar.image src="https://github.com/evilrabbit.png" class="grayscale" />
-                    <x-ux::avatar.fallback>E</x-ux::avatar.fallback>
+                    <x-ux::avatar.image src="https://github.com/laravel-news.png" class="grayscale" />
+                    <x-ux::avatar.fallback>LN</x-ux::avatar.fallback>
                 </x-ux::avatar>
             </x-ux::item.media>
             <x-ux::item.content class="gap-1">
-                <x-ux::item.title>evilrabbit</x-ux::item.title>
-                <x-ux::item.description>evilrabbit@vercel.com</x-ux::item.description>
+                <x-ux::item.title>Laravel News</x-ux::item.title>
+                <x-ux::item.description>nuno@laravel.com</x-ux::item.description>
             </x-ux::item.content>
             <x-ux::item.actions>
                 <x-ux::button variant="ghost" size="icon" class="rounded-full">
@@ -382,7 +371,7 @@ The `<x-ux::item>` component has different sizes for different use cases.
 </div>
 ```
 
-### Header
+## Header
 
 ```blade preview
 <div class="flex w-full max-w-xl flex-col gap-6">
@@ -391,54 +380,54 @@ The `<x-ux::item>` component has different sizes for different use cases.
             <x-ux::item.header>
                 <img
                     src="https://images.unsplash.com/photo-1650804068570-7fb2e3dbf888?q=80&w=640&auto=format&fit=crop"
-                    alt="v0-1.5-sm"
+                    alt="Laravel Cloud"
                     width="128"
                     height="128"
                     class="aspect-square w-full rounded-sm object-cover"
                 />
             </x-ux::item.header>
             <x-ux::item.content>
-                <x-ux::item.title>v0-1.5-sm</x-ux::item.title>
-                <x-ux::item.description>Everyday tasks and UI generation.</x-ux::item.description>
+                <x-ux::item.title>Laravel Cloud</x-ux::item.title>
+                <x-ux::item.description>Deploy and scale Laravel applications.</x-ux::item.description>
             </x-ux::item.content>
         </x-ux::item>
         <x-ux::item variant="outline">
             <x-ux::item.header>
                 <img
                     src="https://images.unsplash.com/photo-1610280777472-54133d004c8c?q=80&w=640&auto=format&fit=crop"
-                    alt="v0-1.5-lg"
+                    alt="Laravel Forge"
                     width="128"
                     height="128"
                     class="aspect-square w-full rounded-sm object-cover"
                 />
             </x-ux::item.header>
             <x-ux::item.content>
-                <x-ux::item.title>v0-1.5-lg</x-ux::item.title>
-                <x-ux::item.description>Advanced thinking or reasoning.</x-ux::item.description>
+                <x-ux::item.title>Laravel Forge</x-ux::item.title>
+                <x-ux::item.description>Provision and manage application servers.</x-ux::item.description>
             </x-ux::item.content>
         </x-ux::item>
         <x-ux::item variant="outline">
             <x-ux::item.header>
                 <img
                     src="https://images.unsplash.com/photo-1602146057681-08560aee8cde?q=80&w=640&auto=format&fit=crop"
-                    alt="v0-2.0-mini"
+                    alt="Laravel Vapor"
                     width="128"
                     height="128"
                     class="aspect-square w-full rounded-sm object-cover"
                 />
             </x-ux::item.header>
             <x-ux::item.content>
-                <x-ux::item.title>v0-2.0-mini</x-ux::item.title>
-                <x-ux::item.description>Open Source model for everyone.</x-ux::item.description>
+                <x-ux::item.title>Laravel Vapor</x-ux::item.title>
+                <x-ux::item.description>Run Laravel on serverless infrastructure.</x-ux::item.description>
             </x-ux::item.content>
         </x-ux::item>
     </x-ux::item.group>
 </div>
 ```
 
-### Link
+## Link
 
-To render an item as a link, use the `asChild` prop. The hover and focus states will be applied to the anchor element.
+To render an item as a link, use `as-child`. The hover and focus states are applied to the anchor element.
 
 ```blade preview
 <div class="flex w-full max-w-md flex-col gap-4">
@@ -471,7 +460,7 @@ To render an item as a link, use the `asChild` prop. The hover and focus states 
 </div>
 ```
 
-### Dropdown
+## Dropdown
 
 ```blade preview
 <div class="flex w-full max-w-md flex-col gap-6">
@@ -486,13 +475,13 @@ To render an item as a link, use the `asChild` prop. The hover and focus states 
                 <x-ux::item size="sm" class="w-full p-2">
                     <x-ux::item.media>
                         <x-ux::avatar class="size-8">
-                            <x-ux::avatar.image src="https://github.com/shadcn.png" class="grayscale" />
+                            <x-ux::avatar.image src="https://github.com/laravel.png" class="grayscale" />
                             <x-ux::avatar.fallback>S</x-ux::avatar.fallback>
                         </x-ux::avatar>
                     </x-ux::item.media>
                     <x-ux::item.content class="gap-0.5">
-                        <x-ux::item.title>shadcn</x-ux::item.title>
-                        <x-ux::item.description>shadcn@vercel.com</x-ux::item.description>
+                        <x-ux::item.title>Laravel</x-ux::item.title>
+                        <x-ux::item.description>taylor@laravel.com</x-ux::item.description>
                     </x-ux::item.content>
                 </x-ux::item>
             </x-ux::dropdown-menu.item>
@@ -500,13 +489,13 @@ To render an item as a link, use the `asChild` prop. The hover and focus states 
                 <x-ux::item size="sm" class="w-full p-2">
                     <x-ux::item.media>
                         <x-ux::avatar class="size-8">
-                            <x-ux::avatar.image src="https://github.com/maxleiter.png" class="grayscale" />
-                            <x-ux::avatar.fallback>M</x-ux::avatar.fallback>
+                            <x-ux::avatar.image src="https://github.com/livewire.png" class="grayscale" />
+                            <x-ux::avatar.fallback>LW</x-ux::avatar.fallback>
                         </x-ux::avatar>
                     </x-ux::item.media>
                     <x-ux::item.content class="gap-0.5">
-                        <x-ux::item.title>maxleiter</x-ux::item.title>
-                        <x-ux::item.description>maxleiter@vercel.com</x-ux::item.description>
+                        <x-ux::item.title>Livewire</x-ux::item.title>
+                        <x-ux::item.description>caleb@laravel.com</x-ux::item.description>
                     </x-ux::item.content>
                 </x-ux::item>
             </x-ux::dropdown-menu.item>
@@ -514,13 +503,13 @@ To render an item as a link, use the `asChild` prop. The hover and focus states 
                 <x-ux::item size="sm" class="w-full p-2">
                     <x-ux::item.media>
                         <x-ux::avatar class="size-8">
-                            <x-ux::avatar.image src="https://github.com/evilrabbit.png" class="grayscale" />
-                            <x-ux::avatar.fallback>E</x-ux::avatar.fallback>
+                            <x-ux::avatar.image src="https://github.com/laravel-news.png" class="grayscale" />
+                            <x-ux::avatar.fallback>LN</x-ux::avatar.fallback>
                         </x-ux::avatar>
                     </x-ux::item.media>
                     <x-ux::item.content class="gap-0.5">
-                        <x-ux::item.title>evilrabbit</x-ux::item.title>
-                        <x-ux::item.description>evilrabbit@vercel.com</x-ux::item.description>
+                        <x-ux::item.title>Laravel News</x-ux::item.title>
+                        <x-ux::item.description>nuno@laravel.com</x-ux::item.description>
                     </x-ux::item.content>
                 </x-ux::item>
             </x-ux::dropdown-menu.item>
@@ -529,21 +518,48 @@ To render an item as a link, use the `asChild` prop. The hover and focus states 
 </div>
 ```
 
+## RTL
+
+```blade preview
+<x-ux::direction direction="rtl">
+    <div class="flex w-full max-w-md flex-col gap-6">
+        <x-ux::item variant="outline">
+            <x-ux::item.content>
+                <x-ux::item.title>عنصر أساسي</x-ux::item.title>
+                <x-ux::item.description>عنصر بسيط يحتوي على عنوان ووصف.</x-ux::item.description>
+            </x-ux::item.content>
+            <x-ux::item.actions>
+                <x-ux::button variant="outline" size="sm">إجراء</x-ux::button>
+            </x-ux::item.actions>
+        </x-ux::item>
+        <x-ux::item variant="outline" size="sm" as-child>
+            <a href="#">
+                <x-ux::item.media>
+                    <x-ux::icon name="badge-check" class="size-5" />
+                </x-ux::item.media>
+                <x-ux::item.content>
+                    <x-ux::item.title>تم التحقق من ملفك الشخصي.</x-ux::item.title>
+                </x-ux::item.content>
+                <x-ux::item.actions>
+                    <x-ux::icon name="chevron-left" class="size-4" />
+                </x-ux::item.actions>
+            </a>
+        </x-ux::item>
+    </div>
+</x-ux::direction>
+```
+
 ## API Reference
 
 ### x-ux::item
 
-The main component for displaying content with media, title, description, and actions.
-
-| Prop       | Type                                                                                                              | Default     |
-|------------|-------------------------------------------------------------------------------------------------------------------|-------------|
-| `size`     | `enum` [?"default" \| "sm"]                                                                                       | `"default"` |
-| `variant`  | `enum` [?"default" \| "outline" \| "muted"]                                                                       | `"default"` |
-| `as-child` | `boolean` [?Change the default rendered element for the one passed as a child, merging their props and behavior.] | `false`     |
+| Prop       | Type                                              | Default     |
+|------------|---------------------------------------------------|-------------|
+| `size`     | `enum` [?"default" \| "sm" \| "xs"]                 | `"default"` |
+| `variant`  | `enum` [?"default" \| "outline" \| "muted"]          | `"default"` |
+| `as-child` | `boolean`                                         | `false`     |
 
 ### x-ux::item.media
-
-The component to display media content such as icons, images, or avatars.
 
 | Prop      | Type                                     | Default     |
 |-----------|------------------------------------------|-------------|
@@ -551,8 +567,6 @@ The component to display media content such as icons, images, or avatars.
 
 
 ## Publishing
-
-This component works out of the box, but you can publish its Blade view if you need to make structural or styling changes.
 
 ```shell
 php artisan vendor:publish --tag=ux-item --force

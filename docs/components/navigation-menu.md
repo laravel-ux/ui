@@ -6,7 +6,7 @@ A collection of links for navigating websites.
 <x-ux::navigation-menu>
     <x-ux::navigation-menu.list>
         <x-ux::navigation-menu.item>
-            <x-ux::navigation-menu.trigger>Home</x-ux::navigation-menu.trigger>
+            <x-ux::navigation-menu.trigger>Getting started</x-ux::navigation-menu.trigger>
             <x-ux::navigation-menu.content>
                 <ul class="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                     <li class="row-span-3">
@@ -16,10 +16,10 @@ A collection of links for navigating websites.
                             rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
                         >
                             <div class="mt-4 mb-2 text-lg font-medium">
-                                shadcn/ui
+                                Laravel UX
                             </div>
                             <p class="text-muted-foreground text-sm leading-tight">
-                                Beautifully designed components built with Tailwind CSS.
+                                Beautifully designed Blade components for Laravel and Livewire.
                             </p>
                         </x-ux::navigation-menu.link>
                     </li>
@@ -28,7 +28,7 @@ A collection of links for navigating websites.
                             Introduction
                         </div>
                         <p class="text-muted-foreground line-clamp-2 text-sm leading-snug">
-                            Re-usable components built using Radix UI and Tailwind CSS.
+                            Reusable components built for Laravel with Tailwind CSS.
                         </p>
                     </x-ux::navigation-menu.link>
                     <x-ux::navigation-menu.link href="#">
@@ -106,13 +106,15 @@ A collection of links for navigating websites.
             </x-ux::navigation-menu.content>
         </x-ux::navigation-menu.item>
         <x-ux::navigation-menu.item>
-            <x-ux::navigation-menu.link href="#">
+            <x-ux::navigation-menu.link href="#" class="h-9 justify-center px-4 py-2">
                 Documentation
-            </x-ux::navigation-menu.link.link>
+            </x-ux::navigation-menu.link>
         </x-ux::navigation-menu.item>
     </x-ux::navigation-menu.list>
 </x-ux::navigation-menu>
 ```
+
+The menu opens on click. Opening another trigger closes the currently open item.
 
 ## Usage
 
@@ -129,26 +131,104 @@ A collection of links for navigating websites.
 </x-ux::navigation-menu>
 ```
 
+## Composition
+
+```text
+x-ux::navigation-menu
+└── x-ux::navigation-menu.list
+    ├── x-ux::navigation-menu.item
+    │   ├── x-ux::navigation-menu.trigger
+    │   └── x-ux::navigation-menu.content
+    │       └── x-ux::navigation-menu.link
+    └── x-ux::navigation-menu.item
+        └── x-ux::navigation-menu.link
+```
+
+## RTL
+
+```blade preview
+<div dir="rtl">
+    <x-ux::navigation-menu>
+        <x-ux::navigation-menu.list>
+            <x-ux::navigation-menu.item>
+                <x-ux::navigation-menu.trigger>البدء</x-ux::navigation-menu.trigger>
+                <x-ux::navigation-menu.content data-lang="ar">
+                    <ul class="w-96">
+                        <li>
+                            <x-ux::navigation-menu.link href="#">
+                                <div class="flex flex-col gap-1 text-sm">
+                                    <div class="leading-none font-medium">مقدمة</div>
+                                    <div class="text-muted-foreground line-clamp-2">مكونات قابلة لإعادة الاستخدام مبنية باستخدام Tailwind CSS.</div>
+                                </div>
+                            </x-ux::navigation-menu.link>
+                        </li>
+                        <li>
+                            <x-ux::navigation-menu.link href="#">
+                                <div class="flex flex-col gap-1 text-sm">
+                                    <div class="leading-none font-medium">التثبيت</div>
+                                    <div class="text-muted-foreground line-clamp-2">كيفية تثبيت التبعيات وتنظيم تطبيق Laravel الخاص بك.</div>
+                                </div>
+                            </x-ux::navigation-menu.link>
+                        </li>
+                        <li>
+                            <x-ux::navigation-menu.link href="#">
+                                <div class="flex flex-col gap-1 text-sm">
+                                    <div class="leading-none font-medium">الطباعة</div>
+                                    <div class="text-muted-foreground line-clamp-2">أنماط للعناوين والفقرات والقوائم...إلخ</div>
+                                </div>
+                            </x-ux::navigation-menu.link>
+                        </li>
+                    </ul>
+                </x-ux::navigation-menu.content>
+            </x-ux::navigation-menu.item>
+            <x-ux::navigation-menu.item class="hidden md:flex">
+                <x-ux::navigation-menu.trigger>المكونات</x-ux::navigation-menu.trigger>
+                <x-ux::navigation-menu.content data-lang="ar">
+                    <ul class="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                        @foreach([
+                            ['حوار التنبيه', 'حوار نافذة يقطع المستخدم بمحتوى مهم ويتوقع استجابة.'],
+                            ['بطاقة التحويم', 'للمستخدمين المبصرين لمعاينة المحتوى المتاح خلف الرابط.'],
+                            ['التقدم', 'يعرض مؤشرًا يوضح تقدم إتمام المهمة، عادةً يتم عرضه كشريط تقدم.'],
+                            ['منطقة التمرير', 'يفصل المحتوى بصريًا أو دلاليًا.'],
+                            ['التبويبات', 'مجموعة من أقسام المحتوى المتعددة الطبقات التي يتم عرضها واحدة في كل مرة.'],
+                            ['تلميح', 'نافذة منبثقة تعرض معلومات متعلقة بعنصر عند تلقيه تركيز لوحة المفاتيح.'],
+                        ] as [$title, $description])
+                            <li>
+                                <x-ux::navigation-menu.link href="#">
+                                    <div class="flex flex-col gap-1 text-sm">
+                                        <div class="leading-none font-medium">{{ $title }}</div>
+                                        <div class="text-muted-foreground line-clamp-2">{{ $description }}</div>
+                                    </div>
+                                </x-ux::navigation-menu.link>
+                            </li>
+                        @endforeach
+                    </ul>
+                </x-ux::navigation-menu.content>
+            </x-ux::navigation-menu.item>
+            <x-ux::navigation-menu.item>
+                <x-ux::navigation-menu.link href="#" data-lang="ar" class="h-9 justify-center px-4 py-2">الوثائق</x-ux::navigation-menu.link>
+            </x-ux::navigation-menu.item>
+        </x-ux::navigation-menu.list>
+    </x-ux::navigation-menu>
+</div>
+```
+
 ## API Reference
 
 ### x-ux::navigation-menu.content
 
-Contains the content associated with each trigger.
-
-| Prop                                                                    | Type                                             | Default    |
-|-------------------------------------------------------------------------|--------------------------------------------------|------------|
-| `side` [?The preferred side of the trigger to render against when open] | `enum` [?"top" \| "right" \| "bottom" \| "left"] | `"bottom"` |
-| `side-offset` [?The distance in pixels from the trigger]                | `number`                                         | `4`        |
-| `align` [?The preferred alignment against the trigger]                  | `enum` [?"start" \| "center" \| "end"]           | `"start"`  |
+| Prop | Type | Default |
+| --- | --- | --- |
+| `side` | `enum` [?"top" \| "right" \| "bottom" \| "left"] | `"bottom"` |
+| `side-offset` | `number` | `4` |
+| `align` | `enum` [?"start" \| "center" \| "end"] | `"start"` |
 
 
 ### x-ux::navigation-menu.link
 
-A navigational link.
-
-| Prop                                                                | Type      | Default |
-|---------------------------------------------------------------------|-----------|---------|
-| `active` [?Used to identify the link as the currently active page.] | `boolean` | `false` |
+| Prop | Type | Default |
+| --- | --- | --- |
+| `active` | `boolean` | `false` |
 
 ## Publishing
 

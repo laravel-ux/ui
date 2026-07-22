@@ -1,6 +1,6 @@
 # Empty
 
-Use the Empty component to display a empty state.
+Use the Empty component to display an empty state.
 
 ```blade preview
 <x-ux::empty>
@@ -13,11 +13,9 @@ Use the Empty component to display a empty state.
             You haven't created any projects yet. Get started by creating your first project.
         </x-ux::empty.description>
     </x-ux::empty.header>
-    <x-ux::empty.content>
-        <div class="flex gap-2">
-            <x-ux::button>Create Project</x-ux::button>
-            <x-ux::button variant="outline">Import Project</x-ux::button>
-        </div>
+    <x-ux::empty.content class="flex-row justify-center gap-2">
+        <x-ux::button>Create Project</x-ux::button>
+        <x-ux::button variant="outline">Import Project</x-ux::button>
     </x-ux::empty.content>
     <x-ux::button
         href="#"
@@ -25,7 +23,8 @@ Use the Empty component to display a empty state.
         class="text-muted-foreground"
         size="sm"
     >
-        Learn More <x-ux::icon name="arrow-up-right" />
+        Learn More
+        <x-ux::icon name="arrow-up-right" size="14" data-icon="inline-end" />
     </x-ux::button>
 </x-ux::empty>
 ```
@@ -47,11 +46,22 @@ Use the Empty component to display a empty state.
 </x-ux::empty>
 ```
 
+## Composition
+
+```text
+x-ux::empty
+├── x-ux::empty.header
+│   ├── x-ux::empty.media
+│   ├── x-ux::empty.title
+│   └── x-ux::empty.description
+└── x-ux::empty.content
+```
+
 ## Examples
 
 ### Outline
 
-Use the `border` utility class to create a outline empty state.
+Use the `border` utility class to create an outline empty state.
 
 ```blade preview
 <x-ux::empty class="border border-dashed">
@@ -77,19 +87,19 @@ Use the `border` utility class to create a outline empty state.
 Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty state.
 
 ```blade preview
-<x-ux::empty class="from-muted/50 to-background h-full bg-gradient-to-b from-30%">
+<x-ux::empty class="h-full bg-muted/30">
     <x-ux::empty.header>
         <x-ux::empty.media variant="icon">
             <x-ux::icon name="bell" />
         </x-ux::empty.media>
         <x-ux::empty.title>No Notifications</x-ux::empty.title>
-        <x-ux::empty.description>
+        <x-ux::empty.description class="max-w-xs text-pretty">
             You're all caught up. New notifications will appear here.
         </x-ux::empty.description>
     </x-ux::empty.header>
     <x-ux::empty.content>
-        <x-ux::button variant="outline" size="sm">
-            <x-ux::icon name="refresh-ccw" />
+        <x-ux::button variant="outline">
+            <x-ux::icon name="refresh-ccw" data-icon="inline-start" />
             Refresh
         </x-ux::button>
     </x-ux::empty.content>
@@ -106,7 +116,7 @@ Use the `<x-ux::empty.media>` component to display an avatar in the empty state.
         <x-ux::empty.media variant="default">
             <x-ux::avatar class="size-12">
                 <x-ux::avatar.image
-                    src="https://github.com/shadcn.png"
+                    src="https://github.com/laravel.png"
                     class="grayscale"
                 />
                 <x-ux::avatar.fallback>LR</x-ux::avatar.fallback>
@@ -131,9 +141,9 @@ Use the `<x-ux::empty.media>` component to display an avatar group in the empty 
 <x-ux::empty>
     <x-ux::empty.header>
         <x-ux::empty.media>
-            <div class="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:size-12 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
+            <div class="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:size-8 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
                 <x-ux::avatar>
-                    <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
+                    <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
                     <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
                 </x-ux::avatar>
                 <x-ux::avatar>
@@ -158,8 +168,8 @@ Use the `<x-ux::empty.media>` component to display an avatar group in the empty 
         </x-ux::empty.description>
     </x-ux::empty.header>
     <x-ux::empty.content>
-        <x-ux::button size="sm">
-            <x-ux::icon name="plus" />
+        <x-ux::button>
+            <x-ux::icon name="plus" data-icon="inline-start" />
             Invite Members
         </x-ux::button>
     </x-ux::empty.content>
@@ -196,16 +206,41 @@ You can add an `<x-ux::input-group>` component to the `<x-ux::empty.content>` co
 </x-ux::empty>
 ```
 
+### RTL
+
+Wrap an isolated empty state with Direction when its reading direction differs from the page.
+
+```blade preview
+<x-ux::direction direction="rtl">
+    <x-ux::empty>
+        <x-ux::empty.header>
+            <x-ux::empty.media variant="icon">
+                <x-ux::icon name="folder-code" size="16" />
+            </x-ux::empty.media>
+            <x-ux::empty.title>لا توجد مشاريع بعد</x-ux::empty.title>
+            <x-ux::empty.description>
+                لم تقم بإنشاء أي مشاريع بعد. ابدأ بإنشاء مشروعك الأول.
+            </x-ux::empty.description>
+        </x-ux::empty.header>
+        <x-ux::empty.content class="flex-row justify-center gap-2">
+            <x-ux::button>إنشاء مشروع</x-ux::button>
+            <x-ux::button variant="outline">استيراد مشروع</x-ux::button>
+        </x-ux::empty.content>
+        <x-ux::button href="#" variant="link" class="text-muted-foreground" size="sm">
+            تعرف على المزيد
+            <x-ux::icon name="arrow-up-right" size="14" data-icon="inline-end" class="rtl:rotate-270" />
+        </x-ux::button>
+    </x-ux::empty>
+</x-ux::direction>
+```
+
 ## API Reference
 
 ### x-ux::empty.media
 
-The component display the media of the empty state such as an icon or an image.
-
 | Prop      | Type                          | Default     |
 |-----------|-------------------------------|-------------|
 | `variant` | `enum` [?"default" \| "icon"] | `"default"` |
-
 
 ## Publishing
 

@@ -6,11 +6,12 @@ Use Badge for compact labels, statuses, categories, and short metadata.
 
 ### `x-ux::badge`
 
-| Prop      | Type                                                        | Default   | Purpose                  |
-|-----------|-------------------------------------------------------------|-----------|--------------------------|
+| Prop      | Type                                                    | Default   | Purpose                   |
+|-----------|---------------------------------------------------------|-----------|---------------------------|
 | `variant` | `default\|secondary\|destructive\|outline\|ghost\|link` | `default` | Set the visual treatment. |
 
-Badge renders an `<a>` when an `href` attribute is present. Otherwise, it renders a `<span>`. It accepts standard HTML attributes and Tailwind classes.
+Badge renders an `<a>` when an `href` attribute is present. Otherwise, it renders a `<span>`. It accepts standard HTML
+attributes and Tailwind classes.
 
 ## Variants
 
@@ -42,7 +43,8 @@ Mark leading and trailing icons with `data-icon` so Badge adjusts its inline pad
 </x-ux::badge>
 ```
 
-Use `inline-start` and `inline-end`, not physical left/right spacing classes. They work correctly in both LTR and RTL layouts.
+Use `inline-start` and `inline-end`, not physical left/right spacing classes. They work correctly in both LTR and RTL
+layouts.
 
 ## Links
 
@@ -57,7 +59,8 @@ Use `inline-start` and `inline-end`, not physical left/right spacing classes. Th
 </x-ux::badge>
 ```
 
-Badge chooses its element from the presence of `href`; do not pass an empty `href` merely to get hover styling. For normal page navigation, `wire:navigate` can be passed with `href`.
+Badge chooses its element from the presence of `href`; do not pass an empty `href` merely to get hover styling. For
+normal page navigation, `wire:navigate` can be passed with `href`.
 
 ## Dynamic Content
 
@@ -70,7 +73,8 @@ Badge chooses its element from the presence of `href`; do not pass an empty `hre
 </x-ux::badge>
 ```
 
-Keep the value supplied to `variant` within the documented enum. Use Tailwind classes for product-specific colors rather than inventing undocumented variant names.
+Keep the value supplied to `variant` within the documented enum. Use Tailwind classes for product-specific colors rather
+than inventing undocumented variant names.
 
 ## Accessibility and RTL
 

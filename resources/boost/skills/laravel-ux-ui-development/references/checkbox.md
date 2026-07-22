@@ -6,11 +6,13 @@ Use Checkbox for independent boolean choices and for selecting zero or more item
 
 ### `x-ux::checkbox`
 
-| Prop      | Type      | Default | Purpose                    |
-|-----------|-----------|---------|----------------------------|
-| `checked` | `boolean` | `false` | Set the initial state.     |
+| Prop      | Type      | Default | Purpose                |
+|-----------|-----------|---------|------------------------|
+| `checked` | `boolean` | `false` | Set the initial state. |
 
-Checkbox also accepts native attributes including `id`, `name`, `value`, `form`, `disabled`, and `aria-invalid`. The default submitted value is `on`. When `name` is present, the component submits its value only while checked and enabled, matching native checkbox behavior.
+Checkbox also accepts native attributes including `id`, `name`, `value`, `form`, `disabled`, and `aria-invalid`. The
+default submitted value is `on`. When `name` is present, the component submits its value only while checked and enabled,
+matching native checkbox behavior.
 
 ## Field Composition
 
@@ -76,7 +78,8 @@ Use `name` and `value` for ordinary form submission:
 />
 ```
 
-Unchecked and disabled checkboxes are omitted from form data. Validate absent values accordingly instead of expecting `false` to be submitted.
+Unchecked and disabled checkboxes are omitted from form data. Validate absent values accordingly instead of expecting
+`false` to be submitted.
 
 ## Invalid and Disabled States
 
@@ -96,7 +99,8 @@ Set state on both Checkbox and Field:
 </x-ux::field>
 ```
 
-Do not communicate invalid or disabled state only through color. Render the application's established error message near an invalid field.
+Do not communicate invalid or disabled state only through color. Render the application's established error message near
+an invalid field.
 
 ## Groups
 
@@ -129,7 +133,8 @@ Use stable unique IDs and values. Do not use Checkbox for a single mutually excl
 
 - Checkbox renders `role="checkbox"`, `aria-checked`, native button keyboard behavior, and a visible focus ring.
 - Provide an accessible label for every Checkbox through `id`/`for`, an enclosing FieldLabel, or `aria-label`.
-- Preserve the built-in expanded hit area; do not override its `after` pseudo-element unless the surrounding layout requires it.
+- Preserve the built-in expanded hit area; do not override its `after` pseudo-element unless the surrounding layout
+  requires it.
 - Set `dir="rtl"` on FieldGroup or an ancestor for right-to-left content.
 - Checkbox itself is direction-neutral; use logical spacing utilities in surrounding custom layouts.
 

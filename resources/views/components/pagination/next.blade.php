@@ -2,8 +2,8 @@
 <x-ux::pagination.link
     aria-label="@lang('Go to next page')"
     size="default"
-    {{ $attributes->tailwindMerge('gap-1 px-2.5 sm:pr-2.5') }}
+    {{ $attributes->tailwindMerge('gap-1 px-2.5') }}
 >
-    <span className="hidden sm:block">@lang('Next')</span>
-    <x-ux::icon name="chevron-right" />
+    <span class="hidden sm:block">{{ $slot->isEmpty() ? __('Next') : $slot }}</span>
+    <x-ux::icon name="chevron-right" data-icon="inline-end" class="rtl:rotate-180" />
 </x-ux::pagination.link>

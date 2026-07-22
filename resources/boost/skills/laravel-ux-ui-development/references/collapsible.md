@@ -16,16 +16,16 @@ Keep Trigger and Content inside the same root. A root should normally control on
 
 ### `x-ux::collapsible`
 
-| Prop       | Type      | Default | Purpose                         |
-|------------|-----------|---------|---------------------------------|
-| `open`     | `boolean` | `false` | Set the initial open state.     |
-| `disabled` | `boolean` | `false` | Prevent the state from changing.|
+| Prop       | Type      | Default | Purpose                          |
+|------------|-----------|---------|----------------------------------|
+| `open`     | `boolean` | `false` | Set the initial open state.      |
+| `disabled` | `boolean` | `false` | Prevent the state from changing. |
 
 ### `x-ux::collapsible.trigger`
 
-| Prop       | Type      | Default | Purpose                                   |
-|------------|-----------|---------|-------------------------------------------|
-| `as-child` | `boolean` | `false` | Merge trigger behavior into its one child.|
+| Prop       | Type      | Default | Purpose                                    |
+|------------|-----------|---------|--------------------------------------------|
+| `as-child` | `boolean` | `false` | Merge trigger behavior into its one child. |
 
 Content has no custom props. All parts accept standard HTML attributes and Tailwind classes.
 
@@ -83,7 +83,8 @@ Use `wire:model` only when the server needs the current open state. Back it with
 </x-ux::collapsible>
 ```
 
-Disabled prevents state changes and marks the Trigger as disabled. Do not use disabled merely to hide unavailable information; explain why the control is unavailable when that context matters.
+Disabled prevents state changes and marks the Trigger as disabled. Do not use disabled merely to hide unavailable
+information; explain why the control is unavailable when that context matters.
 
 ## Nested Collapsibles
 
@@ -106,13 +107,16 @@ Nested roots are appropriate for hierarchical interfaces such as file trees:
 </x-ux::collapsible>
 ```
 
-Use logical indentation such as `ms-5` so hierarchy works in LTR and RTL. Keep nesting shallow enough that users can understand their current level.
+Use logical indentation such as `ms-5` so hierarchy works in LTR and RTL. Keep nesting shallow enough that users can
+understand their current level.
 
 ## Animation and Styling
 
-Content expansion and collapse are handled by the package plugin. Style the provided Content element rather than adding another `x-show` or `x-collapse` wrapper.
+Content expansion and collapse are handled by the package plugin. Style the provided Content element rather than adding
+another `x-show` or `x-collapse` wrapper.
 
-The root exposes `data-open`, `data-closed`, and `data-state`. Trigger exposes `data-panel-open` while expanded. Use these state hooks for presentation only:
+The root exposes `data-open`, `data-closed`, and `data-state`. Trigger exposes `data-panel-open` while expanded. Use
+these state hooks for presentation only:
 
 ```blade
 <x-ux::collapsible class="rounded-md data-open:bg-muted">

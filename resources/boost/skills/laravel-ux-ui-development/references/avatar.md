@@ -19,24 +19,26 @@ x-ux::avatar.group
 └── x-ux::avatar.group-count
 ```
 
-Image and Fallback belong inside the same Avatar. Badge is optional. Repeat Avatar inside Group and put Group Count last.
+Image and Fallback belong inside the same Avatar. Badge is optional. Repeat Avatar inside Group and put Group Count
+last.
 
 ## API
 
 ### `x-ux::avatar`
 
-| Prop   | Type            | Default   | Purpose                 |
-|--------|-----------------|-----------|-------------------------|
+| Prop   | Type              | Default   | Purpose                  |
+|--------|-------------------|-----------|--------------------------|
 | `size` | `default\|sm\|lg` | `default` | Set the avatar diameter. |
 
 ### `x-ux::avatar.image`
 
-| Prop   | Type     | Default | Purpose                          |
-|--------|----------|---------|----------------------------------|
-| `src*` | `string` | -       | Set the image URL.               |
-| `alt`  | `string` | `""`    | Provide the image alternative.   |
+| Prop   | Type     | Default | Purpose                        |
+|--------|----------|---------|--------------------------------|
+| `src*` | `string` | -       | Set the image URL.             |
+| `alt`  | `string` | `""`    | Provide the image alternative. |
 
-Fallback, Badge, Group, and Group Count accept standard HTML attributes and Tailwind classes. They have no additional component props.
+Fallback, Badge, Group, and Group Count accept standard HTML attributes and Tailwind classes. They have no additional
+component props.
 
 ## Basic Avatar
 
@@ -68,7 +70,8 @@ Always provide Fallback. It is displayed while the image loads and when loading 
 </div>
 ```
 
-Prefer the `size` prop over duplicating width and height classes. Use custom size classes only when the design requires a size outside the public scale.
+Prefer the `size` prop over duplicating width and height classes. Use custom size classes only when the design requires
+a size outside the public scale.
 
 ## Badge
 
@@ -94,7 +97,8 @@ Badge may contain an icon at default and large sizes:
 </x-ux::avatar>
 ```
 
-Icons inside a small Badge are hidden intentionally. Do not use Badge as the only visible explanation of a complex status.
+Icons inside a small Badge are hidden intentionally. Do not use Badge as the only visible explanation of a complex
+status.
 
 ## Avatar Group
 
@@ -115,7 +119,8 @@ Icons inside a small Badge are hidden intentionally. Do not use Badge as the onl
 </x-ux::avatar.group>
 ```
 
-Use the same size for every Avatar in a Group. Group Count automatically follows `sm`, `default`, or `lg` avatars in the group.
+Use the same size for every Avatar in a Group. Group Count automatically follows `sm`, `default`, or `lg` avatars in the
+group.
 
 Group Count may contain an icon instead of a number:
 
@@ -148,11 +153,13 @@ Wrap Avatar in a labelled button and use it as a composed dropdown trigger:
 </x-ux::dropdown-menu>
 ```
 
-Use `alt=""` here because the button's accessible label already names the control and the image is decorative in that context.
+Use `alt=""` here because the button's accessible label already names the control and the image is decorative in that
+context.
 
 ## Livewire Images
 
-Avatar watches `src` changes and returns to the loading state when Livewire replaces an image URL. Use stable keys for repeated users:
+Avatar watches `src` changes and returns to the loading state when Livewire replaces an image URL. Use stable keys for
+repeated users:
 
 ```blade
 <x-ux::avatar wire:key="avatar-{{ $user->id }}">
@@ -161,7 +168,8 @@ Avatar watches `src` changes and returns to the loading state when Livewire repl
 </x-ux::avatar>
 ```
 
-Do not add custom image error handlers just to reveal Fallback; the Avatar plugin already handles loading, success, error, and `src` replacement.
+Do not add custom image error handlers just to reveal Fallback; the Avatar plugin already handles loading, success,
+error, and `src` replacement.
 
 ## Accessibility and RTL
 

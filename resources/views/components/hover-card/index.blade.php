@@ -3,7 +3,7 @@
     x-data
     x-hover-card
     data-slot="hover-card"
-    {{ $attributes->tailwindMerge('flex') }}
+    {{ $attributes->tailwindMerge('contents') }}
 >
     {{ $slot }}
 </div>

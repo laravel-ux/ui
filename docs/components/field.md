@@ -154,12 +154,54 @@ Combine labels, controls, and help text to compose accessible form fields and gr
 </x-ux::field.set>
 ```
 
+## Composition
+
+### x-ux::field
+
+```text
+x-ux::field
+├── x-ux::field.label
+├── x-ux::input / x-ux::textarea / x-ux::switch / x-ux::select
+├── x-ux::field.description
+└── x-ux::field.error
+```
+
+### x-ux::field.group
+
+```text
+x-ux::field.group
+├── x-ux::field
+├── x-ux::field.separator
+└── x-ux::field
+```
+
+### x-ux::field.set
+
+```text
+x-ux::field.set
+├── x-ux::field.legend
+├── x-ux::field.description
+└── x-ux::field.group
+    └── x-ux::field
+```
+
+## Anatomy
+
+```blade
+<x-ux::field>
+    <x-ux::field.label for="input-id">Label</x-ux::field.label>
+    <x-ux::input id="input-id" />
+    <x-ux::field.description>Optional helper text.</x-ux::field.description>
+    <x-ux::field.error>Validation message.</x-ux::field.error>
+</x-ux::field>
+```
+
 ## Examples
 
 ### Input
 
 ```blade preview
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
     <x-ux::field.set>
         <x-ux::field.group>
             <x-ux::field>
@@ -184,7 +226,7 @@ Combine labels, controls, and help text to compose accessible form fields and gr
 ### Textarea
 
 ```blade preview
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
     <x-ux::field.set>
         <x-ux::field.group>
             <x-ux::field>
@@ -208,7 +250,7 @@ Combine labels, controls, and help text to compose accessible form fields and gr
 ### Select
 
 ```blade preview
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
     <x-ux::field>
         <x-ux::field.label>
             Department
@@ -235,10 +277,33 @@ Combine labels, controls, and help text to compose accessible form fields and gr
 </div>
 ```
 
+### Slider
+
+```blade preview
+<div x-data="{ priceRange: [200, 800] }" class="w-full max-w-xs">
+    <x-ux::field>
+        <x-ux::field.title>Price Range</x-ux::field.title>
+        <x-ux::field.description>
+            Set your budget range
+            ($<span class="font-medium tabular-nums" x-text="priceRange[0]"></span>
+            - <span class="font-medium tabular-nums" x-text="priceRange[1]"></span>).
+        </x-ux::field.description>
+        <x-ux::slider
+            x-model="priceRange"
+            :min="0"
+            :max="1000"
+            :step="10"
+            aria-label="Price Range"
+            class="mt-2 w-full"
+        />
+    </x-ux::field>
+</div>
+```
+
 ### Fieldset
 
 ```blade preview
-<div class="w-full max-w-md space-y-6">
+<div class="w-full max-w-sm">
     <x-ux::field.set>
         <x-ux::field.legend>Address Information</x-ux::field.legend>
         <x-ux::field.description>
@@ -267,7 +332,7 @@ Combine labels, controls, and help text to compose accessible form fields and gr
 ### Checkbox
 
 ```blade preview
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
     <x-ux::field.group>
         <x-ux::field.set>
             <x-ux::field.legend variant="label">
@@ -278,11 +343,10 @@ Combine labels, controls, and help text to compose accessible form fields and gr
             </x-ux::field.description>
             <x-ux::field.group class="gap-3">
                 <x-ux::field orientation="horizontal">
-                    <x-ux::checkbox id="finder-pref-9k2-hard-disks-ljj" />
+                    <x-ux::checkbox id="finder-pref-9k2-hard-disks-ljj" checked />
                     <x-ux::field.label
                         for="finder-pref-9k2-hard-disks-ljj"
                         class="font-normal"
-                        checked
                     >
                         Hard disks
                     </x-ux::field.label>
@@ -335,9 +399,9 @@ Combine labels, controls, and help text to compose accessible form fields and gr
 ### Radio
 
 ```blade preview
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
     <x-ux::field.set>
-        <x-ux::field.label>Subscription Plan</x-ux::field.label>
+        <x-ux::field.legend variant="label">Subscription Plan</x-ux::field.legend>
         <x-ux::field.description>
             Yearly and lifetime plans offer significant savings.
         </x-ux::field.description>
@@ -368,14 +432,9 @@ Combine labels, controls, and help text to compose accessible form fields and gr
 ### Switch
 
 ```blade preview
-<div class="w-full max-w-md">
-    <x-ux::field orientation="horizontal">
-        <x-ux::field.content>
-            <x-ux::field.label for="2fa">Multi-factor authentication</x-ux::field.label>
-            <x-ux::field.description>
-                Enable multi-factor authentication. If you do not have a two-factor device, you can use a one-time code sent to your email.
-            </x-ux::field.description>
-        </x-ux::field.content>
+<div class="w-fit">
+    <x-ux::field orientation="horizontal" class="w-fit">
+        <x-ux::field.label for="2fa">Multi-factor authentication</x-ux::field.label>
         <x-ux::switch id="2fa" />
     </x-ux::field>
 </div>
@@ -383,16 +442,16 @@ Combine labels, controls, and help text to compose accessible form fields and gr
 
 ### Choice Card
 
-Wrap `<x-ux::field>` components inside `<x-ux::field.label>` to create selectable field groups.
-This works with `<x-ux::radio-group.item>`, `<x-ux::checkbox>` and `<x-ux::switch>` components.
+Wrap `x-ux::field` components inside `x-ux::field.label` to create selectable field groups.
+This works with `x-ux::radio-group.item`, `x-ux::checkbox` and `x-ux::switch` components.
 
 ```blade preview
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
     <x-ux::field.group>
         <x-ux::field.set>
-            <x-ux::field.label for="compute-environment-p8w">
+            <x-ux::field.legend variant="label">
                 Compute Environment
-            </x-ux::field.label>
+            </x-ux::field.legend>
             <x-ux::field.description>
                 Select the compute environment for your cluster.
             </x-ux::field.description>
@@ -402,7 +461,7 @@ This works with `<x-ux::radio-group.item>`, `<x-ux::checkbox>` and `<x-ux::switc
                         <x-ux::field.content>
                             <x-ux::field.title>Kubernetes</x-ux::field.title>
                             <x-ux::field.description>
-                                Run GPU workloads on a K8s configured cluster.
+                                Run GPU workloads on a K8s cluster.
                             </x-ux::field.description>
                         </x-ux::field.content>
                         <x-ux::radio-group.item value="kubernetes" id="kubernetes-r2h" />
@@ -413,7 +472,7 @@ This works with `<x-ux::radio-group.item>`, `<x-ux::checkbox>` and `<x-ux::switc
                         <x-ux::field.content>
                             <x-ux::field.title>Virtual Machine</x-ux::field.title>
                             <x-ux::field.description>
-                                Access a VM configured cluster to run GPU workloads.
+                                Access a cluster to run GPU workloads.
                             </x-ux::field.description>
                         </x-ux::field.content>
                         <x-ux::radio-group.item value="vm" id="vm-z4k" />
@@ -427,10 +486,10 @@ This works with `<x-ux::radio-group.item>`, `<x-ux::checkbox>` and `<x-ux::switc
 
 ### Field Group
 
-Stack `<x-ux::field>` components with `<x-ux::field.group>`. Add `<x-ux::field.separator>` to divide them.
+Stack `x-ux::field` components with `x-ux::field.group`. Add `x-ux::field.separator` to divide them.
 
 ```blade preview
-<div class="w-full max-w-md">
+<div class="w-full max-w-xs">
     <x-ux::field.group>
         <x-ux::field.set>
             <x-ux::field.label>Responses</x-ux::field.label>
@@ -471,22 +530,161 @@ Stack `<x-ux::field>` components with `<x-ux::field.group>`. Add `<x-ux::field.s
 </div>
 ```
 
+## RTL
+
+```blade preview
+<x-ux::direction direction="rtl">
+    <div class="w-full max-w-md py-6">
+        <x-ux::field.group>
+            <x-ux::field.set>
+                <x-ux::field.legend>طريقة الدفع</x-ux::field.legend>
+                <x-ux::field.description>جميع المعاملات آمنة ومشفرة</x-ux::field.description>
+                <x-ux::field.group>
+                    <x-ux::field>
+                        <x-ux::field.label for="checkout-card-name-rtl">الاسم على البطاقة</x-ux::field.label>
+                        <x-ux::input id="checkout-card-name-rtl" placeholder="Evil Rabbit" required />
+                    </x-ux::field>
+                    <x-ux::field>
+                        <x-ux::field.label for="checkout-card-number-rtl">رقم البطاقة</x-ux::field.label>
+                        <x-ux::input id="checkout-card-number-rtl" placeholder="1234 5678 9012 3456" required />
+                        <x-ux::field.description>أدخل رقم البطاقة المكون من 16 رقمًا</x-ux::field.description>
+                    </x-ux::field>
+                    <div class="grid grid-cols-3 gap-4">
+                        <x-ux::field>
+                            <x-ux::field.label for="checkout-month-rtl">الشهر</x-ux::field.label>
+                            <x-ux::select>
+                                <x-ux::select.trigger id="checkout-month-rtl">
+                                    <x-ux::select.value placeholder="ش.ش" />
+                                </x-ux::select.trigger>
+                                <x-ux::select.content>
+                                    <x-ux::select.group>
+                                        <x-ux::select.item value="01">٠١</x-ux::select.item>
+                                        <x-ux::select.item value="02">٠٢</x-ux::select.item>
+                                        <x-ux::select.item value="03">٠٣</x-ux::select.item>
+                                        <x-ux::select.item value="04">٠٤</x-ux::select.item>
+                                        <x-ux::select.item value="05">٠٥</x-ux::select.item>
+                                        <x-ux::select.item value="06">٠٦</x-ux::select.item>
+                                        <x-ux::select.item value="07">٠٧</x-ux::select.item>
+                                        <x-ux::select.item value="08">٠٨</x-ux::select.item>
+                                        <x-ux::select.item value="09">٠٩</x-ux::select.item>
+                                        <x-ux::select.item value="10">١٠</x-ux::select.item>
+                                        <x-ux::select.item value="11">١١</x-ux::select.item>
+                                        <x-ux::select.item value="12">١٢</x-ux::select.item>
+                                    </x-ux::select.group>
+                                </x-ux::select.content>
+                            </x-ux::select>
+                        </x-ux::field>
+                        <x-ux::field>
+                            <x-ux::field.label for="checkout-year-rtl">السنة</x-ux::field.label>
+                            <x-ux::select>
+                                <x-ux::select.trigger id="checkout-year-rtl">
+                                    <x-ux::select.value placeholder="YYYY" />
+                                </x-ux::select.trigger>
+                                <x-ux::select.content>
+                                    <x-ux::select.group>
+                                        <x-ux::select.item value="2024">2024</x-ux::select.item>
+                                        <x-ux::select.item value="2025">2025</x-ux::select.item>
+                                        <x-ux::select.item value="2026">2026</x-ux::select.item>
+                                        <x-ux::select.item value="2027">2027</x-ux::select.item>
+                                        <x-ux::select.item value="2028">2028</x-ux::select.item>
+                                        <x-ux::select.item value="2029">2029</x-ux::select.item>
+                                    </x-ux::select.group>
+                                </x-ux::select.content>
+                            </x-ux::select>
+                        </x-ux::field>
+                        <x-ux::field>
+                            <x-ux::field.label for="checkout-cvv-rtl">CVV</x-ux::field.label>
+                            <x-ux::input id="checkout-cvv-rtl" placeholder="123" required />
+                        </x-ux::field>
+                    </div>
+                </x-ux::field.group>
+            </x-ux::field.set>
+            <x-ux::field.separator />
+            <x-ux::field.set>
+                <x-ux::field.legend>عنوان الفوترة</x-ux::field.legend>
+                <x-ux::field.description>عنوان الفوترة المرتبط بطريقة الدفع الخاصة بك</x-ux::field.description>
+                <x-ux::field.group>
+                    <x-ux::field orientation="horizontal">
+                        <x-ux::checkbox id="same-as-shipping-rtl" checked />
+                        <x-ux::field.label for="same-as-shipping-rtl" class="font-normal">
+                            نفس عنوان الشحن
+                        </x-ux::field.label>
+                    </x-ux::field>
+                </x-ux::field.group>
+            </x-ux::field.set>
+            <x-ux::field.set>
+                <x-ux::field.group>
+                    <x-ux::field>
+                        <x-ux::field.label for="comments-rtl">تعليقات</x-ux::field.label>
+                        <x-ux::textarea id="comments-rtl" placeholder="أضف أي تعليقات إضافية" class="resize-none" />
+                    </x-ux::field>
+                </x-ux::field.group>
+            </x-ux::field.set>
+            <x-ux::field orientation="horizontal">
+                <x-ux::button type="submit">إرسال</x-ux::button>
+                <x-ux::button type="button" variant="outline">إلغاء</x-ux::button>
+            </x-ux::field>
+        </x-ux::field.group>
+    </div>
+</x-ux::direction>
+```
+
+## Responsive Layout
+
+- The default `vertical` orientation stacks the label, control, and supporting text.
+- Use `horizontal` to align a control with its label or with `x-ux::field.content`.
+- Use `responsive` inside `x-ux::field.group` to switch from vertical to horizontal at its container breakpoint.
+
+```blade preview
+<div class="w-full max-w-lg">
+    <x-ux::field.set>
+        <x-ux::field.legend>Profile</x-ux::field.legend>
+        <x-ux::field.description>Fill in your profile information.</x-ux::field.description>
+        <x-ux::field.group>
+            <x-ux::field orientation="responsive">
+                <x-ux::field.content>
+                    <x-ux::field.label for="responsive-name">Name</x-ux::field.label>
+                    <x-ux::field.description>Provide your full name for identification</x-ux::field.description>
+                </x-ux::field.content>
+                <x-ux::input id="responsive-name" placeholder="Evil Rabbit" required />
+            </x-ux::field>
+            <x-ux::field orientation="responsive">
+                <x-ux::button type="submit">Submit</x-ux::button>
+                <x-ux::button type="button" variant="outline">Cancel</x-ux::button>
+            </x-ux::field>
+        </x-ux::field.group>
+    </x-ux::field.set>
+</div>
+```
+
+## Validation and Errors
+
+Set `data-invalid="true"` on `x-ux::field` and `aria-invalid="true"` on its control. Place `x-ux::field.error`
+immediately after the control or inside `x-ux::field.content`.
+
+```blade
+<x-ux::field data-invalid="true">
+    <x-ux::field.label for="email">Email</x-ux::field.label>
+    <x-ux::input id="email" type="email" aria-invalid="true" />
+    <x-ux::field.error>Enter a valid email address.</x-ux::field.error>
+</x-ux::field>
+```
+
+## Accessibility
+
+- `x-ux::field.set` and `x-ux::field.legend` provide semantic grouping for related controls.
+- `x-ux::field` renders `role="group"`.
+- Use `x-ux::field.separator` only when it clarifies the relationship between groups.
+
 ## API Reference
 
 ### x-ux::field.legend
-
-Legend element for a `<x-ux::field.set>`. Switch to the `label` variant to align with label sizing.
 
 | Prop      | Type                          | Default    |
 |-----------|-------------------------------|------------|
 | `variant` | `enum` [?"legend" \| "label"] | `"legend"` |
 
-The `<x-ux::field.legend>` has two variants: `legend` and `label`.
-The `label` variant applies label sizing and alignment. Handy if you have nested `<x-ux::field.set>`.
-
 ### x-ux::field
-
-The core wrapper for a single field. Provides orientation control, invalid state styling, and spacing.
 
 | Prop          | Type                                                 | Default      |
 |---------------|------------------------------------------------------|--------------|
@@ -494,12 +692,15 @@ The core wrapper for a single field. Provides orientation control, invalid state
 
 ### x-ux::field.label
 
-Label styled for both direct inputs and nested Field children.
-
 | Prop       | Type                                                                                                              | Default |
 |------------|-------------------------------------------------------------------------------------------------------------------|---------|
 | `as-child` | `boolean` [?Change the default rendered element for the one passed as a child, merging their props and behavior.] | `false` |
 
+### x-ux::field.error
+
+| Prop     | Type    | Default |
+|----------|---------|---------|
+| `errors` | `array` | `[]`    |
 
 ## Publishing
 

@@ -6,12 +6,13 @@ Use Button for actions and for links that need button styling. Choose semantics 
 
 ### `x-ux::button`
 
-| Prop      | Type                                                               | Default   | Purpose                    |
-|-----------|--------------------------------------------------------------------|-----------|----------------------------|
-| `variant` | `default\|outline\|ghost\|destructive\|secondary\|link`        | `default` | Set the visual treatment.  |
-| `size`    | `default\|xs\|sm\|lg\|icon\|icon-xs\|icon-sm\|icon-lg`      | `default` | Set button dimensions.     |
+| Prop      | Type                                                    | Default   | Purpose                   |
+|-----------|---------------------------------------------------------|-----------|---------------------------|
+| `variant` | `default\|outline\|ghost\|destructive\|secondary\|link` | `default` | Set the visual treatment. |
+| `size`    | `default\|xs\|sm\|lg\|icon\|icon-xs\|icon-sm\|icon-lg`  | `default` | Set button dimensions.    |
 
-Button accepts standard button or anchor attributes. It renders an `<a>` when `href` is present and a `<button type="button">` otherwise.
+Button accepts standard button or anchor attributes. It renders an `<a>` when `href` is present and a
+`<button type="button">` otherwise.
 
 ## Actions and Links
 
@@ -29,9 +30,11 @@ Use `href` for navigation:
 </x-ux::button>
 ```
 
-Do not simulate navigation with `wire:click` when a real URL exists. Do not add `role="button"` to links rendered by this component.
+Do not simulate navigation with `wire:click` when a real URL exists. Do not add `role="button"` to links rendered by
+this component.
 
-The default button type is `button`, which prevents accidental form submission. Pass `type="submit"` explicitly for form submission and `type="reset"` only when reset behavior is intentional.
+The default button type is `button`, which prevents accidental form submission. Pass `type="submit"` explicitly for form
+submission and `type="reset"` only when reset behavior is intentional.
 
 ## Variants
 
@@ -50,7 +53,8 @@ The default button type is `button`, which prevents accidental form submission. 
 - Use `outline` or `secondary` for supporting actions.
 - Use `ghost` for low-emphasis actions in toolbars and menus.
 - Use `destructive` only for destructive or high-risk operations.
-- Use `link` for button-triggered actions styled like text. For navigation, prefer `href` with a suitable visual variant.
+- Use `link` for button-triggered actions styled like text. For navigation, prefer `href` with a suitable visual
+  variant.
 
 ## Sizes
 
@@ -95,11 +99,13 @@ Disable an action while its request is running and keep its label stable:
 </x-ux::button>
 ```
 
-If replacing the label, keep a fixed width or an accessible status when layout shift matters. `disabled` prevents interaction but does not automatically announce progress; use an appropriate live region for long operations.
+If replacing the label, keep a fixed width or an accessible status when layout shift matters. `disabled` prevents
+interaction but does not automatically announce progress; use an appropriate live region for long operations.
 
 ## Button Group and Dropdown Trigger
 
-Compose grouped actions with Button Group. Use `as-child` when Button is the trigger so only one interactive element is rendered:
+Compose grouped actions with Button Group. Use `as-child` when Button is the trigger so only one interactive element is
+rendered:
 
 ```blade
 <x-ux::dropdown-menu>
@@ -122,7 +128,8 @@ Do not nest a `<button>` inside another `<button>`.
 <x-ux::button disabled>Unavailable</x-ux::button>
 ```
 
-For an anchor rendered through `href`, prefer removing the link when navigation is unavailable. HTML anchors do not support the native `disabled` attribute.
+For an anchor rendered through `href`, prefer removing the link when navigation is unavailable. HTML anchors do not
+support the native `disabled` attribute.
 
 ## Accessibility and RTL
 
@@ -141,4 +148,5 @@ For an anchor rendered through `href`, prefer removing the link when navigation 
 - Do not use `href` for a form submission or state mutation.
 - Do not omit `type="submit"` on an intended form submit button.
 - Do not manually recreate built-in variants or sizes with repeated Tailwind classes.
-- Do not add custom JavaScript for hover, pressed, disabled, or loading visuals already handled by CSS and Livewire attributes.
+- Do not add custom JavaScript for hover, pressed, disabled, or loading visuals already handled by CSS and Livewire
+  attributes.

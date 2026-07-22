@@ -17,21 +17,21 @@ Button Group may also contain nested Button Groups when related clusters need vi
 
 ### `x-ux::button-group`
 
-| Prop          | Type                   | Default      | Purpose                    |
-|---------------|------------------------|--------------|----------------------------|
-| `orientation` | `horizontal\|vertical` | `horizontal` | Set the grouping direction.|
+| Prop          | Type                   | Default      | Purpose                     |
+|---------------|------------------------|--------------|-----------------------------|
+| `orientation` | `horizontal\|vertical` | `horizontal` | Set the grouping direction. |
 
 ### `x-ux::button-group.separator`
 
-| Prop          | Type                   | Default    | Purpose                       |
-|---------------|------------------------|------------|-------------------------------|
-| `orientation` | `horizontal\|vertical` | `vertical` | Set the separator direction.  |
+| Prop          | Type                   | Default    | Purpose                      |
+|---------------|------------------------|------------|------------------------------|
+| `orientation` | `horizontal\|vertical` | `vertical` | Set the separator direction. |
 
 ### `x-ux::button-group.text`
 
-| Prop       | Type      | Default | Purpose                                      |
-|------------|-----------|---------|----------------------------------------------|
-| `as-child` | `boolean` | `false` | Merge the text wrapper into its child element.|
+| Prop       | Type      | Default | Purpose                                        |
+|------------|-----------|---------|------------------------------------------------|
+| `as-child` | `boolean` | `false` | Merge the text wrapper into its child element. |
 
 All parts accept standard HTML attributes and Tailwind classes.
 
@@ -44,7 +44,8 @@ All parts accept standard HTML attributes and Tailwind classes.
 </x-ux::button-group>
 ```
 
-Use one accessible group label that describes the controls collectively. Individual icon-only buttons still require their own accessible names.
+Use one accessible group label that describes the controls collectively. Individual icon-only buttons still require
+their own accessible names.
 
 ## Orientation
 
@@ -59,11 +60,13 @@ Use one accessible group label that describes the controls collectively. Individ
 </x-ux::button-group>
 ```
 
-Keep every direct control in the same orientation. Match Separator orientation to the boundary it represents: vertical separators divide horizontal controls, and horizontal separators divide vertical controls.
+Keep every direct control in the same orientation. Match Separator orientation to the boundary it represents: vertical
+separators divide horizontal controls, and horizontal separators divide vertical controls.
 
 ## Separators and Variants
 
-Outline buttons already provide visible boundaries and normally do not need a Separator. Use Separator between borderless filled buttons when the actions would otherwise blend together.
+Outline buttons already provide visible boundaries and normally do not need a Separator. Use Separator between
+borderless filled buttons when the actions would otherwise blend together.
 
 ```blade
 <x-ux::button-group aria-label="Clipboard actions">
@@ -73,7 +76,8 @@ Outline buttons already provide visible boundaries and normally do not need a Se
 </x-ux::button-group>
 ```
 
-Keep the same Button size throughout one joined group. A split action may use an icon-only trailing button at the matching icon size.
+Keep the same Button size throughout one joined group. A split action may use an icon-only trailing button at the
+matching icon size.
 
 ## Inputs and Text
 
@@ -89,7 +93,8 @@ Keep the same Button size throughout one joined group. A split action may use an
 </x-ux::button-group>
 ```
 
-Use `as-child` only with one element that can receive the merged attributes. Associate labels and inputs with matching `for` and `id` values.
+Use `as-child` only with one element that can receive the merged attributes. Associate labels and inputs with matching
+`for` and `id` values.
 
 ## Nested Groups
 
@@ -109,7 +114,8 @@ Use nested groups for separate joined clusters with spacing between them:
 </x-ux::button-group>
 ```
 
-Do not add manual negative margins or reconstruct joined corners. Button Group owns borders, corner radii, focus stacking, and spacing between nested groups.
+Do not add manual negative margins or reconstruct joined corners. Button Group owns borders, corner radii, focus
+stacking, and spacing between nested groups.
 
 ## Dropdowns and Popovers
 
@@ -131,12 +137,15 @@ Use `as-child` on an overlay trigger so the Button remains the only interactive 
 </x-ux::button-group>
 ```
 
-The same trigger rule applies to Popover and Tooltip integrations. Never place a Button inside a trigger button without `as-child`.
+The same trigger rule applies to Popover and Tooltip integrations. Never place a Button inside a trigger button without
+`as-child`.
 
 ## Accessibility and RTL
 
-- Button Group renders `role="group"`; add `aria-label` or `aria-labelledby` whenever the surrounding context does not already name it.
-- Tab moves through the controls using their native focus order. Do not add arrow-key behavior; use Toggle Group when users are selecting toggle states.
+- Button Group renders `role="group"`; add `aria-label` or `aria-labelledby` whenever the surrounding context does not
+  already name it.
+- Tab moves through the controls using their native focus order. Do not add arrow-key behavior; use Toggle Group when
+  users are selecting toggle states.
 - Preserve the built-in focus ring and focus stacking.
 - Set `dir="rtl"` on the group or an ancestor for right-to-left interfaces.
 - Mirror only directional icons such as navigation arrows with `rtl:rotate-180`.

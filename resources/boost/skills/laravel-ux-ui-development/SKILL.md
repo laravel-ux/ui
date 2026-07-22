@@ -18,13 +18,31 @@ Use the package's Blade components instead of recreating shadcn/ui markup or cop
    - Avatar: [references/avatar.md](references/avatar.md)
    - Badge: [references/badge.md](references/badge.md)
    - Breadcrumb: [references/breadcrumb.md](references/breadcrumb.md)
+   - Bubble: [references/bubble.md](references/bubble.md)
    - Button: [references/button.md](references/button.md)
    - Button Group: [references/button-group.md](references/button-group.md)
    - Card: [references/card.md](references/card.md)
    - Checkbox: [references/checkbox.md](references/checkbox.md)
    - Collapsible: [references/collapsible.md](references/collapsible.md)
    - Dialog: [references/dialog.md](references/dialog.md)
+   - Direction: [references/direction.md](references/direction.md)
+   - Drawer: [references/drawer.md](references/drawer.md)
    - Dropdown Menu: [references/dropdown-menu.md](references/dropdown-menu.md)
+   - Empty: [references/empty.md](references/empty.md)
+   - Field: [references/field.md](references/field.md)
+   - Hover Card: [references/hover-card.md](references/hover-card.md)
+   - Input: [references/input.md](references/input.md)
+   - Input Group: [references/input-group.md](references/input-group.md)
+   - Input OTP: [references/input-otp.md](references/input-otp.md)
+   - Item: [references/item.md](references/item.md)
+   - Kbd: [references/kbd.md](references/kbd.md)
+   - Label: [references/label.md](references/label.md)
+   - Marker: [references/marker.md](references/marker.md)
+   - Message: [references/message.md](references/message.md)
+   - Message Scroller: [references/message-scroller.md](references/message-scroller.md)
+   - Navigation Menu: [references/navigation-menu.md](references/navigation-menu.md)
+   - Pagination: [references/pagination.md](references/pagination.md)
+   - Slider: [references/slider.md](references/slider.md)
    - Table: [references/table.md](references/table.md)
 3. Inspect nearby Blade or Livewire code and follow its spacing, width, typography, and state conventions.
 4. Compose the documented `x-ux::` components. Pass documented props exactly and put additional Tailwind utilities in `class`.
@@ -34,7 +52,10 @@ Use the package's Blade components instead of recreating shadcn/ui markup or cop
 ## Core Rules
 
 - Use the `x-ux::` namespace in application markup.
+- Wrap component names in inline code in Markdown prose, for example `x-ux::button`; use angle brackets only inside Blade code blocks.
 - Adapt shadcn/ui examples to Blade syntax; never paste React imports, JSX, `className`, or React prop syntax.
+- Adapt example copy to the Laravel ecosystem; do not retain React, Next.js, or Vercel branding from upstream examples.
+- Keep rendered source-code panes width-constrained with horizontal scrolling, `dir="ltr"`, and bidi isolation. Long lines and RTL preview content must not expand or reorder the documentation layout.
 - Use `:prop="..."` for PHP expressions, arrays, numbers, and booleans. Use plain attributes for literal strings.
 - Prefer documented component props and composition over custom selectors or replacement markup.
 - Merge layout-specific styling through `class`; the components resolve Tailwind class conflicts.

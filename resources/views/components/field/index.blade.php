@@ -7,7 +7,7 @@
         $attributes
             ->merge(['data-orientation' => $orientation])
             ->tailwindMerge(
-                'group/field flex w-full gap-3 data-[invalid]:text-destructive data-[invalid=true]:text-destructive',
+                'group/field flex w-full gap-2 data-[invalid=true]:text-destructive',
                 match ($orientation) {
                     'horizontal' => [
                         "flex-row items-center",

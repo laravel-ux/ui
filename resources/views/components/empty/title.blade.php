@@ -1,7 +1,7 @@
 @blaze
 <div
     data-slot="empty-title"
-    {{ $attributes->tailwindMerge('text-lg font-medium tracking-tight') }}
+    {{ $attributes->tailwindMerge('text-sm font-medium tracking-tight') }}
 >
     {{ $slot }}
 </div>

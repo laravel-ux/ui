@@ -14,17 +14,19 @@ x-ux::card
 └── x-ux::card.footer
 ```
 
-Keep Title, Description, and Action inside Header. Use Content for the primary body and Footer for final actions or secondary metadata.
+Keep Title, Description, and Action inside Header. Use Content for the primary body and Footer for final actions or
+secondary metadata.
 
 ## API
 
 ### `x-ux::card`
 
-| Prop   | Type         | Default   | Purpose                         |
-|--------|--------------|-----------|---------------------------------|
-| `size` | `default\|sm` | `default` | Control the shared card spacing.|
+| Prop   | Type          | Default   | Purpose                          |
+|--------|---------------|-----------|----------------------------------|
+| `size` | `default\|sm` | `default` | Control the shared card spacing. |
 
-All parts accept standard HTML attributes and Tailwind classes. Card exposes `--card-spacing`, which controls the section gap and the inset used by Header, Content, and Footer.
+All parts accept standard HTML attributes and Tailwind classes. Card exposes `--card-spacing`, which controls the
+section gap and the inset used by Header, Content, and Footer.
 
 ## Basic Card
 
@@ -53,7 +55,8 @@ Omit unused parts. Do not render empty Header, Content, or Footer elements merel
 
 ## Size and Spacing
 
-Use `size="sm"` for compact cards. The size changes the shared spacing and title size while preserving the same composition.
+Use `size="sm"` for compact cards. The size changes the shared spacing and title size while preserving the same
+composition.
 
 ```blade
 <x-ux::card size="sm" class="max-w-xs">
@@ -79,7 +82,8 @@ Prefer the shared variable over applying unrelated padding to every part.
 
 ## Forms
 
-Place form fields in Content and submission actions in Footer. The `<form>` must own the submit button semantically; either wrap the relevant card parts with the form or associate an external button through its `form` attribute.
+Place form fields in Content and submission actions in Footer. The `<form>` must own the submit button semantically;
+either wrap the relevant card parts with the form or associate an external button through its `form` attribute.
 
 ```blade
 <x-ux::card class="max-w-sm">
@@ -104,7 +108,8 @@ Place form fields in Content and submission actions in Footer. The `<form>` must
 </x-ux::card>
 ```
 
-Keep Card parts as direct children. Associate a Footer submit button with the form in Content through matching `form` and `id` attributes.
+Keep Card parts as direct children. Associate a Footer submit button with the form in Content through matching `form`
+and `id` attributes.
 
 ## Edge-to-Edge Content
 
@@ -118,11 +123,13 @@ Use the shared spacing variable for media or scrollable content that reaches the
 </x-ux::card.content>
 ```
 
-Use `-mb-(--card-spacing)` only when edge-to-edge Content sits directly above Footer and the normal section gap must be removed.
+Use `-mb-(--card-spacing)` only when edge-to-edge Content sits directly above Footer and the normal section gap must be
+removed.
 
 ## Images
 
-Place a cover image before Header. Card removes its top padding when the first direct child is an image and rounds first and last images automatically.
+Place a cover image before Header. Card removes its top padding when the first direct child is an image and rounds first
+and last images automatically.
 
 ```blade
 <x-ux::card class="max-w-sm">
@@ -138,7 +145,8 @@ Use meaningful alternative text when the image conveys information. Use `alt=""`
 ## Accessibility and RTL
 
 - Card is a visual container, not an interactive element. Do not add `role="button"` or click handlers to the root.
-- Use semantic headings inside Title when the card participates in the page heading hierarchy: `<x-ux::card.title><h3>…</h3></x-ux::card.title>`.
+- Use semantic headings inside Title when the card participates in the page heading hierarchy:
+  `<x-ux::card.title><h3>…</h3></x-ux::card.title>`.
 - Give every icon-only Action an accessible name.
 - Keep one clear primary action and avoid making the entire card clickable when it also contains buttons or links.
 - Set `dir="rtl"` on Card or an ancestor for right-to-left content.

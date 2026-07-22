@@ -81,7 +81,7 @@ Replace the default close control with your own button.
             </x-ux::dialog.description>
         </x-ux::dialog.header>
         <div class="flex items-center gap-2">
-            <x-ux::input value="https://ui.shadcn.com/docs/installation" readonly />
+            <x-ux::input value="https://laravel.com/docs/installation" readonly />
             <x-ux::dialog.close variant="outline" size="icon">
                 <x-ux::icon name="copy" />
                 <span class="sr-only">Copy</span>
@@ -174,7 +174,7 @@ Long content can scroll while the header stays in view.
 
 ## RTL
 
-To enable RTL support in shadcn/ui, see the [RTL configuration guide](https://ui.shadcn.com/docs/rtl).
+Wrap isolated right-to-left dialogs with x-ux::direction.
 
 ```blade preview
 <x-ux::dialog>

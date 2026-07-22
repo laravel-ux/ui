@@ -2,5 +2,5 @@
 <x-ux::separator
     data-slot="item-separator"
     orientation="horizontal"
-    {{ $attributes->tailwindMerge('my-0') }}
+    {{ $attributes->tailwindMerge('my-2') }}
 />

@@ -9,6 +9,7 @@
     <div
         x-cloak
         x-popover-content.{{ $position }}.offset.{{ $sideOffset }}
+        x-direction-portal
         role="dialog"
         tabindex="-1"
         data-side="{{ $side }}"

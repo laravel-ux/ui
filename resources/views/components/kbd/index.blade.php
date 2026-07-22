@@ -1,5 +1,5 @@
 @blaze
-<div
+<kbd
     data-slot="kbd"
     {{ $attributes->tailwindMerge([
         "bg-muted text-muted-foreground pointer-events-none inline-flex h-5 w-fit min-w-5 items-center justify-center gap-1 rounded-sm px-1 font-sans text-xs font-medium select-none",
@@ -8,4 +8,4 @@
     ]) }}
 >
     {{ $slot }}
-</div>
+</kbd>

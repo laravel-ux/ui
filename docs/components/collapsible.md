@@ -170,7 +170,7 @@ Use nested collapsibles to build a file tree.
                             </x-ux::collapsible.trigger>
                             <x-ux::collapsible.content class="mt-1 ml-5">
                                 <div class="flex flex-col gap-1">
-                                    @foreach (['button.tsx', 'card.tsx', 'dialog.tsx', 'input.tsx', 'select.tsx', 'table.tsx'] as $file)
+                                    @foreach (['button.blade.php', 'card.blade.php', 'dialog.blade.php', 'input.blade.php'] as $file)
                                         <x-ux::button variant="link" size="sm" class="w-full justify-start gap-2 text-foreground">
                                             <x-ux::icon name="file" />
                                             <span>{{ $file }}</span>
@@ -179,7 +179,7 @@ Use nested collapsibles to build a file tree.
                                 </div>
                             </x-ux::collapsible.content>
                         </x-ux::collapsible>
-                        @foreach (['login-form.tsx', 'register-form.tsx'] as $file)
+                        @foreach (['login-form.blade.php', 'register-form.blade.php'] as $file)
                             <x-ux::button variant="link" size="sm" class="w-full justify-start gap-2 text-foreground">
                                 <x-ux::icon name="file" />
                                 <span>{{ $file }}</span>
@@ -214,7 +214,7 @@ Use nested collapsibles to build a file tree.
                     </x-ux::collapsible.content>
                 </x-ux::collapsible>
             @endforeach
-            @foreach (['app.tsx', 'layout.tsx', 'globals.css', 'package.json', 'tsconfig.json', 'README.md', '.gitignore'] as $file)
+            @foreach (['web.php', 'User.php', 'AppServiceProvider.php', 'composer.json', 'artisan', 'README.md', '.gitignore'] as $file)
                 <x-ux::button variant="link" size="sm" class="w-full justify-start gap-2 text-foreground">
                     <x-ux::icon name="file" />
                     <span>{{ $file }}</span>

@@ -5,7 +5,7 @@
     data-variant="{{ $variant }}"
     {{
         $attributes->tailwindMerge([
-            "mb-3 font-medium",
+            "mb-1.5 font-medium",
             "data-[variant=legend]:text-base",
             "data-[variant=label]:text-sm",
         ])

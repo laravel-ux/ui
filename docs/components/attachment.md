@@ -32,11 +32,11 @@ Displays a file or image attachment with media, metadata, upload state, and acti
     <x-ux::attachment class="w-full">
         <x-ux::attachment.media><x-ux::icon name="file-code" /></x-ux::attachment.media>
         <x-ux::attachment.content>
-            <x-ux::attachment.title>message-renderer.tsx</x-ux::attachment.title>
-            <x-ux::attachment.description>TypeScript · 12 KB</x-ux::attachment.description>
+            <x-ux::attachment.title>message-renderer.blade.php</x-ux::attachment.title>
+            <x-ux::attachment.description>Blade · 12 KB</x-ux::attachment.description>
         </x-ux::attachment.content>
         <x-ux::attachment.actions>
-            <x-ux::attachment.action aria-label="Remove message-renderer.tsx"><x-ux::icon name="x" /></x-ux::attachment.action>
+            <x-ux::attachment.action aria-label="Remove message-renderer.blade.php"><x-ux::icon name="x" /></x-ux::attachment.action>
         </x-ux::attachment.actions>
     </x-ux::attachment>
 </div>
@@ -181,7 +181,7 @@ Wrap attachments in `x-ux::attachment.group` to lay them out in a horizontally s
             ['briefing-notes.pdf', 'PDF · 1.4 MB', 'file-text'],
             ['workspace.png', 'PNG · 820 KB', 'image'],
             ['customers.csv', 'CSV · 18 KB', 'table'],
-            ['renderer.tsx', 'TSX · 12 KB', 'file-code'],
+            ['renderer.blade.php', 'Blade · 12 KB', 'file-code'],
         ] as [$name, $meta, $icon])
             <x-ux::attachment class="w-64">
                 @if($icon === 'image')

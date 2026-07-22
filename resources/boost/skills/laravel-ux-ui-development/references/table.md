@@ -16,7 +16,8 @@ x-ux::table
 └── x-ux::table.footer
 ```
 
-Repeat Head and Cell for every column. Keep the same column order and effective column count across Header, Body, and Footer.
+Repeat Head and Cell for every column. Keep the same column order and effective column count across Header, Body, and
+Footer.
 
 ## Basic Table
 
@@ -42,7 +43,8 @@ Repeat Head and Cell for every column. Keep the same column order and effective 
 </x-ux::table>
 ```
 
-Table provides its own horizontal overflow container. Do not add a second overflow wrapper unless the surrounding layout has a separate scrolling requirement.
+Table provides its own horizontal overflow container. Do not add a second overflow wrapper unless the surrounding layout
+has a separate scrolling requirement.
 
 ## Captions and Headers
 
@@ -54,7 +56,8 @@ Use `scope="col"` on complex tables when header relationships may not be obvious
 <x-ux::table.head scope="col">Customer</x-ux::table.head>
 ```
 
-For row headers, render a native `<th scope="row">` only when the row label needs explicit header semantics. Table Cell always renders `<td>`.
+For row headers, render a native `<th scope="row">` only when the row label needs explicit header semantics. Table Cell
+always renders `<td>`.
 
 ## Footer and Totals
 
@@ -112,7 +115,8 @@ Place Checkbox in the first column. Give every checkbox a stable unique ID and a
 </x-ux::table.cell>
 ```
 
-Set `data-state="selected"` on a selected Row to enable the built-in selected background. Keep selection state in the application; Table itself does not own sorting, filtering, pagination, or selection logic.
+Set `data-state="selected"` on a selected Row to enable the built-in selected background. Keep selection state in the
+application; Table itself does not own sorting, filtering, pagination, or selection logic.
 
 ## Responsive Data
 
@@ -120,7 +124,8 @@ Set `data-state="selected"` on a selected Row to enable the built-in selected ba
 - Let the built-in container scroll horizontally when the table is wider than its viewport.
 - Use `whitespace-normal` on Cells that should wrap long content; Cells are non-wrapping by default.
 - Do not hide columns containing the only accessible label for a row action or selection control.
-- For very small screens, consider an application-specific card or list presentation only when it communicates the same relationships clearly.
+- For very small screens, consider an application-specific card or list presentation only when it communicates the same
+  relationships clearly.
 
 ## Accessibility and RTL
 
@@ -129,7 +134,8 @@ Set `data-state="selected"` on a selected Row to enable the built-in selected ba
 - Keep Header, Body, Row, Head, and Cell nesting valid; browsers may silently rearrange invalid table markup.
 - Use `colspan` and `rowspan` carefully and add explicit `scope` attributes for complex headers.
 - Set `dir="rtl"` on Table or an ancestor for right-to-left datasets.
-- Use logical alignment where meaning should follow direction. Keep numeric and currency columns consistently aligned according to the product's locale rules.
+- Use logical alignment where meaning should follow direction. Keep numeric and currency columns consistently aligned
+  according to the product's locale rules.
 
 ## Avoid
 
@@ -137,5 +143,6 @@ Set `data-state="selected"` on a selected Row to enable the built-in selected ba
 - Do not use Head for ordinary body data.
 - Do not duplicate the responsive overflow container.
 - Do not attach a click handler to the entire Row when it also contains links, checkboxes, or action buttons.
-- Do not add JavaScript for static table layout; add application state only for sorting, filtering, pagination, or selection.
+- Do not add JavaScript for static table layout; add application state only for sorting, filtering, pagination, or
+  selection.
 - Do not paste React component names, JSX, or `className` into Blade templates.

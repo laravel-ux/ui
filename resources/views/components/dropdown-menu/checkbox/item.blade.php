@@ -19,7 +19,7 @@
 >
     <span
         x-dropdown-menu-checkbox-item-indicator
-        class="pointer-events-none absolute right-2 flex items-center justify-center"
+        class="pointer-events-none absolute end-2 flex items-center justify-center"
     >
         <x-ux::icon name="check" />
     </span>

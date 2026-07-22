@@ -14,7 +14,8 @@ x-ux::breadcrumb
         └── x-ux::breadcrumb.page
 ```
 
-Ellipsis may replace one or more omitted items. A custom separator icon belongs inside Separator. The components have no additional props; pass standard HTML attributes and Tailwind classes where needed.
+Ellipsis may replace one or more omitted items. A custom separator icon belongs inside Separator. The components have no
+additional props; pass standard HTML attributes and Tailwind classes where needed.
 
 ## Basic Breadcrumb
 
@@ -36,7 +37,8 @@ Ellipsis may replace one or more omitted items. A custom separator icon belongs 
 </x-ux::breadcrumb>
 ```
 
-Use Link for navigable ancestors and Page exactly once for the current resource. Separator must be a sibling between Items, not nested inside an Item.
+Use Link for navigable ancestors and Page exactly once for the current resource. Separator must be a sibling between
+Items, not nested inside an Item.
 
 ## Collapsed Hierarchies
 
@@ -46,7 +48,8 @@ Use Link for navigable ancestors and Page exactly once for the current resource.
 </x-ux::breadcrumb.item>
 ```
 
-Use Ellipsis when intermediate levels are intentionally omitted. If users must reach those levels, compose the Ellipsis inside an accessible dropdown trigger:
+Use Ellipsis when intermediate levels are intentionally omitted. If users must reach those levels, compose the Ellipsis
+inside an accessible dropdown trigger:
 
 ```blade
 <x-ux::breadcrumb.item>
@@ -75,7 +78,8 @@ Make dropdown entries navigate according to the application's established dropdo
 </x-ux::breadcrumb.separator>
 ```
 
-The default chevron automatically reverses in RTL. A custom directional icon must handle RTL itself; neutral separators such as Slash need no reversal.
+The default chevron automatically reverses in RTL. A custom directional icon must handle RTL itself; neutral separators
+such as Slash need no reversal.
 
 ## Navigation Integration
 
@@ -93,9 +97,11 @@ Do not replace Link with an arbitrary clickable `<span>`. Breadcrumb navigation 
 
 - Keep the root Breadcrumb around one List only.
 - Render ancestors as Link and the current location as Page; do not link the current page to itself.
-- Keep Separator and Ellipsis presentation-only. Their built-in semantics already hide decorative content from assistive technology.
+- Keep Separator and Ellipsis presentation-only. Their built-in semantics already hide decorative content from assistive
+  technology.
 - Shorten or collapse deep trails on narrow screens while keeping the current Page visible.
-- Set `dir="rtl"` on Breadcrumb or an ancestor for right-to-left content. The default separator follows direction automatically.
+- Set `dir="rtl"` on Breadcrumb or an ancestor for right-to-left content. The default separator follows direction
+  automatically.
 
 ## Avoid
 

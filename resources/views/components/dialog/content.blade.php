@@ -4,6 +4,7 @@
     <div
         x-cloak
         x-dialog-content
+        x-direction-portal
         data-slot="dialog-content"
         role="dialog"
         aria-modal="true"
@@ -18,7 +19,7 @@
                 type="button"
                 variant="ghost"
                 size="icon-sm"
-                class="absolute top-2 right-2"
+                class="absolute top-2 end-2"
             >
                 <x-ux::icon name="x" />
                 <span class="sr-only">@lang('Close')</span>

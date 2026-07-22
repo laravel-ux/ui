@@ -1,6 +1,7 @@
 # Dropdown Menu
 
-Use Dropdown Menu for a compact list of actions or settings opened from a trigger. Use Select when choosing a form value and Navigation Menu for primary navigation.
+Use Dropdown Menu for a compact list of actions or settings opened from a trigger. Use Select when choosing a form value
+and Navigation Menu for primary navigation.
 
 ## Composition
 
@@ -24,23 +25,23 @@ x-ux::dropdown-menu
 
 ### `x-ux::dropdown-menu`
 
-| Prop   | Type      | Default | Purpose                    |
-|--------|-----------|---------|----------------------------|
-| `open` | `boolean` | `false` | Set the initial open state.|
+| Prop   | Type      | Default | Purpose                     |
+|--------|-----------|---------|-----------------------------|
+| `open` | `boolean` | `false` | Set the initial open state. |
 
 ### `x-ux::dropdown-menu.trigger`
 
-| Prop       | Type      | Default | Purpose                                   |
-|------------|-----------|---------|-------------------------------------------|
-| `as-child` | `boolean` | `false` | Merge trigger behavior into its one child.|
+| Prop       | Type      | Default | Purpose                                    |
+|------------|-----------|---------|--------------------------------------------|
+| `as-child` | `boolean` | `false` | Merge trigger behavior into its one child. |
 
 ### `x-ux::dropdown-menu.content`
 
-| Prop          | Values                                | Default    | Purpose                              |
-|---------------|---------------------------------------|------------|--------------------------------------|
-| `align`       | `start`, `center`, `end`              | `start`    | Align Content against Trigger.       |
-| `side`        | `top`, `right`, `bottom`, `left`      | `bottom`   | Preferred placement side.            |
-| `side-offset` | number                                | `4`        | Distance from Trigger in pixels.     |
+| Prop          | Values                           | Default  | Purpose                          |
+|---------------|----------------------------------|----------|----------------------------------|
+| `align`       | `start`, `center`, `end`         | `start`  | Align Content against Trigger.   |
+| `side`        | `top`, `right`, `bottom`, `left` | `bottom` | Preferred placement side.        |
+| `side-offset` | number                           | `4`      | Distance from Trigger in pixels. |
 
 ### Item-like parts
 
@@ -51,7 +52,8 @@ x-ux::dropdown-menu
 - Label and Sub Trigger: optional `inset`.
 - Sub Content: `align`, `side`, and `side-offset`, defaulting to `start`, `right`, and `0`.
 
-Group, Separator, Shortcut, and Sub have no custom props. All parts accept standard HTML attributes and Tailwind classes.
+Group, Separator, Shortcut, and Sub have no custom props. All parts accept standard HTML attributes and Tailwind
+classes.
 
 ## Basic Menu
 
@@ -76,7 +78,8 @@ Use `as-child` whenever Trigger contains an `x-ux::button`; this preserves one i
 
 ## State
 
-Use `x-model` for client-owned menu, checkbox, or radio state. Use `wire:model` only when the server must react to the value, with a matching boolean or string property.
+Use `x-model` for client-owned menu, checkbox, or radio state. Use `wire:model` only when the server must react to the
+value, with a matching boolean or string property.
 
 ```blade
 <div x-data="{ compact: false, position: 'bottom' }">
@@ -103,7 +106,8 @@ Use `x-model` for client-owned menu, checkbox, or radio state. Use `wire:model` 
 - Use `variant="destructive"` only for consequential actions such as deleting or revoking.
 - Put related items in Group and separate unrelated groups with Separator.
 - Add an icon only when it improves scanning; keep icon treatment consistent within a group.
-- Use `href` on an Item only when the surrounding application already supports navigational item markup; otherwise handle the action in Livewire or Alpine.
+- Use `href` on an Item only when the surrounding application already supports navigational item markup; otherwise
+  handle the action in Livewire or Alpine.
 
 ## Submenus
 
@@ -125,11 +129,13 @@ Keep submenu depth shallow. When users must compare many options, prefer a Dialo
 - Arrow keys, Home, End, Enter, Space, Escape, Tab, and typeahead are handled by the component.
 - Disabled items are removed from pointer and keyboard selection.
 - Content restores focus to Trigger when it closes.
-- Set `dir="rtl"` directly on teleported Content and each Sub Content; direction on a source wrapper does not cross a teleport boundary.
+- Set `dir="rtl"` directly on teleported Content and each Sub Content; direction on a source wrapper does not cross a
+  teleport boundary.
 - Use `align="end"` for the standard RTL placement shown in the documentation.
 
 ## Avoid
 
+- Do not add slide, zoom, fade, or other transitions to Content or Sub Content.
 - Do not nest a Button inside Trigger without `as-child`.
 - Do not add custom `x-show`, outside-click, focus, or keyboard handlers.
 - Do not use Item as a checkbox or radio; use the stateful item variants.

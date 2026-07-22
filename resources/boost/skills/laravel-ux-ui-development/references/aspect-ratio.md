@@ -13,9 +13,9 @@ x-ux::aspect-ratio
 
 ### `x-ux::aspect-ratio`
 
-| Prop      | Type     | Default | Purpose                              |
-|-----------|----------|---------|--------------------------------------|
-| `ratio*`  | `number` | -       | Set the width divided by the height. |
+| Prop     | Type     | Default | Purpose                              |
+|----------|----------|---------|--------------------------------------|
+| `ratio*` | `number` | -       | Set the width divided by the height. |
 
 The root accepts standard HTML attributes and Tailwind classes.
 
@@ -53,7 +53,8 @@ Portrait:
 </x-ux::aspect-ratio>
 ```
 
-Constrain portrait content with a width utility such as `max-w-sm`; otherwise it can become unnecessarily tall on wide layouts.
+Constrain portrait content with a width utility such as `max-w-sm`; otherwise it can become unnecessarily tall on wide
+layouts.
 
 ## Video and Embedded Content
 
@@ -80,7 +81,8 @@ Pass a numeric PHP or Livewire value:
 </x-ux::aspect-ratio>
 ```
 
-Ensure the value is finite and greater than zero before rendering. Aspect Ratio has no client state and needs no Alpine plugin or `wire:model`.
+Ensure the value is finite and greater than zero before rendering. Aspect Ratio has no client state and needs no Alpine
+plugin or `wire:model`.
 
 ## Sizing and Fitting
 
@@ -88,7 +90,8 @@ Ensure the value is finite and greater than zero before rendering. Aspect Ratio 
 - Use `h-full w-full` on media that must fill the box.
 - Use `object-cover` to crop while filling or `object-contain` to show the complete media.
 - Put `overflow-hidden` and border radius on the root when cropped media must respect rounded corners.
-- Apply a width or max-width utility to the root or an ancestor. Do not hardcode height alongside a ratio unless intentionally overriding it.
+- Apply a width or max-width utility to the root or an ancestor. Do not hardcode height alongside a ratio unless
+  intentionally overriding it.
 
 ## Accessibility and RTL
 

@@ -18,9 +18,9 @@ Title, Description, Icon, and Action are optional. Use only the parts the messag
 
 ### `x-ux::alert`
 
-| Prop      | Type                       | Default     | Purpose                    |
-|-----------|----------------------------|-------------|----------------------------|
-| `variant` | `default\|destructive`      | `default`   | Set the visual importance. |
+| Prop      | Type                   | Default   | Purpose                    |
+|-----------|------------------------|-----------|----------------------------|
+| `variant` | `default\|destructive` | `default` | Set the visual importance. |
 
 All Alert parts accept standard HTML attributes and Tailwind classes. They have no additional component props.
 
@@ -106,7 +106,8 @@ Override semantic colors only when the product already has a matching status pal
 
 ## Livewire Usage
 
-Render server validation or operation feedback conditionally. Provide a stable key if alerts may be replaced in the same location.
+Render server validation or operation feedback conditionally. Provide a stable key if alerts may be replaced in the same
+location.
 
 ```blade
 @if ($saved)
@@ -122,7 +123,8 @@ Alert has no client state and needs no `wire:model` or Alpine plugin.
 ## Accessibility and RTL
 
 - The root already renders `role="alert"`; do not add another live region around it.
-- Use Alert for information important enough to be announced assertively. Use ordinary text for passive, persistent information.
+- Use Alert for information important enough to be announced assertively. Use ordinary text for passive, persistent
+  information.
 - Keep visible text meaningful; never communicate status through color or icon alone.
 - Decorative icons need no separate accessible label when Title or Description names the message.
 - Action buttons must have visible text or an accessible label.

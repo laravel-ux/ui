@@ -5,26 +5,26 @@ An image element with a fallback for representing the user.
 ```blade preview
 <div class="flex flex-row flex-wrap items-center gap-12">
     <x-ux::avatar>
-        <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-        <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+        <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
         <x-ux::avatar.badge />
     </x-ux::avatar>
     <x-ux::avatar class="rounded-lg after:rounded-lg">
-        <x-ux::avatar.image src="https://github.com/evilrabbit.png" alt="@evilrabbit" class="rounded-lg" />
-        <x-ux::avatar.fallback class="rounded-lg">ER</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/laravel-news.png" alt="Laravel News" class="rounded-lg" />
+        <x-ux::avatar.fallback class="rounded-lg">LN</x-ux::avatar.fallback>
     </x-ux::avatar>
     <x-ux::avatar.group>
         <x-ux::avatar>
-            <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-            <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+            <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+            <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
         </x-ux::avatar>
         <x-ux::avatar>
-            <x-ux::avatar.image src="https://github.com/maxleiter.png" alt="@maxleiter" />
-            <x-ux::avatar.fallback>LR</x-ux::avatar.fallback>
+            <x-ux::avatar.image src="https://github.com/livewire.png" alt="Livewire" />
+            <x-ux::avatar.fallback>LW</x-ux::avatar.fallback>
         </x-ux::avatar>
         <x-ux::avatar>
-            <x-ux::avatar.image src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
-            <x-ux::avatar.fallback>ER</x-ux::avatar.fallback>
+            <x-ux::avatar.image src="https://github.com/laravel-news.png" alt="Laravel News" />
+            <x-ux::avatar.fallback>LN</x-ux::avatar.fallback>
         </x-ux::avatar>
         <x-ux::avatar.group-count>+3</x-ux::avatar.group-count>
     </x-ux::avatar.group>
@@ -35,8 +35,8 @@ An image element with a fallback for representing the user.
 
 ```blade
 <x-ux::avatar>
-    <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-    <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+    <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+    <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
 </x-ux::avatar>
 ```
 
@@ -72,8 +72,8 @@ A basic avatar component with an image and a fallback.
 
 ```blade preview
 <x-ux::avatar>
-    <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-    <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+    <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+    <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
 </x-ux::avatar>
 ```
 
@@ -83,8 +83,8 @@ Use `x-ux::avatar.badge` to add a badge to the avatar. The badge is positioned a
 
 ```blade preview
 <x-ux::avatar>
-    <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-    <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+    <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+    <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
     <x-ux::avatar.badge class="bg-green-600 dark:bg-green-800" />
 </x-ux::avatar>
 ```
@@ -95,8 +95,8 @@ You can also use an icon inside `x-ux::avatar.badge`.
 
 ```blade preview
 <x-ux::avatar size="lg">
-    <x-ux::avatar.image src="https://github.com/pranathip.png" alt="@pranathip" />
-    <x-ux::avatar.fallback>PP</x-ux::avatar.fallback>
+    <x-ux::avatar.image src="https://github.com/livewire.png" alt="Livewire" />
+    <x-ux::avatar.fallback>LW</x-ux::avatar.fallback>
     <x-ux::avatar.badge>
         <x-ux::icon name="plus" />
     </x-ux::avatar.badge>
@@ -110,16 +110,16 @@ Use `x-ux::avatar.group` to add a group of avatars.
 ```blade preview
 <x-ux::avatar.group>
     <x-ux::avatar>
-        <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-        <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+        <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
     </x-ux::avatar>
     <x-ux::avatar>
-        <x-ux::avatar.image src="https://github.com/maxleiter.png" alt="@maxleiter" />
-        <x-ux::avatar.fallback>LR</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/livewire.png" alt="Livewire" />
+        <x-ux::avatar.fallback>LW</x-ux::avatar.fallback>
     </x-ux::avatar>
     <x-ux::avatar>
-        <x-ux::avatar.image src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
-        <x-ux::avatar.fallback>ER</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/laravel-news.png" alt="Laravel News" />
+        <x-ux::avatar.fallback>LN</x-ux::avatar.fallback>
     </x-ux::avatar>
 </x-ux::avatar.group>
 ```
@@ -131,16 +131,16 @@ Use `x-ux::avatar.group-count` to add a count to the group.
 ```blade preview
 <x-ux::avatar.group>
     <x-ux::avatar>
-        <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-        <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+        <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
     </x-ux::avatar>
     <x-ux::avatar>
-        <x-ux::avatar.image src="https://github.com/maxleiter.png" alt="@maxleiter" />
-        <x-ux::avatar.fallback>LR</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/livewire.png" alt="Livewire" />
+        <x-ux::avatar.fallback>LW</x-ux::avatar.fallback>
     </x-ux::avatar>
     <x-ux::avatar>
-        <x-ux::avatar.image src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
-        <x-ux::avatar.fallback>ER</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/laravel-news.png" alt="Laravel News" />
+        <x-ux::avatar.fallback>LN</x-ux::avatar.fallback>
     </x-ux::avatar>
     <x-ux::avatar.group-count>+3</x-ux::avatar.group-count>
 </x-ux::avatar.group>
@@ -153,16 +153,16 @@ You can also use an icon inside `x-ux::avatar.group-count`.
 ```blade preview
 <x-ux::avatar.group>
     <x-ux::avatar>
-        <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-        <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+        <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
     </x-ux::avatar>
     <x-ux::avatar>
-        <x-ux::avatar.image src="https://github.com/maxleiter.png" alt="@maxleiter" />
-        <x-ux::avatar.fallback>LR</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/livewire.png" alt="Livewire" />
+        <x-ux::avatar.fallback>LW</x-ux::avatar.fallback>
     </x-ux::avatar>
     <x-ux::avatar>
-        <x-ux::avatar.image src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
-        <x-ux::avatar.fallback>ER</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/laravel-news.png" alt="Laravel News" />
+        <x-ux::avatar.fallback>LN</x-ux::avatar.fallback>
     </x-ux::avatar>
     <x-ux::avatar.group-count>
         <x-ux::icon name="plus" />
@@ -177,16 +177,16 @@ Use the `size` prop to change the size of the avatar.
 ```blade preview
 <div class="flex flex-wrap items-center gap-2">
     <x-ux::avatar size="sm">
-        <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-        <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+        <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
     </x-ux::avatar>
     <x-ux::avatar>
-        <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-        <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+        <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
     </x-ux::avatar>
     <x-ux::avatar size="lg">
-        <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-        <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+        <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
     </x-ux::avatar>
 </div>
 ```
@@ -200,8 +200,8 @@ You can use `x-ux::avatar` as a trigger for a dropdown menu.
     <x-ux::dropdown-menu.trigger as-child>
         <button type="button" class="rounded-full">
             <x-ux::avatar>
-                <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-                <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+                <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+                <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
             </x-ux::avatar>
         </button>
     </x-ux::dropdown-menu.trigger>
@@ -220,12 +220,12 @@ Set `dir="rtl"` when the avatar group is displayed in a right-to-left interface.
 ```blade preview
 <x-ux::avatar.group dir="rtl">
     <x-ux::avatar>
-        <x-ux::avatar.image src="https://github.com/shadcn.png" alt="@shadcn" />
-        <x-ux::avatar.fallback>CN</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/laravel.png" alt="@laravel" />
+        <x-ux::avatar.fallback>LA</x-ux::avatar.fallback>
     </x-ux::avatar>
     <x-ux::avatar>
-        <x-ux::avatar.image src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
-        <x-ux::avatar.fallback>ER</x-ux::avatar.fallback>
+        <x-ux::avatar.image src="https://github.com/laravel-news.png" alt="Laravel News" />
+        <x-ux::avatar.fallback>LN</x-ux::avatar.fallback>
     </x-ux::avatar>
     <x-ux::avatar.group-count>+٣</x-ux::avatar.group-count>
 </x-ux::avatar.group>

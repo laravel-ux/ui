@@ -19,18 +19,19 @@ Repeat `x-ux::accordion.item` for each panel. Keep Trigger and Content inside th
 
 | Prop       | Type            | Default | Purpose                                      |
 |------------|-----------------|---------|----------------------------------------------|
-| `value`    | `string\|array`  | `null`  | Initially open item or items.                |
+| `value`    | `string\|array` | `null`  | Initially open item or items.                |
 | `multiple` | `boolean`       | `false` | Allow more than one item to remain open.     |
 | `disabled` | `boolean`       | `false` | Disable interaction for the whole accordion. |
 
 ### `x-ux::accordion.item`
 
-| Prop       | Type      | Default | Purpose                           |
-|------------|-----------|---------|-----------------------------------|
-| `value*`   | `string`  | -       | Stable unique identifier.         |
-| `disabled` | `boolean` | `false` | Disable interaction for this item.|
+| Prop       | Type      | Default | Purpose                            |
+|------------|-----------|---------|------------------------------------|
+| `value*`   | `string`  | -       | Stable unique identifier.          |
+| `disabled` | `boolean` | `false` | Disable interaction for this item. |
 
-Trigger and Content accept standard HTML attributes and Tailwind classes. The Trigger renders a button and already includes its chevron. Content classes apply to the inner content wrapper.
+Trigger and Content accept standard HTML attributes and Tailwind classes. The Trigger renders a button and already
+includes its chevron. Content classes apply to the inner content wrapper.
 
 ## Single Item Mode
 
@@ -72,7 +73,8 @@ Add `multiple` and pass an array to `value`.
 </x-ux::accordion>
 ```
 
-Do not pass a string as the intended long-term state of a multiple accordion. Use an array, including `[]` when every item starts closed.
+Do not pass a string as the intended long-term state of a multiple accordion. Use an array, including `[]` when every
+item starts closed.
 
 ## Disabled State
 
@@ -107,7 +109,8 @@ public array $openSections = [];
 </x-ux::accordion>
 ```
 
-Use `wire:model.live` only when the server must react immediately to every toggle. Prefer ordinary `wire:model` when the state is client-side UI state.
+Use `wire:model.live` only when the server must react immediately to every toggle. Prefer ordinary `wire:model` when the
+state is client-side UI state.
 
 ## Styling Patterns
 
@@ -140,7 +143,8 @@ Set `dir="rtl"` on the accordion or an ancestor for right-to-left content.
 - Native Enter and Space activation are built in.
 - Disabled items render a disabled Trigger.
 - Content expansion and collapse are handled by the package's Alpine plugin.
-- Do not add custom click handlers merely to toggle a panel. Add application handlers only for additional business behavior.
+- Do not add custom click handlers merely to toggle a panel. Add application handlers only for additional business
+  behavior.
 
 ## Avoid
 

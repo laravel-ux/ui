@@ -4,6 +4,7 @@
     <div
         x-cloak
         x-dialog-content
+        x-direction-portal
         data-slot="sheet-content"
         role="dialog"
         tabindex="-1"
@@ -19,7 +20,7 @@
     >
         {{ $slot }}
         <button
-            class="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none"
+            class="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 end-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none"
             x-dialog-close
         >
             <x-ux::icon name="x" class="size-4" />

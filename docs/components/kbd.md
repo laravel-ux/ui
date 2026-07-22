@@ -24,19 +24,30 @@ Used to display textual user input from keyboard.
 <x-ux::kbd>Ctrl</x-ux::kbd>
 ```
 
+## Composition
+
+```text
+x-ux::kbd
+
+x-ux::kbd.group
+├── x-ux::kbd
+└── x-ux::kbd
+```
+
 ## Examples
 
 ### Group
 
-Use the `<x-ux::kbd.group>` component to group keyboard keys together.
+Use `x-ux::kbd.group` to group keyboard keys together.
 
 ```blade preview
 <div class="flex flex-col items-center gap-4">
     <div class="text-muted-foreground text-sm">
         Use
         <x-ux::kbd.group>
-          <x-ux::kbd>Ctrl + B</x-ux::kbd>
-          <x-ux::kbd>Ctrl + K</x-ux::kbd>
+            <x-ux::kbd>Ctrl</x-ux::kbd>
+            <span>+</span>
+            <x-ux::kbd>K</x-ux::kbd>
         </x-ux::kbd.group>
         to open the command palette
     </div>
@@ -45,14 +56,14 @@ Use the `<x-ux::kbd.group>` component to group keyboard keys together.
 
 ### Button
 
-Use the `<x-ux::kbd>` component inside a `<x-ux::button>` component to display a keyboard key inside a button.
+Use `x-ux::kbd` inside `x-ux::button` to display a keyboard shortcut.
 
 ```blade preview
 <div class="flex flex-wrap items-center gap-4">
-    <x-ux::button variant="outline" size="sm" class="pr-2">
+    <x-ux::button variant="outline" size="sm" class="pe-2">
         Accept <x-ux::kbd>⏎</x-ux::kbd>
     </x-ux::button>
-    <x-ux::button variant="outline" size="sm" class="pr-2">
+    <x-ux::button variant="outline" size="sm" class="pe-2">
         Cancel <x-ux::kbd>Esc</x-ux::kbd>
     </x-ux::button>
 </div>
@@ -60,7 +71,7 @@ Use the `<x-ux::kbd>` component inside a `<x-ux::button>` component to display a
 
 ### Tooltip
 
-You can use the `<x-ux::kbd>` component inside a `<x-ux::tooltip>` component to display a tooltip with a keyboard key.
+Use `x-ux::kbd` inside `x-ux::tooltip` to show a shortcut alongside an action.
 
 ```blade preview
 <div class="flex flex-wrap gap-4">
@@ -99,7 +110,7 @@ You can use the `<x-ux::kbd>` component inside a `<x-ux::tooltip>` component to 
 
 ### Input Group
 
-You can use the `<x-ux::kbd>` component inside a `<x-ux::input-group.addon>` component to display a keyboard key inside an input group.
+Use `x-ux::kbd` inside `x-ux::input-group.addon` to display a shortcut in an input.
 
 ```blade preview
 <div class="flex w-full max-w-xs flex-col gap-6">
@@ -116,11 +127,28 @@ You can use the `<x-ux::kbd>` component inside a `<x-ux::input-group.addon>` com
 </div>
 ```
 
-## Publishing
+## RTL
 
-This component works out of the box, but you can publish its Blade view if you need to make structural or styling changes.
+```blade preview
+<x-ux::direction direction="rtl">
+    <div class="flex flex-col items-center gap-4">
+        <x-ux::kbd.group>
+            <x-ux::kbd>⌘</x-ux::kbd>
+            <x-ux::kbd>⇧</x-ux::kbd>
+            <x-ux::kbd>⌥</x-ux::kbd>
+            <x-ux::kbd>⌃</x-ux::kbd>
+        </x-ux::kbd.group>
+        <x-ux::kbd.group>
+            <x-ux::kbd>Ctrl</x-ux::kbd>
+            <span>+</span>
+            <x-ux::kbd>B</x-ux::kbd>
+        </x-ux::kbd.group>
+    </div>
+</x-ux::direction>
+```
+
+## Publishing
 
 ```shell
 php artisan vendor:publish --tag=ux-kbd --force
 ```
-

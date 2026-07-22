@@ -254,7 +254,7 @@ x-ux::dropdown-menu
     <x-ux::dropdown-menu.trigger as-child>
         <x-ux::button variant="ghost" size="icon" class="rounded-full">
             <x-ux::avatar>
-                <x-ux::avatar.image src="https://github.com/shadcn.png" alt="shadcn" />
+                <x-ux::avatar.image src="https://github.com/laravel.png" alt="laravel" />
                 <x-ux::avatar.fallback>LR</x-ux::avatar.fallback>
             </x-ux::avatar>
         </x-ux::button>
@@ -317,7 +317,7 @@ x-ux::dropdown-menu
 
 ## RTL
 
-To enable RTL support in shadcn/ui, see the [RTL configuration guide](https://ui.shadcn.com/docs/rtl).
+Wrap isolated right-to-left menus with x-ux::direction.
 
 ```blade preview
 <div x-data="{ statusBar: true, activityBar: false, panel: false, position: 'bottom' }">

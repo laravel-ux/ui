@@ -1,78 +1,15 @@
 # Input Group
 
-Display additional information or actions to an input or textarea.
+Add icons, text, buttons, and helper content to inputs.
 
 ```blade preview
-<div class="grid w-full max-w-sm gap-6">
-    <x-ux::input-group>
-        <x-ux::input-group.input placeholder="Search..." />
-        <x-ux::input-group.addon>
-            <x-ux::icon name="search" />
-        </x-ux::input-group.addon>
-        <x-ux::input-group.addon align="inline-end">12 results</x-ux::input-group.addon>
-    </x-ux::input-group>
-    <x-ux::input-group>
-        <x-ux::input-group.input placeholder="example.com" class="!pl-1" />
-        <x-ux::input-group.addon>
-            <x-ux::input-group.text>https://</x-ux::input-group.text>
-        </x-ux::input-group.addon>
-        <x-ux::input-group.addon align="inline-end">
-            <x-ux::tooltip>
-                <x-ux::tooltip.trigger as-child>
-                    <x-ux::input-group.button class="rounded-full" size="icon-xs">
-                        <x-ux::icon name="info" />
-                    </x-ux::input-group.button>
-                </x-ux::tooltip.trigger>
-                <x-ux::tooltip.content>This is content in a tooltip.</x-ux::tooltip.content>
-            </x-ux::tooltip>
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-    <x-ux::input-group>
-        <x-ux::input-group.textarea placeholder="Ask, Search or Chat..." />
-        <x-ux::input-group.addon align="block-end">
-            <x-ux::input-group.button
-                variant="outline"
-                class="rounded-full"
-                size="icon-xs"
-            >
-                <x-ux::icon name="plus" />
-            </x-ux::input-group.button>
-            <x-ux::dropdown-menu>
-                <x-ux::dropdown-menu.trigger as-child>
-                    <x-ux::input-group.button variant="ghost">Auto</x-ux::input-group.button>
-                </x-ux::dropdown-menu.trigger>
-                <x-ux::dropdown-menu.content
-                    side="top"
-                    align="start"
-                    class="[--radius:0.95rem]"
-                >
-                    <x-ux::dropdown-menu.item>Auto</x-ux::dropdown-menu.item>
-                    <x-ux::dropdown-menu.item>Agent</x-ux::dropdown-menu.item>
-                    <x-ux::dropdown-menu.item>Manual</x-ux::dropdown-menu.item>
-                </x-ux::dropdown-menu.content>
-            </x-ux::dropdown-menu>
-            <x-ux::input-group.text class="ml-auto">52% used</x-ux::input-group.text>
-            <x-ux::separator orientation="vertical" class="!h-4" />
-            <x-ux::input-group.button
-                variant="default"
-                class="rounded-full"
-                size="icon-xs"
-                disabled
-            >
-                <x-ux::icon name="arrow-up" />
-                <span class="sr-only">Send</span>
-            </x-ux::input-group.button>
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-    <x-ux::input-group>
-        <x-ux::input-group.input placeholder="@shadcn" />
-        <x-ux::input-group.addon align="inline-end">
-            <div class="bg-primary text-primary-foreground flex size-4 items-center justify-center rounded-full">
-                <x-ux::icon name="check" class="size-3" />
-            </div>
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-</div>
+<x-ux::input-group class="max-w-xs">
+    <x-ux::input-group.input placeholder="Search packages..." />
+    <x-ux::input-group.addon>
+        <x-ux::icon name="search" />
+    </x-ux::input-group.addon>
+    <x-ux::input-group.addon align="inline-end">12 results</x-ux::input-group.addon>
+</x-ux::input-group>
 ```
 
 ## Usage
@@ -83,137 +20,161 @@ Display additional information or actions to an input or textarea.
     <x-ux::input-group.addon>
         <x-ux::icon name="search" />
     </x-ux::input-group.addon>
-    <x-ux::input-group.addon align="inline-end">
-        <x-ux::input-group.button>Search</x-ux::input-group.button>
-    </x-ux::input-group.addon>
 </x-ux::input-group>
 ```
 
-## Examples
+## Composition
 
-### Icon
+```text
+x-ux::input-group
+├── x-ux::input-group.input or x-ux::input-group.textarea
+└── x-ux::input-group.addon
+    ├── x-ux::input-group.button
+    └── x-ux::input-group.text
+```
+
+Place x-ux::input-group.addon after the input or textarea in the markup. Use `align` to control its visual position.
+
+## Align
+
+### inline-start
 
 ```blade preview
-<div class="grid w-full max-w-sm gap-6">
+<x-ux::field class="w-full max-w-sm">
+    <x-ux::field.label for="group-inline-start">Package</x-ux::field.label>
     <x-ux::input-group>
-        <x-ux::input-group.input placeholder="Search..." />
-        <x-ux::input-group.addon>
+        <x-ux::input-group.input id="group-inline-start" placeholder="Search packages..." />
+        <x-ux::input-group.addon align="inline-start">
             <x-ux::icon name="search" />
         </x-ux::input-group.addon>
     </x-ux::input-group>
+    <x-ux::field.description>The icon is positioned at the start.</x-ux::field.description>
+</x-ux::field>
+```
+
+### inline-end
+
+```blade preview
+<x-ux::field class="w-full max-w-sm">
+    <x-ux::field.label for="group-inline-end">Password</x-ux::field.label>
+    <x-ux::input-group>
+        <x-ux::input-group.input id="group-inline-end" type="password" placeholder="Enter password" />
+        <x-ux::input-group.addon align="inline-end">
+            <x-ux::icon name="eye-off" />
+        </x-ux::input-group.addon>
+    </x-ux::input-group>
+    <x-ux::field.description>The icon is positioned at the end.</x-ux::field.description>
+</x-ux::field>
+```
+
+### block-start
+
+```blade preview
+<x-ux::field.group class="w-full max-w-sm">
+    <x-ux::field>
+        <x-ux::field.label for="group-block-start-input">Application</x-ux::field.label>
+        <x-ux::input-group class="h-auto">
+            <x-ux::input-group.input id="group-block-start-input" placeholder="Application name" />
+            <x-ux::input-group.addon align="block-start">
+                <x-ux::input-group.text>Laravel Application</x-ux::input-group.text>
+            </x-ux::input-group.addon>
+        </x-ux::input-group>
+    </x-ux::field>
+    <x-ux::field>
+        <x-ux::field.label for="group-block-start-textarea">Blade template</x-ux::field.label>
+        <x-ux::input-group>
+            <x-ux::input-group.textarea id="group-block-start-textarea" placeholder="Write Blade markup..." class="font-mono" />
+            <x-ux::input-group.addon align="block-start">
+                <x-ux::icon name="file-code" />
+                <x-ux::input-group.text class="font-mono">dashboard.blade.php</x-ux::input-group.text>
+                <x-ux::input-group.button size="icon-xs" class="ms-auto" aria-label="Copy">
+                    <x-ux::icon name="copy" />
+                </x-ux::input-group.button>
+            </x-ux::input-group.addon>
+        </x-ux::input-group>
+    </x-ux::field>
+</x-ux::field.group>
+```
+
+### block-end
+
+```blade preview
+<x-ux::field.group class="w-full max-w-sm">
+    <x-ux::field>
+        <x-ux::field.label for="group-block-end-input">Budget</x-ux::field.label>
+        <x-ux::input-group class="h-auto">
+            <x-ux::input-group.input id="group-block-end-input" placeholder="Enter amount" />
+            <x-ux::input-group.addon align="block-end">
+                <x-ux::input-group.text>USD</x-ux::input-group.text>
+            </x-ux::input-group.addon>
+        </x-ux::input-group>
+    </x-ux::field>
+    <x-ux::field>
+        <x-ux::field.label for="group-block-end-textarea">Comment</x-ux::field.label>
+        <x-ux::input-group>
+            <x-ux::input-group.textarea id="group-block-end-textarea" placeholder="Write a comment..." />
+            <x-ux::input-group.addon align="block-end">
+                <x-ux::input-group.text>0/280</x-ux::input-group.text>
+                <x-ux::input-group.button variant="default" size="sm" class="ms-auto">Post</x-ux::input-group.button>
+            </x-ux::input-group.addon>
+        </x-ux::input-group>
+    </x-ux::field>
+</x-ux::field.group>
+```
+
+## Icon
+
+```blade preview
+<div class="grid w-full max-w-sm gap-4">
+    <x-ux::input-group>
+        <x-ux::input-group.input placeholder="Search documentation..." />
+        <x-ux::input-group.addon><x-ux::icon name="search" /></x-ux::input-group.addon>
+    </x-ux::input-group>
     <x-ux::input-group>
         <x-ux::input-group.input type="email" placeholder="Enter your email" />
-        <x-ux::input-group.addon>
-            <x-ux::icon name="mail" />
-        </x-ux::input-group.addon>
+        <x-ux::input-group.addon><x-ux::icon name="mail" /></x-ux::input-group.addon>
     </x-ux::input-group>
     <x-ux::input-group>
         <x-ux::input-group.input placeholder="Card number" />
-        <x-ux::input-group.addon>
-            <x-ux::icon name="credit-card" />
-        </x-ux::input-group.addon>
-        <x-ux::input-group.addon align="inline-end">
-            <x-ux::icon name="check" />
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-    <x-ux::input-group>
-        <x-ux::input-group.input placeholder="Card number" />
-        <x-ux::input-group.addon align="inline-end">
-            <x-ux::icon name="star" />
-            <x-ux::icon name="info" />
-        </x-ux::input-group.addon>
+        <x-ux::input-group.addon><x-ux::icon name="credit-card" /></x-ux::input-group.addon>
+        <x-ux::input-group.addon align="inline-end"><x-ux::icon name="check" /></x-ux::input-group.addon>
     </x-ux::input-group>
 </div>
 ```
 
-### Text
-
-Display additional text information alongside inputs.
+## Text
 
 ```blade preview
-<div class="grid w-full max-w-sm gap-6">
+<div class="grid w-full max-w-sm gap-4">
     <x-ux::input-group>
-        <x-ux::input-group.addon>
-            <x-ux::input-group.text>$</x-ux::input-group.text>
-        </x-ux::input-group.addon>
         <x-ux::input-group.input placeholder="0.00" />
-        <x-ux::input-group.addon align="inline-end">
-            <x-ux::input-group.text>USD</x-ux::input-group.text>
-        </x-ux::input-group.addon>
+        <x-ux::input-group.addon><x-ux::input-group.text>$</x-ux::input-group.text></x-ux::input-group.addon>
+        <x-ux::input-group.addon align="inline-end"><x-ux::input-group.text>USD</x-ux::input-group.text></x-ux::input-group.addon>
     </x-ux::input-group>
     <x-ux::input-group>
-        <x-ux::input-group.addon>
-            <x-ux::input-group.text>https://</x-ux::input-group.text>
-        </x-ux::input-group.addon>
-        <x-ux::input-group.input placeholder="example.com" class="!pl-0.5" />
-        <x-ux::input-group.addon align="inline-end">
-            <x-ux::input-group.text>.com</x-ux::input-group.text>
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-    <x-ux::input-group>
-        <x-ux::input-group.input placeholder="Enter your username" />
-        <x-ux::input-group.addon align="inline-end">
-            <x-ux::input-group.text>@company.com</x-ux::input-group.text>
-        </x-ux::input-group.addon>
+        <x-ux::input-group.input placeholder="laravel.com" class="ps-0.5!" />
+        <x-ux::input-group.addon><x-ux::input-group.text>https://</x-ux::input-group.text></x-ux::input-group.addon>
+        <x-ux::input-group.addon align="inline-end"><x-ux::input-group.text>/docs</x-ux::input-group.text></x-ux::input-group.addon>
     </x-ux::input-group>
     <x-ux::input-group>
         <x-ux::input-group.textarea placeholder="Enter your message" />
-        <x-ux::input-group.addon align="block-end">
-            <x-ux::input-group.text class="text-muted-foreground text-xs">
-                120 characters left
-            </x-ux::input-group.text>
-        </x-ux::input-group.addon>
+        <x-ux::input-group.addon align="block-end"><x-ux::input-group.text class="text-xs">120 characters left</x-ux::input-group.text></x-ux::input-group.addon>
     </x-ux::input-group>
 </div>
 ```
 
-### Button
-
-Add buttons to perform actions within the input group.
+## Button
 
 ```blade preview
-<div class="grid w-full max-w-sm gap-6">
+<div class="grid w-full max-w-sm gap-4">
     <x-ux::input-group>
-        <x-ux::input-group.input placeholder="https://x.com/shadcn" readOnly />
+        <x-ux::input-group.input value="https://laravel.com/docs" readonly />
         <x-ux::input-group.addon align="inline-end">
-            <x-ux::input-group.button
-                aria-label="Copy"
-                title="Copy"
-                size="icon-xs"
-            >
-                <x-ux::icon name="copy" />
-            </x-ux::input-group.button>
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-    <x-ux::input-group class="[--radius:9999px]">
-        <x-ux::popover>
-            <x-ux::popover.trigger as-child>
-                <x-ux::input-group.addon>
-                    <x-ux::input-group.button variant="secondary" size="icon-xs">
-                        <x-ux::icon name="info" />
-                    </x-ux::input-group.button>
-                </x-ux::input-group.addon>
-            </x-ux::popover.trigger>
-            <x-ux::popover.content
-                align="start"
-                class="flex flex-col gap-1 rounded-xl text-sm"
-            >
-                <p class="font-medium">Your connection is not secure.</p>
-                <p>You should not enter any sensitive information on this site.</p>
-            </x-ux::popover.content>
-        </x-ux::popover>
-        <x-ux::input-group.addon class="text-muted-foreground pl-1.5">
-            https://
-        </x-ux::input-group.addon>
-        <x-ux::input-group.input id="input-secure-19" />
-        <x-ux::input-group.addon align="inline-end">
-            <x-ux::input-group.button size="icon-xs">
-                <x-ux::icon name="star" />
-            </x-ux::input-group.button>
+            <x-ux::input-group.button size="icon-xs" aria-label="Copy"><x-ux::icon name="copy" /></x-ux::input-group.button>
         </x-ux::input-group.addon>
     </x-ux::input-group>
     <x-ux::input-group>
-        <x-ux::input-group.input placeholder="Type to search..." />
+        <x-ux::input-group.input placeholder="Search packages..." />
         <x-ux::input-group.addon align="inline-end">
             <x-ux::input-group.button variant="secondary">Search</x-ux::input-group.button>
         </x-ux::input-group.addon>
@@ -221,257 +182,126 @@ Add buttons to perform actions within the input group.
 </div>
 ```
 
-### Tooltip
+## Kbd
 
-Add tooltips to provide additional context or help.
+```blade preview
+<x-ux::input-group class="max-w-sm">
+    <x-ux::input-group.input placeholder="Search..." />
+    <x-ux::input-group.addon><x-ux::icon name="search" /></x-ux::input-group.addon>
+    <x-ux::input-group.addon align="inline-end"><x-ux::kbd>⌘K</x-ux::kbd></x-ux::input-group.addon>
+</x-ux::input-group>
+```
+
+## Dropdown
+
+```blade preview
+<x-ux::input-group class="max-w-sm">
+    <x-ux::input-group.input placeholder="Enter search query" />
+    <x-ux::input-group.addon align="inline-end">
+        <x-ux::dropdown-menu>
+            <x-ux::dropdown-menu.trigger as-child>
+                <x-ux::input-group.button class="pe-1.5! text-xs">
+                    Search In... <x-ux::icon name="chevron-down" class="size-3" />
+                </x-ux::input-group.button>
+            </x-ux::dropdown-menu.trigger>
+            <x-ux::dropdown-menu.content align="end" :side-offset="8">
+                <x-ux::dropdown-menu.item>Documentation</x-ux::dropdown-menu.item>
+                <x-ux::dropdown-menu.item>Packages</x-ux::dropdown-menu.item>
+                <x-ux::dropdown-menu.item>Changelog</x-ux::dropdown-menu.item>
+            </x-ux::dropdown-menu.content>
+        </x-ux::dropdown-menu>
+    </x-ux::input-group.addon>
+</x-ux::input-group>
+```
+
+## Spinner
 
 ```blade preview
 <div class="grid w-full max-w-sm gap-4">
     <x-ux::input-group>
-        <x-ux::input-group.input placeholder="Enter password" type="password" />
-        <x-ux::input-group.addon align="inline-end">
-            <x-ux::tooltip>
-                <x-ux::tooltip.trigger as-child>
-                    <x-ux::input-group.button
-                        variant="ghost"
-                        aria-label="Info"
-                        size="icon-xs"
-                    >
-                        <x-ux::icon name="info" />
-                    </x-ux::input-group.button>
-                </x-ux::tooltip.trigger>
-                <x-ux::tooltip.content>
-                    <p>Password must be at least 8 characters</p>
-                </x-ux::tooltip.content>
-            </x-ux::tooltip>
-        </x-ux::input-group.addon>
+        <x-ux::input-group.input placeholder="Searching..." />
+        <x-ux::input-group.addon align="inline-end"><x-ux::spinner /></x-ux::input-group.addon>
     </x-ux::input-group>
     <x-ux::input-group>
-        <x-ux::input-group.input placeholder="Your email address" />
-        <x-ux::input-group.addon align="inline-end">
-            <x-ux::tooltip>
-                <x-ux::tooltip.trigger as-child>
-                    <x-ux::input-group.button
-                        variant="ghost"
-                        aria-label="Help"
-                        size="icon-xs"
-                    >
-                        <x-ux::icon name="circle-question-mark" />
-                    </x-ux::input-group.button>
-                </x-ux::tooltip.trigger>
-                <x-ux::tooltip.content>
-                    <p>We'll use this to send you notifications</p>
-                </x-ux::tooltip.content>
-            </x-ux::tooltip>
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-    <x-ux::input-group>
-        <x-ux::input-group.input placeholder="Enter API key" />
-        <x-ux::tooltip>
-            <x-ux::tooltip.trigger as-child>
-                <x-ux::input-group.addon>
-                    <x-ux::input-group.button
-                        variant="ghost"
-                        aria-label="Help"
-                        size="icon-xs"
-                    >
-                        <x-ux::icon name="circle-question-mark" />
-                    </x-ux::input-group.button>
-                </x-ux::input-group.addon>
-            </x-ux::tooltip.trigger>
-            <x-ux::tooltip.content side="left">
-                <p>Click for help with API keys</p>
-            </x-ux::tooltip.content>
-        </x-ux::tooltip>
-    </x-ux::input-group>
-</div>
-```
-
-### Textarea
-
-Input groups also work with textarea components. Use `block-start` or `block-end` for alignment.
-
-```blade preview
-<div class="grid w-full max-w-md gap-4">
-    <x-ux::input-group>
-        <x-ux::input-group.textarea
-            id="textarea-code-32"
-            placeholder="console.log('Hello, world!');"
-            class="min-h-[200px]"
-        />
-        <x-ux::input-group.addon align="block-end" class="border-t">
-            <x-ux::input-group.text>Line 1, Column 1</x-ux::input-group.text>
-            <x-ux::input-group.button size="sm" class="ml-auto" variant="default">
-                Run <x-ux::icon name="corner-down-left" />
-            </x-ux::input-group.button>
-        </x-ux::input-group.addon>
-        <x-ux::input-group.addon align="block-start" class="border-b">
-            <x-ux::input-group.text class="font-mono font-medium">
-                <x-ux::icon name="code" />
-                script.js
-            </x-ux::input-group.text>
-            <x-ux::input-group.button class="ml-auto" size="icon-xs">
-                <x-ux::icon name="refresh-ccw" />
-            </x-ux::input-group.button>
-            <x-ux::input-group.button variant="ghost" size="icon-xs">
-                <x-ux::icon name="copy" />
-            </x-ux::input-group.button>
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-</div>
-```
-
-### Spinner
-
-Show loading indicators while processing input.
-
-```blade preview
-<div class="grid w-full max-w-sm gap-4">
-    <x-ux::input-group data-disabled>
-        <x-ux::input-group.input placeholder="Searching..." disabled />
-        <x-ux::input-group.addon align="inline-end">
-            <x-ux::spinner />
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-    <x-ux::input-group data-disabled>
-        <x-ux::input-group.input placeholder="Processing..." disabled />
-        <x-ux::input-group.addon>
-            <x-ux::spinner />
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-    <x-ux::input-group data-disabled>
-        <x-ux::input-group.input placeholder="Saving changes..." disabled />
+        <x-ux::input-group.input placeholder="Saving changes..." />
         <x-ux::input-group.addon align="inline-end">
             <x-ux::input-group.text>Saving...</x-ux::input-group.text>
             <x-ux::spinner />
         </x-ux::input-group.addon>
     </x-ux::input-group>
-    <x-ux::input-group data-disabled>
-        <x-ux::input-group.input placeholder="Refreshing data..." disabled />
-        <x-ux::input-group.addon>
-            <x-ux::spinner />
-        </x-ux::input-group.addon>
-        <x-ux::input-group.addon align="inline-end">
-            <x-ux::input-group.text class="text-muted-foreground">
-                Please wait...
-            </x-ux::input-group.text>
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
 </div>
 ```
 
-### Label
-
-Add labels within input groups to improve accessibility.
+## Textarea
 
 ```blade preview
-<div class="grid w-full max-w-sm gap-4">
-    <x-ux::input-group>
-        <x-ux::input-group.input id="email" placeholder="shadcn" />
-        <x-ux::input-group.addon>
-            <x-ux::label for="email">@</x-ux::label>
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-    <x-ux::input-group>
-        <x-ux::input-group.input id="email-2" placeholder="shadcn@vercel.com" />
-        <x-ux::input-group.addon align="block-start">
-            <x-ux::label for="email-2" class="text-foreground">
-                Email
-            </x-ux::label>
-            <x-ux::tooltip>
-                <x-ux::tooltip.trigger as-child>
-                    <x-ux::input-group.button
-                        variant="ghost"
-                        aria-label="Help"
-                        class="ml-auto rounded-full"
-                        size="icon-xs"
-                    >
-                        <x-ux::icon name="info" />
-                    </x-ux::input-group.button>
-                </x-ux::tooltip.trigger>
-                <x-ux::tooltip.content>
-                    <p>We'll use this to send you notifications</p>
-                </x-ux::tooltip.content>
-            </x-ux::tooltip>
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-</div>
+<x-ux::input-group class="w-full max-w-md">
+    <x-ux::input-group.textarea placeholder="Write Blade markup here..." class="min-h-48 font-mono" />
+    <x-ux::input-group.addon align="block-start" class="border-b">
+        <x-ux::icon name="file-code" />
+        <x-ux::input-group.text class="font-mono">welcome.blade.php</x-ux::input-group.text>
+        <x-ux::input-group.button size="icon-xs" class="ms-auto" aria-label="Copy"><x-ux::icon name="copy" /></x-ux::input-group.button>
+    </x-ux::input-group.addon>
+    <x-ux::input-group.addon align="block-end" class="border-t">
+        <x-ux::input-group.text>Line 1, Column 1</x-ux::input-group.text>
+        <x-ux::input-group.button size="sm" class="ms-auto" variant="default">
+            Render <x-ux::icon name="corner-down-left" />
+        </x-ux::input-group.button>
+    </x-ux::input-group.addon>
+</x-ux::input-group>
 ```
 
-### Dropdown
+## Custom Input
 
-Pair input groups with dropdown menus for complex interactions.
+Add `data-slot="input-group-control"` to a custom control so the group can reflect its focus and invalid states.
 
 ```blade preview
-<div class="grid w-full max-w-sm gap-4">
-    <x-ux::input-group>
-        <x-ux::input-group.input placeholder="Enter file name" />
-        <x-ux::input-group.addon align="inline-end">
-            <x-ux::dropdown-menu>
-                <x-ux::dropdown-menu.trigger as-child>
-                    <x-ux::input-group.button
-                        variant="ghost"
-                        aria-label="More"
-                        size="icon-xs"
-                    >
-                        <x-ux::icon name="ellipsis" />
-                    </x-ux::input-group.button>
-                </x-ux::dropdown-menu.trigger>
-                <x-ux::dropdown-menu.content align="end">
-                    <x-ux::dropdown-menu.item>Settings</x-ux::dropdown-menu.item>
-                    <x-ux::dropdown-menu.item>Copy path</x-ux::dropdown-menu.item>
-                    <x-ux::dropdown-menu.item>Open location</x-ux::dropdown-menu.item>
-                </x-ux::dropdown-menu.content>
-            </x-ux::dropdown-menu>
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-    <x-ux::input-group class="[--radius:1rem]">
-        <x-ux::input-group.input placeholder="Enter search query" />
-        <x-ux::input-group.addon align="inline-end">
-            <x-ux::dropdown-menu>
-                <x-ux::dropdown-menu.trigger as-child>
-                    <x-ux::input-group.button variant="ghost" class="!pr-1.5 text-xs">
-                        Search In...
-                        <x-ux::icon name="chevron-down" class="size-3" />
-                    </x-ux::input-group.button>
-                </x-ux::dropdown-menu.trigger>
-                <x-ux::dropdown-menu.content align="end" class="[--radius:0.95rem]">
-                    <x-ux::dropdown-menu.item>Documentation</x-ux::dropdown-menu.item>
-                    <x-ux::dropdown-menu.item>Blog Posts</x-ux::dropdown-menu.item>
-                    <x-ux::dropdown-menu.item>Changelog</x-ux::dropdown-menu.item>
-                </x-ux::dropdown-menu.content>
-            </x-ux::dropdown-menu>
-        </x-ux::input-group.addon>
-    </x-ux::input-group>
-</div>
+<x-ux::input-group class="max-w-sm">
+    <x-ux::textarea
+        data-slot="input-group-control"
+        class="min-h-16 flex-1 resize-none rounded-none border-0 bg-transparent shadow-none focus-visible:ring-0"
+        placeholder="Autosize with your Livewire or Alpine behavior..."
+    />
+    <x-ux::input-group.addon align="block-end">
+        <x-ux::input-group.button class="ms-auto" size="sm" variant="default">Submit</x-ux::input-group.button>
+    </x-ux::input-group.addon>
+</x-ux::input-group>
 ```
 
-### Button Group
-
-Wrap input groups with button groups to create prefixes and suffixes.
+## RTL
 
 ```blade preview
-<div class="grid w-full max-w-sm gap-6">
-    <x-ux::button-group>
-        <x-ux::button-group.text as-child>
-            <x-ux::label for="url">https://</x-ux::label>
-        </x-ux::button-group.text>
+<x-ux::direction direction="rtl">
+    <div class="grid w-full max-w-sm gap-4">
         <x-ux::input-group>
-            <x-ux::input-group.input id="url" />
+            <x-ux::input-group.input placeholder="بحث..." />
+            <x-ux::input-group.addon><x-ux::icon name="search" /></x-ux::input-group.addon>
+            <x-ux::input-group.addon align="inline-end">١٢ نتيجة</x-ux::input-group.addon>
+        </x-ux::input-group>
+        <x-ux::input-group>
+            <x-ux::input-group.input placeholder="جاري حفظ التغييرات..." />
             <x-ux::input-group.addon align="inline-end">
-                <x-ux::icon name="link-2" />
+                <x-ux::input-group.text>جاري الحفظ...</x-ux::input-group.text>
+                <x-ux::spinner />
             </x-ux::input-group.addon>
         </x-ux::input-group>
-        <x-ux::button-group.text>.com</x-ux::button-group.text>
-    </x-ux::button-group>
-</div>
+        <x-ux::field>
+            <x-ux::field.label for="input-group-rtl-comment">منطقة النص</x-ux::field.label>
+            <x-ux::input-group>
+                <x-ux::input-group.textarea id="input-group-rtl-comment" placeholder="اكتب تعليقًا..." />
+                <x-ux::input-group.addon align="block-end">
+                    <x-ux::input-group.text>٠/٢٨٠</x-ux::input-group.text>
+                    <x-ux::input-group.button variant="default" size="sm" class="ms-auto">نشر</x-ux::input-group.button>
+                </x-ux::input-group.addon>
+            </x-ux::input-group>
+        </x-ux::field>
+    </div>
+</x-ux::direction>
 ```
 
 ## API Reference
 
 ### x-ux::input-group.addon
-
-Displays icons, text, buttons, or other content alongside inputs.
 
 | Prop    | Type                                                                     | Default          |
 |---------|--------------------------------------------------------------------------|------------------|
@@ -479,17 +309,12 @@ Displays icons, text, buttons, or other content alongside inputs.
 
 ### x-ux::input-group.button
 
-Displays buttons within input groups.
-
 | Prop      | Type                                                                                  | Default   |
 |-----------|---------------------------------------------------------------------------------------|-----------|
 | `size`    | `enum` [?"xs" \| "icon-xs" \| "sm" \| "icon-sm"]                                      | `"xs"`    |
 | `variant` | `enum` [?"default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link"] | `"ghost"` |
 
-
 ## Publishing
-
-This component works out of the box, but you can publish its Blade view if you need to make structural or styling changes.
 
 ```shell
 php artisan vendor:publish --tag=ux-input-group --force

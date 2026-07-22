@@ -28,6 +28,11 @@ export default (Alpine) => {
                         return document.getElementById(this.__dropdownMenuContentId);
                     },
 
+                    __dropdownMenuOwnsTarget(target) {
+                        return target instanceof Element
+                            && target.closest('[data-dropdown-menu-owner]')?.getAttribute('data-dropdown-menu-owner') === this.__dropdownMenuId;
+                    },
+
                     __dropdownMenuSetOpen(open, focus = null) {
                         if (this.__dropdownMenuOpen === open) return;
 
@@ -174,6 +179,7 @@ export default (Alpine) => {
             'x-init'() {
                 el.id ||= this.__dropdownMenuContentId;
                 el.setAttribute('aria-labelledby', this.__dropdownMenuTriggerId);
+                el.setAttribute('data-dropdown-menu-owner', this.__dropdownMenuId);
             },
             'x-show'() {
                 return this.__dropdownMenuOpen;
@@ -190,7 +196,9 @@ export default (Alpine) => {
             'x-on:keydown'($event) {
                 this.__dropdownMenuHandleKeydown($event);
             },
-            'x-on:click.outside'() {
+            'x-on:click.outside'($event) {
+                if (this.__dropdownMenuOwnsTarget($event.target)) return;
+
                 this.__dropdownMenuSetOpen(false);
             },
             [['x-anchor', ...modifiers].join('.')]: '$refs.trigger',
@@ -341,6 +349,7 @@ export default (Alpine) => {
         Alpine.bind(el, {
             'x-init'() {
                 this.__dropdownMenuSubContent = el;
+                el.setAttribute('data-dropdown-menu-owner', this.__dropdownMenuId);
             },
             'x-show'() {
                 return this.__dropdownMenuOpen && this.__dropdownMenuSubOpen;

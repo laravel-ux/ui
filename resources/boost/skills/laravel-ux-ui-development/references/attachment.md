@@ -1,6 +1,8 @@
 # Attachment
 
-Use Attachment to display a selected, uploading, processed, failed, or completed file with optional media, metadata, actions, and a full-card trigger. Attachment is presentational: application code owns upload progress and lifecycle state.
+Use Attachment to display a selected, uploading, processed, failed, or completed file with optional media, metadata,
+actions, and a full-card trigger. Attachment is presentational: application code owns upload progress and lifecycle
+state.
 
 ## Composition
 
@@ -22,17 +24,17 @@ x-ux::attachment.group
 
 ### `x-ux::attachment`
 
-| Prop | Values | Default | Purpose |
-|---|---|---|---|
-| `state` | `idle`, `uploading`, `processing`, `error`, `done` | `done` | Style the current lifecycle state. |
-| `size` | `default`, `sm`, `xs` | `default` | Set the card density. |
-| `orientation` | `horizontal`, `vertical` | `horizontal` | Place media beside or above content. |
+| Prop          | Values                                             | Default      | Purpose                              |
+|---------------|----------------------------------------------------|--------------|--------------------------------------|
+| `state`       | `idle`, `uploading`, `processing`, `error`, `done` | `done`       | Style the current lifecycle state.   |
+| `size`        | `default`, `sm`, `xs`                              | `default`    | Set the card density.                |
+| `orientation` | `horizontal`, `vertical`                           | `horizontal` | Place media beside or above content. |
 
 ### `x-ux::attachment.media`
 
-| Prop | Values | Default | Purpose |
-|---|---|---|---|
-| `variant` | `icon`, `image` | `icon` | Render an icon treatment or an image preview. |
+| Prop      | Values          | Default | Purpose                                       |
+|-----------|-----------------|---------|-----------------------------------------------|
+| `variant` | `icon`, `image` | `icon`  | Render an icon treatment or an image preview. |
 
 ### `x-ux::attachment.action`
 
@@ -40,11 +42,12 @@ Accept Button `variant` and `size`; defaults are `ghost` and `icon-xs`. Pass an 
 
 ### `x-ux::attachment.trigger`
 
-| Prop | Type | Default | Purpose |
-|---|---|---|---|
+| Prop       | Type    | Default | Purpose                                                               |
+|------------|---------|---------|-----------------------------------------------------------------------|
 | `as-child` | boolean | `false` | Merge the overlay trigger into one link or another interactive child. |
 
-Content, Title, Description, Actions, and Group have no custom props. Every part accepts standard HTML attributes and Tailwind classes.
+Content, Title, Description, Actions, and Group have no custom props. Every part accepts standard HTML attributes and
+Tailwind classes.
 
 ## Basic File
 
@@ -102,7 +105,8 @@ Keep a human-readable failure reason in Description when `state="error"`; color 
 
 ## Images and Groups
 
-Use vertical orientation for compact image thumbnails. Provide meaningful image `alt` text, or `alt=""` when the title already conveys the same information.
+Use vertical orientation for compact image thumbnails. Provide meaningful image `alt` text, or `alt=""` when the title
+already conveys the same information.
 
 ```blade
 <x-ux::attachment.group aria-label="Selected images">
@@ -120,7 +124,9 @@ Use vertical orientation for compact image thumbnails. Provide meaningful image 
 </x-ux::attachment.group>
 ```
 
-Group already provides horizontal overflow, snap points, hidden scrollbars, RTL-aware edge fade, and overscroll containment. For a group without interactive children, add `tabindex="0"`, `role="group"`, and an `aria-label` so keyboard users can scroll it.
+Group already provides horizontal overflow, snap points, hidden scrollbars, RTL-aware edge fade, and overscroll
+containment. For a group without interactive children, add `tabindex="0"`, `role="group"`, and an `aria-label` so
+keyboard users can scroll it.
 
 ## Full-card Trigger
 
@@ -140,7 +146,8 @@ Use Trigger for a preview or navigation target. It sits below Actions in the sta
 </x-ux::attachment>
 ```
 
-Use `x-ux::dialog.trigger as-child` around a default Attachment Trigger when opening an `x-ux::dialog`. Do not place a link or button inside the default button without `as-child`.
+Use `x-ux::dialog.trigger as-child` around a default Attachment Trigger when opening an `x-ux::dialog`. Do not place a
+link or button inside the default button without `as-child`.
 
 ## Accessibility and Behavior
 
@@ -148,8 +155,10 @@ Use `x-ux::dialog.trigger as-child` around a default Attachment Trigger when ope
 - Label Trigger with the result of activation, such as “Preview report.pdf” or “Open image.png”.
 - Keep Actions and Trigger as separate interactive elements; do not wrap the entire Attachment in a link.
 - Use `state="error"` together with visible failure text.
-- Preserve filename truncation, but make the full filename available elsewhere when distinguishing similar files matters.
-- Use `aria-live` on an application-owned status region when upload changes must be announced; do not make every Attachment live by default.
+- Preserve filename truncation, but make the full filename available elsewhere when distinguishing similar files
+  matters.
+- Use `aria-live` on an application-owned status region when upload changes must be announced; do not make every
+  Attachment live by default.
 
 ## Avoid
 
