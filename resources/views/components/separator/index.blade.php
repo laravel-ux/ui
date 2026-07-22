@@ -12,6 +12,6 @@
                 fn($attributes) => $attributes->merge(['role' => 'separator', 'aria-orientation' => $orientation])
             )
             ->merge(['data-slot' => 'separator', 'data-orientation' => $orientation])
-            ->tailwindMerge('bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px')
+            ->tailwindMerge('shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px data-[orientation=vertical]:self-stretch')
     }}
 ></div>

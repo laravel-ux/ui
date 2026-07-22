@@ -1,3 +1,4 @@
+@blaze
 <div
     aria-hidden="true"
     data-slot="select-separator"

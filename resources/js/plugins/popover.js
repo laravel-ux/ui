@@ -4,28 +4,27 @@ export default (Alpine) => {
             'x-data'() {
                 return {
                     __isOpen: false,
-                    __syncState() {
-                        if (this.__isOpen) {
-                            this.__lockScroll();
-                            this.__syncDimensions();
-                        } else {
-                            this.__unlockScroll();
-                        }
-                    },
-                    __lockScroll() {
-                        document.body.style.setProperty(
-                            'padding-right',
-                            `${window.innerWidth - document.documentElement.clientWidth}px`,
-                        );
-                        document.body.style.setProperty('overflow', 'hidden');
-                    },
-                    __unlockScroll() {
-                        document.body.style.removeProperty('padding-right');
-                        document.body.style.removeProperty('overflow');
+                    __popoverTrigger: null,
+                    __popoverContent: null,
+                    __popoverSetOpen(open, restoreFocus = false) {
+                        this.__isOpen = open;
+
+                        this.$nextTick(() => {
+                            if (open) {
+                                this.__syncDimensions();
+                                const autofocus = this.__popoverContent?.querySelector('[autofocus]');
+                                (autofocus || this.__popoverContent)?.focus({ preventScroll: true });
+                            } else if (restoreFocus) {
+                                this.__popoverTrigger?.focus({ preventScroll: true });
+                            }
+                        });
                     },
                     __syncDimensions() {
-                        const rect = this.$refs.trigger.getBoundingClientRect();
-                        this.$refs.content.style.setProperty(
+                        const rect = this.__popoverTrigger?.getBoundingClientRect();
+
+                        if (! rect || ! this.__popoverContent) return;
+
+                        this.__popoverContent.style.setProperty(
                             '--popover-trigger-width',
                             `${rect.width}px`,
                         );
@@ -33,9 +32,8 @@ export default (Alpine) => {
                 };
             },
             'x-init'() {
-                this.__syncState();
-                this.$watch('__isOpen', () => {
-                    this.__syncState();
+                this.$watch('__isOpen', (open) => {
+                    if (open) this.$nextTick(() => this.__syncDimensions());
                 });
             },
             'x-modelable': '__isOpen',
@@ -44,9 +42,14 @@ export default (Alpine) => {
 
     Alpine.directive('popover-trigger', (el) => {
         Alpine.bind(el, {
-            'x-ref': 'trigger',
+            'x-init'() {
+                this.__popoverTrigger = el;
+            },
             'x-on:click'() {
-                this.__isOpen = ! this.__isOpen;
+                this.__popoverSetOpen(! this.__isOpen);
+            },
+            'x-bind:data-state'() {
+                return this.__isOpen ? 'open' : 'closed';
             },
             'x-bind:aria-expanded'() {
                 return this.__isOpen;
@@ -55,7 +58,20 @@ export default (Alpine) => {
     });
 
     Alpine.directive('popover-content', (el, { modifiers }) => {
+        const anchorModifiers = [...modifiers];
+        const side = anchorModifiers[0];
+
+        if (side === 'inline-start' || side === 'inline-end') {
+            const direction = el.getAttribute('dir') || document.documentElement.getAttribute('dir') || 'ltr';
+            const isStart = side === 'inline-start';
+
+            anchorModifiers[0] = isStart === (direction === 'rtl') ? 'right' : 'left';
+        }
+
         Alpine.bind(el, {
+            'x-init'() {
+                this.__popoverContent = el;
+            },
             'x-show'() {
                 return this.__isOpen;
             },
@@ -63,9 +79,12 @@ export default (Alpine) => {
                 return this.__isOpen ? 'open' : 'closed';
             },
             'x-on:click.outside'() {
-                this.__isOpen = false;
+                this.__popoverSetOpen(false);
             },
-            [['x-anchor', ...modifiers].join('.')]: '$refs.trigger'
+            'x-on:keydown.escape.stop.prevent'() {
+                this.__popoverSetOpen(false, true);
+            },
+            [['x-anchor', ...anchorModifiers].join('.')]: '__popoverTrigger'
         });
     });
 }

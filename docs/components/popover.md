@@ -5,13 +5,13 @@ Displays rich content in a portal, triggered by a button.
 ```blade preview
 <x-ux::popover>
     <x-ux::popover.trigger as-child>
-        <x-ux::button variant="outline">Open</x-ux::button>
+        <x-ux::button variant="outline">Open popover</x-ux::button>
     </x-ux::popover.trigger>
     <x-ux::popover.content class="w-80">
         <div class="grid gap-4">
             <div class="space-y-2">
                 <h4 class="leading-none font-medium">Dimensions</h4>
-                <p class="text-muted-foreground text-sm">
+                <p class="text-sm text-muted-foreground">
                     Set the dimensions for the layer.
                 </p>
             </div>
@@ -42,34 +42,120 @@ Displays rich content in a portal, triggered by a button.
 
 ```blade
 <x-ux::popover>
-    <x-ux::popover.trigger>Open</x-ux::popover.trigger>
-    <x-ux::popover.content>Place content for the popover here.</x-ux::popover.content>
+    <x-ux::popover.trigger as-child>
+        <x-ux::button variant="outline">Open Popover</x-ux::button>
+    </x-ux::popover.trigger>
+    <x-ux::popover.content>
+        <x-ux::popover.header>
+            <x-ux::popover.title>Title</x-ux::popover.title>
+            <x-ux::popover.description>Description text here.</x-ux::popover.description>
+        </x-ux::popover.header>
+    </x-ux::popover.content>
 </x-ux::popover>
+```
+
+## Composition
+
+```text
+x-ux::popover
+├── x-ux::popover.trigger
+└── x-ux::popover.content
+    └── x-ux::popover.header
+        ├── x-ux::popover.title
+        └── x-ux::popover.description
+```
+
+## Align
+
+Use `align` on `x-ux::popover.content` to control its alignment with the trigger.
+
+```blade preview
+<div class="flex flex-wrap justify-center gap-2">
+    @foreach (['start', 'center', 'end'] as $align)
+        <x-ux::popover>
+            <x-ux::popover.trigger as-child>
+                <x-ux::button variant="outline" class="capitalize">{{ $align }}</x-ux::button>
+            </x-ux::popover.trigger>
+            <x-ux::popover.content :align="$align">
+                <x-ux::popover.header>
+                    <x-ux::popover.title>{{ ucfirst($align) }}</x-ux::popover.title>
+                    <x-ux::popover.description>
+                        This popover is aligned to the {{ $align }} of its trigger.
+                    </x-ux::popover.description>
+                </x-ux::popover.header>
+            </x-ux::popover.content>
+        </x-ux::popover>
+    @endforeach
+</div>
+```
+
+## With Form
+
+```blade preview
+<x-ux::popover>
+    <x-ux::popover.trigger as-child>
+        <x-ux::button variant="outline">Open Popover</x-ux::button>
+    </x-ux::popover.trigger>
+    <x-ux::popover.content class="w-80 gap-4 p-4">
+        <x-ux::popover.header>
+            <x-ux::popover.title>Dimensions</x-ux::popover.title>
+            <x-ux::popover.description>
+                Set the dimensions for the layer.
+            </x-ux::popover.description>
+        </x-ux::popover.header>
+        <x-ux::field.group class="gap-3">
+            <x-ux::field orientation="horizontal">
+                <x-ux::field.label for="width" class="w-1/3">Width</x-ux::field.label>
+                <x-ux::input id="width" value="100%" />
+            </x-ux::field>
+            <x-ux::field orientation="horizontal">
+                <x-ux::field.label for="height" class="w-1/3">Height</x-ux::field.label>
+                <x-ux::input id="height" value="25px" />
+            </x-ux::field>
+        </x-ux::field.group>
+    </x-ux::popover.content>
+</x-ux::popover>
+```
+
+## RTL
+
+```blade preview
+<x-ux::direction direction="rtl">
+    <div class="flex flex-wrap justify-center gap-2">
+        @foreach (['inline-start' => 'بداية السطر', 'top' => 'أعلى', 'bottom' => 'أسفل', 'inline-end' => 'نهاية السطر'] as $side => $label)
+            <x-ux::popover>
+                <x-ux::popover.trigger as-child>
+                    <x-ux::button variant="outline">{{ $label }}</x-ux::button>
+                </x-ux::popover.trigger>
+                <x-ux::popover.content :side="$side" dir="rtl">
+                    <x-ux::popover.header>
+                        <x-ux::popover.title>إعدادات العرض</x-ux::popover.title>
+                        <x-ux::popover.description>يظهر المحتوى من جهة {{ $label }}.</x-ux::popover.description>
+                    </x-ux::popover.header>
+                </x-ux::popover.content>
+            </x-ux::popover>
+        @endforeach
+    </div>
+</x-ux::direction>
 ```
 
 ## API Reference
 
-### x-ux::popover.content
-
-The component that pops out when the popover is open.
-
-| Prop                                                                     | Type                                             | Default    |
-|--------------------------------------------------------------------------|--------------------------------------------------|------------|
-| `side` [?The preferred side of the trigger to render against when open.] | `enum` [?"top" \| "right" \| "bottom" \| "left"] | `"bottom"` |
-| `side-offset` [?The distance in pixels from the trigger.]                | `number`                                         | `4`        |
-| `align` [?The preferred alignment against the trigger.]                  | `enum` [?"start" \| "center" \| "end"]           | `"center"` |
-
 ### x-ux::popover.trigger
 
-The button that toggles the popover.
+| Prop       | Type      | Default |
+|------------|-----------|---------|
+| `as-child` | `boolean` | `false` |
 
-| Prop       | Type                                                                                                              | Default |
-|------------|-------------------------------------------------------------------------------------------------------------------|---------|
-| `as-child` | `boolean` [?Change the default rendered element for the one passed as a child, merging their props and behavior.] | `false` |
+### x-ux::popover.content
+
+| Prop          | Type                                                                          | Default    |
+|---------------|-------------------------------------------------------------------------------|------------|
+| `side`        | `enum` [?"top" \| "right" \| "bottom" \| "left" \| "inline-start" \| "inline-end"] | `"bottom"` |
+| `side-offset` | `number`                                                                      | `4`        |
+| `align`       | `enum` [?"start" \| "center" \| "end"]                                | `"center"` |
 
 ## Publishing
-
-This component works out of the box, but you can publish its Blade view if you need to make structural or styling changes.
 
 ```shell
 php artisan vendor:publish --tag=ux-popover --force

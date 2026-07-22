@@ -1,6 +1,7 @@
+@blaze
 <div
     data-slot="select-label"
-    {{ $attributes->tailwindMerge('text-muted-foreground px-2 py-1.5 text-xs') }}
+    {{ $attributes->tailwindMerge('px-1.5 py-1 text-xs text-muted-foreground') }}
 >
     {{ $slot }}
 </div>

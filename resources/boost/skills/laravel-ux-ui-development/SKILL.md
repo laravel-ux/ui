@@ -42,6 +42,11 @@ Use the package's Blade components instead of recreating shadcn/ui markup or cop
    - Message Scroller: [references/message-scroller.md](references/message-scroller.md)
    - Navigation Menu: [references/navigation-menu.md](references/navigation-menu.md)
    - Pagination: [references/pagination.md](references/pagination.md)
+   - Popover: [references/popover.md](references/popover.md)
+   - Progress: [references/progress.md](references/progress.md)
+   - Radio Group: [references/radio-group.md](references/radio-group.md)
+   - Select: [references/select.md](references/select.md)
+   - Separator: [references/separator.md](references/separator.md)
    - Slider: [references/slider.md](references/slider.md)
    - Table: [references/table.md](references/table.md)
 3. Inspect nearby Blade or Livewire code and follow its spacing, width, typography, and state conventions.

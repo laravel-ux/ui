@@ -1,8 +1,10 @@
+@blaze
 @props(['placeholder' => ''])
 <span
-    x-select-value="{{ $placeholder }}"
+    x-select-value
+    data-placeholder="{{ $placeholder }}"
     data-slot="select-value"
-    {{ $attributes->style('pointer-events:none') }}
+    {{ $attributes->tailwindMerge('flex flex-1 text-left') }}
 >
     {{ $placeholder }}
 </span>
