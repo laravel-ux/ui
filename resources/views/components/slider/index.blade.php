@@ -15,36 +15,36 @@
 @endphp
 <div
     x-data
-    x-slider
+    x-slider="@js([
+        'label' => __('Slider'),
+        'minimumLabel' => __('Minimum'),
+        'maximumLabel' => __('Maximum'),
+    ])"
     data-slot="slider"
     data-values='@json($initialValue)'
     data-min="{{ $min }}"
     data-max="{{ $max }}"
     data-step="{{ $step }}"
     data-orientation="{{ $orientation }}"
-    data-name="{{ $name }}"
     @if($orientation === 'vertical') data-vertical @else data-horizontal @endif
     @if($disabled) data-disabled @endif
     {{ $attributes->tailwindMerge('group/slider relative data-horizontal:w-full data-vertical:h-full') }}
 >
     <div
+        x-slider-control
         data-slot="slider-control"
+        @if($orientation === 'vertical') data-vertical @else data-horizontal @endif
         class="relative flex w-full touch-none items-center select-none data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col group-data-disabled/slider:opacity-50"
-        x-bind:data-horizontal="__orientation === 'horizontal' || null"
-        x-bind:data-vertical="__orientation === 'vertical' || null"
-        x-on:pointerdown="__sliderPointerDown($event)"
     >
         <div
             data-slot="slider-track"
+            @if($orientation === 'vertical') data-vertical @else data-horizontal @endif
             class="relative grow overflow-hidden rounded-full bg-muted select-none data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1"
-            x-bind:data-horizontal="__orientation === 'horizontal' || null"
-            x-bind:data-vertical="__orientation === 'vertical' || null"
         >
             <div
                 data-slot="slider-range"
+                @if($orientation === 'vertical') data-vertical @else data-horizontal @endif
                 class="absolute bg-primary select-none data-horizontal:h-full data-vertical:w-full"
-                x-bind:data-horizontal="__orientation === 'horizontal' || null"
-                x-bind:data-vertical="__orientation === 'vertical' || null"
                 x-bind:style="__sliderRangeStyle()"
             ></div>
         </div>
@@ -54,16 +54,15 @@
                 type="button"
                 role="slider"
                 data-slot="slider-thumb"
+                aria-valuemin="{{ $min }}"
+                aria-valuemax="{{ $max }}"
+                aria-orientation="{{ $orientation }}"
+                @disabled($disabled)
                 class="absolute block size-3 shrink-0 rounded-full border border-ring bg-white transition-[color,box-shadow] select-none after:absolute after:-inset-2 hover:ring-3 hover:ring-ring/50 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-hidden active:ring-3 active:ring-ring/50 disabled:pointer-events-none disabled:opacity-50"
-                x-bind:disabled="__disabled"
-                x-bind:aria-valuemin="__min"
-                x-bind:aria-valuemax="__max"
                 x-bind:aria-valuenow="sliderValue"
-                x-bind:aria-orientation="__orientation"
                 x-bind:aria-label="__sliderThumbLabel(index)"
                 x-bind:style="__sliderThumbStyle(sliderValue)"
-                x-on:pointerdown.stop="__sliderPointerDown($event, index)"
-                x-on:keydown="__sliderKeydown($event, index)"
+                x-slider-thumb="index"
             ></button>
         </template>
     </div>

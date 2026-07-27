@@ -1,13 +1,9 @@
 let tabsId = 0;
+const tabsIds = new WeakMap();
 
 export default (Alpine) => {
     Alpine.directive('tabs', (el) => {
-        el.dataset.tabsId = `tabs-${++tabsId}`;
-
-        const list = [...el.querySelectorAll('[data-slot="tabs-list"]')]
-            .find((item) => item.closest('[data-slot="tabs"]') === el);
-
-        list?.setAttribute('aria-orientation', el.dataset.orientation || 'horizontal');
+        tabsIds.set(el, `tabs-${++tabsId}`);
 
         Alpine.bind(el, {
             'x-data'() {
@@ -75,9 +71,11 @@ export default (Alpine) => {
         const index = triggers.indexOf(el);
         const content = contents.find((item) => item.dataset.value === value);
 
-        el.id ||= `${tabs.dataset.tabsId}-trigger-${index + 1}`;
+        const id = tabsIds.get(tabs);
+
+        el.id ||= `${id}-trigger-${index + 1}`;
         if (content) {
-            content.id ||= `${tabs.dataset.tabsId}-content-${index + 1}`;
+            content.id ||= `${id}-content-${index + 1}`;
             el.setAttribute('aria-controls', content.id);
             content.setAttribute('aria-labelledby', el.id);
         }
@@ -122,4 +120,4 @@ export default (Alpine) => {
             },
         });
     });
-}
+};

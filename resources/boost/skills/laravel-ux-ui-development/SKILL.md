@@ -1,6 +1,6 @@
 ---
 name: laravel-ux-ui-development
-description: "Build and modify Laravel Blade or Livewire interfaces with the laravel-ux/ui component library. Use when a task mentions Laravel UX UI, x-ux Blade components, shadcn-style UI in Laravel, or asks to add, configure, compose, style, debug, or integrate any x-ux:: component such as accordion, alert, dialog, input, select, sheet, sidebar, skeleton, spinner, switch, tabs, textarea, toggle, toggle group, or tooltip."
+description: "Build and modify Laravel Blade or Livewire interfaces with the laravel-ux/ui component library. Use when a task mentions Laravel UX UI, x-ux Blade components, shadcn-style UI in Laravel, or asks to add, configure, compose, style, debug, or integrate any x-ux:: component such as accordion, alert, dialog, input, select, sheet, sidebar, skeleton, spinner, switch, tabs, textarea, toast, toggle, toggle group, or tooltip."
 ---
 
 # Laravel UX UI Development
@@ -55,6 +55,7 @@ Use the package's Blade components instead of recreating shadcn/ui markup or cop
    - Table: [references/table.md](references/table.md)
    - Tabs: [references/tabs.md](references/tabs.md)
    - Textarea: [references/textarea.md](references/textarea.md)
+   - Toast: [references/toast.md](references/toast.md)
    - Toggle: [references/toggle.md](references/toggle.md)
    - Toggle Group: [references/toggle-group.md](references/toggle-group.md)
    - Tooltip: [references/tooltip.md](references/tooltip.md)
@@ -73,7 +74,7 @@ Use the package's Blade components instead of recreating shadcn/ui markup or cop
 - Use `:prop="..."` for PHP expressions, arrays, numbers, and booleans. Use plain attributes for literal strings.
 - Prefer documented component props and composition over custom selectors or replacement markup.
 - Merge layout-specific styling through `class`; the components resolve Tailwind class conflicts.
-- Use `x-ux::icon` with kebab-case Lucide names when an example needs an icon.
+- Follow the `laravel-ux-icons-development` skill for icon names, sizing, placement, accessibility, and RTL behavior.
 - Do not add `x-data`, Alpine directives, ARIA state, or a JS plugin unless the component reference explicitly requires application-owned state.
 - Keep item values stable and unique when a component uses value-based state.
 - Treat package view or plugin changes as component maintenance. For ordinary application work, consume the public API instead.

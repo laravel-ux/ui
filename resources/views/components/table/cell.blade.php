@@ -1,7 +1,7 @@
 @blaze
 <td
     data-slot="table-cell"
-    {{ $attributes->tailwindMerge('p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0') }}
+    {{ $attributes->tailwindMerge('p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pe-0') }}
 >
     {{ $slot }}
 </td>

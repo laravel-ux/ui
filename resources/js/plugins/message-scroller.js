@@ -14,6 +14,7 @@ export default (Alpine) => {
                     __messageScrollerContent: null,
                     __messageScrollerObserver: null,
                     __messageScrollerResizeObserver: null,
+                    __messageScrollerScrollTimer: null,
                     __messageScrollerInitialized: false,
                     __messageScrollerFollowing: false,
                     __messageScrollerAutoScrolling: false,
@@ -112,13 +113,18 @@ export default (Alpine) => {
                         const viewport = this.__messageScrollerViewport;
                         if (! viewport) return false;
 
+                        if (behavior === 'smooth' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                            behavior = 'auto';
+                        }
+
+                        window.clearTimeout(this.__messageScrollerScrollTimer);
                         this.__messageScrollerFollowing = direction === 'end' && this.__messageScrollerConfig.autoScroll;
                         this.__messageScrollerAutoScrolling = behavior === 'smooth';
                         viewport.scrollTo({ top: direction === 'start' ? 0 : this.__messageScrollerEndOffset(), behavior });
                         this.__messageScrollerSetState();
 
                         if (behavior === 'smooth') {
-                            window.setTimeout(() => {
+                            this.__messageScrollerScrollTimer = window.setTimeout(() => {
                                 this.__messageScrollerAutoScrolling = false;
                                 this.__messageScrollerSetState();
                             }, 350);
@@ -217,6 +223,7 @@ export default (Alpine) => {
                         this.__messageScrollerSetState();
                     },
                     destroy() {
+                        window.clearTimeout(this.__messageScrollerScrollTimer);
                         this.__messageScrollerObserver?.disconnect();
                         this.__messageScrollerResizeObserver?.disconnect();
                     },

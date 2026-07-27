@@ -13,7 +13,7 @@ const focusableSelector = [
     '[tabindex]:not([tabindex="-1"])',
 ].join(',');
 
-const lockScroll = () => {
+const lockBodyScroll = () => {
     if (scrollLockCount === 0) {
         bodyOverflow = document.body.style.overflow;
         bodyPaddingRight = document.body.style.paddingRight;
@@ -21,7 +21,9 @@ const lockScroll = () => {
         const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
         if (scrollbarWidth > 0) {
-            document.body.style.paddingRight = `${scrollbarWidth}px`;
+            const paddingRight = Number.parseFloat(getComputedStyle(document.body).paddingRight) || 0;
+
+            document.body.style.paddingRight = `${paddingRight + scrollbarWidth}px`;
         }
 
         document.body.style.overflow = 'hidden';
@@ -30,7 +32,7 @@ const lockScroll = () => {
     scrollLockCount += 1;
 };
 
-const unlockScroll = () => {
+const unlockBodyScroll = () => {
     scrollLockCount = Math.max(0, scrollLockCount - 1);
 
     if (scrollLockCount === 0) {
@@ -39,7 +41,7 @@ const unlockScroll = () => {
     }
 };
 
-const makeInert = (element) => {
+const makeElementInert = (element) => {
     const state = inertElements.get(element) || {
         count: 0,
         inert: element.inert,
@@ -50,7 +52,7 @@ const makeInert = (element) => {
     element.inert = true;
 };
 
-const restoreInert = (element) => {
+const restoreElementInert = (element) => {
     const state = inertElements.get(element);
 
     if (! state) return;
@@ -99,11 +101,11 @@ export default (Alpine) => {
                             && element.tagName !== 'STYLE'
                         ));
 
-                        this.__inertElements.forEach(makeInert);
+                        this.__inertElements.forEach(makeElementInert);
                     },
 
                     __restoreBackground() {
-                        this.__inertElements.forEach(restoreInert);
+                        this.__inertElements.forEach(restoreElementInert);
                         this.__inertElements = [];
                     },
 
@@ -112,7 +114,7 @@ export default (Alpine) => {
                             this.__previouslyFocused = document.activeElement;
 
                             if (! this.__isScrollLocked) {
-                                lockScroll();
+                                lockBodyScroll();
                                 this.__isScrollLocked = true;
                             }
 
@@ -130,7 +132,7 @@ export default (Alpine) => {
                         }
 
                         if (this.__isScrollLocked) {
-                            unlockScroll();
+                            unlockBodyScroll();
                             this.__isScrollLocked = false;
                         }
 
@@ -168,6 +170,15 @@ export default (Alpine) => {
                             event.preventDefault();
                             first.focus();
                         }
+                    },
+
+                    destroy() {
+                        if (this.__isScrollLocked) {
+                            unlockBodyScroll();
+                            this.__isScrollLocked = false;
+                        }
+
+                        this.__restoreBackground();
                     },
                 };
             },
@@ -237,7 +248,8 @@ export default (Alpine) => {
     Alpine.directive('dialog-content', (el) => {
         Alpine.bind(el, {
             'x-init'() {
-                el.id ||= this.__contentId;
+                this.__contentId = el.id || this.__contentId;
+                el.id = this.__contentId;
 
                 this.$nextTick(() => {
                     const title = el.querySelector('[data-slot="dialog-title"]');

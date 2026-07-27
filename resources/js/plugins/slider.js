@@ -15,7 +15,9 @@ const decimalPlaces = (number) => {
 };
 
 export default (Alpine) => {
-    Alpine.directive('slider', (el) => {
+    Alpine.directive('slider', (el, { expression }, { evaluate }) => {
+        const labels = evaluate(expression);
+
         Alpine.bind(el, {
             'x-data'() {
                 const min = Number(el.dataset.min || 0);
@@ -132,9 +134,11 @@ export default (Alpine) => {
                     },
 
                     __sliderThumbLabel(index) {
-                        const label = el.getAttribute('aria-label') || 'Slider';
+                        const label = el.getAttribute('aria-label') || labels.label;
                         if (this.__values.length === 1) return label;
-                        if (this.__values.length === 2) return `${index === 0 ? 'Minimum' : 'Maximum'} ${label}`;
+                        if (this.__values.length === 2) {
+                            return `${index === 0 ? labels.minimumLabel : labels.maximumLabel} ${label}`;
+                        }
                         return `${label} ${index + 1}`;
                     },
                 };
@@ -150,6 +154,25 @@ export default (Alpine) => {
             'x-on:pointermove.window'($event) { this.__sliderPointerMove($event); },
             'x-on:pointerup.window'() { this.__sliderPointerUp(); },
             'x-on:pointercancel.window'() { this.__sliderPointerUp(); },
+        });
+    });
+
+    Alpine.directive('slider-control', (el) => {
+        Alpine.bind(el, {
+            'x-on:pointerdown'(event) {
+                this.__sliderPointerDown(event);
+            },
+        });
+    });
+
+    Alpine.directive('slider-thumb', (el, { expression }, { evaluate }) => {
+        Alpine.bind(el, {
+            'x-on:pointerdown.stop'(event) {
+                this.__sliderPointerDown(event, evaluate(expression));
+            },
+            'x-on:keydown'(event) {
+                this.__sliderKeydown(event, evaluate(expression));
+            },
         });
     });
 };

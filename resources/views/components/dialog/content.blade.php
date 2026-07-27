@@ -21,7 +21,7 @@
                 size="icon-sm"
                 class="absolute top-2 end-2"
             >
-                <x-ux::icon name="x" />
+                <x-ux::icon name="x" aria-hidden="true" />
                 <span class="sr-only">@lang('Close')</span>
             </x-ux::button>
         @endif

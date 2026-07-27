@@ -1,4 +1,5 @@
 @blaze
+@aware(['direction' => null])
 @props([
     'align' => 'start',
     'side' => 'bottom',
@@ -8,7 +9,7 @@
 @teleport('body')
     <div
         x-cloak
-        x-select-content.{{ $position }}.offset.{{ $sideOffset }}
+        x-select-content.{{ $position }}.offset.{{ $sideOffset }}="@js($direction)"
         x-direction-portal
         data-slot="select-content"
         data-side="{{ $side }}"

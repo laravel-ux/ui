@@ -5,5 +5,5 @@
     {{ $attributes->tailwindMerge('gap-1 px-2.5') }}
 >
     <span class="hidden sm:block">{{ $slot->isEmpty() ? __('Next') : $slot }}</span>
-    <x-ux::icon name="chevron-right" data-icon="inline-end" class="rtl:rotate-180" />
+    <x-ux::icon name="chevron-right" data-icon="inline-end" class="rtl:rotate-180" aria-hidden="true" />
 </x-ux::pagination.link>

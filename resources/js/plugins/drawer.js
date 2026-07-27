@@ -13,20 +13,26 @@ const focusableSelector = [
     '[tabindex]:not([tabindex="-1"])',
 ].join(',');
 
-const lockScroll = () => {
+const lockBodyScroll = () => {
     if (scrollLockCount === 0) {
         bodyOverflow = document.body.style.overflow;
         bodyPaddingRight = document.body.style.paddingRight;
+
         const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
-        if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
+        if (scrollbarWidth > 0) {
+            const paddingRight = Number.parseFloat(getComputedStyle(document.body).paddingRight) || 0;
+
+            document.body.style.paddingRight = `${paddingRight + scrollbarWidth}px`;
+        }
+
         document.body.style.overflow = 'hidden';
     }
 
     scrollLockCount += 1;
 };
 
-const unlockScroll = () => {
+const unlockBodyScroll = () => {
     scrollLockCount = Math.max(0, scrollLockCount - 1);
 
     if (scrollLockCount === 0) {
@@ -35,18 +41,24 @@ const unlockScroll = () => {
     }
 };
 
-const makeInert = (element) => {
-    const state = inertElements.get(element) || { count: 0, inert: element.inert };
+const makeElementInert = (element) => {
+    const state = inertElements.get(element) || {
+        count: 0,
+        inert: element.inert,
+    };
+
     state.count += 1;
     inertElements.set(element, state);
     element.inert = true;
 };
 
-const restoreInert = (element) => {
+const restoreElementInert = (element) => {
     const state = inertElements.get(element);
+
     if (! state) return;
 
     state.count -= 1;
+
     if (state.count === 0) {
         element.inert = state.inert;
         inertElements.delete(element);
@@ -151,16 +163,18 @@ export default (Alpine) => {
 
                     __makeBackgroundInert() {
                         if (this.__modal !== true) return;
+                        const owner = this.__drawerId;
+
                         this.__inertElements = [...document.body.children].filter((element) => (
-                            ! element.dataset.drawerOwner
+                            element.dataset.drawerOwner !== owner
                             && element.tagName !== 'SCRIPT'
                             && element.tagName !== 'STYLE'
                         ));
-                        this.__inertElements.forEach(makeInert);
+                        this.__inertElements.forEach(makeElementInert);
                     },
 
                     __restoreBackground() {
-                        this.__inertElements.forEach(restoreInert);
+                        this.__inertElements.forEach(restoreElementInert);
                         this.__inertElements = [];
                     },
 
@@ -169,7 +183,7 @@ export default (Alpine) => {
                             this.__previouslyFocused = document.activeElement;
 
                             if (this.__modal === true && ! this.__isScrollLocked) {
-                                lockScroll();
+                                lockBodyScroll();
                                 this.__isScrollLocked = true;
                             }
 
@@ -192,7 +206,7 @@ export default (Alpine) => {
                         }
 
                         if (this.__isScrollLocked) {
-                            unlockScroll();
+                            unlockBodyScroll();
                             this.__isScrollLocked = false;
                         }
                         this.__restoreBackground();
@@ -359,6 +373,18 @@ export default (Alpine) => {
                         popup.style.setProperty('--drawer-snap-point-offset', `${offset}px`);
                         popup.toggleAttribute('data-expanded', visible >= viewportSize - 1);
                     },
+
+                    destroy() {
+                        this.__optionsObserver?.disconnect();
+
+                        if (this.__isScrollLocked) {
+                            unlockBodyScroll();
+                            this.__isScrollLocked = false;
+                        }
+
+                        this.__restoreBackground();
+                        this.__resetMovement();
+                    },
                 };
             },
             'x-init'() {
@@ -383,9 +409,8 @@ export default (Alpine) => {
         Alpine.bind(el, {
             'x-init'() {
                 this.__trigger = el;
-                el.__drawerOpen = () => this.__setOpen(true);
             },
-            'x-on:click'() { el.__drawerOpen(); },
+            'x-on:click'() { this.__setOpen(true); },
             'x-bind:aria-expanded'() { return this.__isOpen; },
             'x-bind:aria-controls'() { return this.__contentId; },
             'x-bind:data-state'() { return this.__isOpen ? 'open' : 'closed'; },
@@ -405,7 +430,8 @@ export default (Alpine) => {
     Alpine.directive('drawer-content', (el) => {
         Alpine.bind(el, {
             'x-init'() {
-                el.id ||= this.__contentId;
+                this.__contentId = el.id || this.__contentId;
+                el.id = this.__contentId;
                 this.$nextTick(() => {
                     const title = el.querySelector('[data-slot="drawer-title"]');
                     const description = el.querySelector('[data-slot="drawer-description"]');

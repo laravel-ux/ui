@@ -11,7 +11,7 @@ export default (Alpine) => {
 
         if (input) {
             const observer = new MutationObserver(() => {
-                syncInput(el.getAttribute('aria-checked') === 'true');
+                syncInput(Alpine.$data(el).__checked);
             });
 
             observer.observe(el, { attributes: true, attributeFilter: ['disabled'] });
@@ -54,4 +54,4 @@ export default (Alpine) => {
             },
         });
     });
-}
+};

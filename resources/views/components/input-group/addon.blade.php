@@ -1,9 +1,9 @@
 @blaze
 @props(['align' => 'inline-start'])
 <div
+    x-input-group-addon
     role="group"
     data-slot="input-group-addon"
-    x-on:click="if (!$event.target.closest('button')) $el.parentElement.querySelector('input, textarea')?.focus()"
     {{ $attributes
         ->merge(['data-align' => $align])
         ->tailwindMerge([

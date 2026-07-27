@@ -1,4 +1,5 @@
 <button
+    type="button"
     data-sidebar="rail"
     data-slot="sidebar-rail"
     tabindex="-1"

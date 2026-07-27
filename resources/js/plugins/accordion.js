@@ -1,18 +1,24 @@
 export default (Alpine) => {
     let nextId = 0;
+    const itemIds = new WeakMap();
 
     const getItem = (el) => el.closest('[data-slot="accordion-item"]');
     const getItemValue = (el) => getItem(el)?.dataset.value;
     const isItemDisabled = (el) => getItem(el)?.hasAttribute('data-disabled') ?? false;
     const isAccordionDisabled = (el) => el.closest('[data-slot="accordion"]')?.hasAttribute('data-disabled') ?? false;
-    const ensureItemId = (el) => {
+    const ensureItemIds = (el) => {
         const item = getItem(el) ?? el;
 
-        if (! item.dataset.accordionId) {
-            item.dataset.accordionId = `ux-accordion-${++nextId}`;
+        if (! itemIds.has(item)) {
+            const id = `ux-accordion-${++nextId}`;
+
+            itemIds.set(item, {
+                trigger: item.querySelector('[data-slot="accordion-trigger"]')?.id || `${id}-trigger`,
+                content: item.querySelector('[data-slot="accordion-content"]')?.id || `${id}-content`,
+            });
         }
 
-        return item.dataset.accordionId;
+        return itemIds.get(item);
     };
     const parseValue = (value) => {
         try {
@@ -58,7 +64,7 @@ export default (Alpine) => {
     });
 
     Alpine.directive('accordion-item', (el) => {
-        ensureItemId(el);
+        ensureItemIds(el);
 
         Alpine.bind(el, {
             'x-bind:data-state'() {
@@ -71,10 +77,12 @@ export default (Alpine) => {
 
     Alpine.directive('accordion-trigger', (el) => {
         const value = getItemValue(el);
-        const id = ensureItemId(el);
+        const ids = ensureItemIds(el);
 
         Alpine.bind(el, {
-            'id': `${id}-trigger`,
+            'x-init'() {
+                el.id ||= ids.trigger;
+            },
             'x-on:click'() {
                 if (! isAccordionDisabled(el) && ! isItemDisabled(el)) {
                     this.__toggleAccordionItem(value);
@@ -89,7 +97,7 @@ export default (Alpine) => {
                 return this.__isAccordionItemOpen(value);
             },
             'x-bind:aria-controls'() {
-                return `${id}-content`;
+                return ids.content;
             },
             'x-bind:disabled'() {
                 return isAccordionDisabled(el) || isItemDisabled(el);
@@ -99,10 +107,12 @@ export default (Alpine) => {
 
     Alpine.directive('accordion-content', (el) => {
         const value = getItemValue(el);
-        const id = ensureItemId(el);
+        const ids = ensureItemIds(el);
 
         Alpine.bind(el, {
-            'id': `${id}-content`,
+            'x-init'() {
+                el.id ||= ids.content;
+            },
             'x-show'() {
                 return this.__isAccordionItemOpen(value);
             },
@@ -112,9 +122,9 @@ export default (Alpine) => {
                     : 'closed';
             },
             'x-bind:aria-labelledby'() {
-                return `${id}-trigger`;
+                return ids.trigger;
             },
             'x-collapse': '',
         });
     });
-}
+};

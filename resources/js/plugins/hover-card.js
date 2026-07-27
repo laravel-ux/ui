@@ -1,3 +1,17 @@
+const resolveAnchorModifiers = (el, modifiers, direction) => {
+    const resolved = [...modifiers];
+    const side = resolved[0];
+
+    if (side === 'inline-start' || side === 'inline-end') {
+        const isStart = side === 'inline-start';
+        const isRtl = (el.getAttribute('dir') || direction || document.documentElement.dir) === 'rtl';
+
+        resolved[0] = isStart === isRtl ? 'right' : 'left';
+    }
+
+    return resolved;
+};
+
 export default (Alpine) => {
     Alpine.directive('hover-card', (el) => {
         Alpine.bind(el, {
@@ -33,11 +47,15 @@ export default (Alpine) => {
     Alpine.directive('hover-card-trigger', (el) => {
         Alpine.bind(el, {
             'x-ref': 'trigger',
-            'x-on:mouseenter'() {
-                this.__hoverCardOpen(Number(el.dataset.hoverCardDelay));
+            'x-on:pointerenter'(event) {
+                if (event.pointerType !== 'touch') {
+                    this.__hoverCardOpen(Number(el.dataset.hoverCardDelay));
+                }
             },
-            'x-on:mouseleave'() {
-                this.__hoverCardClose(Number(el.dataset.hoverCardCloseDelay));
+            'x-on:pointerleave'(event) {
+                if (event.pointerType !== 'touch') {
+                    this.__hoverCardClose(Number(el.dataset.hoverCardCloseDelay));
+                }
             },
             'x-on:focus'() {
                 this.__hoverCardOpen(Number(el.dataset.hoverCardDelay));
@@ -53,37 +71,30 @@ export default (Alpine) => {
             'x-bind:data-state'() {
                 return this.__isOpen ? 'open' : 'closed';
             },
-            'x-bind:aria-expanded'() {
-                return this.__isOpen;
-            },
         });
     });
 
-    Alpine.directive('hover-card-content', (el, { modifiers }) => {
-        const anchorModifiers = [...modifiers];
-        const side = anchorModifiers[0];
-
-        if (side === 'inline-start' || side === 'inline-end') {
-            const direction = el.getAttribute('dir') || document.documentElement.getAttribute('dir') || 'ltr';
-            const isStart = side === 'inline-start';
-
-            anchorModifiers[0] = isStart === (direction === 'rtl') ? 'right' : 'left';
-        }
+    Alpine.directive('hover-card-content', (el, { expression, modifiers }, { evaluate }) => {
+        const direction = evaluate(expression)
+            || evaluate('typeof __direction === "undefined" ? null : __direction');
+        const anchorModifiers = resolveAnchorModifiers(el, modifiers, direction);
 
         Alpine.bind(el, {
             'x-show'() {
                 return this.__isOpen;
             },
-            'x-on:mouseenter'() {
-                clearTimeout(this.__closeTimer);
+            'x-on:pointerenter'(event) {
+                if (event.pointerType !== 'touch') clearTimeout(this.__closeTimer);
             },
-            'x-on:mouseleave'() {
-                this.__hoverCardClose(Number(this.$refs.trigger.dataset.hoverCardCloseDelay));
+            'x-on:pointerleave'(event) {
+                if (event.pointerType !== 'touch') {
+                    this.__hoverCardClose(Number(this.$refs.trigger.dataset.hoverCardCloseDelay));
+                }
             },
             'x-bind:data-state'() {
                 return this.__isOpen ? 'open' : 'closed';
             },
-            [['x-anchor', ...anchorModifiers].join('.')]: '$refs.trigger'
+            [['x-anchor', ...anchorModifiers].join('.')]: '$refs.trigger',
         });
     });
-}
+};

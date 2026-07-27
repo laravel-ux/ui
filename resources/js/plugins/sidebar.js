@@ -2,10 +2,10 @@ export default (Alpine) => {
     Alpine.directive('sidebar', (el, { expression }) => {
         Alpine.bind(el, {
             'x-bind:data-state'() {
-                return this.__sidebarProviderOpen ? 'expanded' : 'collapsed'
+                return this.__sidebarProviderOpen ? 'expanded' : 'collapsed';
             },
             'x-bind:data-collapsible'() {
-                return this.__sidebarProviderOpen ? false : expression
+                return this.__sidebarProviderOpen ? false : expression;
             },
         });
     });
@@ -20,7 +20,7 @@ export default (Alpine) => {
             },
             'x-modelable': '__sidebarProviderOpen',
             'x-resize.document'() {
-                this.__sidebarProviderIsMobile = this.$width < 768
+                this.__sidebarProviderIsMobile = this.$width < 768;
             },
         });
     });
@@ -32,4 +32,4 @@ export default (Alpine) => {
             },
         });
     });
-}
+};

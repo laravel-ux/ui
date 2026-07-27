@@ -7,7 +7,6 @@
     type="button"
     role="radio"
     data-slot="radio-group-item"
-    x-cloak
     x-radio-group-item
     {{
         $attributes

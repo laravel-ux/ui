@@ -6,5 +6,6 @@
     x-sidebar-trigger
     {{ $attributes->tailwindMerge('size-7') }}
 >
-    <x-ux::icon name="panel-left" />
+    <x-ux::icon name="panel-left" aria-hidden="true" />
+    <span class="sr-only">@lang('Toggle Sidebar')</span>
 </x-ux::button>

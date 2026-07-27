@@ -98,6 +98,7 @@ export default (Alpine) => {
     Alpine.directive('tooltip-content', (el, { modifiers }) => {
         Alpine.bind(el, {
             'x-init'() {
+                this.__tooltipId = el.id || this.__tooltipId;
                 el.id = this.__tooltipId;
             },
             'x-show'() {

@@ -1,7 +1,7 @@
 @blaze
 <nav
     data-slot="breadcrumb"
-    aria-label="breadcrumb"
+    aria-label="@lang('Breadcrumb')"
     {{ $attributes }}
 >
     {{ $slot }}

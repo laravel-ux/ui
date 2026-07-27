@@ -8,12 +8,12 @@
     'form' => null,
 ])
 <button
-    x-cloak
     x-data
     x-switch
     data-slot="switch"
     role="switch"
     type="button"
+    aria-checked="{{ $checked ? 'true' : 'false' }}"
     {{
         $attributes
             ->merge([

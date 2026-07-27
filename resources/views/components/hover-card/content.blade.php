@@ -1,4 +1,5 @@
 @blaze
+@aware(['direction' => null])
 @props([
     'align' => 'center',
     'side' => 'bottom',
@@ -8,7 +9,7 @@
 @teleport('body')
     <div
         x-cloak
-        x-hover-card-content.{{ $position }}.offset.{{ $sideOffset }}
+        x-hover-card-content.{{ $position }}.offset.{{ $sideOffset }}="@js($direction)"
         x-direction-portal
         data-slot="hover-card-content"
         data-side="{{ $side }}"

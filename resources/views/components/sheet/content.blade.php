@@ -22,7 +22,7 @@
                 size="icon-sm"
                 class="absolute top-3 end-3"
             >
-                <x-ux::icon name="x" class="size-4" />
+                <x-ux::icon name="x" class="size-4" aria-hidden="true" />
                 <span class="sr-only">@lang('Close')</span>
             </x-ux::sheet.close>
         @endif

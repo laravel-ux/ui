@@ -1,4 +1,5 @@
 let dropdownMenuId = 0;
+let dropdownMenuSubId = 0;
 
 const itemSelector = [
     '[role="menuitem"]',
@@ -33,14 +34,17 @@ export default (Alpine) => {
                             && target.closest('[data-dropdown-menu-owner]')?.getAttribute('data-dropdown-menu-owner') === this.__dropdownMenuId;
                     },
 
-                    __dropdownMenuSetOpen(open, focus = null) {
+                    __dropdownMenuSetOpen(open, focus = null, restoreFocus = true) {
                         if (this.__dropdownMenuOpen === open) return;
 
                         this.__dropdownMenuOpen = open;
 
                         this.$nextTick(() => {
                             if (! open) {
-                                this.__dropdownMenuTrigger?.focus({ preventScroll: true });
+                                if (restoreFocus) {
+                                    this.__dropdownMenuTrigger?.focus({ preventScroll: true });
+                                }
+
                                 return;
                             }
 
@@ -111,13 +115,16 @@ export default (Alpine) => {
                             this.__dropdownMenuFocusEdge('end', content);
                         } else if (event.key === 'Escape' || event.key === 'Tab') {
                             if (event.key === 'Escape') event.preventDefault();
-                            this.__dropdownMenuSetOpen(false);
+                            this.__dropdownMenuSetOpen(false, null, event.key !== 'Tab');
                         } else if ((event.key === 'Enter' || event.key === ' ') && document.activeElement !== this.__dropdownMenuContent()) {
                             event.preventDefault();
                             document.activeElement?.click();
                         } else if (event.key.length === 1 && ! event.ctrlKey && ! event.metaKey && ! event.altKey) {
                             this.__dropdownMenuSearch(event.key, content);
                         }
+                    },
+                    destroy() {
+                        window.clearTimeout(this.__dropdownMenuTypeaheadTimer);
                     },
                 };
             },
@@ -134,20 +141,13 @@ export default (Alpine) => {
         });
     });
 
-    Alpine.directive('dropdown-menu-close', (el) => {
-        Alpine.bind(el, {
-            'x-on:click'() {
-                if (! el.hasAttribute('data-disabled')) this.__dropdownMenuSetOpen(false);
-            },
-        });
-    });
-
     Alpine.directive('dropdown-menu-trigger', (el) => {
         Alpine.bind(el, {
             'x-ref': 'trigger',
             'x-init'() {
                 this.__dropdownMenuTrigger = el;
-                el.id ||= this.__dropdownMenuTriggerId;
+                this.__dropdownMenuTriggerId = el.id || this.__dropdownMenuTriggerId;
+                el.id = this.__dropdownMenuTriggerId;
             },
             'x-on:click'() {
                 this.__dropdownMenuSetOpen(! this.__dropdownMenuOpen);
@@ -177,7 +177,8 @@ export default (Alpine) => {
         Alpine.bind(el, {
             'x-ref': 'content',
             'x-init'() {
-                el.id ||= this.__dropdownMenuContentId;
+                this.__dropdownMenuContentId = el.id || this.__dropdownMenuContentId;
+                el.id = this.__dropdownMenuContentId;
                 el.setAttribute('aria-labelledby', this.__dropdownMenuTriggerId);
                 el.setAttribute('data-dropdown-menu-owner', this.__dropdownMenuId);
             },
@@ -199,7 +200,7 @@ export default (Alpine) => {
             'x-on:click.outside'($event) {
                 if (this.__dropdownMenuOwnsTarget($event.target)) return;
 
-                this.__dropdownMenuSetOpen(false);
+                this.__dropdownMenuSetOpen(false, null, false);
             },
             [['x-anchor', ...modifiers].join('.')]: '$refs.trigger',
         });
@@ -228,6 +229,7 @@ export default (Alpine) => {
             'x-on:click'() {
                 if (! el.hasAttribute('data-disabled')) {
                     this.__dropdownMenuCheckboxChecked = ! this.__dropdownMenuCheckboxChecked;
+                    this.__dropdownMenuSetOpen(false);
                 }
             },
             'x-bind:aria-checked'() {
@@ -262,7 +264,10 @@ export default (Alpine) => {
                 if (! el.hasAttribute('data-disabled')) el.focus({ preventScroll: true });
             },
             'x-on:click'() {
-                if (! el.hasAttribute('data-disabled')) this.__dropdownMenuRadioGroupValue = expression;
+                if (! el.hasAttribute('data-disabled')) {
+                    this.__dropdownMenuRadioGroupValue = expression;
+                    this.__dropdownMenuSetOpen(false);
+                }
             },
             'x-bind:aria-checked'() {
                 return this.__dropdownMenuRadioGroupValue === expression;
@@ -289,6 +294,8 @@ export default (Alpine) => {
                     __dropdownMenuSubTimer: null,
                     __dropdownMenuSubTrigger: null,
                     __dropdownMenuSubContent: null,
+                    __dropdownMenuSubTriggerId: `dropdown-menu-sub-${++dropdownMenuSubId}-trigger`,
+                    __dropdownMenuSubContentId: `dropdown-menu-sub-${dropdownMenuSubId}-content`,
                     __dropdownMenuOpenSub() {
                         window.clearTimeout(this.__dropdownMenuSubTimer);
                         this.__dropdownMenuSubOpen = true;
@@ -298,6 +305,9 @@ export default (Alpine) => {
                         this.__dropdownMenuSubTimer = window.setTimeout(() => {
                             this.__dropdownMenuSubOpen = false;
                         }, delay);
+                    },
+                    destroy() {
+                        window.clearTimeout(this.__dropdownMenuSubTimer);
                     },
                 };
             },
@@ -310,6 +320,8 @@ export default (Alpine) => {
             'x-ref': 'trigger',
             'x-init'() {
                 this.__dropdownMenuSubTrigger = el;
+                this.__dropdownMenuSubTriggerId = el.id || this.__dropdownMenuSubTriggerId;
+                el.id = this.__dropdownMenuSubTriggerId;
             },
             'x-on:pointermove'() {
                 el.focus({ preventScroll: true });
@@ -333,6 +345,9 @@ export default (Alpine) => {
             'x-bind:aria-expanded'() {
                 return this.__dropdownMenuSubOpen;
             },
+            'x-bind:aria-controls'() {
+                return this.__dropdownMenuSubContentId;
+            },
             'x-bind:data-state'() {
                 return this.__dropdownMenuSubOpen ? 'open' : 'closed';
             },
@@ -349,6 +364,9 @@ export default (Alpine) => {
         Alpine.bind(el, {
             'x-init'() {
                 this.__dropdownMenuSubContent = el;
+                this.__dropdownMenuSubContentId = el.id || this.__dropdownMenuSubContentId;
+                el.id = this.__dropdownMenuSubContentId;
+                el.setAttribute('aria-labelledby', this.__dropdownMenuSubTriggerId);
                 el.setAttribute('data-dropdown-menu-owner', this.__dropdownMenuId);
             },
             'x-show'() {

@@ -1,4 +1,5 @@
 @blaze
+@aware(['direction' => null])
 @props([
     'align' => 'center',
     'side' => 'bottom',
@@ -8,7 +9,7 @@
 @teleport('body')
     <div
         x-cloak
-        x-popover-content.{{ $position }}.offset.{{ $sideOffset }}
+        x-popover-content.{{ $position }}.offset.{{ $sideOffset }}="@js($direction)"
         x-direction-portal
         role="dialog"
         tabindex="-1"

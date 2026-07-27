@@ -2,6 +2,19 @@ let selectId = 0;
 
 const enabledItems = (content) => [...(content?.querySelectorAll('[data-slot="select-item"]') || [])]
     .filter((item) => ! item.hasAttribute('data-disabled') && item.offsetParent !== null);
+const resolveAnchorModifiers = (el, modifiers, direction) => {
+    const resolved = [...modifiers];
+    const side = resolved[0];
+
+    if (side === 'inline-start' || side === 'inline-end') {
+        const isStart = side === 'inline-start';
+        const isRtl = (el.getAttribute('dir') || direction || document.documentElement.dir) === 'rtl';
+
+        resolved[0] = isStart === isRtl ? 'right' : 'left';
+    }
+
+    return resolved;
+};
 
 export default (Alpine) => {
     Alpine.directive('select', (el) => {
@@ -46,13 +59,16 @@ export default (Alpine) => {
                         content.style.setProperty('--select-trigger-height', `${rect.height}px`);
                         content.style.setProperty('--select-available-height', `${Math.max(0, window.innerHeight - 16)}px`);
                     },
-                    __selectSetOpen(open, focus = 'selected') {
+                    __selectSetOpen(open, focus = 'selected', restoreFocus = true) {
                         if (el.dataset.disabled !== undefined || this.__selectTrigger?.disabled) return;
 
                         this.__selectOpen = open;
                         this.$nextTick(() => {
                             if (! open) {
-                                this.__selectTrigger?.focus({ preventScroll: true });
+                                if (restoreFocus) {
+                                    this.__selectTrigger?.focus({ preventScroll: true });
+                                }
+
                                 return;
                             }
 
@@ -100,10 +116,13 @@ export default (Alpine) => {
                             this.__selectChoose(document.activeElement);
                         } else if (event.key === 'Escape' || event.key === 'Tab') {
                             if (event.key === 'Escape') event.preventDefault();
-                            this.__selectSetOpen(false);
+                            this.__selectSetOpen(false, 'selected', event.key !== 'Tab');
                         } else if (event.key.length === 1 && ! event.ctrlKey && ! event.metaKey && ! event.altKey) {
                             this.__selectSearch(event.key);
                         }
+                    },
+                    destroy() {
+                        window.clearTimeout(this.__selectTypeaheadTimer);
                     },
                 };
             },
@@ -131,7 +150,8 @@ export default (Alpine) => {
         Alpine.bind(el, {
             'x-init'() {
                 this.__selectTrigger = el;
-                el.id ||= this.__selectTriggerId;
+                this.__selectTriggerId = el.id || this.__selectTriggerId;
+                el.id = this.__selectTriggerId;
             },
             'x-bind:disabled'() {
                 return disabled || el.closest('[data-slot="select"]')?.dataset.disabled !== undefined;
@@ -150,22 +170,20 @@ export default (Alpine) => {
         });
     });
 
-    Alpine.directive('select-content', (el, { modifiers }) => {
-        const anchorModifiers = [...modifiers];
-        const side = anchorModifiers[0];
-        if (side === 'inline-start' || side === 'inline-end') {
-            const direction = el.getAttribute('dir') || document.documentElement.getAttribute('dir') || 'ltr';
-            anchorModifiers[0] = (side === 'inline-start') === (direction === 'rtl') ? 'right' : 'left';
-        }
+    Alpine.directive('select-content', (el, { expression, modifiers }, { evaluate }) => {
+        const direction = evaluate(expression)
+            || evaluate('typeof __direction === "undefined" ? null : __direction');
+        const anchorModifiers = resolveAnchorModifiers(el, modifiers, direction);
 
         Alpine.bind(el, {
             'x-init'() {
-                el.id ||= this.__selectContentId;
+                this.__selectContentId = el.id || this.__selectContentId;
+                el.id = this.__selectContentId;
                 el.setAttribute('aria-labelledby', this.__selectTriggerId);
             },
             'x-show'() { return this.__selectOpen; },
             'x-on:keydown'(event) { this.__selectHandleKeydown(event); },
-            'x-on:click.outside'() { this.__selectSetOpen(false); },
+            'x-on:click.outside'() { this.__selectSetOpen(false, 'selected', false); },
             'x-bind:data-state'() { return this.__selectOpen ? 'open' : 'closed'; },
             [['x-anchor', ...anchorModifiers].join('.')]: '__selectTrigger',
         });

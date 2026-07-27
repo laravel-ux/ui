@@ -1,9 +1,28 @@
+let popoverId = 0;
+
+const resolveAnchorModifiers = (el, modifiers, direction) => {
+    const resolved = [...modifiers];
+    const side = resolved[0];
+
+    if (side === 'inline-start' || side === 'inline-end') {
+        const isStart = side === 'inline-start';
+        const isRtl = (el.getAttribute('dir') || direction || document.documentElement.dir) === 'rtl';
+
+        resolved[0] = isStart === isRtl ? 'right' : 'left';
+    }
+
+    return resolved;
+};
+
 export default (Alpine) => {
     Alpine.directive('popover', (el) => {
         Alpine.bind(el, {
             'x-data'() {
+                const id = `popover-${++popoverId}`;
+
                 return {
                     __isOpen: false,
+                    __popoverContentId: `${id}-content`,
                     __popoverTrigger: null,
                     __popoverContent: null,
                     __popoverSetOpen(open, restoreFocus = false) {
@@ -54,23 +73,22 @@ export default (Alpine) => {
             'x-bind:aria-expanded'() {
                 return this.__isOpen;
             },
+            'x-bind:aria-controls'() {
+                return this.__popoverContentId;
+            },
         });
     });
 
-    Alpine.directive('popover-content', (el, { modifiers }) => {
-        const anchorModifiers = [...modifiers];
-        const side = anchorModifiers[0];
-
-        if (side === 'inline-start' || side === 'inline-end') {
-            const direction = el.getAttribute('dir') || document.documentElement.getAttribute('dir') || 'ltr';
-            const isStart = side === 'inline-start';
-
-            anchorModifiers[0] = isStart === (direction === 'rtl') ? 'right' : 'left';
-        }
+    Alpine.directive('popover-content', (el, { expression, modifiers }, { evaluate }) => {
+        const direction = evaluate(expression)
+            || evaluate('typeof __direction === "undefined" ? null : __direction');
+        const anchorModifiers = resolveAnchorModifiers(el, modifiers, direction);
 
         Alpine.bind(el, {
             'x-init'() {
                 this.__popoverContent = el;
+                this.__popoverContentId = el.id || this.__popoverContentId;
+                el.id = this.__popoverContentId;
             },
             'x-show'() {
                 return this.__isOpen;

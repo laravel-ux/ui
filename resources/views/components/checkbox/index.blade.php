@@ -8,10 +8,10 @@
 ])
 <button
     x-data
-    x-cloak
     x-checkbox
     type="button"
     role="checkbox"
+    aria-checked="{{ $checked ? 'true' : 'false' }}"
     data-slot="checkbox"
     {{
         $attributes
@@ -24,7 +24,7 @@
     }}
 >
     <x-ux::checkbox.indicator>
-        <x-ux::icon name="check" class="size-3.5" />
+        <x-ux::icon name="check" class="size-3.5" aria-hidden="true" />
     </x-ux::checkbox.indicator>
 </button>
 @if($name)
