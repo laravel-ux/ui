@@ -81,7 +81,7 @@ x-ux::attachment.group
 ## Features
 
 - Icon and image media through `x-ux::attachment.media`
-- Upload states: `idle`, `uploading`, `processing`, `error`, and `done` with built-in styling and a shimmer while in progress
+- Upload states: `idle`, `uploading`, `processing`, `error`, and `done` with built-in styling
 - Three sizes and horizontal or vertical orientation
 - A full-card `x-ux::attachment.trigger` that opens a link or dialog while the actions stay independently clickable
 - Scrollable, snapping `x-ux::attachment.group` with an edge fade
@@ -119,7 +119,7 @@ Set `variant="image"` on `x-ux::attachment.media` and render an `<img>` inside i
 
 ## States
 
-Set `state` to reflect the upload lifecycle. `uploading` and `processing` shimmer the title, and `error` switches to a destructive treatment.
+Set `state` to reflect the upload lifecycle. `error` switches to a destructive treatment.
 
 ```blade preview
 <div class="mx-auto flex w-full max-w-sm flex-col gap-2 py-12">

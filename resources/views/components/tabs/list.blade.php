@@ -1,9 +1,16 @@
 @blaze
+@props(['variant' => 'default'])
 <div
     data-slot="tabs-list"
+    data-variant="{{ $variant }}"
     role="tablist"
-    tabindex="0"
-    {{ $attributes->tailwindMerge('bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]') }}
+    {{ $attributes->tailwindMerge([
+        'group/tabs-list inline-flex w-fit items-center justify-center rounded-lg p-[3px] text-muted-foreground group-data-horizontal/tabs:h-8 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col data-[variant=line]:rounded-none',
+        match ($variant) {
+            'line' => 'gap-1 bg-transparent',
+            default => 'bg-muted',
+        },
+    ]) }}
 >
     {{ $slot }}
 </div>

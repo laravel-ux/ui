@@ -115,12 +115,10 @@ For form fields, use `x-ux::field`, which includes built-in `x-ux::field.label`,
 ## RTL
 
 ```blade preview
-<x-ux::direction direction="rtl">
-    <div class="flex items-center gap-2">
+<div class="flex items-center gap-2" dir="rtl">
         <x-ux::checkbox id="label-terms-rtl" />
         <x-ux::label for="label-terms-rtl">قبول الشروط والأحكام</x-ux::label>
-    </div>
-</x-ux::direction>
+</div>
 ```
 
 ## Publishing

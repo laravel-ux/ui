@@ -110,7 +110,7 @@ Use `side` and `align` on x-ux::hover-card.content to control placement.
                     <x-ux::hover-card.trigger :delay="10" :close-delay="100" as-child>
                         <x-ux::button variant="outline">{{ $label }}</x-ux::button>
                     </x-ux::hover-card.trigger>
-                    <x-ux::hover-card.content :side="$side" dir="rtl" class="flex w-64 flex-col gap-1">
+                    <x-ux::hover-card.content :side="$side" class="flex w-64 flex-col gap-1">
                         <div class="font-semibold">سماعات لاسلكية</div>
                         <div class="text-sm text-muted-foreground">٩٩.٩٩ $</div>
                     </x-ux::hover-card.content>
@@ -123,7 +123,7 @@ Use `side` and `align` on x-ux::hover-card.content to control placement.
                     <x-ux::hover-card.trigger :delay="10" :close-delay="100" as-child>
                         <x-ux::button variant="outline">{{ $label }}</x-ux::button>
                     </x-ux::hover-card.trigger>
-                    <x-ux::hover-card.content :side="$side" dir="rtl" class="flex w-64 flex-col gap-1">
+                    <x-ux::hover-card.content :side="$side" class="flex w-64 flex-col gap-1">
                         <div class="font-semibold">سماعات لاسلكية</div>
                         <div class="text-sm text-muted-foreground">٩٩.٩٩ $</div>
                     </x-ux::hover-card.content>

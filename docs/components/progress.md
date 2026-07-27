@@ -41,20 +41,18 @@ The value is clamped to the range from `0` to `100`.
 Rotate the indicator in right-to-left layouts so progress advances from right to left.
 
 ```blade preview
-<x-ux::direction direction="rtl">
-    <x-ux::field class="w-full max-w-sm" dir="rtl">
-        <x-ux::field.label for="progress-upload-rtl">
-            <span>تقدم الرفع</span>
-            <span class="ms-auto">٦٦%</span>
-        </x-ux::field.label>
-        <x-ux::progress
-            id="progress-upload-rtl"
-            :value="66"
-            aria-label="تقدم الرفع"
-            class="rtl:rotate-180"
-        />
-    </x-ux::field>
-</x-ux::direction>
+<x-ux::field class="w-full max-w-sm" dir="rtl">
+    <x-ux::field.label for="progress-upload-rtl">
+        <span>تقدم الرفع</span>
+        <span class="ms-auto">٦٦%</span>
+    </x-ux::field.label>
+    <x-ux::progress
+        id="progress-upload-rtl"
+        :value="66"
+        aria-label="تقدم الرفع"
+        class="rtl:rotate-180"
+    />
+</x-ux::field>
 ```
 
 ## API Reference

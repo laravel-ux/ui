@@ -22,7 +22,7 @@ export default (Alpine) => {
 
                         if (currentIndex === -1) return;
 
-                        const direction = el.getAttribute('dir') || document.documentElement.getAttribute('dir') || 'ltr';
+                        const direction = getComputedStyle(el).direction;
                         const previousKeys = direction === 'rtl'
                             ? ['ArrowRight', 'ArrowUp']
                             : ['ArrowLeft', 'ArrowUp'];

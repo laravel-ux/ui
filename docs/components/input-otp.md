@@ -206,18 +206,16 @@ Use `x-model` for client-side state or `wire:model` for Livewire state.
 ## RTL
 
 ```blade preview
-<x-ux::direction direction="rtl">
-    <x-ux::field class="mx-auto w-fit">
-        <x-ux::field.label for="input-otp-rtl">رمز التحقق</x-ux::field.label>
-        <x-ux::input-otp id="input-otp-rtl" :length="6" value="123456" dir="rtl">
-            <x-ux::input-otp.group>
-                @foreach (range(0, 5) as $index)
-                    <x-ux::input-otp.slot :index="$index" />
-                @endforeach
-            </x-ux::input-otp.group>
-        </x-ux::input-otp>
-    </x-ux::field>
-</x-ux::direction>
+<x-ux::field class="mx-auto w-fit" dir="rtl">
+    <x-ux::field.label for="input-otp-rtl">رمز التحقق</x-ux::field.label>
+    <x-ux::input-otp id="input-otp-rtl" :length="6" value="123456">
+        <x-ux::input-otp.group>
+            @foreach (range(0, 5) as $index)
+                <x-ux::input-otp.slot :index="$index" />
+            @endforeach
+        </x-ux::input-otp.group>
+    </x-ux::input-otp>
+</x-ux::field>
 ```
 
 ## API Reference

@@ -24,9 +24,27 @@ An indicator that can be used to show a loading state.
 <x-ux::spinner />
 ```
 
-## Examples
+## Customization
 
-### Size
+You can replace the default spinner icon with any other icon by editing the Spinner component.
+
+```blade preview
+<div class="flex items-center gap-4">
+    <x-ux::spinner />
+</div>
+```
+
+```blade
+@blaze
+<x-ux::icon
+    role="status"
+    name="loader-circle"
+    aria-label="@lang('Loading')"
+    {{ $attributes->tailwindMerge('size-4 animate-spin') }}
+/>
+```
+
+## Size
 
 Use the `size-*` utility class to change the size of the spinner.
 
@@ -39,66 +57,51 @@ Use the `size-*` utility class to change the size of the spinner.
 </div>
 ```
 
-### Color
+## Button
 
-Use the `text-*` utility class to change the color of the spinner.
-
-```blade preview
-<div class="flex items-center gap-6">
-    <x-ux::spinner class="size-6 text-red-500" />
-    <x-ux::spinner class="size-6 text-green-500" />
-    <x-ux::spinner class="size-6 text-blue-500" />
-    <x-ux::spinner class="size-6 text-yellow-500" />
-    <x-ux::spinner class="size-6 text-purple-500" />
-</div>
-```
-
-### Button
-
-Add a spinner to a button to indicate a loading state.
-The `<x-ux::button>` will handle the spacing between the spinner and the text.
+Add a spinner to a button to indicate a loading state. Place the `<x-ux::spinner />` before the label with
+`data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.
 
 ```blade preview
-<div class="flex items-center gap-4">
+<div class="flex flex-col items-center gap-4">
     <x-ux::button disabled size="sm">
-        <x-ux::spinner />
+        <x-ux::spinner data-icon="inline-start" />
         Loading...
     </x-ux::button>
     <x-ux::button variant="outline" disabled size="sm">
-        <x-ux::spinner />
+        <x-ux::spinner data-icon="inline-start" />
         Please wait
     </x-ux::button>
     <x-ux::button variant="secondary" disabled size="sm">
-        <x-ux::spinner />
+        <x-ux::spinner data-icon="inline-start" />
         Processing
     </x-ux::button>
 </div>
 ```
 
-### Badge
+## Badge
 
-You can also use a spinner inside a badge.
+Add a spinner to a badge to indicate a loading state. Place the `<x-ux::spinner />` before the label with
+`data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.
 
 ```blade preview
 <div class="flex items-center gap-4 [--radius:1.2rem]">
     <x-ux::badge>
-        <x-ux::spinner />
+        <x-ux::spinner data-icon="inline-start" />
         Syncing
     </x-ux::badge>
     <x-ux::badge variant="secondary">
-        <x-ux::spinner />
+        <x-ux::spinner data-icon="inline-start" />
         Updating
     </x-ux::badge>
     <x-ux::badge variant="outline">
-        <x-ux::spinner />
+        <x-ux::spinner data-icon="inline-start" />
         Processing
     </x-ux::badge>
 </div>
 ```
 
-### Input Group
-
-Input Group can have spinners inside `<x-ux::input-group.addon>`.
+## Input Group
 
 ```blade preview
 <div class="flex w-full max-w-md flex-col gap-4">
@@ -121,7 +124,7 @@ Input Group can have spinners inside `<x-ux::input-group.addon>`.
 </div>
 ```
 
-### Empty
+## Empty
 
 ```blade preview
 <x-ux::empty class="w-full">
@@ -142,28 +145,20 @@ Input Group can have spinners inside `<x-ux::input-group.addon>`.
 </x-ux::empty>
 ```
 
-### Item
-
-Use the spinner inside `<x-ux::item.media>` to indicate a loading state.
+## RTL
 
 ```blade preview
-<div class="flex w-full max-w-md flex-col gap-4 [--radius:1rem]">
-    <x-ux::item variant="outline">
-        <x-ux::item.media variant="icon">
+<div class="flex w-full max-w-xs flex-col gap-4 [--radius:1rem]">
+    <x-ux::item variant="muted" dir="rtl">
+        <x-ux::item.media>
             <x-ux::spinner />
         </x-ux::item.media>
         <x-ux::item.content>
-            <x-ux::item.title>Downloading...</x-ux::item.title>
-            <x-ux::item.description>129 MB / 1000 MB</x-ux::item.description>
+            <x-ux::item.title class="line-clamp-1">جاري معالجة الدفع...</x-ux::item.title>
         </x-ux::item.content>
-        <x-ux::item.actions class="hidden sm:flex">
-            <x-ux::button variant="outline" size="sm">
-                Cancel
-            </x-ux::button>
-        </x-ux::item.actions>
-        <x-ux::item.footer>
-            <x-ux::progress :value=75 />
-        </x-ux::item.footer>
+        <x-ux::item.content class="flex-none justify-end">
+            <span class="text-sm tabular-nums">١٠٠.٠٠ دولار</span>
+        </x-ux::item.content>
     </x-ux::item>
 </div>
 ```

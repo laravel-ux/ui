@@ -211,27 +211,25 @@ You can add an `<x-ux::input-group>` component to the `<x-ux::empty.content>` co
 Wrap an isolated empty state with Direction when its reading direction differs from the page.
 
 ```blade preview
-<x-ux::direction direction="rtl">
-    <x-ux::empty>
-        <x-ux::empty.header>
-            <x-ux::empty.media variant="icon">
-                <x-ux::icon name="folder-code" size="16" />
-            </x-ux::empty.media>
-            <x-ux::empty.title>لا توجد مشاريع بعد</x-ux::empty.title>
-            <x-ux::empty.description>
-                لم تقم بإنشاء أي مشاريع بعد. ابدأ بإنشاء مشروعك الأول.
-            </x-ux::empty.description>
-        </x-ux::empty.header>
-        <x-ux::empty.content class="flex-row justify-center gap-2">
-            <x-ux::button>إنشاء مشروع</x-ux::button>
-            <x-ux::button variant="outline">استيراد مشروع</x-ux::button>
-        </x-ux::empty.content>
-        <x-ux::button href="#" variant="link" class="text-muted-foreground" size="sm">
-            تعرف على المزيد
-            <x-ux::icon name="arrow-up-right" size="14" data-icon="inline-end" class="rtl:rotate-270" />
-        </x-ux::button>
-    </x-ux::empty>
-</x-ux::direction>
+<x-ux::empty dir="rtl">
+    <x-ux::empty.header>
+        <x-ux::empty.media variant="icon">
+            <x-ux::icon name="folder-code" size="16" />
+        </x-ux::empty.media>
+        <x-ux::empty.title>لا توجد مشاريع بعد</x-ux::empty.title>
+        <x-ux::empty.description>
+            لم تقم بإنشاء أي مشاريع بعد. ابدأ بإنشاء مشروعك الأول.
+        </x-ux::empty.description>
+    </x-ux::empty.header>
+    <x-ux::empty.content class="flex-row justify-center gap-2">
+        <x-ux::button>إنشاء مشروع</x-ux::button>
+        <x-ux::button variant="outline">استيراد مشروع</x-ux::button>
+    </x-ux::empty.content>
+    <x-ux::button href="#" variant="link" class="text-muted-foreground" size="sm">
+        تعرف على المزيد
+        <x-ux::icon name="arrow-up-right" size="14" data-icon="inline-end" class="rtl:rotate-270" />
+    </x-ux::button>
+</x-ux::empty>
 ```
 
 ## API Reference

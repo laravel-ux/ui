@@ -107,15 +107,14 @@ Bind an array with `x-model` when the value is controlled by Alpine or Livewire 
 ## RTL
 
 ```blade preview
-<x-ux::direction direction="rtl">
-    <x-ux::slider
-        :default-value="[75]"
-        :max="100"
-        :step="1"
-        aria-label="القيمة"
-        class="mx-auto w-full max-w-xs"
-    />
-</x-ux::direction>
+<x-ux::slider
+    :default-value="[75]"
+    :max="100"
+    :step="1"
+    aria-label="القيمة"
+    class="mx-auto w-full max-w-xs"
+    dir="rtl"
+/>
 ```
 
 ## API Reference

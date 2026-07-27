@@ -1,6 +1,6 @@
 ---
 name: laravel-ux-ui-development
-description: "Build and modify Laravel Blade or Livewire interfaces with the laravel-ux/ui component library. Use when a task mentions Laravel UX UI, x-ux Blade components, shadcn-style UI in Laravel, or asks to add, configure, compose, style, debug, or integrate any x-ux:: component such as accordion, alert, dialog, input, select, sidebar, tabs, or tooltip."
+description: "Build and modify Laravel Blade or Livewire interfaces with the laravel-ux/ui component library. Use when a task mentions Laravel UX UI, x-ux Blade components, shadcn-style UI in Laravel, or asks to add, configure, compose, style, debug, or integrate any x-ux:: component such as accordion, alert, dialog, input, select, sheet, sidebar, skeleton, spinner, switch, tabs, textarea, toggle, toggle group, or tooltip."
 ---
 
 # Laravel UX UI Development
@@ -47,8 +47,17 @@ Use the package's Blade components instead of recreating shadcn/ui markup or cop
    - Radio Group: [references/radio-group.md](references/radio-group.md)
    - Select: [references/select.md](references/select.md)
    - Separator: [references/separator.md](references/separator.md)
+   - Sheet: [references/sheet.md](references/sheet.md)
+   - Skeleton: [references/skeleton.md](references/skeleton.md)
    - Slider: [references/slider.md](references/slider.md)
+   - Spinner: [references/spinner.md](references/spinner.md)
+   - Switch: [references/switch.md](references/switch.md)
    - Table: [references/table.md](references/table.md)
+   - Tabs: [references/tabs.md](references/tabs.md)
+   - Textarea: [references/textarea.md](references/textarea.md)
+   - Toggle: [references/toggle.md](references/toggle.md)
+   - Toggle Group: [references/toggle-group.md](references/toggle-group.md)
+   - Tooltip: [references/tooltip.md](references/tooltip.md)
 3. Inspect nearby Blade or Livewire code and follow its spacing, width, typography, and state conventions.
 4. Compose the documented `x-ux::` components. Pass documented props exactly and put additional Tailwind utilities in `class`.
 5. Preserve built-in accessibility attributes and Alpine behavior. Do not duplicate them with custom JavaScript.

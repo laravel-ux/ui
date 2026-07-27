@@ -1,30 +1,30 @@
 @blaze
-@props(['side' => 'right'])
+@props([
+    'side' => 'right',
+    'showCloseButton' => true,
+])
 @teleport('body')
     <div
         x-cloak
         x-dialog-content
         x-direction-portal
         data-slot="sheet-content"
+        data-side="{{ $side }}"
         role="dialog"
+        aria-modal="true"
         tabindex="-1"
-        {{ $attributes->tailwindMerge(
-            'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500',
-            match ($side) {
-                'left' => 'data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm',
-                'top' => 'data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top-0 h-auto border-b',
-                'bottom' => 'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t',
-                default => 'data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm',
-            },
-        ) }}
+        {{ $attributes->tailwindMerge('fixed z-50 flex flex-col gap-4 bg-popover bg-clip-padding text-sm text-popover-foreground shadow-lg transition duration-200 ease-in-out outline-none data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0 data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:h-auto data-[side=bottom]:border-t data-[side=bottom]:data-open:slide-in-from-bottom-10 data-[side=bottom]:data-closed:slide-out-to-bottom-10 data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:border-r data-[side=left]:data-open:slide-in-from-left-10 data-[side=left]:data-closed:slide-out-to-left-10 data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:border-l data-[side=right]:data-open:slide-in-from-right-10 data-[side=right]:data-closed:slide-out-to-right-10 data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:h-auto data-[side=top]:border-b data-[side=top]:data-open:slide-in-from-top-10 data-[side=top]:data-closed:slide-out-to-top-10 data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm') }}
     >
         {{ $slot }}
-        <button
-            class="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 end-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none"
-            x-dialog-close
-        >
-            <x-ux::icon name="x" class="size-4" />
-            <span class="sr-only">@lang('Close')</span>
-        </button>
+        @if($showCloseButton)
+            <x-ux::sheet.close
+                variant="ghost"
+                size="icon-sm"
+                class="absolute top-3 end-3"
+            >
+                <x-ux::icon name="x" class="size-4" />
+                <span class="sr-only">@lang('Close')</span>
+            </x-ux::sheet.close>
+        @endif
     </div>
 @endteleport

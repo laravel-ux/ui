@@ -41,7 +41,7 @@ Displays a message in a conversation, with optional avatar, header, footer, and 
             </x-ux::bubble>
             <x-ux::marker role="status">
                 <x-ux::marker.icon><x-ux::spinner /></x-ux::marker.icon>
-                <x-ux::marker.content class="shimmer">Taylor is typing...</x-ux::marker.content>
+                <x-ux::marker.content>Taylor is typing...</x-ux::marker.content>
             </x-ux::marker>
         </x-ux::message.content>
     </x-ux::message>

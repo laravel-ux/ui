@@ -127,7 +127,7 @@ Use `align` on `x-ux::popover.content` to control its alignment with the trigger
                 <x-ux::popover.trigger as-child>
                     <x-ux::button variant="outline">{{ $label }}</x-ux::button>
                 </x-ux::popover.trigger>
-                <x-ux::popover.content :side="$side" dir="rtl">
+                <x-ux::popover.content :side="$side">
                     <x-ux::popover.header>
                         <x-ux::popover.title>إعدادات العرض</x-ux::popover.title>
                         <x-ux::popover.description>يظهر المحتوى من جهة {{ $label }}.</x-ux::popover.description>

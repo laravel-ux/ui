@@ -79,16 +79,14 @@ Use horizontal separators between list items.
 ## RTL
 
 ```blade preview
-<x-ux::direction direction="rtl">
-    <div class="flex max-w-sm flex-col gap-4 text-sm" dir="rtl">
+<div class="flex max-w-sm flex-col gap-4 text-sm" dir="rtl">
         <div class="flex flex-col gap-1.5">
             <div class="leading-none font-medium">Laravel UX</div>
             <div class="text-muted-foreground">الأساس لنظام التصميم الخاص بك</div>
         </div>
         <x-ux::separator />
         <div>مجموعة من المكونات المصممة بشكل جميل يمكنك تخصيصها وتوسيعها والبناء عليها.</div>
-    </div>
-</x-ux::direction>
+</div>
 ```
 
 ## API Reference

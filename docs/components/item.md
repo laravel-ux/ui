@@ -521,8 +521,7 @@ To render an item as a link, use `as-child`. The hover and focus states are appl
 ## RTL
 
 ```blade preview
-<x-ux::direction direction="rtl">
-    <div class="flex w-full max-w-md flex-col gap-6">
+<div class="flex w-full max-w-md flex-col gap-6" dir="rtl">
         <x-ux::item variant="outline">
             <x-ux::item.content>
                 <x-ux::item.title>عنصر أساسي</x-ux::item.title>
@@ -545,8 +544,7 @@ To render an item as a link, use `as-child`. The hover and focus states are appl
                 </x-ux::item.actions>
             </a>
         </x-ux::item>
-    </div>
-</x-ux::direction>
+</div>
 ```
 
 ## API Reference

@@ -10,7 +10,7 @@ Displays an inline status, system note, bordered row, or labeled separator in a 
     </x-ux::marker>
     <x-ux::marker role="status">
         <x-ux::marker.icon><x-ux::spinner /></x-ux::marker.icon>
-        <x-ux::marker.content class="shimmer">Thinking...</x-ux::marker.content>
+        <x-ux::marker.content>Thinking...</x-ux::marker.content>
     </x-ux::marker>
     <x-ux::marker variant="separator">
         <x-ux::marker.content>Conversation compacted</x-ux::marker.content>
@@ -68,19 +68,6 @@ x-ux::marker
     <x-ux::marker role="status">
         <x-ux::marker.icon><x-ux::spinner /></x-ux::marker.icon>
         <x-ux::marker.content>Running tests</x-ux::marker.content>
-    </x-ux::marker>
-</div>
-```
-
-## Shimmer
-
-```blade preview
-<div class="flex w-full max-w-sm flex-col gap-4">
-    <x-ux::marker role="status">
-        <x-ux::marker.content class="shimmer">Thinking...</x-ux::marker.content>
-    </x-ux::marker>
-    <x-ux::marker role="status">
-        <x-ux::marker.content class="shimmer">Reading 4 files</x-ux::marker.content>
     </x-ux::marker>
 </div>
 ```

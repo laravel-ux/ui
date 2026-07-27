@@ -113,6 +113,7 @@ In addition to the `size` prop, you can use the `--card-spacing` CSS variable to
 ```blade preview
 <div x-data="{ spacing: '4' }" class="mx-auto grid w-full max-w-sm gap-4">
     <x-ux::toggle-group
+        type="single"
         x-model="spacing"
         value="4"
         variant="outline"

@@ -150,23 +150,21 @@ Wrap each Field in `x-ux::field.label` to make the whole card clickable.
 ## RTL
 
 ```blade preview
-<x-ux::direction direction="rtl">
-    <x-ux::radio-group default-value="comfortable" class="w-fit" dir="rtl">
-        @foreach ([
-            'default' => ['افتراضي', 'تباعد قياسي لمعظم حالات الاستخدام.'],
-            'comfortable' => ['مريح', 'مساحة أكبر بين العناصر.'],
-            'compact' => ['مضغوط', 'تباعد أدنى للتخطيطات الكثيفة.'],
-        ] as $value => [$label, $description])
-            <x-ux::field orientation="horizontal">
-                <x-ux::radio-group.item :value="$value" :id="'rtl-' . $value" />
-                <x-ux::field.content>
-                    <x-ux::field.label :for="'rtl-' . $value">{{ $label }}</x-ux::field.label>
-                    <x-ux::field.description>{{ $description }}</x-ux::field.description>
-                </x-ux::field.content>
-            </x-ux::field>
-        @endforeach
-    </x-ux::radio-group>
-</x-ux::direction>
+<x-ux::radio-group default-value="comfortable" class="w-fit" dir="rtl">
+    @foreach ([
+        'default' => ['افتراضي', 'تباعد قياسي لمعظم حالات الاستخدام.'],
+        'comfortable' => ['مريح', 'مساحة أكبر بين العناصر.'],
+        'compact' => ['مضغوط', 'تباعد أدنى للتخطيطات الكثيفة.'],
+    ] as $value => [$label, $description])
+        <x-ux::field orientation="horizontal">
+            <x-ux::radio-group.item :value="$value" :id="'rtl-' . $value" />
+            <x-ux::field.content>
+                <x-ux::field.label :for="'rtl-' . $value">{{ $label }}</x-ux::field.label>
+                <x-ux::field.description>{{ $description }}</x-ux::field.description>
+            </x-ux::field.content>
+        </x-ux::field>
+    @endforeach
+</x-ux::radio-group>
 ```
 
 ## API Reference

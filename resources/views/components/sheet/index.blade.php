@@ -4,7 +4,7 @@
     x-data
     x-dialog
     data-slot="sheet"
-    {{ $attributes->merge(['data-state' => $open ? 'open' : 'closed'])->tailwindMerge('flex') }}
+    {{ $attributes->merge(['data-state' => $open ? 'open' : 'closed'])->tailwindMerge('contents') }}
 >
     @teleport('body')
         <x-ux::sheet.overlay />

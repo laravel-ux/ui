@@ -18,4 +18,3 @@ Use `x-ux::marker` for compact status updates, system notes, bordered rows, and 
 - Keep `x-ux::marker.icon` decorative; it is hidden from assistive technology.
 - Do not add `role="separator"` to a labeled separator marker.
 - Use `as-child` with a real anchor or button for interactive markers.
-- Apply `shimmer` to `x-ux::marker.content` only for streaming status text.

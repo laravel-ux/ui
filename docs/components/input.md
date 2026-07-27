@@ -221,15 +221,13 @@ Use x-ux::input-group to place icons or text inside an input.
 ## RTL
 
 ```blade preview
-<x-ux::direction direction="rtl">
-    <x-ux::field class="w-full max-w-xs">
-        <x-ux::field.label for="input-rtl-api-key">مفتاح API</x-ux::field.label>
-        <x-ux::input id="input-rtl-api-key" type="password" placeholder="laravel_..." />
-        <x-ux::field.description>
-            مفتاح Laravel Cloud API الخاص بك مشفر ومخزن بأمان.
-        </x-ux::field.description>
-    </x-ux::field>
-</x-ux::direction>
+<x-ux::field class="w-full max-w-xs" dir="rtl">
+    <x-ux::field.label for="input-rtl-api-key">مفتاح API</x-ux::field.label>
+    <x-ux::input id="input-rtl-api-key" type="password" placeholder="laravel_..." />
+    <x-ux::field.description>
+        مفتاح Laravel Cloud API الخاص بك مشفر ومخزن بأمان.
+    </x-ux::field.description>
+</x-ux::field>
 ```
 
 ## Publishing

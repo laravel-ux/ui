@@ -154,10 +154,10 @@ Add `data-invalid` to the Field and `aria-invalid` to the trigger.
 ```blade preview
 <x-ux::direction direction="rtl">
     <x-ux::select>
-        <x-ux::select.trigger class="w-[180px]" dir="rtl">
+        <x-ux::select.trigger class="w-[180px]">
             <x-ux::select.value placeholder="اختر فاكهة" />
         </x-ux::select.trigger>
-        <x-ux::select.content dir="rtl">
+        <x-ux::select.content>
             <x-ux::select.group>
                 <x-ux::select.label>الفواكه</x-ux::select.label>
                 <x-ux::select.item value="apple">تفاحة</x-ux::select.item>

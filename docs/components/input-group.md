@@ -271,8 +271,7 @@ Add `data-slot="input-group-control"` to a custom control so the group can refle
 ## RTL
 
 ```blade preview
-<x-ux::direction direction="rtl">
-    <div class="grid w-full max-w-sm gap-4">
+<div class="grid w-full max-w-sm gap-4" dir="rtl">
         <x-ux::input-group>
             <x-ux::input-group.input placeholder="بحث..." />
             <x-ux::input-group.addon><x-ux::icon name="search" /></x-ux::input-group.addon>
@@ -295,8 +294,7 @@ Add `data-slot="input-group-control"` to a custom control so the group can refle
                 </x-ux::input-group.addon>
             </x-ux::input-group>
         </x-ux::field>
-    </div>
-</x-ux::direction>
+</div>
 ```
 
 ## API Reference

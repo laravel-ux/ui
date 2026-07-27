@@ -1,7 +1,5 @@
 @blaze
 <div
     data-slot="skeleton"
-    aria-hidden="true"
-    tabindex="-1"
-    {{ $attributes->tailwindMerge('bg-accent animate-pulse rounded-md') }}
+    {{ $attributes->tailwindMerge('animate-pulse rounded-md bg-muted') }}
 ></div>

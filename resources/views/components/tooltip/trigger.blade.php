@@ -1,9 +1,9 @@
+@blaze
 @props(['asChild' => false])
 @php
     $attributes = $attributes->merge([
         'x-tooltip-trigger' => '',
         'data-slot' => 'tooltip-trigger',
-        'aria-haspopup' => 'menu',
     ]);
 @endphp
 @if($asChild)
@@ -11,7 +11,7 @@
         {{ $slot }}
     </x-ux::as-child>
 @else
-    <button {{ $attributes }}>
+    <button type="button" {{ $attributes }}>
         {{ $slot }}
     </button>
 @endif

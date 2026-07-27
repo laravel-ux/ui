@@ -130,8 +130,7 @@ Use `x-ux::kbd` inside `x-ux::input-group.addon` to display a shortcut in an inp
 ## RTL
 
 ```blade preview
-<x-ux::direction direction="rtl">
-    <div class="flex flex-col items-center gap-4">
+<div class="flex flex-col items-center gap-4" dir="rtl">
         <x-ux::kbd.group>
             <x-ux::kbd>⌘</x-ux::kbd>
             <x-ux::kbd>⇧</x-ux::kbd>
@@ -143,8 +142,7 @@ Use `x-ux::kbd` inside `x-ux::input-group.addon` to display a shortcut in an inp
             <span>+</span>
             <x-ux::kbd>B</x-ux::kbd>
         </x-ux::kbd.group>
-    </div>
-</x-ux::direction>
+</div>
 ```
 
 ## Publishing

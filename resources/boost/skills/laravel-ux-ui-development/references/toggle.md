@@ -1,16 +1,6 @@
 # Toggle
 
-A two-state button that can be either on or off.
-
-```blade preview
-<x-ux::toggle aria-label="Toggle bookmark" size="sm" variant="outline">
-    <x-ux::icon
-        name="bookmark"
-        class="group-data-[state=on]/toggle:fill-foreground"
-    />
-    Bookmark
-</x-ux::toggle>
-```
+Use `x-ux::toggle` for a two-state button that can be either on or off.
 
 ## Usage
 
@@ -22,7 +12,7 @@ A two-state button that can be either on or off.
 
 Use `variant="outline"` for an outline style.
 
-```blade preview
+```blade
 <div class="flex flex-wrap items-center gap-2">
     <x-ux::toggle variant="outline" aria-label="Toggle italic">
         <x-ux::icon name="italic" />
@@ -37,7 +27,7 @@ Use `variant="outline"` for an outline style.
 
 ## With Text
 
-```blade preview
+```blade
 <x-ux::toggle aria-label="Toggle italic">
     <x-ux::icon name="italic" />
     Italic
@@ -48,7 +38,7 @@ Use `variant="outline"` for an outline style.
 
 Use the `size` prop to change the size of the toggle.
 
-```blade preview
+```blade
 <div class="flex flex-wrap items-center gap-2">
     <x-ux::toggle variant="outline" aria-label="Toggle small" size="sm">
         Small
@@ -64,7 +54,7 @@ Use the `size` prop to change the size of the toggle.
 
 ## Disabled
 
-```blade preview
+```blade
 <div class="flex flex-wrap items-center gap-2">
     <x-ux::toggle aria-label="Toggle disabled" disabled>
         Disabled
@@ -77,7 +67,7 @@ Use the `size` prop to change the size of the toggle.
 
 ## RTL
 
-```blade preview
+```blade
 <x-ux::toggle
     aria-label="Toggle bookmark"
     size="sm"
@@ -94,16 +84,8 @@ Use the `size` prop to change the size of the toggle.
 
 ## API Reference
 
-| Prop      | Type                                  | Default     |
-|-----------|---------------------------------------|-------------|
-| `pressed` | `boolean`                             | `false`     |
-| `variant` | `enum` [?"default" \| "outline"]     | `"default"` |
-| `size`    | `enum` [?"default" \| "sm" \| "lg"] | `"default"` |
-
-## Publishing
-
-This component works out of the box, but you can publish its Blade view if you need to make structural or styling changes.
-
-```shell
-php artisan vendor:publish --tag=ux-toggle --force
-```
+| Prop      | Type                 | Default   |
+|-----------|----------------------|-----------|
+| `pressed` | `boolean`            | `false`   |
+| `variant` | `default`, `outline` | `default` |
+| `size`    | `default`, `sm`, `lg` | `default` |
