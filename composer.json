@@ -7,7 +7,7 @@
         "php": "^8.3",
         "ext-dom": "*",
         "ext-libxml": "*",
-        "illuminate/console": "^13.0",
+        "laravel/framework": "^13.0",
         "livewire/blaze": "^1.0",
         "livewire/livewire": "^4.3",
         "gehrisandro/tailwind-merge-php": "^1.2"

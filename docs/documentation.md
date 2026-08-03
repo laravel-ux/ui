@@ -1,3 +1,12 @@
+- ## Getting Started
+    - [Introduction](introduction.md)
+    - [Installation](installation.md)
+- ## Guides
+    - [Using Components](using-components.md)
+    - [Livewire](livewire.md)
+    - [Styling](styling.md)
+    - [Accessibility](accessibility.md)
+    - [AI Assistance](ai-assistance.md)
 - ## Components
     - [Accordion](components/accordion.md)
     - [Alert](components/alert.md)
