@@ -5,7 +5,7 @@
     data-slot="pagination-link"
     {{
         $attributes
-            ->when($active, fn($attributes) => $attributes->merge(['data-active' => 'true', 'aria-current' => 'page']))
+            ->when($active, fn ($attributes) => $attributes->merge(['data-active' => 'true', 'aria-current' => 'page']))
             ->merge(['size' => 'icon'])
     }}
 >

@@ -27,17 +27,17 @@ class UiServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ux');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'ux');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                InstallCommand::class
+                InstallCommand::class,
             ]);
             $this->bootPublishes();
         }
 
         Blade::component('ux::as-child', AsChild::class);
-        Blade::anonymousComponentPath(__DIR__ . '/../resources/views/components', 'ux');
+        Blade::anonymousComponentPath(__DIR__.'/../resources/views/components', 'ux');
 
         ComponentAttributeBag::mixin(new ComponentAttributeBugMixin);
     }
@@ -46,11 +46,11 @@ class UiServiceProvider extends ServiceProvider
     {
         $components = array_map(
             'basename',
-            glob(__DIR__ . '/../resources/views/components/*', GLOB_ONLYDIR),
+            glob(__DIR__.'/../resources/views/components/*', GLOB_ONLYDIR),
         );
 
         foreach ($components as $component) {
-            $source = __DIR__ . "/../resources/views/components/{$component}";
+            $source = __DIR__."/../resources/views/components/{$component}";
             $target = resource_path("views/vendor/ux/components/{$component}");
 
             $this->publishes([$source => $target], "ux-{$component}");

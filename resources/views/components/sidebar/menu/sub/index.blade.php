@@ -3,7 +3,7 @@
     data-sidebar="menu-sub"
     {{
         $attributes->tailwindMerge([
-            'border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l px-2.5 py-0.5',
+            'border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-s px-2.5 py-0.5 rtl:-translate-x-px',
             'group-data-[collapsible=icon]:hidden',
         ])
     }}

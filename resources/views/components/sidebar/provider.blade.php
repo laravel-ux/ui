@@ -14,6 +14,7 @@
             ->style([
                 "--sidebar-width: {$width}",
                 "--sidebar-width-icon: {$widthIcon}",
+                "--sidebar-width-mobile: {$widthMobile}",
             ])
     }}
 >

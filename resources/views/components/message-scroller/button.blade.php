@@ -18,7 +18,7 @@
     {{ $attributes->tailwindMerge('absolute bottom-4 start-1/2 z-10 -translate-x-1/2 rounded-full bg-background shadow-md transition-opacity data-[active=false]:pointer-events-none data-[active=false]:opacity-0 rtl:translate-x-1/2') }}
 >
     {{ $slot->isEmpty() ? null : $slot }}
-    @if($slot->isEmpty())
+    @if ($slot->isEmpty())
         <x-ux::icon :name="$direction === 'start' ? 'arrow-up' : 'arrow-down'" aria-hidden="true" />
     @endif
 </x-ux::button>

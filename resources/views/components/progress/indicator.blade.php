@@ -5,8 +5,7 @@
     data-slot="progress-indicator"
     {{
         $attributes
-            ->style('transform:translateX(-' .(100 - $value). '%)')
+            ->style('transform:translateX(-'.(100 - $value).'%)')
             ->tailwindMerge('size-full flex-1 bg-primary transition-all')
     }}
->
-</div>
+></div>

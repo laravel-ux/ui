@@ -27,13 +27,13 @@
 >
     <x-ux::switch.thumb />
 </button>
-@if($name)
+@if ($name)
     <input
         type="hidden"
         data-switch-input
         name="{{ $name }}"
         value="{{ $value }}"
-        @if($form) form="{{ $form }}" @endif
+        @if ($form) form="{{ $form }}" @endif
         @disabled(! $checked || $disabled)
     />
 @endif

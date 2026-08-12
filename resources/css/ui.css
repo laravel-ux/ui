@@ -1,4 +1,4 @@
-/*@source "..!**!*.blade.php";*/
+@source "../views/**/*.blade.php";
 
 @plugin "tailwindcss-animate";
 

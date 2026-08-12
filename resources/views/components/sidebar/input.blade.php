@@ -1,5 +1,5 @@
 <x-ux::input
-    data-slot="sidebar-header"
-    data-sidebar="header"
+    data-slot="sidebar-input"
+    data-sidebar="input"
     {{ $attributes->tailwindMerge('bg-background h-8 w-full shadow-none') }}
 />

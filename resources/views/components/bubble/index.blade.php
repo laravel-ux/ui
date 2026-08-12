@@ -3,8 +3,8 @@
     'variant' => 'default',
     'align' => 'start',
 ])
-<div
-    {{ $attributes
+<div {{
+    $attributes
         ->merge([
             'data-slot' => 'bubble',
             'data-variant' => $variant,
@@ -21,7 +21,7 @@
                 'destructive' => '*:data-[slot=bubble-content]:bg-destructive/10 dark:*:data-[slot=bubble-content]:bg-destructive/20 *:data-[slot=bubble-content]:text-destructive [&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/20 dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/30',
                 default => '*:data-[slot=bubble-content]:bg-primary *:data-[slot=bubble-content]:text-primary-foreground [&>[data-slot=bubble-content]:is(button,a):hover]:bg-primary/80',
             },
-        ) }}
->
+        )
+}}>
     {{ $slot }}
 </div>

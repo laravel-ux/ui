@@ -11,12 +11,8 @@
         'data-slot' => 'hover-card-trigger',
     ]);
 @endphp
-@if($asChild)
-    <x-ux::as-child {{ $attributes }}>
-        {{ $slot }}
-    </x-ux::as-child>
+@if ($asChild)
+    <x-ux::as-child {{ $attributes }}> {{ $slot }} </x-ux::as-child>
 @else
-    <button type="button" {{ $attributes }}>
-        {{ $slot }}
-    </button>
+    <button type="button" {{ $attributes }}>{{ $slot }}</button>
 @endif

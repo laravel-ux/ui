@@ -15,12 +15,33 @@ export default (Alpine) => {
             'x-data'() {
                 return {
                     __sidebarProviderOpen: evaluate(expression),
+                    __sidebarProviderOpenMobile: false,
                     __sidebarProviderIsMobile: false,
+                    __sidebarProviderToggle() {
+                        if (this.__sidebarProviderIsMobile) {
+                            this.__sidebarProviderOpenMobile = ! this.__sidebarProviderOpenMobile;
+
+                            return;
+                        }
+
+                        this.__sidebarProviderOpen = ! this.__sidebarProviderOpen;
+                    },
                 };
             },
             'x-modelable': '__sidebarProviderOpen',
+            'x-init'() {
+                this.$watch('__sidebarProviderOpen', (open) => {
+                    document.cookie = `sidebar_state=${open}; path=/; max-age=${60 * 60 * 24 * 7}`;
+                });
+            },
             'x-resize.document'() {
                 this.__sidebarProviderIsMobile = this.$width < 768;
+            },
+            'x-on:keydown.window'(event) {
+                if (event.key === 'b' && (event.metaKey || event.ctrlKey)) {
+                    event.preventDefault();
+                    this.__sidebarProviderToggle();
+                }
             },
         });
     });
@@ -28,7 +49,7 @@ export default (Alpine) => {
     Alpine.directive('sidebar-trigger', (el) => {
         Alpine.bind(el, {
             'x-on:click'() {
-                this.__sidebarProviderOpen = ! this.__sidebarProviderOpen;
+                this.__sidebarProviderToggle();
             },
         });
     });

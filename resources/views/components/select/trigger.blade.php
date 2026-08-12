@@ -16,5 +16,5 @@
     }}
 >
     {{ $slot }}
-    <x-ux::icon name="chevron-down" class="size-4 text-muted-foreground" aria-hidden="true" />
+    <x-ux::icon name="chevron-down" class="text-muted-foreground size-4" aria-hidden="true" />
 </button>

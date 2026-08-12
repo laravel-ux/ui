@@ -18,6 +18,6 @@
     }}
 >
     <x-ux::radio-group.indicator>
-        <span class="absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-foreground"></span>
+        <span class="bg-primary-foreground absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full"></span>
     </x-ux::radio-group.indicator>
 </button>

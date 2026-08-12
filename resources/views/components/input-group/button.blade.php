@@ -16,9 +16,4 @@
             },
         ]);
 @endphp
-<x-ux::button
-    data-slot="input-group-button"
-    {{ $attributes }}
->
-    {{ $slot }}
-</x-ux::button>
+<x-ux::button data-slot="input-group-button" {{ $attributes }}> {{ $slot }} </x-ux::button>

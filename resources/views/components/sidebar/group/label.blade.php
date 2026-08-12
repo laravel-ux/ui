@@ -10,12 +10,8 @@
             'group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0',
         ]);
 @endphp
-@if($asChild)
-    <x-ux::as-child {{ $attributes }}>
-        {{ $slot }}
-    </x-ux::as-child>
+@if ($asChild)
+    <x-ux::as-child {{ $attributes }}> {{ $slot }} </x-ux::as-child>
 @else
-    <div {{ $attributes }}>
-        {{ $slot }}
-    </div>
+    <div {{ $attributes }}>{{ $slot }}</div>
 @endif

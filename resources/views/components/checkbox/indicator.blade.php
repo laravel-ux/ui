@@ -1,7 +1,7 @@
 @blaze
 @aware(['checked' => false])
 <span
-    @if(! $checked) x-cloak @endif
+    @if (! $checked) x-cloak @endif
     x-checkbox-indicator
     data-slot="checkbox-indicator"
     data-state="{{ $checked ? 'checked' : 'unchecked' }}"

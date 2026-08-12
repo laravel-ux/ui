@@ -18,14 +18,18 @@ php artisan ux:install
 
 The installer prepares the application for Laravel UX UI:
 
-- Adds the required frontend packages.
-- Configures the Laravel UX styles and Tailwind source detection.
-- Adapts the application CSS and JavaScript entrypoints.
-- Preserves the package conventions expected by interactive components.
+- Adds the required Tailwind CSS 4 frontend packages to `package.json`.
+- Imports the Laravel UX stylesheet from `resources/css/app.css`.
+- Adds Laravel UX package views to Tailwind source detection.
+- Imports the Laravel UX Alpine plugins from `resources/js/app.js`.
 
-After the installer completes, use the normal frontend workflow for your project.
+The command preserves the existing entrypoint contents and can be run again safely.
+
+After the installer completes, install the frontend dependencies and use the normal frontend workflow for your
+project.
 
 ```shell
+npm install
 npm run dev
 ```
 

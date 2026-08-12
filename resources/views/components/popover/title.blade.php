@@ -1,7 +1,2 @@
 @blaze
-<div
-    data-slot="popover-title"
-    {{ $attributes->tailwindMerge('font-medium') }}
->
-    {{ $slot }}
-</div>
+<div data-slot="popover-title" {{ $attributes->tailwindMerge('font-medium') }}>{{ $slot }}</div>

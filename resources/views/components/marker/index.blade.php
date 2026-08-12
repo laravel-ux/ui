@@ -18,7 +18,7 @@
             },
         );
 @endphp
-@if($asChild)
+@if ($asChild)
     <x-ux::as-child {{ $attributes }}>{{ $slot }}</x-ux::as-child>
 @else
     <div {{ $attributes }}>{{ $slot }}</div>

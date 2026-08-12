@@ -4,8 +4,8 @@
     'size' => 'default',
     'orientation' => 'horizontal',
 ])
-<div
-    {{ $attributes
+<div {{
+    $attributes
         ->merge([
             'data-slot' => 'attachment',
             'data-state' => $state,
@@ -23,7 +23,7 @@
                 'vertical' => 'flex-col w-24 has-data-[slot=attachment-content]:w-30',
                 default => 'items-center min-w-40',
             },
-        ) }}
->
+        )
+}}>
     {{ $slot }}
 </div>

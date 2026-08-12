@@ -6,12 +6,8 @@
         'data-slot' => 'sheet-close',
     ]);
 @endphp
-@if($asChild)
-    <x-ux::as-child {{ $attributes }}>
-        {{ $slot }}
-    </x-ux::as-child>
+@if ($asChild)
+    <x-ux::as-child {{ $attributes }}> {{ $slot }} </x-ux::as-child>
 @else
-    <x-ux::button {{ $attributes }}>
-        {{ $slot }}
-    </x-ux::button>
+    <x-ux::button {{ $attributes }}> {{ $slot }} </x-ux::button>
 @endif

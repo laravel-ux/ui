@@ -13,11 +13,11 @@
     role="radiogroup"
     aria-orientation="{{ $orientation }}"
     data-slot="radio-group"
-    @if($disabled) data-disabled @endif
+    @if ($disabled) data-disabled @endif
     {{ $attributes->merge(['data-value' => $initialValue])->tailwindMerge('grid w-full gap-2') }}
 >
     {{ $slot }}
-    @if($name)
+    @if ($name)
         <input
             type="hidden"
             data-radio-group-input

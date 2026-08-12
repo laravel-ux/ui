@@ -17,8 +17,6 @@
         tabindex="-1"
         {{ $attributes->tailwindMerge('relative z-50 max-h-[var(--select-available-height)] min-w-36 overflow-x-hidden overflow-y-auto rounded-lg bg-popover text-popover-foreground shadow-md ring-1 ring-foreground/10 outline-none') }}
     >
-        <x-ux::select.viewport>
-            {{ $slot }}
-        </x-ux::select.viewport>
+        <x-ux::select.viewport> {{ $slot }} </x-ux::select.viewport>
     </div>
 @endteleport

@@ -15,7 +15,7 @@
             },
         ]);
 @endphp
-@if($attributes->has('href'))
+@if ($attributes->has('href'))
     <a {{ $attributes }}>{{ $slot }}</a>
 @else
     <span {{ $attributes }}>{{ $slot }}</span>

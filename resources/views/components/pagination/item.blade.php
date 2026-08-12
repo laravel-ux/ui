@@ -1,7 +1,2 @@
 @blaze
-<li
-    data-slot="pagination-item"
-    {{ $attributes }}
->
-    {{ $slot }}
-</li>
+<li data-slot="pagination-item" {{ $attributes }}>{{ $slot }}</li>

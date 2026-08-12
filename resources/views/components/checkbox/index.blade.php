@@ -27,13 +27,13 @@
         <x-ux::icon name="check" class="size-3.5" aria-hidden="true" />
     </x-ux::checkbox.indicator>
 </button>
-@if($name)
+@if ($name)
     <input
         type="hidden"
         data-checkbox-input
         name="{{ $name }}"
         value="{{ $value }}"
-        @if($form) form="{{ $form }}" @endif
+        @if ($form) form="{{ $form }}" @endif
         @disabled(! $checked || $disabled)
     />
 @endif
