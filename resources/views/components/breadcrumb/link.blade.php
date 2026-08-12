@@ -1,3 +1,4 @@
-<a {{ $attributes->tailwindMerge('transition-colors hover:text-foreground') }}>
+@blaze
+<a data-slot="breadcrumb-link" {{ $attributes->tailwindMerge('hover:text-foreground transition-colors') }}>
     {{ $slot }}
 </a>

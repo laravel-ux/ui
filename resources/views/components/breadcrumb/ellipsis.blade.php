@@ -1,8 +1,10 @@
+@blaze
 <span
+    data-slot="breadcrumb-ellipsis"
     role="presentation"
     aria-hidden="true"
-    {{ $attributes->tailwindMerge('flex h-4 w-4 items-center justify-center') }}
+    {{ $attributes->tailwindMerge('flex size-5 items-center justify-center [&>svg]:size-4') }}
 >
-    <x-ux::icon name="ellipsis" class="h-4 w-4" />
-    <span class="sr-only">More</span>
+    <x-ux::icon name="ellipsis" />
+    <span class="sr-only">@lang('More')</span>
 </span>

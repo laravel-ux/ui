@@ -1,8 +1,10 @@
+@blaze
 <span
     role="link"
     aria-disabled="true"
     aria-current="page"
-    {{ $attributes->tailwindMerge('font-normal text-foreground') }}
+    data-slot="breadcrumb-page"
+    {{ $attributes->tailwindMerge('text-foreground font-normal') }}
 >
     {{ $slot }}
 </span>

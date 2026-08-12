@@ -4,9 +4,14 @@
     "keywords": ["laravel", "tailwind", "livewire"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
-        "livewire/livewire": "^3.3",
-        "gehrisandro/tailwind-merge-php": "^1.1"
+        "php": "^8.3",
+        "ext-dom": "*",
+        "ext-libxml": "*",
+        "laravel-ux/icons": "^0.1",
+        "laravel/framework": "^13.0",
+        "livewire/blaze": "^1.0",
+        "livewire/livewire": "^4.3",
+        "gehrisandro/tailwind-merge-php": "^1.2"
     },
     "autoload": {
         "psr-4": {

@@ -1,1 +1,2 @@
-<div {{ $attributes->tailwindMerge('-mx-1 my-1 h-px bg-muted') }}></div>
+@blaze
+<div data-slot="dropdown-menu-separator" {{ $attributes->tailwindMerge('bg-border -mx-1 my-1 h-px') }}></div>

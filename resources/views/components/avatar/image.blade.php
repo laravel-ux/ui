@@ -1,6 +1,13 @@
-@props(['src', 'alt' => ''])
+@blaze
+@props([
+    'src',
+    'alt' => '',
+])
 <img
+    x-cloak
+    x-avatar-image
     src="{{ $src }}"
     alt="{{ $alt }}"
-    {{ $attributes->tailwindMerge('aspect-square h-full w-full') }}
+    data-slot="avatar-image"
+    {{ $attributes->tailwindMerge('aspect-square size-full rounded-full object-cover') }}
 />

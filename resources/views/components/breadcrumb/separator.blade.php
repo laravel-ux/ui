@@ -1,11 +1,13 @@
+@blaze
 <li
     role="presentation"
     aria-hidden="true"
-    {{ $attributes->tailwindMerge('[&>svg]:w-3.5 [&>svg]:h-3.5') }}
+    data-slot="breadcrumb-separator"
+    {{ $attributes->tailwindMerge('[&>svg]:size-3.5') }}
 >
-    @if($slot->isNotEmpty())
+    @if ($slot->isNotEmpty())
         {{ $slot }}
     @else
-        <x-ux::icon name="chevron-right" />
+        <x-ux::icon name="chevron-right" class="rtl:rotate-180" />
     @endif
 </li>

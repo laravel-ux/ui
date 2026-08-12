@@ -1,11 +1,12 @@
-@props([
-    'inset' => false,
-])
+@blaze
+@props(['inset' => false])
 <div
-    {{ $attributes->tailwindMerge([
-        'px-2 py-1.5 text-sm font-semibold',
-        'pl-8' => $inset,
-    ]) }}
+    data-slot="dropdown-menu-label"
+    {{
+        $attributes
+            ->when($inset, fn ($attributes) => $attributes->offsetSet('data-inset', 'true'))
+            ->tailwindMerge('px-1.5 py-1 text-xs font-medium text-muted-foreground data-[inset]:ps-7')
+    }}
 >
     {{ $slot }}
 </div>

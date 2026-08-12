@@ -1,13 +1,10 @@
+@blaze
+@props(['open' => false])
 <div
-    x-data="{
-        show: false,
-        close: function () {
-            this.show = false
-        },
-        toggle: function () {
-            this.show = ! this.show
-        }
-    }"
+    x-data
+    x-dropdown-menu
+    data-slot="dropdown-menu"
+    {{ $attributes->merge(['data-state' => $open ? 'open' : 'closed'])->tailwindMerge('contents') }}
 >
     {{ $slot }}
 </div>

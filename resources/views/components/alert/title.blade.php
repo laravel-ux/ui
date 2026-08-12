@@ -1,8 +1,7 @@
-@php
-    $attributes = $attributes
-        ->tailwindMerge('col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight')
-        ->merge(['data-slot' => 'alert-title']);
-@endphp
-<h5 {{ $attributes }}>
+@blaze
+<div
+    data-slot="alert-title"
+    {{ $attributes->tailwindMerge('font-medium group-has-[>svg]/alert:col-start-2 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground') }}
+>
     {{ $slot }}
-</h5>
+</div>

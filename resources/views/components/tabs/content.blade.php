@@ -1,9 +1,12 @@
+@blaze
 @props(['value'])
 <div
-    data-slot="tabs-content"
     x-cloak
-    x-show="active === '{{ $value }}'"
-    {{ $attributes->tailwindMerge('flex-1 outline-none') }}
+    x-tabs-content
+    data-slot="tabs-content"
+    role="tabpanel"
+    tabindex="0"
+    {{ $attributes->merge(['data-value' => $value])->tailwindMerge('flex-1 text-sm outline-none') }}
 >
     {{ $slot }}
 </div>

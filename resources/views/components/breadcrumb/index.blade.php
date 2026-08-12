@@ -1,3 +1,2 @@
-<ul aria-label="breadcrumb" {{ $attributes }}>
-    {{ $slot }}
-</ul>
+@blaze
+<nav data-slot="breadcrumb" aria-label="@lang('Breadcrumb')" {{ $attributes }}>{{ $slot }}</nav>
