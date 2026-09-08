@@ -296,6 +296,22 @@ export default (Alpine) => {
                     __dropdownMenuSubContent: null,
                     __dropdownMenuSubTriggerId: `dropdown-menu-sub-${++dropdownMenuSubId}-trigger`,
                     __dropdownMenuSubContentId: `dropdown-menu-sub-${dropdownMenuSubId}-content`,
+                    __dropdownMenuSubOwnsTarget(target) {
+                        if (! (target instanceof Element)) return false;
+
+                        if (this.__dropdownMenuSubTrigger?.contains(target)) return true;
+
+                        let menu = target.closest('[data-slot="dropdown-menu-sub-content"]');
+
+                        while (menu) {
+                            if (menu === this.__dropdownMenuSubContent) return true;
+
+                            const trigger = document.getElementById(menu.getAttribute('aria-labelledby'));
+                            menu = trigger?.closest('[data-slot="dropdown-menu-sub-content"]');
+                        }
+
+                        return false;
+                    },
                     __dropdownMenuOpenSub() {
                         window.clearTimeout(this.__dropdownMenuSubTimer);
                         this.__dropdownMenuSubOpen = true;
@@ -312,6 +328,15 @@ export default (Alpine) => {
                 };
             },
             'x-modelable': '__dropdownMenuSubOpen',
+            'x-on:pointerover.document'($event) {
+                if (! this.__dropdownMenuSubOpen) return;
+
+                if (this.__dropdownMenuSubOwnsTarget($event.target)) {
+                    window.clearTimeout(this.__dropdownMenuSubTimer);
+                } else {
+                    this.__dropdownMenuCloseSub(100);
+                }
+            },
         });
     });
 
@@ -360,7 +385,7 @@ export default (Alpine) => {
         });
     });
 
-    Alpine.directive('dropdown-menu-sub-content', (el, { modifiers }) => {
+    Alpine.directive('dropdown-menu-sub-content', (el, { modifiers }, { effect, cleanup }) => {
         Alpine.bind(el, {
             'x-init'() {
                 this.__dropdownMenuSubContent = el;
@@ -399,7 +424,30 @@ export default (Alpine) => {
             'x-bind:data-closed'() {
                 return ! this.__dropdownMenuSubOpen || null;
             },
-            [['x-anchor', ...modifiers].join('.')]: '$refs.trigger',
         });
+
+        let releaseAnchor;
+        let previousPlacement;
+
+        effect(() => {
+            const direction = el.getAttribute('dir')
+                || Alpine.$data(el).__direction
+                || getComputedStyle(el).direction;
+            const placement = modifiers.map((modifier) => (
+                modifiers.includes('logical') && direction === 'rtl'
+                    ? modifier.replace(/^right(?=-|$)/, 'left')
+                    : modifier
+            ));
+            const anchor = ['x-anchor', ...placement].join('.');
+
+            if (anchor === previousPlacement) return;
+
+            releaseAnchor?.();
+            previousPlacement = anchor;
+            releaseAnchor = Alpine.bind(el, { [anchor]: '$refs.trigger' });
+            el.setAttribute('data-side', placement[0].split('-')[0]);
+        });
+
+        cleanup(() => releaseAnchor?.());
     });
 };

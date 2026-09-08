@@ -1,16 +1,16 @@
 @blaze
 @props([
     'align' => 'start',
-    'side' => 'right',
+    'side' => null,
     'sideOffset' => 0,
 ])
-@php($position = $side . data_get(['end' => '-end', 'start' => '-start'], $align))
+@php($position = ($side ?? 'right') . data_get(['end' => '-end', 'start' => '-start'], $align))
 @teleport('body')
     <div
         x-cloak
-        x-dropdown-menu-sub-content.{{ $position }}.offset.{{ $sideOffset }}
+        x-dropdown-menu-sub-content.{{ $position }}{{ $side === null ? '.logical' : '' }}.offset.{{ $sideOffset }}
         x-direction-portal
-        data-side="{{ $side }}"
+        data-side="{{ $side ?? 'right' }}"
         data-slot="dropdown-menu-sub-content"
         role="menu"
         tabindex="-1"
