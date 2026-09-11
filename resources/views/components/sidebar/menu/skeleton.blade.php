@@ -7,10 +7,7 @@
     {{ $attributes->tailwindMerge('flex h-8 items-center gap-2 rounded-md px-2') }}
 >
     @if ($showIcon)
-        <x-ux::skeleton
-            class="size-4 rounded-md"
-            data-sidebar="menu-skeleton-icon"
-        />
+        <x-ux::skeleton class="size-4 rounded-md" data-sidebar="menu-skeleton-icon" />
     @endif
     <x-ux::skeleton
         data-sidebar="menu-skeleton-text"

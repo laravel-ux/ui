@@ -320,14 +320,15 @@ x-ux::dropdown-menu
 Wrap isolated right-to-left menus with x-ux::direction.
 
 ```blade preview
+<x-ux::direction direction="rtl">
 <div x-data="{ statusBar: true, activityBar: false, panel: false, position: 'bottom' }">
     <x-ux::dropdown-menu>
         <x-ux::dropdown-menu.trigger as-child><x-ux::button variant="outline">افتح القائمة</x-ux::button></x-ux::dropdown-menu.trigger>
-        <x-ux::dropdown-menu.content align="end" class="w-36" dir="rtl" data-lang="ar">
+        <x-ux::dropdown-menu.content class="w-36" data-lang="ar">
             <x-ux::dropdown-menu.group>
                 <x-ux::dropdown-menu.sub>
                     <x-ux::dropdown-menu.sub.trigger>الحساب</x-ux::dropdown-menu.sub.trigger>
-                    <x-ux::dropdown-menu.sub.content dir="rtl" data-lang="ar">
+                    <x-ux::dropdown-menu.sub.content data-lang="ar">
                         <x-ux::dropdown-menu.item><x-ux::icon name="user" /> الملف الشخصي</x-ux::dropdown-menu.item>
                         <x-ux::dropdown-menu.item><x-ux::icon name="credit-card" /> الفوترة</x-ux::dropdown-menu.item>
                         <x-ux::dropdown-menu.item><x-ux::icon name="settings" /> الإعدادات</x-ux::dropdown-menu.item>
@@ -356,6 +357,7 @@ Wrap isolated right-to-left menus with x-ux::direction.
         </x-ux::dropdown-menu.content>
     </x-ux::dropdown-menu>
 </div>
+</x-ux::direction>
 ```
 
 ## API Reference
@@ -427,7 +429,7 @@ Wrap isolated right-to-left menus with x-ux::direction.
 | Prop          | Type                                             | Default   |
 |---------------|--------------------------------------------------|-----------|
 | `align`       | `enum` [?"start" \| "center" \| "end"]      | `"start"` |
-| `side`        | `enum` [?"top" \| "right" \| "bottom" \| "left"] | `"right"` |
+| `side`        | `enum` [?"top" \| "right" \| "bottom" \| "left"] | `"right"` (LTR), `"left"` (RTL) |
 | `side-offset` | `number`                                         | `0`       |
 
 ## Publishing

@@ -1,7 +1,3 @@
-<div
-    data-slot="sidebar-footer"
-    data-sidebar="footer"
-    {{ $attributes->tailwindMerge('flex flex-col gap-2 p-2') }}
->
+<div data-slot="sidebar-footer" data-sidebar="footer" {{ $attributes->tailwindMerge('flex flex-col gap-2 p-2') }}>
     {{ $slot }}
 </div>
